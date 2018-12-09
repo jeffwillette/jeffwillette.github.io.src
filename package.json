@@ -1,13 +1,9 @@
 {
-  "name": "gatsby-starter-typescript",
-  "description": "Gatsby TypeScript starter",
+  "name": "deltaskelta.github.io",
+  "description": "Jeff Willette's developer blog",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Jeff Willette <jrwillette88@gmail.com>",
   "dependencies": {
-    "@types/node": "^10.12.12",
-    "@types/react": "^16.7.13",
-    "@types/react-dom": "16.0.11",
-    "@types/react-helmet": "^5.0.7",
     "gatsby": "^2.0.64",
     "gatsby-link": "latest",
     "gatsby-plugin-react-helmet": "latest",
@@ -22,22 +18,22 @@
     "typography-theme-bootstrap": "^0.16.18",
     "typography-theme-github": "^0.16.18"
   },
-  "keywords": [
-    "gatsby, typescript"
-  ],
+  "keywords": ["Jeff Willette", "deltaskelta"],
   "license": "MIT",
-  "main": "n/a",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --parser typescript --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.ts*\"",
+    "develop": "gatsby develop --port 8001",
+    "get-schema": "apollo service:download --endpoint http://localhost:8001/___graphql gatsby-schema.json",
+    "gatsby-gen": "apollo client:codegen --addTypename --outputFlat --tagName=graphql --target=typescript --localSchemaFile=./gatsby-schema.json --includes=./src/pages/**/*.tsx gatsby-queries.d.ts",
+    "type-gen": "yarn get-schema && yarn gatsby-gen",
+    "format": "prettier --write \"src/**/*.ts*\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "@types/node": "^10.12.12",
+    "@types/react": "^16.7.13",
+    "@types/react-dom": "16.0.11",
+    "@types/react-helmet": "^5.0.7",
     "prettier": "^1.15.3"
-  },
-  "contributors": [
-    "fabien0102 <fabien0102@gmail.com>",
-    "Hays Clark <hays.clark@gmail.com>"
-  ]
+  }
 }
