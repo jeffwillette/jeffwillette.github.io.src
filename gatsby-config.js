@@ -6,12 +6,11 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `src`,
-        path: `${__dirname}/src/`
+        name: `data`,
+        path: `${__dirname}/data/`
       }
     },
     `gatsby-plugin-react-helmet`,
-    // Add typescript stack into webpack
     `gatsby-plugin-typescript`,
     {
       resolve: `gatsby-plugin-typography`,
