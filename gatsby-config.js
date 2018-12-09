@@ -1,6 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Typescript Starter`
+    title: `Jeff Willette (deltaskelta)`,
+    description: `developer blog for Jeff Willette`,
+    keywords: 'Jeff Willette,deltaskelta,deltaskelta.github.io',
+    author: 'Jeff Willette'
   },
   plugins: [
     {
@@ -12,10 +15,11 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-typescript`,
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-typography`,
       options: {
-        pathToConfigModule: `src/utils/typography.js`
+        pathToConfigModule: `src/components/Layout/typography.ts`
       }
     }
   ]

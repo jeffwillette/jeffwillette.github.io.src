@@ -8,6 +8,9 @@
 export interface IndexQuery_site_siteMetadata {
   __typename: "siteMetadata_2";
   title: string | null;
+  description: string | null;
+  keywords: string | null;
+  author: string | null;
 }
 
 export interface IndexQuery_site {
