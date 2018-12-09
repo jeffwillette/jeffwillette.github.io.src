@@ -1,9 +1,9 @@
 import * as React from 'react';
-import GlobalLayout from '../components/Layout';
+import GlobalLayout from '../components/Layout/global';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import { IndexQuery, IndexQuery_site, IndexQuery_site_siteMetadata } from '../gatsby-queries';
-import Button from '@material-ui/core/Button';
+import { Typography } from '@material-ui/core';
 
 interface Props {
   data: IndexQuery;
@@ -24,19 +24,18 @@ const Index = ({ data }: Props) => {
           { name: 'author', content: author }
         ]}
       />
-      <h1>Hi people</h1>
-      <p>
+      <Typography variant="h2">Hi people</Typography>
+      <Typography variant="body1">
         Welcome to your new <strong>{title}</strong>
-        <Button>Hi</Button>
-      </p>
-      <p>Now go build something great.</p>
+      </Typography>
+      <Typography variant="body1">Now go build something great.</Typography>
       <div>
-        <h1>Richard Hamming on Luck</h1>
+        <Typography variant="h1">Richard Hamming on Luck</Typography>
         <div>
-          <p>
+          <Typography variant="body1">
             From Richard Hamming’s classic and must-read talk,{' '}
             <a href="http://www.cs.virginia.edu/~robins/YouAndYourResearch.html">You and Your Research</a>.
-          </p>
+          </Typography>
           <blockquote>
             <p>
               There is indeed an element of luck, and no, there isn’t. The prepared mind sooner or later finds something

@@ -3,7 +3,9 @@ module.exports = {
     title: `Jeff Willette (deltaskelta)`,
     description: `developer blog for Jeff Willette`,
     keywords: 'Jeff Willette,deltaskelta,deltaskelta.github.io',
-    author: 'Jeff Willette'
+    author: 'Jeff Willette',
+    twitter: 'https://twitter.com/delta_skelta',
+    github: 'https://github.com/deltaskelta'
   },
   plugins: [
     {
@@ -15,12 +17,6 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-typescript`,
-    `gatsby-transformer-remark`,
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/components/Layout/typography.ts`
-      }
-    }
+    `gatsby-transformer-remark`
   ]
 };

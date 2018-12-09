@@ -43,24 +43,34 @@ const theme = createMuiTheme({
     }
   },
   typography: {
+    fontFamily: '"Ubuntu", sans-serif',
     useNextVariants: true,
     h1: {
+      fontSize: '3rem',
       color: 'rgba(0,0,0,.54)'
     },
     h2: {
+      fontSize: '2rem',
       color: 'rgba(0,0,0,.54)'
     },
     h3: {
+      fontSize: '1.75rem',
       color: 'rgba(0,0,0,.54)'
     },
     h4: {
+      fontSize: '1.35rem',
       color: 'rgba(0,0,0,.54)'
     },
     h5: {
+      fontSize: '1.25rem',
       color: 'rgba(0,0,0,.54)'
     },
     h6: {
+      fontSize: '1.15rem',
       color: 'rgba(0,0,0,.54)'
+    },
+    blockquote: {
+      color: 'blue'
     }
   }
 });
