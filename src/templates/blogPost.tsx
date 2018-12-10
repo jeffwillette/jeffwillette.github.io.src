@@ -32,6 +32,9 @@ const BlogPost = ({ classes, data }: Props) => {
   const { frontmatter, code, timeToRead, tableOfContents, excerpt } = mdx || ({} as BlogPostQuery_mdx);
   const { title, created, edited, categories } = frontmatter || ({} as BlogPostQuery_mdx_frontmatter);
 
+  // TODO: put this somewhere
+  console.log(tableOfContents);
+
   return (
     <GlobalLayout>
       <Helmet
@@ -55,7 +58,7 @@ const BlogPost = ({ classes, data }: Props) => {
   );
 };
 
-export const query = graphql`
+export const pageQuery = graphql`
   query BlogPostQuery($id: String!) {
     site {
       siteMetadata {

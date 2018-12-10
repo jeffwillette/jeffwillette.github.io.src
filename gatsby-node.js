@@ -31,7 +31,7 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   const pathAndTemplates = {
-    '/blog/': path.resolve('./src/templates/blogPost.tsx')
+    '/blog/': './src/templates/blogPost.tsx'
   };
 
   return new Promise((resolve, reject) => {
@@ -54,6 +54,8 @@ exports.createPages = ({ graphql, actions }) => {
         }
       `).then(result => {
         if (result.errors) {
+          console.log('ERRORS:');
+          console.log(result);
           reject(result.errors);
         }
 
@@ -63,13 +65,9 @@ exports.createPages = ({ graphql, actions }) => {
 
           Object.keys(pathAndTemplates).forEach(p => {
             if (slug.includes(p)) {
-              console.log(pathAndTemplates[p]);
-              console.log(code.scope);
-              console.log('componentWithMDXScope');
-              const c = componentWithMDXScope(pathAndTemplates[p], code.scope);
               createPage({
                 path: slug,
-                component: c,
+                component: componentWithMDXScope(path.resolve(pathAndTemplates[p]), code.scope),
                 context: { id }
               });
             }
