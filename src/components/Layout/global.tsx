@@ -55,13 +55,13 @@ class GlobalLayout extends React.Component<Props, State> {
     return (
       <MDXProvider
         components={{
-          h1: () => <Typography variant="h1" />,
-          h2: () => <Typography variant="h2" />,
-          h3: () => <Typography variant="h3" />,
-          h4: () => <Typography variant="h4" />,
-          h5: () => <Typography variant="h5" />,
-          h6: () => <Typography variant="h6" />,
-          p: () => <Typography variant="body1" />
+          h1: props => <Typography {...props} variant="h1" />,
+          h2: props => <Typography {...props} variant="h2" />,
+          h3: props => <Typography {...props} variant="h3" />,
+          h4: props => <Typography {...props} variant="h4" />,
+          h5: props => <Typography {...props} variant="h5" />,
+          h6: props => <Typography {...props} variant="h6" />,
+          p: props => <Typography {...props} variant="body1" />
         }}
       >
         <Header />
