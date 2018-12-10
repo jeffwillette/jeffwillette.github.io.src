@@ -48,9 +48,15 @@ export interface BlogQuery_allMdx_edges_node_frontmatter {
   categories: (string | null)[] | null;
 }
 
+export interface BlogQuery_allMdx_edges_node_fields {
+  __typename: "fields_2";
+  slug: string | null;
+}
+
 export interface BlogQuery_allMdx_edges_node {
   __typename: "Mdx";
   frontmatter: BlogQuery_allMdx_edges_node_frontmatter | null;
+  fields: BlogQuery_allMdx_edges_node_fields | null;
   timeToRead: number | null;
   excerpt: string | null;
 }

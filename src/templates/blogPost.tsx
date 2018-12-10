@@ -2,6 +2,7 @@ import React from 'react';
 import { createStyles, WithStyles, Theme, withStyles, Typography } from '@material-ui/core';
 import { graphql } from 'gatsby';
 import GlobalLayout from '../components/Layout/global';
+import DrawerTOC, { TableOfContents } from '../components/Layout/drawerTOC';
 import Helmet from 'react-helmet';
 import MDXRenderer from 'gatsby-mdx/mdx-renderer';
 import TagChip from '../components/tagChip';
@@ -32,11 +33,10 @@ const BlogPost = ({ classes, data }: Props) => {
   const { frontmatter, code, timeToRead, tableOfContents, excerpt } = mdx || ({} as BlogPostQuery_mdx);
   const { title, created, edited, categories } = frontmatter || ({} as BlogPostQuery_mdx_frontmatter);
 
-  // TODO: put this somewhere
-  console.log(tableOfContents);
+  const { items } = (tableOfContents as TableOfContents) || ({} as TableOfContents);
 
   return (
-    <GlobalLayout>
+    <GlobalLayout drawer={<DrawerTOC items={items} level={1} />}>
       <Helmet
         title={title || undefined}
         meta={[
@@ -46,13 +46,13 @@ const BlogPost = ({ classes, data }: Props) => {
         ]}
       />
       <Typography variant="h1">{title}</Typography>
-      {categories && categories.map(c => c && <TagChip tag={c} />)}
+      {categories && categories.map((c, i) => c && <TagChip key={i} tag={c} />)}
       <TagChip tag={`${timeToRead} minute read`} />
       <TagChip tag={`created: ${moment(created).format('LLL')}`} />
       <TagChip tag={`edited: ${moment(edited).format('LLL')}`} />
 
       <div className={classes.postBody}>
-        <MDXRenderer>{code && code.body}</MDXRenderer>
+        <MDXRenderer pageContext={{ something: 'context' }}>{code && code.body}</MDXRenderer>
       </div>
     </GlobalLayout>
   );

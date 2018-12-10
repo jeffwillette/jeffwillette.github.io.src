@@ -15,8 +15,22 @@ module.exports = {
         path: `${__dirname}/data/`
       }
     },
+    {
+      resolve: `gatsby-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            //https://www.gatsbyjs.org/packages/gatsby-remark-autolink-headers/#options
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+offsetY: `100`,
+className: 'custom-class'
+            }
+          }
+        ]
+      }
+    },
     `gatsby-plugin-react-helmet`,
-    `gatsby-mdx`,
     `gatsby-plugin-typescript`
   ]
 };

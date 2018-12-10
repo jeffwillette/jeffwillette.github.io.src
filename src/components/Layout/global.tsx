@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Header from './Header';
+import Header from './header';
 
 import withRoot from '../../withRoot';
 import { compose } from 'recompose';
@@ -20,6 +20,8 @@ import { drawerWidth } from './drawer';
 import './index.css';
 import { Web, ExpandMore, ExpandLess, LibraryBooks } from '@material-ui/icons';
 import { MDXProvider } from '@mdx-js/tag';
+import Code from '../code';
+import { navigate } from 'gatsby';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -30,6 +32,9 @@ const styles = (theme: Theme) =>
     },
     innerContent: {
       padding: `0px ${theme.spacing.unit * 7}px`
+    },
+    nestedList: {
+      paddingLeft: theme.spacing.unit * 4
     }
   });
 
@@ -55,13 +60,17 @@ class GlobalLayout extends React.Component<Props, State> {
     return (
       <MDXProvider
         components={{
-          h1: props => <Typography {...props} variant="h1" />,
+          h1: props => {
+            console.log(props);
+            return <Typography {...props} variant="h1" />;
+          },
           h2: props => <Typography {...props} variant="h2" />,
           h3: props => <Typography {...props} variant="h3" />,
           h4: props => <Typography {...props} variant="h4" />,
           h5: props => <Typography {...props} variant="h5" />,
           h6: props => <Typography {...props} variant="h6" />,
-          p: props => <Typography {...props} variant="body1" />
+          p: props => <Typography {...props} variant="body1" />,
+          code: props => <Code {...props} />
         }}
       >
         <Header />
@@ -76,7 +85,7 @@ class GlobalLayout extends React.Component<Props, State> {
             </ListItem>
             <Collapse in={defaultItemOpen}>
               <List>
-                <ListItem button>
+                <ListItem className={classes.nestedList} button onClick={() => navigate('/blog/')}>
                   <ListItemIcon>
                     <LibraryBooks />
                   </ListItemIcon>

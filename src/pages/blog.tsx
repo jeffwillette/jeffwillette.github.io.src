@@ -10,6 +10,7 @@ import {
   BlogQuery_allMdx,
   BlogQuery_allMdx_edges,
   BlogQuery_allMdx_edges_node,
+  BlogQuery_allMdx_edges_node_fields,
   BlogQuery_allMdx_edges_node_frontmatter
 } from '../gatsby-queries';
 import moment from 'moment';
@@ -38,13 +39,15 @@ const Blog = ({ data }: Props) => {
       {edges &&
         edges.map(edge => {
           const { node } = edge || ({} as BlogQuery_allMdx_edges);
-          const { frontmatter, timeToRead, excerpt } = node || ({} as BlogQuery_allMdx_edges_node);
+          const { frontmatter, fields, timeToRead, excerpt } = node || ({} as BlogQuery_allMdx_edges_node);
+          const { slug } = fields || ({} as BlogQuery_allMdx_edges_node_fields);
           const { title, edited, created, categories } = frontmatter || ({} as BlogQuery_allMdx_edges_node_frontmatter);
 
           return (
             <PostExcerpt
               title={title || ''}
               created={moment(created)}
+              slug={slug || ''}
               edited={moment(edited)}
               categories={categories || []}
               timeToRead={timeToRead || 0}
@@ -74,6 +77,9 @@ export const query = graphql`
             edited
             created
             categories
+          }
+          fields {
+            slug
           }
           timeToRead
           excerpt

@@ -10,7 +10,7 @@ export interface PageContext {
   generateClassName: any;
 }
 
-const spacing = 8;
+export const spacing = 8;
 
 const theme = createMuiTheme({
   palette: {

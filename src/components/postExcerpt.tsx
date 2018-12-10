@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 import { Moment } from 'moment';
 import TagChip from './tagChip';
+import Link from './link';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -28,16 +29,17 @@ interface Props extends WithStyles<typeof styles> {
   title: string;
   created: Moment;
   edited: Moment;
+  slug: string;
   categories: (string | null)[];
   timeToRead: number;
   excerpt: string;
 }
 
-const PostExcerpt = ({ classes, title, created, edited, categories, timeToRead, excerpt }: Props) => {
+const PostExcerpt = ({ classes, slug, title, created, edited, categories, timeToRead, excerpt }: Props) => {
   return (
     <Card elevation={0} classes={{ root: classes.card }}>
       <CardHeader
-        title={title}
+        title={<Link to={slug} children={title} />}
         action={
           <span>
             {categories.map(c => {
@@ -48,8 +50,8 @@ const PostExcerpt = ({ classes, title, created, edited, categories, timeToRead, 
         }
         subheader={
           <Typography variant="subtitle2">
-            <span className={classes.subheaderSpan}>created: {created.fromNow()}</span>
-            <span className={classes.subheaderSpan}>edited: {edited.fromNow()}</span>
+            <span className={classes.subheaderSpan}>created: {created.format('LLL')}</span>
+            <span className={classes.subheaderSpan}>edited: {edited.format('LLL')}</span>
           </Typography>
         }
       />
