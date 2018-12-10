@@ -16,7 +16,7 @@ module.exports = {
       }
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-typescript`,
-    `gatsby-transformer-remark`
+    `gatsby-mdx`,
+    `gatsby-plugin-typescript`
   ]
 };

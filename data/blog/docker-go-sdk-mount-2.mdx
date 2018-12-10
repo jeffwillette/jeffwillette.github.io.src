@@ -1,0 +1,31 @@
+---
+title: Mounting A Docker Volume With the Go SDK 2
+created: 2018-12-09 12:20:11.000+00
+edited: 2018-12-09 13:04:24.000+00
+categories: 
+  - go
+  - docker
+---
+
+this is for a post about how to mount a docker volume in a container using the go sdk. It is not very obvious from the docs
+
+```
+resp, err := cli.ContainerCreate(
+  context.Background(),
+  &container.Config{
+    Image: id,
+  },
+  &container.HostConfig{
+    Mounts: []mount.Mount{
+      mount.Mount{
+        Target:   "/var/lib/mysql",
+        Source:   "youshowprocom_mysql-test",
+        Type:     "volume",
+        ReadOnly: false,
+      },
+    },
+  },
+  &network.NetworkingConfig{},
+  "fucker",
+)
+```

@@ -25,7 +25,8 @@ const styles = (theme: Theme) =>
     drawerContent: {
       width: drawerWidth,
       alignContent: 'center',
-      height: '101%'
+      height: '101%',
+      backgroundColor: 'rgba(0,0,0,.002)'
     },
     drawerContentTopPadding: {
       // the drawer comes under the bar on desktop so it needs some top padding
@@ -45,36 +46,34 @@ interface Props extends WithStyles<typeof styles> {
 
 class Drawer extends React.Component<Props, {}> {
   setOpen = () => console.log('setOpen called');
+
   render() {
     const { classes, children } = this.props;
-
     return (
       <div className={classes.outerDiv}>
-        <div>
-          <Hidden mdUp>
-            {/* show only on mobile screens */}
-            <SwipeableDrawer
-              open={true}
-              onOpen={() => this.setOpen()}
-              onClose={() => this.setOpen()}
-              variant="temporary"
-              anchor="left"
-              ModalProps={{ keepMounted: true }}
-            >
-              <div className={classes.drawerContainer}>
-                <div className={classes.drawerContainer}>{children}</div>
-              </div>
-            </SwipeableDrawer>
-          </Hidden>
-          <Hidden smDown>
-            {/* show only on desktops */}
-            <MDDrawer open variant="permanent" anchor="left">
-              <div className={c(classes.drawerContent, classes.drawerContentTopPadding)}>
-                <div className={classes.drawerContent}>{children}</div>
-              </div>
-            </MDDrawer>
-          </Hidden>
-        </div>
+        <Hidden mdUp>
+          {/* show only on mobile screens */}
+          <SwipeableDrawer
+            open={true}
+            onOpen={() => this.setOpen()}
+            onClose={() => this.setOpen()}
+            variant="temporary"
+            anchor="left"
+            ModalProps={{ keepMounted: true }}
+          >
+            <div className={classes.drawerContainer}>
+              <div className={classes.drawerContainer}>{children}</div>
+            </div>
+          </SwipeableDrawer>
+        </Hidden>
+        <Hidden smDown>
+          {/* show only on desktops */}
+          <MDDrawer className={classes.drawer} open variant="permanent" anchor="left">
+            <div className={c(classes.drawerContent, classes.drawerContentTopPadding)}>
+              <div className={classes.drawerContent}>{children}</div>
+            </div>
+          </MDDrawer>
+        </Hidden>
       </div>
     );
   }
