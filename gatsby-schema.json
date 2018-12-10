@@ -224,8 +224,8 @@
             "deprecationReason": null
           },
           {
-            "name": "allMarkdownRemark",
-            "description": "Connection to all MarkdownRemark nodes",
+            "name": "allMdx",
+            "description": "Connection to all Mdx nodes",
             "args": [
               {
                 "name": "skip",
@@ -252,7 +252,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "markdownRemarkConnectionSort",
+                  "name": "mdxConnectionSort",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -262,7 +262,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "filterMarkdownRemark",
+                  "name": "filterMdx",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -270,7 +270,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "MarkdownRemarkConnection",
+              "name": "MdxConnection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -326,6 +326,16 @@
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "sitePageComponentChunkNameQueryString",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "context",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "sitePageContextInputObject",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -1332,7 +1342,7 @@
             "deprecationReason": null
           },
           {
-            "name": "markdownRemark",
+            "name": "mdx",
             "description": null,
             "args": [
               {
@@ -1340,7 +1350,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "markdownRemarkIdQueryString_2",
+                  "name": "mdxIdQueryString_2",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -1350,7 +1360,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "markdownRemarkInternalInputObject_2",
+                  "name": "mdxInternalInputObject_2",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -1360,7 +1370,47 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "markdownRemarkFrontmatterInputObject_2",
+                  "name": "mdxFrontmatterInputObject_2",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "rawBody",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "mdxRawBodyQueryString_2",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "fileAbsolutePath",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "mdxFileAbsolutePathQueryString_2",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "fields",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "mdxFieldsInputObject_2",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "code",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "codeTypeName_3",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -1371,36 +1421,6 @@
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "excerptQueryString_3",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "rawMarkdownBody",
-                "description": null,
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "markdownRemarkRawMarkdownBodyQueryString_2",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "fileAbsolutePath",
-                "description": null,
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "markdownRemarkFileAbsolutePathQueryString_2",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "html",
-                "description": null,
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "htmlQueryString_3",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -1426,16 +1446,6 @@
                 "defaultValue": null
               },
               {
-                "name": "tableOfContents",
-                "description": null,
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "tableOfContentsQueryString_3",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
                 "name": "wordCount",
                 "description": null,
                 "type": {
@@ -1448,7 +1458,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "MarkdownRemark",
+              "name": "Mdx",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1543,6 +1553,18 @@
           },
           {
             "name": "componentChunkName",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "context___slug",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "context___id",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -1679,6 +1701,16 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "sitePageConnectionComponentChunkNameQueryString",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "context",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "sitePageConnectionContextInputObject",
               "ofType": null
             },
             "defaultValue": null
@@ -2067,6 +2099,195 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "sitePageConnectionComponentChunkNameQueryString",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "sitePageConnectionContextInputObject",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "slug",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "sitePageConnectionContextSlugQueryString",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "sitePageConnectionContextIdQueryString",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "sitePageConnectionContextSlugQueryString",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "sitePageConnectionContextIdQueryString",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -5653,6 +5874,18 @@
             "deprecationReason": null
           },
           {
+            "name": "context",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "context",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "pluginCreator",
             "description": null,
             "args": [],
@@ -5788,7 +6021,7 @@
           },
           {
             "kind": "OBJECT",
-            "name": "MarkdownRemark",
+            "name": "Mdx",
             "ofType": null
           },
           {
@@ -5805,6 +6038,41 @@
         "fields": null,
         "inputFields": null,
         "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "context",
+        "description": null,
+        "fields": [
+          {
+            "name": "slug",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -6429,6 +6697,18 @@
             "deprecationReason": null
           },
           {
+            "name": "context___slug",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "context___id",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "pluginCreator___NODE",
             "description": null,
             "isDeprecated": false,
@@ -6519,6 +6799,18 @@
           },
           {
             "name": "componentChunkName",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "context___slug",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "context___id",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -20121,12 +20413,12 @@
             "deprecationReason": null
           },
           {
-            "name": "childMarkdownRemark",
-            "description": "The child of this node of type markdownRemark",
+            "name": "childMdx",
+            "description": "The child of this node of type mdx",
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "MarkdownRemark",
+              "name": "Mdx",
               "ofType": null
             },
             "isDeprecated": false,
@@ -20894,8 +21186,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "MarkdownRemark",
-        "description": "Node of type MarkdownRemark",
+        "name": "Mdx",
+        "description": "Node of type Mdx",
         "fields": [
           {
             "name": "id",
@@ -20966,7 +21258,7 @@
             "deprecationReason": null
           },
           {
-            "name": "rawMarkdownBody",
+            "name": "rawBody",
             "description": null,
             "args": [],
             "type": {
@@ -20990,24 +21282,24 @@
             "deprecationReason": null
           },
           {
-            "name": "html",
+            "name": "fields",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "OBJECT",
+              "name": "fields_2",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "htmlAst",
+            "name": "code",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "JSON",
+              "kind": "OBJECT",
+              "name": "MDXCodeMdx",
               "ofType": null
             },
             "isDeprecated": false,
@@ -21026,26 +21318,6 @@
                   "ofType": null
                 },
                 "defaultValue": "140"
-              },
-              {
-                "name": "truncate",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                },
-                "defaultValue": "false"
-              },
-              {
-                "name": "format",
-                "description": null,
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ExcerptFormats",
-                  "ofType": null
-                },
-                "defaultValue": null
               }
             ],
             "type": {
@@ -21065,7 +21337,7 @@
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "HeadingLevels",
+                  "name": "HeadingsMdx",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -21076,9 +21348,32 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "MarkdownHeading",
+                "name": "MdxHeadingMdx",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "tableOfContents",
+            "description": null,
+            "args": [
+              {
+                "name": "maxDepth",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSON",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -21096,35 +21391,12 @@
             "deprecationReason": null
           },
           {
-            "name": "tableOfContents",
-            "description": null,
-            "args": [
-              {
-                "name": "pathToSlugField",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": "\"fields.slug\""
-              }
-            ],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "wordCount",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "wordCount",
+              "name": "wordCountsMdx",
               "ofType": null
             },
             "isDeprecated": false,
@@ -21194,6 +21466,41 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "fieldOwners",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "fieldOwners_2",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "fieldOwners_2",
+        "description": null,
+        "fields": [
+          {
+            "name": "slug",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -21219,6 +21526,128 @@
             "deprecationReason": null
           },
           {
+            "name": "created",
+            "description": null,
+            "args": [
+              {
+                "name": "formatString",
+                "description": "Format the date using Moment.js' date tokens e.g. \"date(formatString: \"YYYY MMMM DD)\" See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "fromNow",
+                "description": "Returns a string generated with Moment.js' fromNow function",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "difference",
+                "description": "Returns the difference between this date and the current time. Defaults to miliseconds but you can also pass in as the measurement years, months, weeks, days, hours, minutes, and seconds.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "locale",
+                "description": "Configures the locale Moment.js will use to format the date.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Date",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "edited",
+            "description": null,
+            "args": [
+              {
+                "name": "formatString",
+                "description": "Format the date using Moment.js' date tokens e.g. \"date(formatString: \"YYYY MMMM DD)\" See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "fromNow",
+                "description": "Returns a string generated with Moment.js' fromNow function",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "difference",
+                "description": "Returns the difference between this date and the current time. Defaults to miliseconds but you can also pass in as the measurement years, months, weeks, days, hours, minutes, and seconds.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "locale",
+                "description": "Configures the locale Moment.js will use to format the date.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Date",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "categories",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "_PARENT",
             "description": null,
             "args": [],
@@ -21237,41 +21666,66 @@
         "possibleTypes": null
       },
       {
-        "kind": "SCALAR",
-        "name": "JSON",
-        "description": "The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).",
-        "fields": null,
+        "kind": "OBJECT",
+        "name": "fields_2",
+        "description": null,
+        "fields": [
+          {
+            "name": "slug",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "inputFields": null,
-        "interfaces": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "MDXCodeMdx",
+        "description": null,
+        "fields": [
+          {
+            "name": "body",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "scope",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
       {
         "kind": "ENUM",
-        "name": "ExcerptFormats",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "PLAIN",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "HTML",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "HeadingLevels",
+        "name": "HeadingsMdx",
         "description": null,
         "fields": null,
         "inputFields": null,
@@ -21318,7 +21772,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "MarkdownHeading",
+        "name": "MdxHeadingMdx",
         "description": null,
         "fields": [
           {
@@ -21352,8 +21806,18 @@
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "JSON",
+        "description": "The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
-        "name": "wordCount",
+        "name": "wordCountsMdx",
         "description": null,
         "fields": [
           {
@@ -22111,7 +22575,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkConnectionSort",
+        "name": "mdxConnectionSort",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -22126,7 +22590,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "ENUM",
-                  "name": "MarkdownRemarkConnectionSortByFieldsEnum",
+                  "name": "MdxConnectionSortByFieldsEnum",
                   "ofType": null
                 }
               }
@@ -22138,7 +22602,7 @@
             "description": null,
             "type": {
               "kind": "ENUM",
-              "name": "markdownRemarkConnectionSortOrderValues",
+              "name": "mdxConnectionSortOrderValues",
               "ofType": null
             },
             "defaultValue": "ASC"
@@ -22150,7 +22614,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "MarkdownRemarkConnectionSortByFieldsEnum",
+        "name": "MdxConnectionSortByFieldsEnum",
         "description": null,
         "fields": null,
         "inputFields": null,
@@ -22193,7 +22657,31 @@
             "deprecationReason": null
           },
           {
+            "name": "internal___fieldOwners___slug",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "frontmatter___title",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___created",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___edited",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___categories",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -22205,13 +22693,7 @@
             "deprecationReason": null
           },
           {
-            "name": "excerpt",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "rawMarkdownBody",
+            "name": "rawBody",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -22223,7 +22705,25 @@
             "deprecationReason": null
           },
           {
-            "name": "html",
+            "name": "fields___slug",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "code___body",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "code___scope",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "excerpt",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -22236,12 +22736,6 @@
           },
           {
             "name": "timeToRead",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "tableOfContents",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -22269,7 +22763,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "markdownRemarkConnectionSortOrderValues",
+        "name": "mdxConnectionSortOrderValues",
         "description": null,
         "fields": null,
         "inputFields": null,
@@ -22292,7 +22786,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "filterMarkdownRemark",
+        "name": "filterMdx",
         "description": "Filter connection on its fields",
         "fields": null,
         "inputFields": [
@@ -22301,7 +22795,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkConnectionIdQueryString_2",
+              "name": "mdxConnectionIdQueryString_2",
               "ofType": null
             },
             "defaultValue": null
@@ -22311,7 +22805,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkConnectionInternalInputObject_2",
+              "name": "mdxConnectionInternalInputObject_2",
               "ofType": null
             },
             "defaultValue": null
@@ -22321,7 +22815,47 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkConnectionFrontmatterInputObject_2",
+              "name": "mdxConnectionFrontmatterInputObject_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "rawBody",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxConnectionRawBodyQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "fileAbsolutePath",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxConnectionFileAbsolutePathQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "fields",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxConnectionFieldsInputObject_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "code",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "codeTypeName_4",
               "ofType": null
             },
             "defaultValue": null
@@ -22332,36 +22866,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "excerptQueryString_4",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "rawMarkdownBody",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkConnectionRawMarkdownBodyQueryString_2",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "fileAbsolutePath",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkConnectionFileAbsolutePathQueryString_2",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "html",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "htmlQueryString_4",
               "ofType": null
             },
             "defaultValue": null
@@ -22387,16 +22891,6 @@
             "defaultValue": null
           },
           {
-            "name": "tableOfContents",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "tableOfContentsQueryString_4",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "wordCount",
             "description": null,
             "type": {
@@ -22413,7 +22907,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkConnectionIdQueryString_2",
+        "name": "mdxConnectionIdQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -22492,7 +22986,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkConnectionInternalInputObject_2",
+        "name": "mdxConnectionInternalInputObject_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -22501,7 +22995,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkConnectionInternalContentQueryString_2",
+              "name": "mdxConnectionInternalContentQueryString_2",
               "ofType": null
             },
             "defaultValue": null
@@ -22511,7 +23005,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkConnectionInternalTypeQueryString_2",
+              "name": "mdxConnectionInternalTypeQueryString_2",
               "ofType": null
             },
             "defaultValue": null
@@ -22521,7 +23015,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkConnectionInternalContentDigestQueryString_2",
+              "name": "mdxConnectionInternalContentDigestQueryString_2",
               "ofType": null
             },
             "defaultValue": null
@@ -22531,7 +23025,17 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkConnectionInternalOwnerQueryString_2",
+              "name": "mdxConnectionInternalOwnerQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "fieldOwners",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxConnectionInternalFieldOwnersInputObject_2",
               "ofType": null
             },
             "defaultValue": null
@@ -22543,7 +23047,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkConnectionInternalContentQueryString_2",
+        "name": "mdxConnectionInternalContentQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -22622,7 +23126,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkConnectionInternalTypeQueryString_2",
+        "name": "mdxConnectionInternalTypeQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -22701,7 +23205,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkConnectionInternalContentDigestQueryString_2",
+        "name": "mdxConnectionInternalContentDigestQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -22780,7 +23284,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkConnectionInternalOwnerQueryString_2",
+        "name": "mdxConnectionInternalOwnerQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -22859,7 +23363,107 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkConnectionFrontmatterInputObject_2",
+        "name": "mdxConnectionInternalFieldOwnersInputObject_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "slug",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxConnectionInternalFieldOwnersSlugQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxConnectionInternalFieldOwnersSlugQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxConnectionFrontmatterInputObject_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -22868,7 +23472,37 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkConnectionFrontmatterTitleQueryString_2",
+              "name": "mdxConnectionFrontmatterTitleQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "created",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxConnectionFrontmatterCreatedQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "edited",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxConnectionFrontmatterEditedQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "categories",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxConnectionFrontmatterCategoriesQueryList_2",
               "ofType": null
             },
             "defaultValue": null
@@ -22878,7 +23512,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkConnectionFrontmatterParentQueryString_2",
+              "name": "mdxConnectionFrontmatterParentQueryString_2",
               "ofType": null
             },
             "defaultValue": null
@@ -22890,7 +23524,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkConnectionFrontmatterTitleQueryString_2",
+        "name": "mdxConnectionFrontmatterTitleQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -22969,7 +23603,691 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkConnectionFrontmatterParentQueryString_2",
+        "name": "mdxConnectionFrontmatterCreatedQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxConnectionFrontmatterEditedQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxConnectionFrontmatterCategoriesQueryList_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxConnectionFrontmatterParentQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxConnectionRawBodyQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxConnectionFileAbsolutePathQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxConnectionFieldsInputObject_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "slug",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxConnectionFieldsSlugQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxConnectionFieldsSlugQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "codeTypeName_4",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "body",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "codeBodyQueryString_4",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "scope",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "codeScopeQueryString_4",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "codeBodyQueryString_4",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "codeScopeQueryString_4",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -23049,243 +24367,6 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "excerptQueryString_4",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "ne",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "regex",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "glob",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkConnectionRawMarkdownBodyQueryString_2",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "ne",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "regex",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "glob",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkConnectionFileAbsolutePathQueryString_2",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "ne",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "regex",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "glob",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "htmlQueryString_4",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -23693,85 +24774,6 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tableOfContentsQueryString_4",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "ne",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "regex",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "glob",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
         "name": "wordCountTypeName_4",
         "description": null,
         "fields": null,
@@ -24110,7 +25112,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "MarkdownRemarkConnection",
+        "name": "MdxConnection",
         "description": "A connection to a list of items.",
         "fields": [
           {
@@ -24138,7 +25140,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "MarkdownRemarkEdge",
+                "name": "MdxEdge",
                 "ofType": null
               }
             },
@@ -24166,7 +25168,7 @@
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "markdownRemarkDistinctEnum",
+                  "name": "mdxDistinctEnum",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -24213,7 +25215,7 @@
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "markdownRemarkGroupEnum",
+                  "name": "mdxGroupEnum",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -24224,7 +25226,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "markdownRemarkGroupConnectionConnection",
+                "name": "mdxGroupConnectionConnection",
                 "ofType": null
               }
             },
@@ -24239,7 +25241,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "MarkdownRemarkEdge",
+        "name": "MdxEdge",
         "description": "An edge in a connection.",
         "fields": [
           {
@@ -24248,7 +25250,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "MarkdownRemark",
+              "name": "Mdx",
               "ofType": null
             },
             "isDeprecated": false,
@@ -24260,7 +25262,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "MarkdownRemark",
+              "name": "Mdx",
               "ofType": null
             },
             "isDeprecated": false,
@@ -24272,7 +25274,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "MarkdownRemark",
+              "name": "Mdx",
               "ofType": null
             },
             "isDeprecated": false,
@@ -24286,7 +25288,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "markdownRemarkDistinctEnum",
+        "name": "mdxDistinctEnum",
         "description": null,
         "fields": null,
         "inputFields": null,
@@ -24329,7 +25331,31 @@
             "deprecationReason": null
           },
           {
+            "name": "internal___fieldOwners___slug",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "frontmatter___title",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___created",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___edited",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___categories",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -24341,19 +25367,19 @@
             "deprecationReason": null
           },
           {
-            "name": "excerpt",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "rawMarkdownBody",
+            "name": "rawBody",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "fileAbsolutePath",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "fields___slug",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -24363,7 +25389,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "markdownRemarkGroupEnum",
+        "name": "mdxGroupEnum",
         "description": null,
         "fields": null,
         "inputFields": null,
@@ -24406,7 +25432,31 @@
             "deprecationReason": null
           },
           {
+            "name": "internal___fieldOwners___slug",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "frontmatter___title",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___created",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___edited",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___categories",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -24418,13 +25468,7 @@
             "deprecationReason": null
           },
           {
-            "name": "excerpt",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "rawMarkdownBody",
+            "name": "rawBody",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -24434,13 +25478,19 @@
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "fields___slug",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "possibleTypes": null
       },
       {
         "kind": "OBJECT",
-        "name": "markdownRemarkGroupConnectionConnection",
+        "name": "mdxGroupConnectionConnection",
         "description": "A connection to a list of items.",
         "fields": [
           {
@@ -24468,7 +25518,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "markdownRemarkGroupConnectionEdge",
+                "name": "mdxGroupConnectionEdge",
                 "ofType": null
               }
             },
@@ -24519,7 +25569,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "markdownRemarkGroupConnectionEdge",
+        "name": "mdxGroupConnectionEdge",
         "description": "An edge in a connection.",
         "fields": [
           {
@@ -24528,7 +25578,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "MarkdownRemark",
+              "name": "Mdx",
               "ofType": null
             },
             "isDeprecated": false,
@@ -24540,7 +25590,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "MarkdownRemark",
+              "name": "Mdx",
               "ofType": null
             },
             "isDeprecated": false,
@@ -24552,7 +25602,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "MarkdownRemark",
+              "name": "Mdx",
               "ofType": null
             },
             "isDeprecated": false,
@@ -24883,6 +25933,195 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "sitePageComponentChunkNameQueryString",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "sitePageContextInputObject",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "slug",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "sitePageContextSlugQueryString",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "sitePageContextIdQueryString",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "sitePageContextSlugQueryString",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "sitePageContextIdQueryString",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -38999,7 +40238,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkIdQueryString_2",
+        "name": "mdxIdQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -39078,7 +40317,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkInternalInputObject_2",
+        "name": "mdxInternalInputObject_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -39087,7 +40326,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkInternalContentQueryString_2",
+              "name": "mdxInternalContentQueryString_2",
               "ofType": null
             },
             "defaultValue": null
@@ -39097,7 +40336,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkInternalTypeQueryString_2",
+              "name": "mdxInternalTypeQueryString_2",
               "ofType": null
             },
             "defaultValue": null
@@ -39107,7 +40346,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkInternalContentDigestQueryString_2",
+              "name": "mdxInternalContentDigestQueryString_2",
               "ofType": null
             },
             "defaultValue": null
@@ -39117,7 +40356,17 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkInternalOwnerQueryString_2",
+              "name": "mdxInternalOwnerQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "fieldOwners",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxInternalFieldOwnersInputObject_2",
               "ofType": null
             },
             "defaultValue": null
@@ -39129,7 +40378,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkInternalContentQueryString_2",
+        "name": "mdxInternalContentQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -39208,7 +40457,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkInternalTypeQueryString_2",
+        "name": "mdxInternalTypeQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -39287,7 +40536,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkInternalContentDigestQueryString_2",
+        "name": "mdxInternalContentDigestQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -39366,7 +40615,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkInternalOwnerQueryString_2",
+        "name": "mdxInternalOwnerQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -39445,7 +40694,107 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkFrontmatterInputObject_2",
+        "name": "mdxInternalFieldOwnersInputObject_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "slug",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxInternalFieldOwnersSlugQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxInternalFieldOwnersSlugQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxFrontmatterInputObject_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -39454,7 +40803,37 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkFrontmatterTitleQueryString_2",
+              "name": "mdxFrontmatterTitleQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "created",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxFrontmatterCreatedQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "edited",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxFrontmatterEditedQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "categories",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxFrontmatterCategoriesQueryList_2",
               "ofType": null
             },
             "defaultValue": null
@@ -39464,7 +40843,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "markdownRemarkFrontmatterParentQueryString_2",
+              "name": "mdxFrontmatterParentQueryString_2",
               "ofType": null
             },
             "defaultValue": null
@@ -39476,7 +40855,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkFrontmatterTitleQueryString_2",
+        "name": "mdxFrontmatterTitleQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -39555,7 +40934,691 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkFrontmatterParentQueryString_2",
+        "name": "mdxFrontmatterCreatedQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxFrontmatterEditedQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxFrontmatterCategoriesQueryList_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxFrontmatterParentQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxRawBodyQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxFileAbsolutePathQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxFieldsInputObject_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "slug",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxFieldsSlugQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxFieldsSlugQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "codeTypeName_3",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "body",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "codeBodyQueryString_3",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "scope",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "codeScopeQueryString_3",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "codeBodyQueryString_3",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "codeScopeQueryString_3",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -39635,243 +41698,6 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "excerptQueryString_3",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "ne",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "regex",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "glob",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkRawMarkdownBodyQueryString_2",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "ne",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "regex",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "glob",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "markdownRemarkFileAbsolutePathQueryString_2",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "ne",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "regex",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "glob",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "htmlQueryString_3",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -40267,85 +42093,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Int",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "tableOfContentsQueryString_3",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "ne",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "regex",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "glob",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
                 "ofType": null
               }
             },

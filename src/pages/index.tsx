@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import GlobalLayout from '../components/Layout/global';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import { IndexQuery, IndexQuery_site, IndexQuery_site_siteMetadata } from '../gatsby-queries';
 import { Typography } from '@material-ui/core';
+import Blockquote from '../components/blockquote';
 
 interface Props {
   data: IndexQuery;
@@ -24,7 +25,7 @@ const Index = ({ data }: Props) => {
           { name: 'author', content: author }
         ]}
       />
-      <Typography variant="h2">Hi people</Typography>
+      <Typography variant="h1">Hi people</Typography>
       <Typography variant="body1">
         Welcome to your new <strong>{title}</strong>
       </Typography>
@@ -36,15 +37,13 @@ const Index = ({ data }: Props) => {
             From Richard Hamming’s classic and must-read talk,{' '}
             <a href="http://www.cs.virginia.edu/~robins/YouAndYourResearch.html">You and Your Research</a>.
           </Typography>
-          <blockquote>
-            <p>
-              There is indeed an element of luck, and no, there isn’t. The prepared mind sooner or later finds something
-              important and does it. So yes, it is luck.{' '}
-              <em>The particular thing you do is luck, but that you do something is not.</em>
-            </p>
-          </blockquote>
+          <Blockquote>
+            There is indeed an element of luck, and no, there isn’t. The prepared mind sooner or later finds something
+            important and does it. So yes, it is luck.{' '}
+            <em>The particular thing you do is luck, but that you do something is not.</em>
+          </Blockquote>
         </div>
-        <p>Posted April 09, 2011</p>
+        <Typography variant="body1">Posted April 09, 2011</Typography>
       </div>
     </GlobalLayout>
   );

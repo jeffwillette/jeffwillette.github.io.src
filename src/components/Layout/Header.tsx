@@ -11,7 +11,7 @@ interface Props extends WithStyles<typeof styles> {}
 const styles = (theme: Theme) =>
   createStyles({
     right: {
-      marginRight: theme.spacing.unit
+      marginRight: theme.spacing.unit * 2
     },
     flex: {
       flexGrow: 1

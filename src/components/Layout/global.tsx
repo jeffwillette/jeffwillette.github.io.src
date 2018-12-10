@@ -3,22 +3,33 @@ import Header from './Header';
 
 import withRoot from '../../withRoot';
 import { compose } from 'recompose';
-import { WithStyles, createStyles, withStyles, Theme } from '@material-ui/core';
+import {
+  WithStyles,
+  createStyles,
+  withStyles,
+  Theme,
+  Typography,
+  Collapse,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  List
+} from '@material-ui/core';
 import Drawer from './drawer';
 import { drawerWidth } from './drawer';
 import './index.css';
+import { Web, ExpandMore, ExpandLess, LibraryBooks } from '@material-ui/icons';
+import { MDXProvider } from '@mdx-js/tag';
 
 const styles = (theme: Theme) =>
   createStyles({
     outerContent: {
       margin: `0px 0px 0px ${drawerWidth}px`,
-      maxWidth: 960,
       padding: '0px 1.0875rem 1.45rem',
-      paddingTop: theme.spacing.unit * 2,
-      marginTop: 65
+      paddingTop: theme.spacing.unit
     },
     innerContent: {
-      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`
+      padding: `0px ${theme.spacing.unit * 7}px`
     }
   });
 
@@ -27,15 +38,62 @@ interface Props extends React.HTMLProps<HTMLDivElement>, WithStyles<typeof style
   drawer: JSX.Element | JSX.Element[];
 }
 
-const GlobalLayout = ({ children, classes, drawer }: Props) => (
-  <div>
-    <Header />
-    <Drawer>{drawer}</Drawer>
-    <div className={classes.outerContent}>
-      <div className={classes.innerContent}>{children}</div>
-    </div>
-  </div>
-);
+interface State {
+  defaultItemOpen: boolean;
+}
+
+class GlobalLayout extends React.Component<Props, State> {
+  state = {
+    defaultItemOpen: false
+  };
+
+  toggleDefaultItem = () => this.setState(prevState => ({ defaultItemOpen: !prevState.defaultItemOpen }));
+
+  render() {
+    const { defaultItemOpen } = this.state;
+    const { drawer, classes, children } = this.props;
+    return (
+      <MDXProvider
+        components={{
+          h1: () => <Typography variant="h1" />,
+          h2: () => <Typography variant="h2" />,
+          h3: () => <Typography variant="h3" />,
+          h4: () => <Typography variant="h4" />,
+          h5: () => <Typography variant="h5" />,
+          h6: () => <Typography variant="h6" />,
+          p: () => <Typography variant="body1" />
+        }}
+      >
+        <Header />
+        <Drawer>
+          <List>
+            <ListItem button onClick={this.toggleDefaultItem}>
+              <ListItemIcon>
+                <Web />
+              </ListItemIcon>
+              <ListItemText>Sections</ListItemText>
+              {defaultItemOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={defaultItemOpen}>
+              <List>
+                <ListItem button>
+                  <ListItemIcon>
+                    <LibraryBooks />
+                  </ListItemIcon>
+                  <ListItemText>Blog</ListItemText>
+                </ListItem>
+              </List>
+            </Collapse>
+          </List>
+          {drawer}
+        </Drawer>
+        <div className={classes.outerContent}>
+          <div className={classes.innerContent}>{children}</div>
+        </div>
+      </MDXProvider>
+    );
+  }
+}
 
 export default compose<Props, any>(
   withRoot,

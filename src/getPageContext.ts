@@ -10,6 +10,8 @@ export interface PageContext {
   generateClassName: any;
 }
 
+const spacing = 8;
+
 const theme = createMuiTheme({
   palette: {
     primary: indigo,
@@ -31,23 +33,24 @@ const theme = createMuiTheme({
       }
     },
     MuiPaper: {
-      root: {
-        boxShadow:
-          '0px 1px 1px -1px rgba(0, 0, 0, 0.2),' +
-          '0px 3px 1px -1px rgba(0, 0, 0, 0.14),' +
-          '0px 1px 1px -1px rgba(0, 0, 0, 0.12)'
-      },
       rounded: {
         borderRadius: 5
       }
     }
   },
+  spacing: {
+    unit: 8
+  },
   typography: {
     fontFamily: '"Ubuntu", sans-serif',
     useNextVariants: true,
     h1: {
-      fontSize: '3rem',
-      color: 'rgba(0,0,0,.54)'
+      fontSize: '2.5rem',
+      fontWeight: 'bold',
+      lineHeight: 1.3,
+      borderBottom: '1px solid rgba(0,0,0,.1)',
+      color: 'rgba(0,0,0,.74)',
+      margin: `${spacing * 3}px 0px`
     },
     h2: {
       fontSize: '2rem',
@@ -69,8 +72,8 @@ const theme = createMuiTheme({
       fontSize: '1.15rem',
       color: 'rgba(0,0,0,.54)'
     },
-    blockquote: {
-      color: 'blue'
+    body1: {
+      margin: `${spacing * 2}px 0px`
     }
   }
 });
