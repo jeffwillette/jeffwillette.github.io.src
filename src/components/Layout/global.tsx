@@ -60,10 +60,7 @@ class GlobalLayout extends React.Component<Props, State> {
     return (
       <MDXProvider
         components={{
-          h1: props => {
-            console.log(props);
-            return <Typography {...props} variant="h1" />;
-          },
+          h1: props => <Typography {...props} variant="h1" />,
           h2: props => <Typography {...props} variant="h2" />,
           h3: props => <Typography {...props} variant="h3" />,
           h4: props => <Typography {...props} variant="h4" />,
