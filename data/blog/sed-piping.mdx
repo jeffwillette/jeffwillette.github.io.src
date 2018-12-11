@@ -1,0 +1,11 @@
+
+1. what am I trying to write here?
+2. come up with a solid example that doesnt include goass (DO NOT COMMIT THIS)
+
+this one worked
+
+gopass show misc/ | grep "├── \|└──" | sed 's/├── /misc\//g' | xargs -tn1 gopass show
+
+this one did not work, it needs to do something with replacing the @'s or _'s
+
+gopass show websites/ | grep " └── " | sed -r 's/│?   └── /websites\//g' | xargs -tn1 gopass show

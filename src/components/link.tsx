@@ -1,7 +1,8 @@
 import React from 'react';
-import { withStyles, WithStyles, createStyles } from '@material-ui/core';
+import { WithStyles, createStyles, withStyles } from '@material-ui/core';
 import c from 'classnames';
-import { Link } from 'gatsby';
+import { Link as GatsbyLink } from 'gatsby';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const styles = () =>
   createStyles({
@@ -28,18 +29,22 @@ interface AProps extends WithStyles<typeof styles> {
   white?: boolean;
 }
 
-const AComponent = ({ to, children, classes, white }: AProps) => {
+const Link = ({ to, children, classes, white }: AProps) => {
   // Tailor the following test to your environment.
   // This example assumes that any internal link (intended for Gatsby)
   // will start with exactly one slash, and that anything else is external.
-  const internal = /^\/(?!\/)/.test(to);
+  const otherInternalPage = /^\/(?!\/)/.test(to);
+  const samePageAnchor = /^#.*/.test(to);
   const className = c(classes.link, { [classes.white]: white });
 
-  return internal ? (
-    <Link to={to} children={children} className={className} />
-  ) : (
-    <a className={className} href={to} children={children} />
-  );
+  switch (true) {
+    case otherInternalPage:
+      return <GatsbyLink to={to} children={children} className={className} />;
+    case samePageAnchor:
+      return <AnchorLink offset="100" href={to} className={className} children={children} />;
+    default:
+      return <a className={className} href={to} children={children} />;
+  }
 };
 
-export default withStyles(styles)(AComponent);
+export default withStyles(styles)(Link);
