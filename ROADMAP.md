@@ -2,7 +2,10 @@ I would like this to eventually be a solid developer blog that anyone can use
 
 TODO:
 
--  add an 'edit this page on github' link
+- get rid of remark-autolink-headers and just make a component that wraps the Typography component, 
+  makes a slug, id, and link/image
+
+- add an 'edit this page on github' link
   - it should probably construct its link from the siteMetadata which contains a github repo?
 
 - add a feed from twitter

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Theme, createStyles, WithStyles, withStyles, List, ListItemText, ListItem } from '@material-ui/core';
 import c from 'classnames';
-import { navigate } from 'gatsby';
 import Link from '../link';
 
 const styles = (theme: Theme) =>
@@ -38,12 +37,11 @@ const DrawerTOC = ({ items, level, classes }: Props) => {
     <List>
       {items &&
         items.map((item, i) => (
-          <div>
+          <div key={i}>
             <Link to={item.url}>
               <ListItem
                 button
                 alignItems="center"
-                key={i}
                 classes={{ root: classes.tocButtonRoot, gutters: classes.tocButtonGutters }}
               >
                 <ListItemText
