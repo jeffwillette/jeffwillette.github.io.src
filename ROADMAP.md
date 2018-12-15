@@ -5,6 +5,8 @@ TODO:
 - add an 'edit this page on github' link
   - it should probably construct its link from the siteMetadata which contains a github repo?
 
+- add a tooltip for `copy link to clipboard`
+
 - add a feed from twitter
   - this should probably go on the main page
   - if there is no twitter account in the siteMetadata then don't show anything
