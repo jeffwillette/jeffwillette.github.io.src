@@ -61,7 +61,8 @@ class Link extends React.Component<Props, State> {
         return (
           <AnchorLink
             href={to}
-            onClick={() => (window ? (window.location.hash = to) : null)}
+            // set the timeout to let the smooth scrolling happen and then insert the link into the browser
+            onClick={() => setTimeout(() => (window ? (window.location.hash = to) : null), 1000)}
             className={className}
             children={children}
           />
