@@ -1,5 +1,6 @@
 import React from 'react';
-import { createStyles, WithStyles, Theme, withStyles, Typography } from '@material-ui/core';
+import { createStyles, WithStyles, Theme, withStyles, Typography, Button } from '@material-ui/core';
+import { Edit } from '@material-ui/icons';
 import { graphql } from 'gatsby';
 import GlobalLayout from '../components/Layout/global';
 import DrawerTOC, { TableOfContents } from '../components/Layout/drawerTOC';
@@ -9,16 +10,24 @@ import TagChip from '../components/tagChip';
 import {
   BlogPostQuery,
   BlogPostQuery_mdx,
+  BlogPostQuery_mdx_fields,
   BlogPostQuery_mdx_frontmatter,
   BlogPostQuery_site,
   BlogPostQuery_site_siteMetadata
 } from '../gatsby-queries';
 import moment from 'moment';
+import Link from '../components/link';
 
 const styles = (theme: Theme) =>
   createStyles({
     postBody: {
       marginTop: theme.spacing.unit * 6
+    },
+    editButtonText: {
+      margin: `0px ${theme.spacing.unit * 2}px`
+    },
+    button: {
+      textAlign: 'center'
     }
   });
 
@@ -30,9 +39,9 @@ const BlogPost = ({ classes, data }: Props) => {
   const { mdx, site } = data || ({} as BlogPostQuery);
   const { siteMetadata } = site || ({} as BlogPostQuery_site);
   const { author } = siteMetadata || ({} as BlogPostQuery_site_siteMetadata);
-  const { frontmatter, code, timeToRead, tableOfContents, excerpt } = mdx || ({} as BlogPostQuery_mdx);
+  const { frontmatter, code, timeToRead, tableOfContents, excerpt, fields } = mdx || ({} as BlogPostQuery_mdx);
   const { title, created, edited, categories } = frontmatter || ({} as BlogPostQuery_mdx_frontmatter);
-
+  const { githubLink } = fields || ({} as BlogPostQuery_mdx_fields);
   const { items } = (tableOfContents as TableOfContents) || ({} as TableOfContents);
 
   return (
@@ -54,6 +63,14 @@ const BlogPost = ({ classes, data }: Props) => {
       <div className={classes.postBody}>
         <MDXRenderer pageContext={{ something: 'context' }}>{code && code.body}</MDXRenderer>
       </div>
+      <div className={classes.button}>
+        <Link to={githubLink || ''}>
+          <Button size="small" variant="contained">
+            <Edit />
+            <span className={classes.editButtonText}>Edit this page on Github</span>
+          </Button>
+        </Link>
+      </div>
     </GlobalLayout>
   );
 };
@@ -71,6 +88,9 @@ export const pageQuery = graphql`
         created
         edited
         categories
+      }
+      fields {
+        githubLink
       }
       code {
         body

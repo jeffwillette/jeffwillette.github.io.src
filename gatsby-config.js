@@ -5,7 +5,9 @@ module.exports = {
     keywords: 'Jeff Willette,deltaskelta,deltaskelta.github.io',
     author: 'Jeff Willette',
     twitter: 'https://twitter.com/delta_skelta',
-    github: 'https://github.com/deltaskelta'
+    github: 'https://github.com/deltaskelta',
+    githubProjectName: 'deltaskelta.github.io.src', // this must be the same as the directory name on file
+    githubBranchPrefix: '/tree/dev'
   },
   plugins: [
     {

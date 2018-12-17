@@ -134,6 +134,11 @@ export interface BlogPostQuery_mdx_frontmatter {
   categories: (string | null)[] | null;
 }
 
+export interface BlogPostQuery_mdx_fields {
+  __typename: "fields_2";
+  githubLink: string | null;
+}
+
 export interface BlogPostQuery_mdx_code {
   __typename: "MDXCodeMdx";
   body: string | null;
@@ -142,6 +147,7 @@ export interface BlogPostQuery_mdx_code {
 export interface BlogPostQuery_mdx {
   __typename: "Mdx";
   frontmatter: BlogPostQuery_mdx_frontmatter | null;
+  fields: BlogPostQuery_mdx_fields | null;
   code: BlogPostQuery_mdx_code | null;
   timeToRead: number | null;
   tableOfContents: any | null;

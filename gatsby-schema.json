@@ -21404,6 +21404,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "githubLink",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -21418,6 +21430,18 @@
         "fields": [
           {
             "name": "title",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_PARENT",
             "description": null,
             "args": [],
             "type": {
@@ -21549,18 +21573,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "_PARENT",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -21575,6 +21587,18 @@
         "fields": [
           {
             "name": "slug",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "githubLink",
             "description": null,
             "args": [],
             "type": {
@@ -22566,7 +22590,19 @@
             "deprecationReason": null
           },
           {
+            "name": "internal___fieldOwners___githubLink",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "frontmatter___title",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter____PARENT",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -22590,12 +22626,6 @@
             "deprecationReason": null
           },
           {
-            "name": "frontmatter____PARENT",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "rawBody",
             "description": null,
             "isDeprecated": false,
@@ -22609,6 +22639,12 @@
           },
           {
             "name": "fields___slug",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "fields___githubLink",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -23295,6 +23331,16 @@
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "githubLink",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxConnectionInternalFieldOwnersGithubLinkQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -23304,6 +23350,85 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "mdxConnectionInternalFieldOwnersSlugQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxConnectionInternalFieldOwnersGithubLinkQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -23397,6 +23522,16 @@
             "defaultValue": null
           },
           {
+            "name": "_PARENT",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxConnectionFrontmatterParentQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "created",
             "description": null,
             "type": {
@@ -23425,14 +23560,83 @@
               "ofType": null
             },
             "defaultValue": null
-          },
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxConnectionFrontmatterTitleQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
           {
-            "name": "_PARENT",
+            "name": "eq",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "mdxConnectionFrontmatterParentQueryString_2",
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "defaultValue": null
           }
@@ -23443,7 +23647,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "mdxConnectionFrontmatterTitleQueryString_2",
+        "name": "mdxConnectionFrontmatterParentQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -23759,85 +23963,6 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "mdxConnectionFrontmatterParentQueryString_2",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "ne",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "regex",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "glob",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
         "name": "mdxConnectionRawBodyQueryString_2",
         "description": null,
         "fields": null,
@@ -24009,6 +24134,16 @@
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "githubLink",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxConnectionFieldsGithubLinkQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -24018,6 +24153,85 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "mdxConnectionFieldsSlugQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxConnectionFieldsGithubLinkQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -25335,7 +25549,19 @@
             "deprecationReason": null
           },
           {
+            "name": "internal___fieldOwners___githubLink",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "frontmatter___title",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter____PARENT",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -25359,12 +25585,6 @@
             "deprecationReason": null
           },
           {
-            "name": "frontmatter____PARENT",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "rawBody",
             "description": null,
             "isDeprecated": false,
@@ -25378,6 +25598,12 @@
           },
           {
             "name": "fields___slug",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "fields___githubLink",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -25436,7 +25662,19 @@
             "deprecationReason": null
           },
           {
+            "name": "internal___fieldOwners___githubLink",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "frontmatter___title",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter____PARENT",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -25460,12 +25698,6 @@
             "deprecationReason": null
           },
           {
-            "name": "frontmatter____PARENT",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "rawBody",
             "description": null,
             "isDeprecated": false,
@@ -25479,6 +25711,12 @@
           },
           {
             "name": "fields___slug",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "fields___githubLink",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -31742,6 +31980,26 @@
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "githubProjectName",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "siteSiteMetadataGithubProjectNameQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "githubBranchPrefix",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "siteSiteMetadataGithubBranchPrefixQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -32146,6 +32404,164 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "siteSiteMetadataGithubQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "siteSiteMetadataGithubProjectNameQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "siteSiteMetadataGithubBranchPrefixQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -33248,6 +33664,30 @@
           },
           {
             "name": "github",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "githubProjectName",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "githubBranchPrefix",
             "description": null,
             "args": [],
             "type": {
@@ -40616,6 +41056,16 @@
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "githubLink",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxInternalFieldOwnersGithubLinkQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -40625,6 +41075,85 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "mdxInternalFieldOwnersSlugQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxInternalFieldOwnersGithubLinkQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -40718,6 +41247,16 @@
             "defaultValue": null
           },
           {
+            "name": "_PARENT",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxFrontmatterParentQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "created",
             "description": null,
             "type": {
@@ -40746,14 +41285,83 @@
               "ofType": null
             },
             "defaultValue": null
-          },
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxFrontmatterTitleQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
           {
-            "name": "_PARENT",
+            "name": "eq",
             "description": null,
             "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "mdxFrontmatterParentQueryString_2",
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "defaultValue": null
           }
@@ -40764,7 +41372,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "mdxFrontmatterTitleQueryString_2",
+        "name": "mdxFrontmatterParentQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -41080,85 +41688,6 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "mdxFrontmatterParentQueryString_2",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "ne",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "regex",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "glob",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
         "name": "mdxRawBodyQueryString_2",
         "description": null,
         "fields": null,
@@ -41330,6 +41859,16 @@
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "githubLink",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "mdxFieldsGithubLinkQueryString_2",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -41339,6 +41878,85 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "mdxFieldsSlugQueryString_2",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "ne",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "regex",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "glob",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "mdxFieldsGithubLinkQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [

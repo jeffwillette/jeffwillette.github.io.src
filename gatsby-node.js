@@ -3,6 +3,8 @@ const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope');
 
 const path = require('path');
 
+const config = require('./gatsby-config');
+
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // when the node is created (the first time the file is discovered) this is run
@@ -21,6 +23,16 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       node,
       name: 'slug',
       value: slug
+    });
+
+    const { github, githubProjectName, githubBranchPrefix } = config.siteMetadata;
+    let localPath = node.fileAbsolutePath.split(githubProjectName);
+    let githubPath = path.join(githubProjectName, githubBranchPrefix, localPath[localPath.length - 1]);
+
+    createNodeField({
+      node,
+      name: 'githubLink',
+      value: `${github}/${githubPath}`
     });
   }
 };
