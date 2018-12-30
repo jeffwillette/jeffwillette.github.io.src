@@ -1,5 +1,5 @@
+import { createStyles, Typography, withStyles, WithStyles } from '@material-ui/core';
 import React from 'react';
-import { withStyles, WithStyles, Typography, createStyles } from '@material-ui/core';
 
 const styles = () =>
   createStyles({
@@ -12,7 +12,7 @@ const styles = () =>
   });
 
 interface Props extends WithStyles<typeof styles> {
-  children: (string | JSX.Element)[];
+  children: Array<string | JSX.Element>;
 }
 
 const Blockquote = ({ classes, children }: Props) => (

@@ -1,11 +1,13 @@
-import React from 'react';
-import { createStyles, WithStyles, Theme, withStyles, Typography, Button } from '@material-ui/core';
+import { Button, createStyles, Theme, Typography, WithStyles, withStyles } from '@material-ui/core';
 import { Edit } from '@material-ui/icons';
 import { graphql } from 'gatsby';
-import GlobalLayout from '../components/Layout/global';
-import DrawerTOC, { TableOfContents } from '../components/Layout/drawerTOC';
-import Helmet from 'react-helmet';
 import MDXRenderer from 'gatsby-mdx/mdx-renderer';
+import moment from 'moment';
+import React from 'react';
+import Helmet from 'react-helmet';
+import DrawerTOC, { TableOfContents } from '../components/Layout/drawerTOC';
+import GlobalLayout from '../components/Layout/global';
+import Link from '../components/link';
 import TagChip from '../components/tagChip';
 import {
   BlogPostQuery,
@@ -15,8 +17,6 @@ import {
   BlogPostQuery_site,
   BlogPostQuery_site_siteMetadata
 } from '../gatsby-queries';
-import moment from 'moment';
-import Link from '../components/link';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -45,7 +45,7 @@ const BlogPost = ({ classes, data }: Props) => {
   const { items } = (tableOfContents as TableOfContents) || ({} as TableOfContents);
 
   return (
-    <GlobalLayout drawer={<DrawerTOC items={items} level={1} />}>
+    <GlobalLayout drawer={<DrawerTOC items={items || ([] as TableOfContents[])} level={1} />}>
       <Helmet
         title={title || undefined}
         meta={[

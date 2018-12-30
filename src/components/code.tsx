@@ -1,5 +1,5 @@
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import React from 'react';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { obsidian } from 'react-syntax-highlighter/dist/styles/hljs';
 

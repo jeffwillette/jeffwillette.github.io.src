@@ -1,27 +1,26 @@
 import * as React from 'react';
 import Header from './header';
 
-import withRoot from '../../withRoot';
-import { compose } from 'recompose';
 import {
-  WithStyles,
+  Collapse,
   createStyles,
-  withStyles,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
   Theme,
   Typography,
-  Collapse,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  List
+  WithStyles,
+  withStyles
 } from '@material-ui/core';
-import Drawer from './drawer';
-import { drawerWidth } from './drawer';
-import { Web, ExpandMore, ExpandLess, LibraryBooks } from '@material-ui/icons';
+import { ExpandLess, ExpandMore, LibraryBooks, Web } from '@material-ui/icons';
 import { MDXProvider } from '@mdx-js/tag';
-import Code from '../code';
-import AutolinkHeader from '../AutolinkHeader';
 import { navigate } from 'gatsby';
+import { compose } from 'recompose';
+import withRoot from '../../withRoot';
+import AutolinkHeader from '../AutolinkHeader';
+import Code from '../code';
+import Drawer, { drawerWidth } from './drawer';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -50,23 +49,24 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface Props extends React.HTMLProps<HTMLDivElement>, WithStyles<typeof styles> {
-  children: JSX.Element[];
+interface Props {
   drawer: JSX.Element | JSX.Element[];
 }
+
+interface ExtendedProps extends Props, React.HTMLProps<HTMLDivElement>, WithStyles<typeof styles> {}
 
 interface State {
   defaultItemOpen: boolean;
 }
 
-class GlobalLayout extends React.Component<Props, State> {
-  state = {
+class GlobalLayout extends React.Component<ExtendedProps, State> {
+  public state = {
     defaultItemOpen: false
   };
 
-  toggleDefaultItem = () => this.setState(prevState => ({ defaultItemOpen: !prevState.defaultItemOpen }));
+  public toggleDefaultItem = () => this.setState(prevState => ({ defaultItemOpen: !prevState.defaultItemOpen }));
 
-  render() {
+  public render() {
     const { defaultItemOpen } = this.state;
     const { drawer, classes, children } = this.props;
     return (
@@ -113,7 +113,7 @@ class GlobalLayout extends React.Component<Props, State> {
   }
 }
 
-export default compose<Props, any>(
+export default compose<ExtendedProps, Props>(
   withRoot,
   withStyles(styles)
 )(GlobalLayout);

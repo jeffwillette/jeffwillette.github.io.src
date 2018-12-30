@@ -19,6 +19,7 @@
     "gatsby-plugin-typescript": "^2.0.3",
     "gatsby-source-filesystem": "^2.0.11",
     "github-slugger": "^1.2.0",
+    "jss": "^9.8.7",
     "moment": "^2.22.2",
     "react": "^16.6.3",
     "react-anchor-link-smooth-scroll": "^1.0.11",
@@ -40,8 +41,9 @@
     "gatsby-gen": "apollo client:codegen --addTypename --outputFlat --tagName=graphql --target=typescript --localSchemaFile=./gatsby-schema.json --includes=./src/**/*.tsx ./src/gatsby-queries.d.ts",
     "gen": "yarn get-schema && yarn gatsby-gen",
     "format": "prettier --write \"src/**/*.ts*\"",
-    "test": "yarn typecheck",
-    "typecheck": "tsc --noEmit"
+    "test": "jest --coverage && yarn typecheck && yarn lint",
+    "typecheck": "tsc --noEmit",
+    "lint": "tslint --config ./tslint.json --fix '**/*.{ts,tsx}'"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
@@ -50,6 +52,9 @@
     "@types/react-dom": "16.0.11",
     "@types/react-helmet": "^5.0.7",
     "prettier": "^1.15.3",
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-react": "^3.6.0",
     "typescript": "^3.2.2",
     "webpack-bundle-analyzer": "^3.0.3"
   }

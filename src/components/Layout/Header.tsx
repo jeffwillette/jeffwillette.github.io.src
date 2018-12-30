@@ -1,10 +1,10 @@
-import React from 'react';
-import { StaticQuery, graphql } from 'gatsby';
-import { AppBar, Toolbar, Typography, Theme, createStyles, WithStyles, withStyles } from '@material-ui/core';
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from '../link';
+import { AppBar, createStyles, Theme, Toolbar, Typography, WithStyles, withStyles } from '@material-ui/core';
+import { graphql, StaticQuery } from 'gatsby';
+import React from 'react';
 import { HeaderQuery, HeaderQuery_site, HeaderQuery_site_siteMetadata } from '../../gatsby-queries';
+import Link from '../link';
 
 interface Props extends WithStyles<typeof styles> {}
 
@@ -25,7 +25,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-const Header = ({ classes }: Props) => (
+const header = ({ classes }: Props) => (
   <StaticQuery
     query={graphql`
       query HeaderQuery {
@@ -65,4 +65,4 @@ const Header = ({ classes }: Props) => (
   </StaticQuery>
 );
 
-export default withStyles(styles)(Header);
+export const Header = withStyles(styles)(header);

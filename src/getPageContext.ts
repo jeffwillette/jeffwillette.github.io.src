@@ -1,13 +1,14 @@
-import { createGenerateClassName, createMuiTheme } from '@material-ui/core';
+import { createGenerateClassName, createMuiTheme, Theme } from '@material-ui/core';
 import grey from '@material-ui/core/colors/grey';
 import indigo from '@material-ui/core/colors/indigo';
+import { GenerateClassName, SheetsRegistry as SheetsRegistryType } from 'jss';
 import { SheetsRegistry } from 'react-jss';
 
 export interface PageContext {
-  theme: any;
-  sheetsManager: Map<any, any>;
-  sheetsRegistry: any;
-  generateClassName: any;
+  theme: Theme;
+  sheetsManager: Map<any, any>; // tslint:disable-line
+  sheetsRegistry: SheetsRegistryType;
+  generateClassName: GenerateClassName;
 }
 
 export const spacing = 8;
@@ -39,7 +40,7 @@ const theme = createMuiTheme({
     }
   },
   spacing: {
-    unit: 8
+    unit: spacing
   },
   typography: {
     fontFamily: '"Ubuntu", sans-serif',
@@ -73,7 +74,7 @@ const theme = createMuiTheme({
       color: 'rgba(0,0,0,.54)'
     },
     body1: {
-      margin: `${spacing * 2}px 0px`
+      // margin: `${spacing * 2}px 0px`
     }
   }
 });
@@ -88,12 +89,12 @@ const createPageContext = (): PageContext => {
 };
 
 interface Process {
-  browser: any;
+  browser: any; // tslint:disable-line
 }
 declare var process: Process;
 
 interface Global {
-  __INIT_MATERIAL_UI__: any;
+  __INIT_MATERIAL_UI__: any; // tslint:disable-line
 }
 
 declare var global: Global;

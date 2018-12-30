@@ -1,7 +1,7 @@
-import React from 'react';
-import { WithStyles, createStyles, withStyles } from '@material-ui/core';
+import { createStyles, WithStyles, withStyles } from '@material-ui/core';
 import c from 'classnames';
 import { Link as GatsbyLink } from 'gatsby';
+import React from 'react';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const styles = () =>
@@ -29,28 +29,26 @@ interface Props extends WithStyles<typeof styles> {
   white?: boolean;
 }
 
-interface State {}
-
-class Link extends React.Component<Props, State> {
+class Link extends React.Component<Props, {}> {
   // Tailor the following test to your environment.
   // This example assumes that any internal link (intended for Gatsby)
   // will start with exactly one slash, and that anything else is external.
-  otherInternalPage = /^\/(?!\/)/.test(this.props.to);
-  samePageAnchor = /^#.*/.test(this.props.to);
+  public otherInternalPage = /^\/(?!\/)/.test(this.props.to);
+  public samePageAnchor = /^#.*/.test(this.props.to);
 
   // TODO: this copies the text to the clipboard. It might be good to make a tooltip or something
   // that shows the user they can copy it to the clipboard and then copy it
   // I think this can probably be done with a ref to make it cleaner looking
-  copyToClipboard = (v: string) => {
+  public copyToClipboard = (v: string) => {
     const el = document.createElement('textarea');
     document.body.appendChild(el);
     el.value = v;
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-  };
+  }
 
-  render() {
+  public render() {
     const { to, children, classes, white } = this.props;
     const className = c(classes.link, { [classes.white]: white });
 

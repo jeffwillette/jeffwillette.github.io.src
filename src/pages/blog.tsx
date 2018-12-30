@@ -1,19 +1,19 @@
-import React from 'react';
-import GlobalLayout from '../components/Layout/global';
-import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
+import moment from 'moment';
+import React from 'react';
+import Helmet from 'react-helmet';
+import GlobalLayout from '../components/Layout/global';
 import PostExcerpt from '../components/postExcerpt';
 import {
   BlogQuery,
-  BlogQuery_site,
-  BlogQuery_site_siteMetadata,
   BlogQuery_allMdx,
   BlogQuery_allMdx_edges,
   BlogQuery_allMdx_edges_node,
   BlogQuery_allMdx_edges_node_fields,
-  BlogQuery_allMdx_edges_node_frontmatter
+  BlogQuery_allMdx_edges_node_frontmatter,
+  BlogQuery_site,
+  BlogQuery_site_siteMetadata
 } from '../gatsby-queries';
-import moment from 'moment';
 
 interface Props {
   data: BlogQuery;
@@ -22,14 +22,14 @@ interface Props {
 const Blog = ({ data }: Props) => {
   const { site, allMdx } = data;
   const { siteMetadata } = site || ({} as BlogQuery_site);
-  const { title, description, author, keywords } = siteMetadata || ({} as BlogQuery_site_siteMetadata);
+  const { title: pageTitle, description, author, keywords } = siteMetadata || ({} as BlogQuery_site_siteMetadata);
 
   const { edges } = allMdx || ({} as BlogQuery_allMdx);
 
   return (
     <GlobalLayout>
       <Helmet
-        title={title || undefined}
+        title={pageTitle || undefined}
         meta={[
           { name: 'description', content: description },
           { name: 'keywords', content: keywords },
@@ -37,7 +37,7 @@ const Blog = ({ data }: Props) => {
         ]}
       />
       {edges &&
-        edges.map(edge => {
+        edges.map((edge, i) => {
           const { node } = edge || ({} as BlogQuery_allMdx_edges);
           const { frontmatter, fields, timeToRead, excerpt } = node || ({} as BlogQuery_allMdx_edges_node);
           const { slug } = fields || ({} as BlogQuery_allMdx_edges_node_fields);
@@ -45,6 +45,7 @@ const Blog = ({ data }: Props) => {
 
           return (
             <PostExcerpt
+              key={i}
               title={title || ''}
               created={moment(created)}
               slug={slug || ''}

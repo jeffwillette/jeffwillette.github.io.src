@@ -1,15 +1,15 @@
 import {
+  createStyles,
   Drawer as MDDrawer,
   Hidden,
   SwipeableDrawer,
-  withStyles,
   Theme,
-  createStyles,
+  withStyles,
   WithStyles
 } from '@material-ui/core';
 
-import React from 'react';
 import c from 'classnames';
+import React from 'react';
 
 export const drawerWidth = 280;
 
@@ -41,20 +41,20 @@ const styles = (theme: Theme) =>
   });
 
 interface Props extends WithStyles<typeof styles> {
-  children: JSX.Element | JSX.Element[] | (JSX.Element | JSX.Element[] | null)[];
+  children: JSX.Element | JSX.Element[] | Array<JSX.Element | JSX.Element[] | null>;
 }
 
 class Drawer extends React.Component<Props, {}> {
-  setOpen = () => console.log('setOpen called');
+  public setOpen = () => console.log('setOpen called');
 
-  render() {
+  public render() {
     const { classes, children } = this.props;
     return (
       <div className={classes.outerDiv}>
         <Hidden mdUp>
           {/* show only on mobile screens */}
           <SwipeableDrawer
-            open={true}
+            open
             onOpen={() => this.setOpen()}
             onClose={() => this.setOpen()}
             variant="temporary"

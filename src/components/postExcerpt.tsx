@@ -1,17 +1,17 @@
-import React from 'react';
 import {
-  Typography,
   Card,
+  CardContent,
   CardHeader,
   createStyles,
-  WithStyles,
-  withStyles,
   Theme,
-  CardContent
+  Typography,
+  WithStyles,
+  withStyles
 } from '@material-ui/core';
 import { Moment } from 'moment';
-import TagChip from './tagChip';
+import React from 'react';
 import Link from './link';
+import TagChip from './tagChip';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -30,7 +30,7 @@ interface Props extends WithStyles<typeof styles> {
   created: Moment;
   edited: Moment;
   slug: string;
-  categories: (string | null)[];
+  categories: Array<string | null>;
   timeToRead: number;
   excerpt: string;
 }

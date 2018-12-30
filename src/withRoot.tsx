@@ -12,8 +12,8 @@ interface Props {
 const withRoot = (Component: React.SFC) => {
   class WithRoot extends React.Component<Props, {}> {
     public pageContext = {} as PageContext;
-    constructor(props: any, context: any) {
-      super(props, context);
+    constructor(props: Props) {
+      super(props);
 
       this.pageContext = this.props.pageContext || getPageContext();
     }

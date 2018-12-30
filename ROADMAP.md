@@ -19,3 +19,11 @@ TODO:
 - add categories pages
   - categories should show other posts with same categories
   - for `created at`, `edited at`, and `time to read` it should show posts with a similar range of values
+
+- write post about compose and typescript
+- write post about getting typescript types with the lookup (like on my SO question)
+- write post about node peerDependencies
+  - delete resolutions in gatsby package.json to make the error happen
+  - grep through the node modules and pipe to less to see what uses grpahql
+  - write the resolutions and run again to see it fixed
+  - ask others for opinions

@@ -1,16 +1,16 @@
 import React from 'react';
 
 interface Props {
-  htmlAttributes: any;
-  headComponents: any;
-  bodyAttributes: any;
-  preBodyComponents: any;
+  htmlAttributes: Pick<JSX.IntrinsicElements, 'html'>;
+  bodyAttributes: Pick<JSX.IntrinsicElements, 'body'>;
+  preBodyComponents: JSX.Element[];
+  headComponents: JSX.Element[];
   body: string;
-  postBodyComponents: any;
+  postBodyComponents: JSX.Element[];
 }
 
 export default class HTML extends React.Component<Props, {}> {
-  render() {
+  public render() {
     return (
       <html {...this.props.htmlAttributes}>
         <head>

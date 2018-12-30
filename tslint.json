@@ -11,13 +11,26 @@
     "rules": {
       "indent": [true, "spaces", 2],
       "linebreak-style": [true, "LF"],
-      "quotemark": [true, "single", "jsx-single", "avoid-escape"],
+      "class-name": false,
+      "no-submodule-imports": false,
+      "quotemark": [true, "single", "jsx-double", "avoid-escape"],
       "semicolon": [true, "always"],
       "no-any": true,
       "max-line-length": [true, 120],
       "object-literal-sort-keys": false,
       "interface-name": [true, "never-prefix"],
-      "jsx-boolean-value": [true, "never"]
+      "jsx-boolean-value": [true, "never"],
+      "jsx-no-lambda": false,
+      "no-object-literal-type-assertion": false,
+      "no-implicit-dependencies": [true, "dev"]
+    },
+    "linterOptions": {
+      "exclude": [
+        "./src/gatsby-queries.d.ts",
+        "./src/gatsby-types.d.ts",
+        "./node_modules/**",
+        "./src/customTypes/*"
+      ]
     },
     "rulesDirectory": []
 }
