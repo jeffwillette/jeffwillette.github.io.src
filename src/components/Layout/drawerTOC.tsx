@@ -1,7 +1,7 @@
 import { createStyles, List, ListItem, ListItemText, Theme, WithStyles, withStyles } from '@material-ui/core';
 import c from 'classnames';
 import React from 'react';
-import Link from '../link';
+import { Link } from '../link';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -32,7 +32,7 @@ interface Props extends WithStyles<typeof styles> {
   items: TableOfContents[];
 }
 
-const DrawerTOC = ({ items, level, classes }: Props) => {
+const drawerTOC = ({ items, level, classes }: Props) => {
   return (
     <List>
       {items &&
@@ -57,4 +57,4 @@ const DrawerTOC = ({ items, level, classes }: Props) => {
   );
 };
 
-export default withStyles(styles)(DrawerTOC);
+export const DrawerTOC = withStyles(styles)(drawerTOC);

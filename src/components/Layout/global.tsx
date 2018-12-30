@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Header from './header';
+import { Header } from './header';
 
 import {
   Collapse,
@@ -18,9 +18,9 @@ import { MDXProvider } from '@mdx-js/tag';
 import { navigate } from 'gatsby';
 import { compose } from 'recompose';
 import withRoot from '../../withRoot';
-import AutolinkHeader from '../AutolinkHeader';
-import Code from '../code';
-import Drawer, { drawerWidth } from './drawer';
+import { AutolinkHeader } from '../AutolinkHeader';
+import { Code } from '../code';
+import { Drawer, drawerWidth } from './drawer';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -59,7 +59,7 @@ interface State {
   defaultItemOpen: boolean;
 }
 
-class GlobalLayout extends React.Component<ExtendedProps, State> {
+class globalLayout extends React.Component<ExtendedProps, State> {
   public state = {
     defaultItemOpen: false
   };
@@ -113,7 +113,7 @@ class GlobalLayout extends React.Component<ExtendedProps, State> {
   }
 }
 
-export default compose<ExtendedProps, Props>(
+export const GlobalLayout = compose<ExtendedProps, Props>(
   withRoot,
   withStyles(styles)
-)(GlobalLayout);
+)(globalLayout);

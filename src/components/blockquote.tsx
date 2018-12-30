@@ -15,7 +15,7 @@ interface Props extends WithStyles<typeof styles> {
   children: Array<string | JSX.Element>;
 }
 
-const Blockquote = ({ classes, children }: Props) => (
+const blockquote = ({ classes, children }: Props) => (
   <div className={classes.quote}>
     <blockquote>
       <Typography variant="body1" className={classes.text}>
@@ -25,4 +25,4 @@ const Blockquote = ({ classes, children }: Props) => (
   </div>
 );
 
-export default withStyles(styles)(Blockquote);
+export const Blockquote = withStyles(styles)(blockquote);

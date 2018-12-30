@@ -2,8 +2,8 @@ import { Typography } from '@material-ui/core';
 import { graphql } from 'gatsby';
 import React from 'react';
 import Helmet from 'react-helmet';
-import Blockquote from '../components/blockquote';
-import GlobalLayout from '../components/Layout/global';
+import { Blockquote } from '../components/blockquote';
+import { GlobalLayout } from '../components/Layout/global';
 import { IndexQuery, IndexQuery_site, IndexQuery_site_siteMetadata } from '../gatsby-queries';
 
 interface Props {

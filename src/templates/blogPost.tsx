@@ -5,10 +5,10 @@ import MDXRenderer from 'gatsby-mdx/mdx-renderer';
 import moment from 'moment';
 import React from 'react';
 import Helmet from 'react-helmet';
-import DrawerTOC, { TableOfContents } from '../components/Layout/drawerTOC';
-import GlobalLayout from '../components/Layout/global';
-import Link from '../components/link';
-import TagChip from '../components/tagChip';
+import  { DrawerTOC, TableOfContents } from '../components/Layout/drawerTOC';
+import { GlobalLayout } from '../components/Layout/global';
+import { Link } from '../components/link';
+import { TagChip } from '../components/tagChip';
 import {
   BlogPostQuery,
   BlogPostQuery_mdx,
@@ -35,7 +35,7 @@ interface Props extends WithStyles<typeof styles> {
   data: BlogPostQuery;
 }
 
-const BlogPost = ({ classes, data }: Props) => {
+const blogPost = ({ classes, data }: Props) => {
   const { mdx, site } = data || ({} as BlogPostQuery);
   const { siteMetadata } = site || ({} as BlogPostQuery_site);
   const { author } = siteMetadata || ({} as BlogPostQuery_site_siteMetadata);
@@ -102,4 +102,4 @@ export const pageQuery = graphql`
   }
 `;
 
-export default withStyles(styles)(BlogPost);
+export const BlogPost = withStyles(styles)(blogPost);

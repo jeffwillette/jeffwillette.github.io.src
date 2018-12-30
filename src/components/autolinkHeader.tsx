@@ -2,7 +2,7 @@ import { createStyles, Typography, WithStyles, withStyles } from '@material-ui/c
 import { TypographyProps } from '@material-ui/core/Typography';
 import GithubSlugger from 'github-slugger';
 import React from 'react';
-import Link from './link';
+import { Link } from './link';
 
 const styles = () =>
   createStyles({

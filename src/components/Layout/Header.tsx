@@ -4,7 +4,7 @@ import { AppBar, createStyles, Theme, Toolbar, Typography, WithStyles, withStyle
 import { graphql, StaticQuery } from 'gatsby';
 import React from 'react';
 import { HeaderQuery, HeaderQuery_site, HeaderQuery_site_siteMetadata } from '../../gatsby-queries';
-import Link from '../link';
+import { Link } from '../link';
 
 interface Props extends WithStyles<typeof styles> {}
 

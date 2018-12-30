@@ -2,8 +2,8 @@ import { graphql } from 'gatsby';
 import moment from 'moment';
 import React from 'react';
 import Helmet from 'react-helmet';
-import GlobalLayout from '../components/Layout/global';
-import PostExcerpt from '../components/postExcerpt';
+import { GlobalLayout } from '../components/Layout/global';
+import { PostExcerpt } from '../components/postExcerpt';
 import {
   BlogQuery,
   BlogQuery_allMdx,

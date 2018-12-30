@@ -29,7 +29,7 @@ interface Props extends WithStyles<typeof styles> {
   white?: boolean;
 }
 
-class Link extends React.Component<Props, {}> {
+class link extends React.Component<Props, {}> {
   // Tailor the following test to your environment.
   // This example assumes that any internal link (intended for Gatsby)
   // will start with exactly one slash, and that anything else is external.
@@ -71,4 +71,4 @@ class Link extends React.Component<Props, {}> {
   }
 }
 
-export default withStyles(styles)(Link);
+export const Link =  withStyles(styles)(link);

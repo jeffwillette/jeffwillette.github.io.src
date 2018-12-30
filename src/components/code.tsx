@@ -18,7 +18,7 @@ interface Props extends WithStyles<typeof styles> {
   children: string | JSX.Element;
 }
 
-const Code = ({ className, classes, children }: Props) => {
+const code = ({ className, classes, children }: Props) => {
   // the className comes in like language-javascript so I have to strip out the prefix
   return (
     <SyntaxHighlighter
@@ -31,4 +31,4 @@ const Code = ({ className, classes, children }: Props) => {
   );
 };
 
-export default withStyles(styles)(Code);
+export const Code = withStyles(styles)(code);

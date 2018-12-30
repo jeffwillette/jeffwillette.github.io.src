@@ -44,7 +44,7 @@ interface Props extends WithStyles<typeof styles> {
   children: JSX.Element | JSX.Element[] | Array<JSX.Element | JSX.Element[] | null>;
 }
 
-class Drawer extends React.Component<Props, {}> {
+class drawer extends React.Component<Props, {}> {
   public setOpen = () => console.log('setOpen called');
 
   public render() {
@@ -79,4 +79,4 @@ class Drawer extends React.Component<Props, {}> {
   }
 }
 
-export default withStyles(styles)(Drawer);
+export const Drawer = withStyles(styles)(drawer);

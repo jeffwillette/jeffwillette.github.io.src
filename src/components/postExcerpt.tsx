@@ -10,8 +10,8 @@ import {
 } from '@material-ui/core';
 import { Moment } from 'moment';
 import React from 'react';
-import Link from './link';
-import TagChip from './tagChip';
+import { Link } from './link';
+import { TagChip } from './tagChip';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -35,7 +35,7 @@ interface Props extends WithStyles<typeof styles> {
   excerpt: string;
 }
 
-const PostExcerpt = ({ classes, slug, title, created, edited, categories, timeToRead, excerpt }: Props) => {
+const postExcerpt = ({ classes, slug, title, created, edited, categories, timeToRead, excerpt }: Props) => {
   return (
     <Card elevation={0} classes={{ root: classes.card }}>
       <CardHeader
@@ -62,4 +62,4 @@ const PostExcerpt = ({ classes, slug, title, created, edited, categories, timeTo
   );
 };
 
-export default withStyles(styles)(PostExcerpt);
+export const PostExcerpt = withStyles(styles)(postExcerpt);
