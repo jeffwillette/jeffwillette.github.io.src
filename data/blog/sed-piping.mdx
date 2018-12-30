@@ -1,0 +1,19 @@
+---
+title: grep sed and xargs
+published: false
+created: 2018-12-30 15:48:24.000+00
+edited: 2018-12-30 15:48:29.000+00
+categories:
+  - typescript
+---
+
+1. what am I trying to write here? ( I am trying to write about sed piping stuff to xargs )
+2. come up with a solid example that doesnt include goass (DO NOT COMMIT THIS)
+
+this one worked
+
+gopass show misc/ | grep "├── \|└──" | sed 's/├── /misc\//g' | xargs -tn1 gopass show
+
+this one did not work, it needs to do something with replacing the @'s or _'s
+
+gopass show websites/ | grep " └── " | sed -r 's/│?   └── /websites\//g' | xargs -tn1 gopass show

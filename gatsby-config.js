@@ -1,23 +1,24 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Typescript Starter`
+    title: `Jeff Willette (deltaskelta)`,
+    description: `developer blog for Jeff Willette`,
+    keywords: 'Jeff Willette,deltaskelta,deltaskelta.github.io',
+    author: 'Jeff Willette',
+    twitter: 'https://twitter.com/delta_skelta',
+    github: 'https://github.com/deltaskelta',
+    githubProjectName: 'deltaskelta.github.io.src', // this must be the same as the directory name on file
+    githubBranchPrefix: '/tree/dev'
   },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `src`,
-        path: `${__dirname}/src/`
+        name: `data`,
+        path: `${__dirname}/data/`
       }
     },
+    { resolve: `gatsby-mdx`, options: {} },
     `gatsby-plugin-react-helmet`,
-    // Add typescript stack into webpack
-    `gatsby-plugin-typescript`,
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography.js`
-      }
-    }
+    `gatsby-plugin-typescript`
   ]
 };
