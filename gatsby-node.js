@@ -7,6 +7,7 @@ const config = require('./gatsby-config');
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+console.log(process.env);
 // when the node is created (the first time the file is discovered) this is run
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;

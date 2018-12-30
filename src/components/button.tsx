@@ -6,20 +6,14 @@ const styles = (theme: Theme) =>
   createStyles({
     buttonRoot: {
       boxShadow: 'none',
-      textTransform: 'none',
-      fontSize: 16,
-      padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
-      border: '1px solid',
-      backgroundColor: '#007bff',
-      borderColor: '#007bff',
+      padding: `${theme.spacing.unit}px ${theme.spacing.unit}px`,
+      backgroundColor: 'rgba(0,0,0,.20)',
       '&:hover': {
-        backgroundColor: '#0069d9',
-        borderColor: '#0062cc'
+        backgroundColor: 'rgba(0,0,0,.15)'
       },
       '&:active': {
         boxShadow: 'none',
-        backgroundColor: '#0062cc',
-        borderColor: '#005cbf'
+        backgroundColor: '#0062cc'
       },
       '&:focus': {
         boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
