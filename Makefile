@@ -10,5 +10,5 @@ deploy:
 	# build, copy, commit, and push
 	@yarn build
 	@cp -a ./public ../deltaskelta.github.io
-	@cd ../deltaskelta.github.io && git add -A && git commit -m "deploy"
-	@cd ../deltaskelta.github.io && git push origin master
+	#@cd ../deltaskelta.github.io && git add -A && git commit -m "deploy"
+	#@cd ../deltaskelta.github.io && git push origin master

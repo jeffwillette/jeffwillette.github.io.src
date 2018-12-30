@@ -46,7 +46,7 @@ class link extends React.Component<Props, {}> {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-  }
+  };
 
   public render() {
     const { to, children, classes, white } = this.props;
@@ -71,4 +71,4 @@ class link extends React.Component<Props, {}> {
   }
 }
 
-export const Link =  withStyles(styles)(link);
+export const Link = withStyles(styles)(link);

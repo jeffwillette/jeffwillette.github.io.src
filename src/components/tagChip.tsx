@@ -14,4 +14,4 @@ interface Props extends WithStyles<typeof styles> {
 
 const tagChip = ({ classes, tag }: Props) => <Chip clickable variant="outlined" className={classes.chip} label={tag} />;
 
-export const TagChip =  withStyles(styles)(tagChip);
+export const TagChip = withStyles(styles)(tagChip);
