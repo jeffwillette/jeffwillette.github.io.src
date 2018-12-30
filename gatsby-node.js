@@ -7,7 +7,6 @@ const config = require('./gatsby-config');
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-console.log(process.env);
 // when the node is created (the first time the file is discovered) this is run
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
@@ -55,6 +54,9 @@ exports.createPages = ({ graphql, actions }) => {
             edges {
               node {
                 id
+                frontmatter {
+                  published
+                }
                 fields {
                   slug
                 }
@@ -73,11 +75,13 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         result.data.allMdx.edges.forEach(({ node }) => {
-          const { id, fields, code } = node;
+          const { id, fields, code, frontmatter } = node;
           const { slug } = fields;
+          const { published } = frontmatter;
 
+          const skip = process.env.NODE_ENV === 'production' && !published;
           Object.keys(pathAndTemplates).forEach(p => {
-            if (slug.includes(p)) {
+            if (slug.includes(p) && !skip) {
               createPage({
                 path: slug,
                 component: componentWithMDXScope(path.resolve(pathAndTemplates[p]), code.scope),

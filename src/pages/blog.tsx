@@ -70,7 +70,10 @@ export const query = graphql`
         author
       }
     }
-    allMdx(filter: { fileAbsolutePath: { regex: "/blog/" } }, sort: { fields: frontmatter___edited, order: DESC }) {
+    allMdx(
+      filter: { fileAbsolutePath: { regex: "/blog/" }, frontmatter: { published: { eq: true } } }
+      sort: { fields: frontmatter___edited, order: DESC }
+    ) {
       edges {
         node {
           frontmatter {
