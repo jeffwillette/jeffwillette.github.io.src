@@ -31,9 +31,9 @@ const Blog = ({ data }: Props) => {
       <Helmet
         title={pageTitle || undefined}
         meta={[
-          { name: 'description', content: description },
-          { name: 'keywords', content: keywords },
-          { name: 'author', content: author }
+          { name: 'description', content: description || undefined },
+          { name: 'keywords', content: keywords || undefined },
+          { name: 'author', content: author || undefined }
         ]}
       />
       {edges &&

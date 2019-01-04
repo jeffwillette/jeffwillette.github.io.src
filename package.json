@@ -14,7 +14,7 @@
     "classnames": "^2.2.6",
     "gatsby": "^2.0.64",
     "gatsby-link": "^2.0.7",
-    "gatsby-mdx": "file:../../javascript/gatsby-mdx/packages/gatsby-mdx",
+    "gatsby-mdx": "^0.3.1-ci.234",
     "gatsby-plugin-react-helmet": "^3.0.4",
     "gatsby-plugin-typescript": "^2.0.3",
     "gatsby-source-filesystem": "^2.0.11",

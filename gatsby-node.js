@@ -1,5 +1,4 @@
 const { createFilePath } = require('gatsby-source-filesystem');
-const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope');
 
 const path = require('path');
 
@@ -43,7 +42,7 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   const pathAndTemplates = {
-    '/blog/': './src/templates/blogPost.tsx'
+    '/blog/': path.resolve('./src/templates/blogPost.tsx')
   };
 
   return new Promise((resolve, reject) => {
@@ -84,7 +83,7 @@ exports.createPages = ({ graphql, actions }) => {
             if (slug.includes(p) && !skip) {
               createPage({
                 path: slug,
-                component: componentWithMDXScope(path.resolve(pathAndTemplates[p]), code.scope),
+                component: pathAndTemplates[p],
                 context: { id }
               });
             }

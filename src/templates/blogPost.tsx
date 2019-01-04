@@ -41,6 +41,7 @@ const BlogPost = ({ classes, data }: Props) => {
   const { siteMetadata } = site || ({} as BlogPostQuery_site);
   const { author } = siteMetadata || ({} as BlogPostQuery_site_siteMetadata);
   const { frontmatter, code, timeToRead, tableOfContents, excerpt, fields } = mdx || ({} as BlogPostQuery_mdx);
+  const { body } = code || ({} as keyof typeof code);
   const { title, created, edited, categories } = frontmatter || ({} as BlogPostQuery_mdx_frontmatter);
   const { githubLink } = fields || ({} as BlogPostQuery_mdx_fields);
   const { items } = (tableOfContents as TableOfContents) || ({} as TableOfContents);
@@ -50,9 +51,9 @@ const BlogPost = ({ classes, data }: Props) => {
       <Helmet
         title={title || undefined}
         meta={[
-          { name: 'description', content: excerpt },
-          { name: 'keywords', content: categories },
-          { name: 'author', content: author }
+          { name: 'description', content: excerpt || undefined },
+          { name: 'keywords', content: categories ? categories.join(',') : undefined },
+          { name: 'author', content: author || undefined }
         ]}
       />
       <Typography variant="h1">{title}</Typography>
@@ -62,7 +63,7 @@ const BlogPost = ({ classes, data }: Props) => {
       <TagChip tag={`edited: ${moment(edited).format('LLL')}`} />
 
       <div className={classes.postBody}>
-        <MDXRenderer pageContext={{ something: 'context' }}>{code && code.body}</MDXRenderer>
+        <MDXRenderer>{body}</MDXRenderer>
       </div>
       <div className={classes.button}>
         <Link to={githubLink || ''}>
