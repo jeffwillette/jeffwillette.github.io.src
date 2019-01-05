@@ -1,15 +1,25 @@
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import { graphql } from 'gatsby';
 import React from 'react';
+import { Resume } from '../../components/Resume/resume';
+import { AboutPage } from '../../gatsby-queries';
+import { safe } from '../../utils';
 
 const styles = (_: Theme) => createStyles({});
 
-interface Props extends WithStyles<typeof styles> {}
+interface Props extends WithStyles<typeof styles> {
+  data: AboutPage;
+}
 
-const resume = ({ data }: Props) => <div>{JSON.stringify(data)}</div>;
+const About = ({ data }: Props) => {
+  const { site } = safe(data);
+  const { siteMetadata } = safe(site);
+  const { resume } = safe(siteMetadata);
+  return <Resume resume={resume} />;
+};
 
 export const pageQuery = graphql`
-  query ResumeQuery {
+  query AboutPage {
     site {
       siteMetadata {
         resume {
@@ -87,4 +97,4 @@ export const pageQuery = graphql`
   }
 `;
 
-export default withStyles(styles)(resume);
+export default withStyles(styles)(About);

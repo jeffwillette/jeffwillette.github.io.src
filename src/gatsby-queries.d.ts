@@ -113,6 +113,132 @@ export interface IndexQuery {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: AboutPage
+// ====================================================
+
+export interface AboutPage_site_siteMetadata_resume_basics_location {
+  __typename: "location_2";
+  address: string | null;
+  postalCode: string | null;
+  city: string | null;
+  countryCode: string | null;
+  region: string | null;
+}
+
+export interface AboutPage_site_siteMetadata_resume_basics_profiles {
+  __typename: "profiles_2";
+  network: string | null;
+  username: string | null;
+  url: string | null;
+}
+
+export interface AboutPage_site_siteMetadata_resume_basics {
+  __typename: "basics_2";
+  name: string | null;
+  label: string | null;
+  picture: string | null;
+  phone: string | null;
+  website: string | null;
+  summary: string | null;
+  location: AboutPage_site_siteMetadata_resume_basics_location | null;
+  profiles: (AboutPage_site_siteMetadata_resume_basics_profiles | null)[] | null;
+}
+
+export interface AboutPage_site_siteMetadata_resume_work {
+  __typename: "work_2";
+  company: string | null;
+  position: string | null;
+  website: string | null;
+  startDate: any | null;
+  endDate: any | null;
+  summary: string | null;
+  highlights: (string | null)[] | null;
+}
+
+export interface AboutPage_site_siteMetadata_resume_education {
+  __typename: "education_2";
+  institution: string | null;
+  area: string | null;
+  studyType: string | null;
+  startDate: any | null;
+  endDate: any | null;
+  gpa: string | null;
+  courses: (string | null)[] | null;
+}
+
+export interface AboutPage_site_siteMetadata_resume_awards {
+  __typename: "awards_2";
+  title: string | null;
+  date: any | null;
+  awarder: string | null;
+  summary: string | null;
+}
+
+export interface AboutPage_site_siteMetadata_resume_publications {
+  __typename: "publications_2";
+  name: string | null;
+  publisher: string | null;
+  releaseDate: any | null;
+  website: string | null;
+  summary: string | null;
+}
+
+export interface AboutPage_site_siteMetadata_resume_skills {
+  __typename: "skills_2";
+  name: string | null;
+  level: string | null;
+  keywords: (string | null)[] | null;
+}
+
+export interface AboutPage_site_siteMetadata_resume_languages {
+  __typename: "languages_2";
+  name: string | null;
+  level: string | null;
+}
+
+export interface AboutPage_site_siteMetadata_resume_interests {
+  __typename: "interests_2";
+  name: string | null;
+  keywords: (string | null)[] | null;
+}
+
+export interface AboutPage_site_siteMetadata_resume_references {
+  __typename: "references_2";
+  name: string | null;
+  reference: string | null;
+}
+
+export interface AboutPage_site_siteMetadata_resume {
+  __typename: "resume_2";
+  basics: AboutPage_site_siteMetadata_resume_basics | null;
+  work: (AboutPage_site_siteMetadata_resume_work | null)[] | null;
+  education: (AboutPage_site_siteMetadata_resume_education | null)[] | null;
+  awards: (AboutPage_site_siteMetadata_resume_awards | null)[] | null;
+  publications: (AboutPage_site_siteMetadata_resume_publications | null)[] | null;
+  skills: (AboutPage_site_siteMetadata_resume_skills | null)[] | null;
+  languages: (AboutPage_site_siteMetadata_resume_languages | null)[] | null;
+  interests: (AboutPage_site_siteMetadata_resume_interests | null)[] | null;
+  references: (AboutPage_site_siteMetadata_resume_references | null)[] | null;
+}
+
+export interface AboutPage_site_siteMetadata {
+  __typename: "siteMetadata_2";
+  resume: AboutPage_site_siteMetadata_resume | null;
+}
+
+export interface AboutPage_site {
+  __typename: "Site";
+  siteMetadata: AboutPage_site_siteMetadata | null;
+}
+
+export interface AboutPage {
+  site: AboutPage_site | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: BlogPostQuery
 // ====================================================
 

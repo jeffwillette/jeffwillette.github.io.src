@@ -23,3 +23,8 @@ deploy:
 	@cd ../deltaskelta.github.io && git push origin master
 	# checkout dev
 	@git checkout dev
+
+gen:
+	@yarn get-schema
+	@yarn gatsby-gen
+	@yarn gen
