@@ -42,8 +42,8 @@ const postExcerpt = ({ classes, slug, title, createdAt, updatedAt, categories, t
         title={<Link to={slug} children={title} />}
         action={
           <span>
-            {categories.map(c => {
-              return c && <TagChip tag={c} />;
+            {categories.map((c, i) => {
+              return c && <TagChip key={i} tag={c} />;
             })}
             <TagChip tag={`${timeToRead} minute read`} />
           </span>

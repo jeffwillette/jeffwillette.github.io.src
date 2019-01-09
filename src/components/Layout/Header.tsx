@@ -1,8 +1,10 @@
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AppBar, createStyles, Theme, Toolbar, Typography, WithStyles, withStyles } from '@material-ui/core';
+import { Home, KeyboardArrowLeft, Menu } from '@material-ui/icons';
 import { graphql, StaticQuery } from 'gatsby';
 import React from 'react';
+import { StateConsumer } from '../../context';
 import { HeaderQuery, HeaderQuery_site, HeaderQuery_site_siteMetadata } from '../../gatsby-queries';
 import { Link } from '../link';
 
@@ -22,6 +24,11 @@ const styles = (theme: Theme) =>
     },
     bar: {
       zIndex: theme.zIndex.drawer + 1
+    },
+    menu: {
+      fontSize: theme.typography.fontSize * 2.5,
+      fontWeight: 'bold',
+      marginRight: theme.spacing.unit
     }
   });
 
@@ -44,22 +51,30 @@ const header = ({ classes }: Props) => (
       const { twitter, github } = siteMetadata || ({} as HeaderQuery_site_siteMetadata);
 
       return (
-        <AppBar position="fixed" className={classes.bar}>
-          <Toolbar>
-            <Typography variant="h3" className={classes.flex}>
-              <Link to="/" white className={classes.link}>
-                deltaskelta.github.io
-              </Link>
-            </Typography>
-
-            <Link to={twitter || ''} white>
-              <FontAwesomeIcon size="2x" icon={faTwitter} className={classes.right} />
-            </Link>
-            <Link to={github || ''} white>
-              <FontAwesomeIcon size="2x" icon={faGithub} className={classes.right} />
-            </Link>
-          </Toolbar>
-        </AppBar>
+        <StateConsumer>
+          {({ mobile, drawerOpen, toggleDrawer }) => (
+            <AppBar position="fixed" className={classes.bar}>
+              <Toolbar>
+                {drawerOpen ? (
+                  <KeyboardArrowLeft className={classes.menu} onClick={toggleDrawer} />
+                ) : (
+                  <Menu className={classes.menu} onClick={toggleDrawer} />
+                )}
+                <Typography variant="h3" className={classes.flex}>
+                  <Link to="/" white className={classes.link}>
+                    {mobile ? <Home className={classes.menu} /> : `deltaskelta.github.io`}
+                  </Link>
+                </Typography>
+                <Link to={twitter || ''} white>
+                  <FontAwesomeIcon size="2x" icon={faTwitter} className={classes.right} />
+                </Link>
+                <Link to={github || ''} white>
+                  <FontAwesomeIcon size="2x" icon={faGithub} className={classes.right} />
+                </Link>
+              </Toolbar>
+            </AppBar>
+          )}
+        </StateConsumer>
       );
     }}
   </StaticQuery>
