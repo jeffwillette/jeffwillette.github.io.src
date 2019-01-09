@@ -41,15 +41,16 @@ const Blog = ({ data }: Props) => {
           const { node } = edge || ({} as BlogQuery_allMdx_edges);
           const { frontmatter, fields, timeToRead, excerpt } = node || ({} as BlogQuery_allMdx_edges_node);
           const { slug } = fields || ({} as BlogQuery_allMdx_edges_node_fields);
-          const { title, edited, created, categories } = frontmatter || ({} as BlogQuery_allMdx_edges_node_frontmatter);
+          const { title, updatedAt, createdAt, categories } =
+            frontmatter || ({} as BlogQuery_allMdx_edges_node_frontmatter);
 
           return (
             <PostExcerpt
               key={i}
               title={title || ''}
-              created={moment(created)}
+              createdAt={moment(createdAt || '')}
+              updatedAt={moment(updatedAt || '')}
               slug={slug || ''}
-              edited={moment(edited)}
               categories={categories || []}
               timeToRead={timeToRead || 0}
               excerpt={excerpt || ''}
@@ -72,14 +73,14 @@ export const query = graphql`
     }
     allMdx(
       filter: { fileAbsolutePath: { regex: "/blog/" }, frontmatter: { published: { eq: true } } }
-      sort: { fields: frontmatter___edited, order: DESC }
+      sort: { fields: frontmatter___createdAt, order: DESC }
     ) {
       edges {
         node {
           frontmatter {
             title
-            edited
-            created
+            createdAt
+            updatedAt
             categories
           }
           fields {

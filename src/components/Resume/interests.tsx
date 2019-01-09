@@ -1,11 +1,11 @@
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import React from 'react';
-import { AboutPage_site_siteMetadata_resume_interests } from '../../gatsby-queries';
+import { AboutPage_site_siteMetadata_resume } from '../../gatsby-queries';
 
 const styles = (_: Theme) => createStyles({});
 
 interface Props extends WithStyles<typeof styles> {
-  interests: AboutPage_site_siteMetadata_resume_interests;
+  interests: AboutPage_site_siteMetadata_resume['interests'];
 }
 
 const interests = (_: Props) => (
@@ -15,4 +15,4 @@ const interests = (_: Props) => (
   </div>
 );
 
-export const Basics = withStyles(styles)(interests);
+export const Interests = withStyles(styles)(interests);

@@ -1,3 +1,3 @@
-export const safe = <T extends {}>(obj: T): T => {
-  return obj as T;
+export const safe = <T extends {}>(obj: T | null): T => {
+  return obj ? (obj as T) : ({} as T);
 };

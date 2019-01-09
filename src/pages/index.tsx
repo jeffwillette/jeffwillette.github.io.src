@@ -20,9 +20,9 @@ const Index = ({ data }: Props) => {
       <Helmet
         title={title || undefined}
         meta={[
-          { name: 'description', content: description },
-          { name: 'keywords', content: keywords },
-          { name: 'author', content: author }
+          { name: 'description', content: description || '' },
+          { name: 'keywords', content: keywords || '' },
+          { name: 'author', content: author || '' }
         ]}
       />
       <Typography variant="h1">Hi people</Typography>

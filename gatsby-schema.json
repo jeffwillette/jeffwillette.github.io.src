@@ -1608,12 +1608,6 @@
             "deprecationReason": null
           },
           {
-            "name": "parent",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "internal___type",
             "description": null,
             "isDeprecated": false,
@@ -2391,16 +2385,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "sitePageConnectionPluginCreatorPackageJsonInputObject",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "parent",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "sitePageConnectionPluginCreatorParentQueryString",
               "ofType": null
             },
             "defaultValue": null
@@ -4616,85 +4600,6 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "sitePageConnectionPluginCreatorParentQueryString",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "ne",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "regex",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "glob",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
         "name": "sitePageConnectionPluginCreatorInternalInputObject",
         "description": null,
         "fields": null,
@@ -6745,12 +6650,6 @@
             "deprecationReason": null
           },
           {
-            "name": "parent",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "internal___type",
             "description": null,
             "isDeprecated": false,
@@ -6841,12 +6740,6 @@
           },
           {
             "name": "id",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "parent",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -7173,12 +7066,6 @@
           },
           {
             "name": "packageJson___keywords",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "parent",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -10121,12 +10008,6 @@
             "deprecationReason": null
           },
           {
-            "name": "parent",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "internal___contentDigest",
             "description": null,
             "isDeprecated": false,
@@ -10277,12 +10158,6 @@
           },
           {
             "name": "packageJson___keywords",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "parent",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -10483,12 +10358,6 @@
         "enumValues": [
           {
             "name": "id",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "parent",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -15502,12 +15371,6 @@
             "deprecationReason": null
           },
           {
-            "name": "parent",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "internal___contentDigest",
             "description": null,
             "isDeprecated": false,
@@ -15742,12 +15605,6 @@
         "enumValues": [
           {
             "name": "id",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "parent",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -16158,12 +16015,6 @@
           },
           {
             "name": "children",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "parent",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -21675,106 +21526,24 @@
             "deprecationReason": null
           },
           {
-            "name": "created",
+            "name": "createdAt",
             "description": null,
-            "args": [
-              {
-                "name": "formatString",
-                "description": "Format the date using Moment.js' date tokens e.g. \"date(formatString: \"YYYY MMMM DD)\" See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "fromNow",
-                "description": "Returns a string generated with Moment.js' fromNow function",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "difference",
-                "description": "Returns the difference between this date and the current time. Defaults to miliseconds but you can also pass in as the measurement years, months, weeks, days, hours, minutes, and seconds.",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "locale",
-                "description": "Configures the locale Moment.js will use to format the date.",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null
-              }
-            ],
+            "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Date",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "edited",
+            "name": "updatedAt",
             "description": null,
-            "args": [
-              {
-                "name": "formatString",
-                "description": "Format the date using Moment.js' date tokens e.g. \"date(formatString: \"YYYY MMMM DD)\" See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "fromNow",
-                "description": "Returns a string generated with Moment.js' fromNow function",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Boolean",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "difference",
-                "description": "Returns the difference between this date and the current time. Defaults to miliseconds but you can also pass in as the measurement years, months, weeks, days, hours, minutes, and seconds.",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "locale",
-                "description": "Configures the locale Moment.js will use to format the date.",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                },
-                "defaultValue": null
-              }
-            ],
+            "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Date",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -22115,12 +21884,6 @@
             "deprecationReason": null
           },
           {
-            "name": "parent",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "internal___contentDigest",
             "description": null,
             "isDeprecated": false,
@@ -22367,12 +22130,6 @@
           },
           {
             "name": "children",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "parent",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -22842,13 +22599,13 @@
             "deprecationReason": null
           },
           {
-            "name": "frontmatter___created",
+            "name": "frontmatter___createdAt",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "frontmatter___edited",
+            "name": "frontmatter___updatedAt",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -23772,21 +23529,21 @@
             "defaultValue": null
           },
           {
-            "name": "created",
+            "name": "createdAt",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "mdxConnectionFrontmatterCreatedQueryString_2",
+              "name": "mdxConnectionFrontmatterCreatedAtQueryString_2",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "edited",
+            "name": "updatedAt",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "mdxConnectionFrontmatterEditedQueryString_2",
+              "name": "mdxConnectionFrontmatterUpdatedAtQueryString_2",
               "ofType": null
             },
             "defaultValue": null
@@ -23956,7 +23713,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "mdxConnectionFrontmatterCreatedQueryString_2",
+        "name": "mdxConnectionFrontmatterCreatedAtQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -24035,7 +23792,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "mdxConnectionFrontmatterEditedQueryString_2",
+        "name": "mdxConnectionFrontmatterUpdatedAtQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -25876,13 +25633,13 @@
             "deprecationReason": null
           },
           {
-            "name": "frontmatter___created",
+            "name": "frontmatter___createdAt",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "frontmatter___edited",
+            "name": "frontmatter___updatedAt",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -25995,13 +25752,13 @@
             "deprecationReason": null
           },
           {
-            "name": "frontmatter___created",
+            "name": "frontmatter___createdAt",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "frontmatter___edited",
+            "name": "frontmatter___updatedAt",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -26768,16 +26525,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "sitePagePluginCreatorPackageJsonInputObject",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "parent",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "sitePagePluginCreatorParentQueryString",
               "ofType": null
             },
             "defaultValue": null
@@ -28905,85 +28652,6 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "sitePagePluginCreatorPackageJsonKeywordsQueryList",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "ne",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "regex",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "glob",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "sitePagePluginCreatorParentQueryString",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -48269,21 +47937,21 @@
             "defaultValue": null
           },
           {
-            "name": "created",
+            "name": "createdAt",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "mdxFrontmatterCreatedQueryString_2",
+              "name": "mdxFrontmatterCreatedAtQueryString_2",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "edited",
+            "name": "updatedAt",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "mdxFrontmatterEditedQueryString_2",
+              "name": "mdxFrontmatterUpdatedAtQueryString_2",
               "ofType": null
             },
             "defaultValue": null
@@ -48453,7 +48121,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "mdxFrontmatterCreatedQueryString_2",
+        "name": "mdxFrontmatterCreatedAtQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -48532,7 +48200,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "mdxFrontmatterEditedQueryString_2",
+        "name": "mdxFrontmatterUpdatedAtQueryString_2",
         "description": null,
         "fields": null,
         "inputFields": [

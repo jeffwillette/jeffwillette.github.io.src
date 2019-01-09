@@ -15,7 +15,7 @@ const About = ({ data }: Props) => {
   const { site } = safe(data);
   const { siteMetadata } = safe(site);
   const { resume } = safe(siteMetadata);
-  return <Resume resume={resume} />;
+  return <Resume resume={safe(resume)} />;
 };
 
 export const pageQuery = graphql`

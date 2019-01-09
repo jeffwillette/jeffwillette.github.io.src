@@ -1,14 +1,14 @@
 import { createGenerateClassName, createMuiTheme, Theme } from '@material-ui/core';
 import grey from '@material-ui/core/colors/grey';
 import indigo from '@material-ui/core/colors/indigo';
-import { GenerateClassName, SheetsRegistry as SheetsRegistryType } from 'jss';
+import { GenerateId, SheetsRegistry as SheetsRegistryType } from 'jss';
 import { SheetsRegistry } from 'react-jss';
 
 export interface PageContext {
   theme: Theme;
   sheetsManager: Map<any, any>; // tslint:disable-line
   sheetsRegistry: SheetsRegistryType;
-  generateClassName: GenerateClassName;
+  generateClassName: GenerateId;
 }
 
 export const spacing = 8;

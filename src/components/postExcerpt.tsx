@@ -27,15 +27,15 @@ const styles = (theme: Theme) =>
 
 interface Props extends WithStyles<typeof styles> {
   title: string;
-  created: Moment;
-  edited: Moment;
+  createdAt: Moment;
+  updatedAt: Moment;
   slug: string;
   categories: Array<string | null>;
   timeToRead: number;
   excerpt: string;
 }
 
-const postExcerpt = ({ classes, slug, title, created, edited, categories, timeToRead, excerpt }: Props) => {
+const postExcerpt = ({ classes, slug, title, createdAt, updatedAt, categories, timeToRead, excerpt }: Props) => {
   return (
     <Card elevation={0} classes={{ root: classes.card }}>
       <CardHeader
@@ -50,8 +50,8 @@ const postExcerpt = ({ classes, slug, title, created, edited, categories, timeTo
         }
         subheader={
           <Typography variant="subtitle2">
-            <span className={classes.subheaderSpan}>created: {created.format('LLL')}</span>
-            <span className={classes.subheaderSpan}>edited: {edited.format('LLL')}</span>
+            <span className={classes.subheaderSpan}>createdAt: {createdAt.format('LLL')}</span>
+            <span className={classes.subheaderSpan}>updatedAt: {updatedAt.format('LLL')}</span>
           </Typography>
         }
       />

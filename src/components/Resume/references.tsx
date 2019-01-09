@@ -1,11 +1,11 @@
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import React from 'react';
-import { AboutPage_site_siteMetadata_resume_references } from '../../gatsby-queries';
+import { AboutPage_site_siteMetadata_resume } from '../../gatsby-queries';
 
 const styles = (_: Theme) => createStyles({});
 
 interface Props extends WithStyles<typeof styles> {
-  references: AboutPage_site_siteMetadata_resume_references;
+  references: AboutPage_site_siteMetadata_resume['references'];
 }
 
 const referencesComponent = ({ references }: Props) => (
@@ -15,4 +15,4 @@ const referencesComponent = ({ references }: Props) => (
   </div>
 );
 
-export const Basics = withStyles(styles)(referencesComponent);
+export const References = withStyles(styles)(referencesComponent);

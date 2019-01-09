@@ -27,9 +27,8 @@
     "linterOptions": {
       "exclude": [
         "./src/gatsby-queries.d.ts",
-        "./src/gatsby-types.d.ts",
         "./node_modules/**",
-        "./src/customTypes/*"
+        "./src/declarations.d.ts"
       ]
     },
     "rulesDirectory": []

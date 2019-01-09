@@ -42,7 +42,7 @@ const BlogPost = ({ classes, data }: Props) => {
   const { author } = siteMetadata || ({} as BlogPostQuery_site_siteMetadata);
   const { frontmatter, code, timeToRead, tableOfContents, excerpt, fields } = mdx || ({} as BlogPostQuery_mdx);
   const { body } = code || ({} as keyof typeof code);
-  const { title, created, edited, categories } = frontmatter || ({} as BlogPostQuery_mdx_frontmatter);
+  const { title, createdAt, updatedAt, categories } = frontmatter || ({} as BlogPostQuery_mdx_frontmatter);
   const { githubLink } = fields || ({} as BlogPostQuery_mdx_fields);
   const { items } = (tableOfContents as TableOfContents) || ({} as TableOfContents);
 
@@ -59,8 +59,8 @@ const BlogPost = ({ classes, data }: Props) => {
       <Typography variant="h1">{title}</Typography>
       {categories && categories.map((c, i) => c && <TagChip key={i} tag={c} />)}
       <TagChip tag={`${timeToRead} minute read`} />
-      <TagChip tag={`created: ${moment(created).format('LLL')}`} />
-      <TagChip tag={`edited: ${moment(edited).format('LLL')}`} />
+      {createdAt && <TagChip tag={`createdAt: ${moment(createdAt).format('LLL')}`} />}
+      {updatedAt && <TagChip tag={`updatedAt: ${moment(updatedAt).format('LLL')}`} />}
 
       <div className={classes.postBody}>
         <MDXRenderer>{body}</MDXRenderer>
@@ -87,8 +87,8 @@ export const pageQuery = graphql`
     mdx(id: { eq: $id }) {
       frontmatter {
         title
-        created
-        edited
+        createdAt
+        updatedAt
         categories
       }
       fields {
