@@ -25,6 +25,7 @@ import { AutolinkHeader } from '../AutolinkHeader';
 import { Code } from '../code';
 import { DisplayCard } from '../displayCard';
 import { Drawer, drawerWidth } from './drawer';
+import { Footer } from './footer';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -190,6 +191,7 @@ class globalLayout extends React.Component<ExtendedProps, State> {
               </main>
             )}
           </StateConsumer>
+          <Footer />
         </MDXProvider>
       </ContextProvider>
     );

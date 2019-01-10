@@ -1,29 +1,29 @@
 ---
-title: Typescript ....some title
-published: false
+title: Typescript TSServer Not Finding Imports
+published: true
 createdAt: Wed, 09 Jan 2019 02:14:00 GMT
-updatedAt: Wed, 09 Jan 2019 02:14:00 GMT
+updatedAt: Thu, 10 Jan 2019 16:15:56 GMT
 categories:
   - typescript
 ---
 
-I would often come across the situation where [my editor](https://github.com/mhartington/nvim-typescript) plugin would fail to find
-the correct imports for typescript. It would work sometimes and then fail to find imports seemingly randomly. I always though this was
-the faul of the plugin but as it turns out it was the underlying TSServer that comes bundled with
-[Typescript](https://github.com/Microsoft/TypeScript) that was to blame.
+I would often come across the situation where my editor plugin, which makes requests to TSServer, would fail to find
+the right symbols in my project files. It sometimes work and then fail to find imports seemingly randomly. I always
+thought this was the fault of the plugin but as it turns out it was both my code and the underlying TSServer that
+comes bundled with [Typescript](https://github.com/Microsoft/TypeScript) that was to blame.
 
-TSServer seemed to work well sometimes and then for no apparent reason it would throw `no-content-provided` errors and the command
-`getCodeFixes` would return nothing. The `getCodeFixes` command is useful for automatically adding imports to missing symbols.
-I found that TSServer would see that there is an error, but it would fail to find the proper exported symbol even though it was watching
-the file that exported it.
+The command used to find imports and add them is included in a broader `getCodeFixes` command. TSServer seemed to do
+this well sometimes and then for no apparent reason it would throw `no-content-provided` errors and the command would
+return nothing. I found that TSServer would see that the code needed to be fixed, but it would fail to find the
+proper exported symbol even though it was watching the file that exported it.
 
-As I came to find out, the problem was actually how TSServer was finding the things that I was exporting and the way I was exporting
-the symbols themselves.
+As I came to find out, the problem was actually how TSServer was finding the things that I was exporting and the way
+I was exporting the symbols themselves.
 
 ## Some Background
 
-Following the example [here](https://github.com/mmorearty/tsserver-example) I can send some basic commands to the TSServer and see
-the output.
+Following the example [here](https://github.com/mmorearty/tsserver-example) I can send some basic commands to the
+TSServer and see the output.
 
 ```bash
 echo > /tmp/tsserver.log && ./node_modules/typescript/bin/tsserver --disableAutomaticTypingAcquisition < ~/tsserverinput
@@ -33,7 +33,6 @@ I made a react typescript project with a variety of components exported in diffe
 
 ```typescript
 import React from "react";
-import { wrapper } from "./decorator";
 
 const MyDefaultExportedComponent = () => <div>MyDefaultExportedComponent</div>;
 
@@ -90,7 +89,7 @@ const App = () => (
 export default App;
 ```
 
-I can then send these commands to the TSServer
+I can then send these commands to the TSServer with the proper line positions and columns...
 
 ```json
 { "seq": 0, "type": "request", "command": "open", "arguments": { "file": "/Users/Jeff/typescript/ts-default-export-tsserver/src/App.tsx"} }
@@ -101,9 +100,11 @@ I can then send these commands to the TSServer
 { "seq": 6, "type": "request", "command": "getCodeFixes", "arguments": { "file": "/Users/Jeff/typescript/ts-default-export-tsserver/src/App.tsx", "startLine": 5, "endLine": 8, "startOffset": 6, "endOffset": 37, "errorCodes": [2304] } }
 ```
 
-I can see that TSServer saw there were unknown symbols in my file. Commands 3, 4, 5, and 6 send the position of the symbol and the error
-code that a fix is wanted for and as you can see they have different results.
-
+I can see that TSServer saw there were unknown symbols in my file. Commands 3, 4, 5, and 6 send the position of the
+symbol and the error code that a fix is wanted for and as you can see they have different results. These aren't the most
+readable responses, but the response to `semanticDiagnosticsSync` shows that it has found the errors in the file. If you
+would also look at the [TSServer logs](https://github.com/Microsoft/TypeScript/wiki/Standalone-Server-(tsserver)#logging)
+you would see that during the startup it scanned the project and watched all of the necessary files too.
 
 ```json
 Content-Length: 266
@@ -135,8 +136,11 @@ Content-Length: 544
 {"seq":0,"type":"response","command":"getCodeFixes","request_seq":5,"success":true,"body":[{"fixName":"import","description":"Import default 'MyDefaultExportedComponent' from module \"./myDefaultExportedComponent\"","changes":[{"fileName":"/Users/Jeff/typescript/ts-default-export-tsserver/src/App.tsx","textChanges":[{"start":{"line":2,"offset":1},"end":{"line":2,"offset":1},"newText":"import MyDefaultExportedComponent from \"./myDefaultExportedComponent\";\n"}]}],"fixId":"fixMissingImport","fixAllDescription":"Add all missing imports"}]}
 ```
 
-A plain default exported component was found, but a default exported component that was wrapped in the default export statement
-was not found. This was a common pattern that I was using in my projects and it makes the exported symbol invisible to the TSServer.
-After reading [this](https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html) and thinking about it. I came to the conclusion
-that named exports are almost always better than default exports because they enforce consistent naming and they are more discoverable
-by the TSServer.
+### The Result
+
+- A plain default exported component (it has been assigned a name) was found by TSServer
+- A default exported component that was wrapped in the default export statement was not found. This was a common
+  pattern that I was using in my projects and it makes the exported symbol invisible to the TSServer.
+
+[This](https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html) convinced me that named exports are almost
+always better than default exports because they are consistently discoverable by the TSServer.

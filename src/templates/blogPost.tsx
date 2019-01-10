@@ -28,6 +28,7 @@ const styles = (theme: Theme) =>
       margin: `0px ${theme.spacing.unit * 2}px`
     },
     button: {
+      margin: `${theme.spacing.unit * 3}px 0px`,
       textAlign: 'center'
     }
   });
