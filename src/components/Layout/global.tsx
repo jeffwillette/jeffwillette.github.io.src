@@ -24,7 +24,6 @@ import withRoot from '../../withRoot';
 import { AutolinkHeader } from '../AutolinkHeader';
 import { Code } from '../code';
 import { DisplayCard } from '../displayCard';
-import { UnorderedList } from '../ul';
 import { Drawer, drawerWidth } from './drawer';
 
 const styles = (theme: Theme) =>
@@ -39,6 +38,53 @@ const styles = (theme: Theme) =>
       '*::-webkit-scrollbar-thumb': {
         backgroundColor: 'rgba(0,0,0,.1)',
         outline: '1px solid slategrey'
+      }
+    },
+    ul: {
+      margin: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px`,
+      '& ul': {
+        borderLeft: `5px solid ${theme.palette.divider}`,
+        listStyle: 'none'
+      },
+      '& ul li': {
+        ...theme.typography.h5,
+        fontSize: '1.0em',
+        padding: theme.spacing.unit,
+        position: 'relative',
+        '&:before': {
+          padding: `0px ${theme.spacing.unit - 1}px`,
+          borderRadius: '50%',
+          content: '"❯"',
+          color: 'rgba(0,0,0,.5)',
+          backgroundColor: theme.palette.divider,
+          position: 'absolute',
+          left: -26
+        }
+      }
+    },
+    ol: {
+      margin: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px`,
+      '& ol': {
+        borderLeft: `5px solid ${theme.palette.divider}`,
+        listStyle: 'none',
+        counterReset: 'ol-counter'
+      },
+      '& ol li': {
+        ...theme.typography.h5,
+        counterIncrement: 'ol-counter',
+        fontSize: '1.0em',
+        padding: theme.spacing.unit,
+        position: 'relative',
+        '&:before': {
+          content: 'counter(ol-counter)',
+          padding: `${theme.spacing.unit / 4}px ${theme.spacing.unit}px`,
+          borderRadius: '50%',
+          color: 'rgba(0,0,0,.5)',
+          backgroundColor: theme.palette.divider,
+          position: 'absolute',
+          left: -28,
+          top: 7
+        }
       }
     },
     nestedList: {
@@ -98,6 +144,8 @@ class globalLayout extends React.Component<ExtendedProps, State> {
             h6: props => <AutolinkHeader {...props} variant="h6" />,
             p: props => <Typography {...props} variant="body1" />,
             code: props => <Code {...props} />,
+            ul: props => <div className={classes.ul} children={<ul {...props} />} />,
+            ol: props => <div className={classes.ol} children={<ol {...props} />} />,
             blockquote: props => (
               <DisplayCard indented variant="leftPad">
                 <CardContent className={classes.blockquote} children={props.children} />
