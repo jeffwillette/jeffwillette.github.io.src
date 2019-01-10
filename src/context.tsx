@@ -15,7 +15,7 @@ const defaultState = {
 };
 
 export class ContextProvider extends React.Component<{}, AppState> {
-  public isMobileWidth = window.innerWidth < 960;
+  public isMobileWidth = typeof window !== 'undefined' ? window.innerWidth < 960 : false;
   public stateMethods = {
     toggleDrawer: () => this.setState(prevState => ({ drawerOpen: !prevState.drawerOpen })),
     toggleMobile: () => this.setState(prevState => ({ mobile: !prevState.mobile }))
