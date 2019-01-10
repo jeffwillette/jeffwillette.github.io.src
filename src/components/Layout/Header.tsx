@@ -60,7 +60,7 @@ const header = ({ classes }: Props) => (
                 ) : (
                   <Menu className={classes.menu} onClick={toggleDrawer} />
                 )}
-                <Typography variant="h3" className={classes.flex}>
+                <Typography className={classes.flex}>
                   <Link to="/" white className={classes.link}>
                     {mobile ? <Home className={classes.menu} /> : `deltaskelta.github.io`}
                   </Link>

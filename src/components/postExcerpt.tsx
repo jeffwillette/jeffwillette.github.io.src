@@ -22,6 +22,9 @@ const styles = (theme: Theme) =>
     },
     subheaderSpan: {
       marginRight: theme.spacing.unit * 2
+    },
+    title: {
+      fontSize: theme.typography.h2.fontSize
     }
   });
 
@@ -39,6 +42,7 @@ const postExcerpt = ({ classes, slug, title, createdAt, updatedAt, categories, t
   return (
     <Card elevation={0} classes={{ root: classes.card }}>
       <CardHeader
+        titleTypographyProps={{ classes: { root: classes.title } }}
         title={<Link to={slug} children={title} />}
         action={
           <span>
@@ -49,10 +53,10 @@ const postExcerpt = ({ classes, slug, title, createdAt, updatedAt, categories, t
           </span>
         }
         subheader={
-          <Typography variant="subtitle2">
-            <span className={classes.subheaderSpan}>createdAt: {createdAt.format('LLL')}</span>
-            <span className={classes.subheaderSpan}>updatedAt: {updatedAt.format('LLL')}</span>
-          </Typography>
+          <span>
+            <span className={classes.subheaderSpan}>created: {createdAt.format('ll')}</span>
+            <span className={classes.subheaderSpan}>updated: {updatedAt.format('ll')}</span>
+          </span>
         }
       />
       <CardContent>

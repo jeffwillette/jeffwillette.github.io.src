@@ -1,10 +1,11 @@
-import { createStyles, Typography, WithStyles, withStyles } from '@material-ui/core';
+import { createStyles, Theme, Typography, WithStyles, withStyles } from '@material-ui/core';
 import { TypographyProps } from '@material-ui/core/Typography';
 import GithubSlugger from 'github-slugger';
 import React from 'react';
+import { StateConsumer } from '../context';
 import { Link } from './link';
 
-const styles = () =>
+const styles = (theme: Theme) =>
   createStyles({
     h: {
       '&::before': {
@@ -13,6 +14,9 @@ const styles = () =>
         height: 100,
         marginTop: -100
       }
+    },
+    mobileFont: {
+      fontSize: theme.typography.h2.fontSize + ' !important'
     }
   });
 
@@ -32,7 +36,19 @@ const autolinkHeader = ({ classes, children, variant }: AutolinkHeaderProps) => 
 
   return (
     <Link to={`#${slug}`}>
-      <Typography classes={{ root: classes.h }} id={slug} variant={variant} children={children} />
+      <StateConsumer>
+        {({ mobile }) => {
+          return (
+            <Typography
+              classes={{ root: classes.h }}
+              className={variant === 'h1' && mobile ? classes.mobileFont : undefined}
+              id={slug}
+              variant={variant}
+              children={children}
+            />
+          );
+        }}
+      </StateConsumer>
     </Link>
   );
 };

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Header } from './header';
 
 import {
+  CardContent,
   Collapse,
   createStyles,
   List,
@@ -22,6 +23,8 @@ import { ContextProvider, StateConsumer } from '../../context';
 import withRoot from '../../withRoot';
 import { AutolinkHeader } from '../AutolinkHeader';
 import { Code } from '../code';
+import { DisplayCard } from '../displayCard';
+import { UnorderedList } from '../ul';
 import { Drawer, drawerWidth } from './drawer';
 
 const styles = (theme: Theme) =>
@@ -41,6 +44,9 @@ const styles = (theme: Theme) =>
     nestedList: {
       paddingLeft: theme.spacing.unit * 4
     },
+    blockquote: {
+      fontStyle: 'italic'
+    },
     content: {
       flexGrow: 1,
       transition: theme.transitions.create('margin', {
@@ -50,7 +56,7 @@ const styles = (theme: Theme) =>
     },
     contentPadding: { padding: `0px ${theme.spacing.unit * 30}px` },
     contentPaddingOpen: { padding: `0px ${theme.spacing.unit * 10}px` },
-    contentMobile: { padding: `0px ${theme.spacing.unit * 1.5}px` },
+    contentMobile: { padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 1.5}px` },
     contentShift: {
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.easeOut,
@@ -91,7 +97,12 @@ class globalLayout extends React.Component<ExtendedProps, State> {
             h5: props => <AutolinkHeader {...props} variant="h5" />,
             h6: props => <AutolinkHeader {...props} variant="h6" />,
             p: props => <Typography {...props} variant="body1" />,
-            code: props => <Code {...props} />
+            code: props => <Code {...props} />,
+            blockquote: props => (
+              <DisplayCard indented variant="leftPad">
+                <CardContent className={classes.blockquote} children={props.children} />
+              </DisplayCard>
+            )
           }}
         >
           <Header />

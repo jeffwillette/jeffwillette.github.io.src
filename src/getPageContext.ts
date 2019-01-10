@@ -46,7 +46,7 @@ const theme = createMuiTheme({
     fontFamily: '"Ubuntu", sans-serif',
     useNextVariants: true,
     h1: {
-      fontSize: '2.5rem',
+      fontSize: '2rem',
       fontWeight: 'bold',
       lineHeight: 1.3,
       borderBottom: '1px solid rgba(0,0,0,.1)',
@@ -54,24 +54,32 @@ const theme = createMuiTheme({
       margin: `${spacing * 3}px 0px`
     },
     h2: {
-      fontSize: '2rem',
-      color: 'rgba(0,0,0,.54)'
+      fontSize: '1.5rem',
+      fontWeight: 'bold',
+      color: 'rgba(0,0,0,.74)',
+      margin: `${spacing * 3}px 0px`
     },
     h3: {
-      fontSize: '1.75rem',
-      color: 'rgba(0,0,0,.54)'
+      fontSize: '1.17rem',
+      fontWeight: 'bold',
+      color: 'rgba(0,0,0,.74)',
+      margin: `${spacing * 3}px 0px`
     },
     h4: {
-      fontSize: '1.35rem',
-      color: 'rgba(0,0,0,.54)'
+      fontSize: '1.12rem',
+      fontWeight: 'bold',
+      color: 'rgba(0,0,0,.74)',
+      margin: `${spacing * 3}px 0px`
     },
     h5: {
-      fontSize: '1.25rem',
-      color: 'rgba(0,0,0,.54)'
+      fontSize: '0.83rem',
+      fontWeight: 'bold',
+      color: 'rgba(0,0,0,.74)'
     },
     h6: {
-      fontSize: '1.15rem',
-      color: 'rgba(0,0,0,.54)'
+      fontSize: '0.75rem',
+      fontWeight: 'bold',
+      color: 'rgba(0,0,0,.74)'
     },
     body1: {
       // margin: `${spacing * 2}px 0px`

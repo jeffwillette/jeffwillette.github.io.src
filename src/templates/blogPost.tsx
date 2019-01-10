@@ -59,8 +59,8 @@ const BlogPost = ({ classes, data }: Props) => {
       <Typography variant="h1">{title}</Typography>
       {categories && categories.map((c, i) => c && <TagChip key={i} tag={c} />)}
       <TagChip tag={`${timeToRead} minute read`} />
-      {createdAt && <TagChip tag={`createdAt: ${moment(createdAt).format('LLL')}`} />}
-      {updatedAt && <TagChip tag={`updatedAt: ${moment(updatedAt).format('LLL')}`} />}
+      {createdAt && <TagChip tag={`created: ${moment(createdAt).format('ll')}`} />}
+      {updatedAt && <TagChip tag={`updated: ${moment(updatedAt).format('ll')}`} />}
 
       <div className={classes.postBody}>
         <MDXRenderer>{body}</MDXRenderer>

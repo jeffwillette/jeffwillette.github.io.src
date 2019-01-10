@@ -32,10 +32,6 @@ const styles = (theme: Theme) =>
       // the drawer comes under the bar on desktop so it needs some top padding
       paddingTop: 85
     },
-    outerDiv: {
-      marginTop: 65,
-      display: 'flex'
-    },
     drawerContainer: {
       height: '101%'
     }
@@ -52,7 +48,7 @@ class drawer extends React.Component<Props, {}> {
       <StateConsumer>
         {({ drawerOpen, toggleDrawer }) => {
           return (
-            <div className={classes.outerDiv}>
+            <div>
               <Hidden mdUp>
                 {/* show only on mobile screens */}
                 <SwipeableDrawer

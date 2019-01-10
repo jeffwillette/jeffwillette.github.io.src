@@ -4,7 +4,7 @@ import React from 'react';
 const styles = (theme: Theme) =>
   createStyles({
     chip: {
-      margin: `0px ${theme.spacing.unit}px`
+      margin: `0px ${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px`
     }
   });
 
