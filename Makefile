@@ -10,7 +10,7 @@ deploy:
 	# checkout master
 	@git checkout master
 	# merge dev
-	@git merge --no-ff dev
+	@git merge dev
 	# push master
 	@git push origin master
 	# build, copy, commit, and push
