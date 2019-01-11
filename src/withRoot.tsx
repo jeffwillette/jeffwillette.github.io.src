@@ -18,13 +18,20 @@ const withRoot = (Component: React.SFC) => {
       this.pageContext = this.props.pageContext || getPageContext();
     }
 
-    public componentDidMount() {
-      // Remove the server-side injected CSS.
-      const jssStyles = document.querySelector('#server-side-jss');
-      if (jssStyles && jssStyles.parentNode) {
-        jssStyles.parentNode.removeChild(jssStyles);
-      }
-    }
+    // TODO: this is removed because it seems to cause issues on the
+    // build where the styles are applied and then they are changed
+    // somehow and all of the css is gone.
+    // - make a local build
+    // - serve public with node server
+    // - clear the cache for the app
+    // - refresh the page
+    // public componentDidMount() {
+    //  // Remove the server-side injected CSS.
+    //  const jssStyles = document.querySelector('#server-side-jss');
+    //  if (jssStyles && jssStyles.parentNode) {
+    //    jssStyles.parentNode.removeChild(jssStyles);
+    //  }
+    // }
 
     public render() {
       // MuiThemeProvider makes the theme available down the React tree thanks to React context.
