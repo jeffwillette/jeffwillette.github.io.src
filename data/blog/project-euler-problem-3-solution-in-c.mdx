@@ -1,0 +1,62 @@
+---
+title: Project Euler Problem 3 Solution in C
+published: true
+createdAt: Sat, 23 Apr 2016 06:00:42
+updatedAt: Sun, 13 Jan 2019 17:24:52 GMT
+categories:
+  - C
+  - programming
+  - Project Euler
+---
+
+## The Problem States:
+
+```
+The prime factors of 13195 are 5, 7, 13 and 29.
+
+What is the largest prime factor of the number 600851475143 ?
+
+```
+
+## My Solution:
+
+I used the same method for this problem as I had in the past with Javascript and Python. My method was to remove
+prime factors 1 by 1 starting with 2 and working my way up until the square root of the target number, which is
+constantly getting smaller with every prime factor that is removed.
+
+```c
+#include <stdio.h>
+#include <math.h>
+#include <time.h>
+
+int main() {
+    long number;
+    printf("What number would you like a list of prime factors for: ");
+    scanf("%ld", &number);
+
+    clock_t start = clock();
+    //I have to make this one type long
+
+    long divideBy = 2;
+    while (divideBy <= sqrt(number) ) {
+        while ( number % divideBy == 0 ) {
+            printf("%ld, ", divideBy);
+            number = number / divideBy;
+        }
+        divideBy++;
+    }
+    printf("%ld\n", number);
+    clock_t end = clock();
+
+    double time_elapsed_in_seconds = (end - start)/(double)CLOCKS_PER_SEC;
+    printf("%f\n", time_elapsed_in_seconds);
+}
+```
+
+The Output:
+
+```
+What number would you like a list of prime factors for: 600851475143
+71, 839, 1471, 6857
+0.000054
+```

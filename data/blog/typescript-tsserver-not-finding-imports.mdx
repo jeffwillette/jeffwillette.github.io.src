@@ -2,7 +2,7 @@
 title: Typescript TSServer Not Finding Imports
 published: true
 createdAt: Wed, 09 Jan 2019 02:14:00 GMT
-updatedAt: Thu, 10 Jan 2019 16:15:56 GMT
+updatedAt: Sun, 13 Jan 2019 14:32:32 GMT
 categories:
   - typescript
 ---
@@ -136,7 +136,7 @@ Content-Length: 544
 {"seq":0,"type":"response","command":"getCodeFixes","request_seq":5,"success":true,"body":[{"fixName":"import","description":"Import default 'MyDefaultExportedComponent' from module \"./myDefaultExportedComponent\"","changes":[{"fileName":"/Users/Jeff/typescript/ts-default-export-tsserver/src/App.tsx","textChanges":[{"start":{"line":2,"offset":1},"end":{"line":2,"offset":1},"newText":"import MyDefaultExportedComponent from \"./myDefaultExportedComponent\";\n"}]}],"fixId":"fixMissingImport","fixAllDescription":"Add all missing imports"}]}
 ```
 
-### The Result
+## The Result
 
 - A plain default exported component (it has been assigned a name) was found by TSServer
 - A default exported component that was wrapped in the default export statement was not found. This was a common
