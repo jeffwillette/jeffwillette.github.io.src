@@ -252,6 +252,24 @@ export interface BlogPostQuery_site {
   siteMetadata: BlogPostQuery_site_siteMetadata | null;
 }
 
+export interface BlogPostQuery_authorAvatar_childImageSharp_fluid {
+  __typename: "ImageSharpFluid";
+  src: string | null;
+}
+
+export interface BlogPostQuery_authorAvatar_childImageSharp {
+  __typename: "ImageSharp";
+  fluid: BlogPostQuery_authorAvatar_childImageSharp_fluid | null;
+}
+
+export interface BlogPostQuery_authorAvatar {
+  __typename: "File";
+  /**
+   * The child of this node of type imageSharp
+   */
+  childImageSharp: BlogPostQuery_authorAvatar_childImageSharp | null;
+}
+
 export interface BlogPostQuery_mdx_frontmatter {
   __typename: "frontmatter_2";
   title: string | null;
@@ -282,6 +300,7 @@ export interface BlogPostQuery_mdx {
 
 export interface BlogPostQuery {
   site: BlogPostQuery_site | null;
+  authorAvatar: BlogPostQuery_authorAvatar | null;
   mdx: BlogPostQuery_mdx | null;
 }
 

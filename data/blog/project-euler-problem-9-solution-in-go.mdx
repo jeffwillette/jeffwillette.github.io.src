@@ -1,0 +1,57 @@
+---
+title: "Project Euler: Problem 9 Solution in Go"
+published: true
+createdAt: Fri, 07 Oct 2016 15:56:53
+updatedAt: Mon, 14 Jan 2019 14:36:25 GMT
+categories:
+  - Go
+  - Programming
+  - Project Euler
+---
+
+## The Problem States
+
+```
+A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+
+a2 + b2 = c2
+For example, 32 + 42 = 9 + 16 = 25 = 52.
+
+There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+Find the product abc.
+```
+
+## My Solution
+
+It was pretty simple to come up with a solution, I couldn't find a way to make it shorter easily so I just added the `
+os.Exit(0)` to make the main function exit when it found the proper solution.
+
+```go
+package main
+
+import (
+  "fmt"
+  "os"
+)
+
+func main() {
+  for i := 0; i < 1000; i++ {
+    for j := i + 1; j < 1000; j++ {
+      for k := j + 1; k < 1000; k ++ {
+        if i*i + j*j == k*k {
+          if i + j + k == 1000 {
+            fmt.Println(i * j * k)
+            os.Exit(0)
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+## The Output
+
+```bash
+31875000
+```

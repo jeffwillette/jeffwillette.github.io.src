@@ -10,7 +10,6 @@ const styles = (theme: Theme) =>
       borderLeft: `${theme.spacing.unit}px solid ${theme.palette.divider}`
     },
     post: {
-      width: '75%',
       margin: 'auto'
     },
     interview: {},
@@ -24,7 +23,7 @@ interface Props extends WithStyles<typeof styles> {
   children: React.ReactNode;
   className?: string;
   variant?: 'leftPad' | 'post' | 'interview';
-  indented: boolean;
+  indented?: boolean;
 }
 
 const displayCard = ({ classes, children, className, variant, indented }: Props) => (

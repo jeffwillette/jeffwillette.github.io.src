@@ -1,0 +1,66 @@
+---
+title: "Project Euler: Problem 13 Solution In Go"
+published: true
+createdAt: Fri, 14 Oct 2016 00:41:19
+updatedAt: Mon, 14 Jan 2019 14:14:19 GMT
+categories:
+  - Go
+  - Programming
+  - Project Euler
+---
+
+## The Problem States
+
+```
+Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
+```
+
+- [View the number here](https://projecteuler.net/problem=13)
+
+## My Solution
+
+Pretty simple, I just split the numbers on the newline characters and then used the `math/big` library to create big
+numbers and add them to the sum which is also a `big` number.
+
+I thought about going through the columns and adding the numbers like one would do by hand, but that would require
+converting everything to an integer and then iterating through the columns which seemed a lot more tedious than just
+using the `math/big` library
+
+```go
+package main
+
+import (
+  "fmt"
+  "io/ioutil"
+  "strings"
+  "math/big"
+)
+
+func main() {
+  contents, err := ioutil.ReadFile("13.txt")
+  if err != nil {
+    panic(err)
+  }
+
+  strNumbers := strings.Split(string(contents), "\n")
+  sum := big.NewInt(0)
+  for i := 0; i < len(strNumbers); i++ {
+    number := big.NewInt(0)
+    if _, ok := number.SetString(strNumbers[i], 10); ok {
+      sum.Add(sum, number)
+    } else {
+      fmt.Println("There was an error making an integer")
+    }
+  }
+  for i := 0; i < 10; i ++ {
+    fmt.Printf("%c", sum.String()[i])
+  }
+  fmt.Println()
+}
+```
+
+## The Output
+
+```bash
+5537376230
+```
