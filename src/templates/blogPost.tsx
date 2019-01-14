@@ -6,6 +6,7 @@ import moment from 'moment';
 import React from 'react';
 import Helmet from 'react-helmet';
 import { FlatButton } from '../components/button';
+import { MDXImg } from '../components/images';
 import { DrawerTOC, TableOfContents } from '../components/Layout/drawerTOC';
 import { GlobalLayout } from '../components/Layout/global';
 import { Link } from '../components/link';
@@ -64,7 +65,7 @@ const BlogPost = ({ classes, data }: Props) => {
       {updatedAt && <TagChip tag={`updated: ${moment(updatedAt).format('ll')}`} />}
 
       <div className={classes.postBody}>
-        <MDXRenderer>{body}</MDXRenderer>
+        <MDXRenderer scope={{ MDXImg }}>{body}</MDXRenderer>
       </div>
       <div className={classes.button}>
         <Link to={githubLink || ''}>

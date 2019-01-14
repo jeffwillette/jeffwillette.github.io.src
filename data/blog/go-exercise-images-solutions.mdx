@@ -1,0 +1,174 @@
+---
+title: Go Exercise Images Solutions
+published: true
+createdAt: Wed, 12 Oct 2016 15:42:36
+updatedAt: Mon, 14 Jan 2019 13:46:11 GMT
+categories:
+  - Go
+  - Programming
+---
+
+I wrote two solutions to the Go [Exercise: Images](https://tour.golang.org/methods/25) problem. One of them (the hard
+way) does a full implementation of all the methods to the interface and the other (easy way) embeds anonymous types
+to inherit from pre-existing image structs.
+
+## The Hard Way:
+___
+
+<MDXImg align="left">
+
+![go exercise image](./media/go-exercise-images-1.png)
+
+</MDXImg>
+
+This code produces the image to the left. I wrote most of it without looking at the current implementations of image
+structs in the `image` package so it can probably be improved a lot.
+
+`ShowImage` is going to use the image package and therefore my code much satisfy the [Image](https://golang.org/pkg/image/#Image)
+interface within that package which states that an `Image` must have three methods `ColorModel()`, `Bounds()`, `At(x, y int)`.
+So I will have to write custom methods that satisfy this and perform as expected.
+
+## The `Image` Struct
+
+This is a 3-dimensional slice that contains `x`-axis values, `y`-axis values, and `rgba` pixel values, the other
+integers are `x` and `y` minimums and maximums.
+
+## The `NewImage()` Method
+
+This just initializes the slices and sets the values of the `x` and `y` minimums and maximums according to the input
+it receives. It returns a pointer to an initialized, but empty (no pixel values) image.
+
+## The `ColorModel()`, `At()`, and `Bounds()` Methods
+
+The `ColorModel()` method just returns which color model the image will use. There are a lot of color models in the `
+color` package such as `RGBA`, `CMYK`, etc... that are commonly used in most things. I saw no need in reinventing the
+wheel so I just returned one of the pre-existing color models.
+
+The `At()` method returns a color and takes an x and y pixel value as an input. In order to do this I need to
+initialize a color with the RGBA values stored in the pixel at `x`, `y`.  these would be the indexes of 1-4 for `pixel[x][y]`.
+
+The `Bounds()` method said it needed to return an `image.Rectangle` so I made one with the `x` and `y` minimums and
+maximums and returned it.
+
+## The `crazyColors()` Method
+
+I need to have something that will generate `RGBA` values for every pixel so I wrote this method that loops through
+and assigns values to the based on some random linear function for each value in `RGBA`.
+
+```go
+package main
+
+import (
+    "golang.org/x/tour/pic"
+    "image"
+    "image/color"
+)
+
+type Image struct{
+    // one array for x value, one array for y values, array of integer for pixel RGBA values
+    image_ [][][]uint8
+    x0, y0, x1, y1 int
+}
+
+func (i *Image) NewImage(x, y int) *Image {
+    image := make([][][]uint8, y)
+    for i := 0; i < x; i++ {
+        image[i] = make([][]uint8, x)
+        for j := 0; j < y; j++ {
+            image[i][j] = make([]uint8, 4)
+        }
+    }
+    return &Image{image, 0, 0, x, y}
+}
+
+func (p *Image) ColorModel() color.Model { return color.RGBAModel }
+
+func (p *Image) At(x, y int) color.Color {
+    var c color.Color
+    rgba := color.RGBA{
+        p.image_[x][y][0],
+        p.image_[x][y][1],
+        p.image_[x][y][2],
+        p.image_[x][y][3],
+    }
+    c = rgba
+    return c
+}
+
+func (p *Image) Bounds() image.Rectangle {
+    rectangle := image.Rect(p.x0, p.y0, p.x1, p.y1)
+    return rectangle
+}
+
+func (p *Image) crazyColors() *Image {
+    for i := 0; i < len(p.image_) - 1; i++ {
+        for j := 0; j < len(p.image_[i]) - 1; j++ {
+            p.image_[i][j][0] = uint8(i + j / 2)
+            p.image_[i][j][1] = uint8(i + j * 2)
+            p.image_[i][j][2] = uint8(i + j * 2)
+            p.image_[i][j][3] = uint8(255)
+        }
+    }
+    return p
+}
+
+func main() {
+    var i *Image
+    i = i.NewImage(255, 255)
+    i.crazyColors()
+    pic.ShowImage(i)
+}
+```
+
+## The Easy Way:
+_________
+
+<MDXImg align="right">
+
+![go exercise images](./media/go-exercise-images-2.png)
+
+</MDXImg>
+
+This one was much easier since I am inheriting from the `image.RGBA` struct. All I have to do in this case is to make
+a `crazyColors()` method to give the pixels `RGBA` values.
+
+## The `crazyColors()` Method
+
+
+In the `image.RGBA` struct [Go Docs](https://golang.org/pkg/image/#RGBA), there is only one array for pixel values.
+One pixel is 4 consecutive integers, and they simulate having a 2-dimensional slice by also having a `stride` which
+is the distance in bytes between vertically aligned pixels. This is a simpler way to store the information than what
+I came up with.
+
+So to give the values, I iterate through the slice by increments of 4 and assign values again based on some random
+mathematical function I wrote on the spot. This code produces the image pictured to the right.
+
+```go
+package main
+
+import (
+    "golang.org/x/tour/pic"
+    "image"
+)
+
+type Image struct{
+    image.RGBA
+}
+
+func (i Image) crazyColors() Image {
+    for p := 0; p < len(i.Pix); p += 4 {
+        i.Pix[p] = uint8(p + p*2)
+        i.Pix[p+1] = uint8(p + p*4)
+        i.Pix[p+2] = uint8(p + p*6)
+        i.Pix[p+3] = uint8(p + p*8)
+    }
+    return i
+}
+
+func main() {
+    rect := image.Rect(0,0,255,255)
+    m := Image{*image.NewRGBA(rect)}
+    m.crazyColors()
+    pic.ShowImage(&m)
+}
+```

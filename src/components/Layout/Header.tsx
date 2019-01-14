@@ -58,7 +58,7 @@ const header = ({ classes }: Props) => (
       return (
         <StateConsumer>
           {({ mobile, drawerOpen, toggleDrawer }) => (
-            <AppBar position="fixed" className={classes.bar}>
+            <AppBar position="fixed" className={classes.bar} elevation={0}>
               <Toolbar>
                 {drawerOpen ? (
                   <KeyboardArrowLeft className={classes.menu} onClick={toggleDrawer} />

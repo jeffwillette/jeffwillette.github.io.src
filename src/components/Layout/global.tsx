@@ -110,6 +110,9 @@ const styles = (theme: Theme) =>
         duration: theme.transitions.duration.enteringScreen
       }),
       marginLeft: drawerWidth
+    },
+    postP: {
+      margin: `${theme.spacing.unit * 3}px 0px`
     }
   });
 
@@ -143,7 +146,7 @@ class globalLayout extends React.Component<ExtendedProps, State> {
             h4: props => <AutolinkHeader {...props} variant="h4" />,
             h5: props => <AutolinkHeader {...props} variant="h5" />,
             h6: props => <AutolinkHeader {...props} variant="h6" />,
-            p: props => <Typography {...props} variant="body1" />,
+            p: props => <Typography className={classes.postP} {...props} variant="body1" />,
             code: props => <Code {...props} />,
             ul: props => <div className={classes.ul} children={<ul {...props} />} />,
             ol: props => <div className={classes.ol} children={<ol {...props} />} />,
