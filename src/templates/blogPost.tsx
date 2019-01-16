@@ -18,7 +18,7 @@ import { safe } from '../utils';
 const styles = (theme: Theme) =>
   createStyles({
     postBody: {
-      marginTop: theme.spacing.unit * 6
+      marginTop: theme.spacing.unit * 3
     },
     editButtonText: {
       margin: `0px ${theme.spacing.unit * 2}px`
@@ -31,6 +31,10 @@ const styles = (theme: Theme) =>
       width: 60,
       height: 60,
       backgroundColor: 'rgba(0,0,0,.03)'
+    },
+    avatarCard: {
+      marginTop: theme.spacing.unit * 2,
+      paddingBottom: 0
     }
   });
 
@@ -50,9 +54,18 @@ const BlogPost = ({ classes, data }: Props) => {
 
   const { frontmatter, code, timeToRead, tableOfContents, excerpt, fields } = safe(mdx);
   const { body } = safe(code);
-  const { title, createdAt, updatedAt, categories } = safe(frontmatter);
+  const { title, createdAt, updatedAt, categories, images } = safe(frontmatter);
   const { githubLink } = safe(fields);
   const { items } = safe(tableOfContents);
+
+  const imgs: { [k: string]: React.ReactNode } = {};
+  if (images) {
+    images.forEach((image, i) => {
+      const { childImageSharp: c } = safe(image);
+      const { fluid: f } = safe(c);
+      imgs[`Image${i}`] = ({ align, width }) => <MDXImg align={align} width={width} fluid={f || undefined} />;
+    });
+  }
 
   return (
     <GlobalLayout drawer={<DrawerTOC items={items || ([] as TableOfContents[])} level={1} />}>
@@ -66,18 +79,21 @@ const BlogPost = ({ classes, data }: Props) => {
       />
       <DisplayCard variant="post">
         <CardHeader
-          title="Jeff Willette"
+          title={author}
+          classes={{ root: classes.avatarCard }}
           subheader={`
             ${moment(createdAt || undefined).format('ll')} ●
-              updated: ${moment(updatedAt || undefined).format('ll')} ●
+              edited: ${moment(updatedAt || undefined).format('ll')} ●
               ${timeToRead} minute read
             `}
           avatar={<Avatar src={src || undefined} className={classes.avatar} />}
         />
-        {categories && categories.map((c, i) => c && <TagChip key={i} tag={c} />)}
         <Typography variant="h1">{title}</Typography>
+        {categories && categories.map((c, i) => c && <TagChip key={i} tag={c} />)}
         <div className={classes.postBody}>
-          <MDXRenderer scope={{ MDXImg }}>{body}</MDXRenderer>
+          <MDXRenderer images={imgs} scope={{ MDXImg, ...imgs }}>
+            {body}
+          </MDXRenderer>
         </div>
         <div className={classes.button}>
           <Link to={githubLink || ''}>
@@ -112,6 +128,24 @@ export const pageQuery = graphql`
         createdAt
         updatedAt
         categories
+        images {
+          childImageSharp {
+            fluid {
+              base64
+              tracedSVG
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+              originalImg
+              originalName
+              presentationWidth
+              presentationHeight
+            }
+          }
+        }
       }
       fields {
         githubLink

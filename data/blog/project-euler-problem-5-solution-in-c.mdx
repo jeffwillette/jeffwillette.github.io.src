@@ -1,0 +1,109 @@
+---
+title: "Project Euler: Problem 5 Solution in C"
+published: true
+createdAt: Sun, 24 Apr 2016 12:14:18
+updatedAt: Tue, 15 Jan 2019 02:16:19 GMT
+categories:
+  - C
+  - Programming
+  - Project Euler
+---
+
+## The Problem States
+
+    2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+
+    What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+
+## My Solution
+
+### First Attempt...
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
+
+int main ()
+{
+  clock_t start = clock();
+  int limit = 20;
+  int begin = 2520;
+  int cont = 1;
+  while (cont) {
+    if (begin % limit == 0) {
+      while (begin % limit == 0) {
+        limit--;
+        if (limit == 0) {
+          printf("%d\n", begin);
+          cont = 0;
+          break;
+        }
+      }
+      limit = 20;
+      begin++;
+    } else {
+      begin++;
+    }
+  }
+  clock_t end = clock();
+
+    double time_elapsed_in_seconds = (end - start)/(double)CLOCKS_PER_SEC;
+    printf("Finished in %f seconds.\n", time_elapsed_in_seconds);
+}
+```
+
+### First Attempt Output...
+
+    232792560
+    Finished in 1.253245 seconds.
+
+I tired this the first time and thought it was a bit slow so I looked at my python solution and realized that I could increment the number each time by 20 since it has o be divisible by 20. That should cut down on a lot of possibilities.
+
+### Second Attempt...
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
+
+int main ()
+{
+  clock_t start = clock();
+  int limit = 20;
+  int begin = 20;
+  int cont = 1;
+  while (cont) {
+    if (begin % limit == 0) {
+      while (begin % limit == 0) {
+        limit--;
+        if (limit == 0) {
+          printf("%d\n", begin);
+          cont = 0;
+          break;
+        }
+      }
+      limit = 20;
+      begin += 20;
+    } else {
+      begin += 20;
+    }
+  }
+  clock_t end = clock();
+
+    double time_elapsed_in_seconds = (end - start)/(double)CLOCKS_PER_SEC;
+    printf("Finished in %f seconds.\n", time_elapsed_in_seconds);
+}
+```
+
+## The Output
+
+
+```bash
+232792560
+Finished in 0.156097 seconds.
+```
+
+This was a pretty big performance gain, but I wasn't able to replicate the speed in my
+[python](/post/project-euler-problem-5-solution-in-python/) answer for some reason, I actually don't understand what
+I was saying about the primes...I want to go back and look at it sometime, but this is good enough for now.

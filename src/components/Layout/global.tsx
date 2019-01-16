@@ -96,6 +96,7 @@ const styles = (theme: Theme) =>
     },
     content: {
       flexGrow: 1,
+      minHeight: 320, // gives enough room for the footer
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen

@@ -13,6 +13,7 @@
     "@mdx-js/tag": "^0.16.6",
     "classnames": "^2.2.6",
     "gatsby": "^2.0.64",
+    "gatsby-image": "^2.0.26",
     "gatsby-link": "^2.0.7",
     "gatsby-mdx": "^0.3.1-ci.234",
     "gatsby-plugin-react-helmet": "^3.0.4",

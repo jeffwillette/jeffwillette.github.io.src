@@ -270,12 +270,42 @@ export interface BlogPostQuery_authorAvatar {
   childImageSharp: BlogPostQuery_authorAvatar_childImageSharp | null;
 }
 
+export interface BlogPostQuery_mdx_frontmatter_images_childImageSharp_fluid {
+  __typename: "ImageSharpFluid";
+  base64: string | null;
+  tracedSVG: string | null;
+  aspectRatio: number | null;
+  src: string | null;
+  srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
+  sizes: string | null;
+  originalImg: string | null;
+  originalName: string | null;
+  presentationWidth: number | null;
+  presentationHeight: number | null;
+}
+
+export interface BlogPostQuery_mdx_frontmatter_images_childImageSharp {
+  __typename: "ImageSharp";
+  fluid: BlogPostQuery_mdx_frontmatter_images_childImageSharp_fluid | null;
+}
+
+export interface BlogPostQuery_mdx_frontmatter_images {
+  __typename: "File";
+  /**
+   * The child of this node of type imageSharp
+   */
+  childImageSharp: BlogPostQuery_mdx_frontmatter_images_childImageSharp | null;
+}
+
 export interface BlogPostQuery_mdx_frontmatter {
   __typename: "frontmatter_2";
   title: string | null;
   createdAt: string | null;
   updatedAt: string | null;
   categories: (string | null)[] | null;
+  images: (BlogPostQuery_mdx_frontmatter_images | null)[] | null;
 }
 
 export interface BlogPostQuery_mdx_fields {
@@ -306,6 +336,75 @@ export interface BlogPostQuery {
 
 export interface BlogPostQueryVariables {
   id: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: TagPage
+// ====================================================
+
+export interface TagPage_site_siteMetadata {
+  __typename: "siteMetadata_2";
+  title: string | null;
+  description: string | null;
+  keywords: string | null;
+  author: string | null;
+}
+
+export interface TagPage_site {
+  __typename: "Site";
+  siteMetadata: TagPage_site_siteMetadata | null;
+}
+
+export interface TagPage_allMdx_edges_node_frontmatter {
+  __typename: "frontmatter_2";
+  title: string | null;
+  createdAt: string | null;
+  updatedAt: string | null;
+  categories: (string | null)[] | null;
+}
+
+export interface TagPage_allMdx_edges_node_fields {
+  __typename: "fields_2";
+  slug: string | null;
+}
+
+export interface TagPage_allMdx_edges_node {
+  __typename: "Mdx";
+  frontmatter: TagPage_allMdx_edges_node_frontmatter | null;
+  fields: TagPage_allMdx_edges_node_fields | null;
+  timeToRead: number | null;
+  excerpt: string | null;
+}
+
+export interface TagPage_allMdx_edges {
+  __typename: "MdxEdge";
+  /**
+   * The item at the end of the edge
+   */
+  node: TagPage_allMdx_edges_node | null;
+}
+
+export interface TagPage_allMdx {
+  __typename: "MdxConnection";
+  /**
+   * A list of edges.
+   */
+  edges: (TagPage_allMdx_edges | null)[] | null;
+}
+
+export interface TagPage {
+  site: TagPage_site | null;
+  /**
+   * Connection to all Mdx nodes
+   */
+  allMdx: TagPage_allMdx | null;
+}
+
+export interface TagPageVariables {
+  tagRegex?: string | null;
 }
 
 /* tslint:disable */

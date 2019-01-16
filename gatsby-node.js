@@ -1,4 +1,5 @@
 const { createFilePath } = require('gatsby-source-filesystem');
+const GithubSlugger = require('github-slugger');
 
 const path = require('path');
 
@@ -42,7 +43,8 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   const pathAndTemplates = {
-    '/blog/': path.resolve('./src/templates/blogPost.tsx')
+    '/blog/': path.resolve('./src/templates/blogPost.tsx'),
+    '/tags/': path.resolve('./src/templates/tags.tsx')
   };
 
   return new Promise((resolve, reject) => {
@@ -55,6 +57,7 @@ exports.createPages = ({ graphql, actions }) => {
                 id
                 frontmatter {
                   published
+                  categories
                 }
                 fields {
                   slug
@@ -73,6 +76,37 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors);
         }
 
+        const slugger = new GithubSlugger();
+
+        // make a unique set of tags and then make a tag page for each
+        let tags = {};
+        result.data.allMdx.edges.forEach(({ node }) => {
+          const { frontmatter } = node;
+          const { categories } = frontmatter;
+
+          categories.forEach(c => {
+            let s = slugger.slug(c);
+            slugger.reset();
+
+            console.log(s);
+            // set the key (slug) to the raw tag which will be used to
+            // pass to the page graphql context
+            if (!tags[s]) {
+              tags[s] = c;
+            }
+          });
+        });
+
+        console.log(tags);
+        Object.keys(tags).forEach(tag => {
+          createPage({
+            path: `/tags/${tag}`,
+            component: pathAndTemplates['/tags/'],
+            context: { tagRegex: `/^${tags[tag]}$/i`, tagName: tag }
+          });
+        });
+
+        // make a page for each mdx file
         result.data.allMdx.edges.forEach(({ node }) => {
           const { id, fields, code, frontmatter } = node;
           const { slug } = fields;

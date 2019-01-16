@@ -19,15 +19,9 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 const code = ({ className, classes, children }: Props) => {
-  // the className comes in like language-javascript so I have to strip out the prefix
+  const lang = className.replace('language-', '');
   return (
-    <SyntaxHighlighter
-      showLineNumbers
-      className={classes.code}
-      language={className}
-      style={obsidian}
-      children={children}
-    />
+    <SyntaxHighlighter showLineNumbers className={classes.code} language={lang} style={obsidian} children={children} />
   );
 };
 

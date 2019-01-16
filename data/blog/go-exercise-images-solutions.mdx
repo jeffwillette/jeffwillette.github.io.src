@@ -2,7 +2,10 @@
 title: Go Exercise Images Solutions
 published: true
 createdAt: Wed, 12 Oct 2016 15:42:36
-updatedAt: Mon, 14 Jan 2019 13:46:11 GMT
+updatedAt: Wed, 16 Jan 2019 01:18:35 GMT
+images:
+  - ./media/go-exercise-images-1.png
+  - ./media/go-exercise-images-2.png
 categories:
   - Go
   - Programming
@@ -13,13 +16,8 @@ way) does a full implementation of all the methods to the interface and the othe
 to inherit from pre-existing image structs.
 
 ## The Hard Way:
-___
 
-<MDXImg align="left">
-
-![go exercise image](./media/go-exercise-images-1.png)
-
-</MDXImg>
+<Image0 align="left" width="30%" />
 
 This code produces the image to the left. I wrote most of it without looking at the current implementations of image
 structs in the `image` package so it can probably be improved a lot.
@@ -121,19 +119,13 @@ func main() {
 ```
 
 ## The Easy Way:
-_________
 
-<MDXImg align="right">
-
-![go exercise images](./media/go-exercise-images-2.png)
-
-</MDXImg>
+<Image1 align="right" width="30%" />
 
 This one was much easier since I am inheriting from the `image.RGBA` struct. All I have to do in this case is to make
 a `crazyColors()` method to give the pixels `RGBA` values.
 
 ## The `crazyColors()` Method
-
 
 In the `image.RGBA` struct [Go Docs](https://golang.org/pkg/image/#RGBA), there is only one array for pixel values.
 One pixel is 4 consecutive integers, and they simulate having a 2-dimensional slice by also having a `stride` which

@@ -1,0 +1,73 @@
+---
+title: "Project Euler: Problem 7 Solution in C"
+published: true
+createdAt: Sun, 24 Apr 2016 13:06:35
+updatedAt: Wed, 16 Jan 2019 01:41:37 GMT
+categories:
+  - C
+  - Programming
+  - Project Euler
+---
+
+## The Problem States
+
+```text
+By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+
+What is the 10 001st prime number?
+```
+
+## My Solution
+
+I first defined a function that would check for primality by seeing if a number less than or equal to the square root
+of the target number is evenly divisible.
+
+I went up to the square root because up to that point if a number has a factor that is evenly divisible below the
+square root, then the other factor must be higher than the square root. So I really only have to check one of them.
+
+```c
+#include <stdio.h>
+#include <math.h>
+#include <time.h>
+
+int is_prime(int num)
+{
+  int sqrtDiv = lround(sqrt(num));
+  while (sqrtDiv > 1) {
+    if (num % sqrtDiv == 0) {
+      return(0);
+    } else {
+      sqrtDiv--;
+    }
+  }
+  return(1);
+}
+
+int main ()
+{
+  clock_t start = clock();
+
+  int primes = 0;
+  int numbers = 2;
+  while (primes < 10001) {
+    if (is_prime(numbers)) {
+      primes+= 1;
+    }
+    numbers += 1;
+  }
+  //Had to do -1 at the end because I added one to numbers after every loop, even when it found the last prime.
+  printf("The 10,001st prime number is: %d\n", numbers - 1);
+
+
+  clock_t end = clock();
+    double time_elapsed_in_seconds = (end - start)/(double)CLOCKS_PER_SEC;
+    printf("Finished in %f seconds.\n", time_elapsed_in_seconds);
+}
+```
+
+## The Output
+
+```bash
+The 10,001st prime number is: 104743
+Finished in 0.060672 seconds.
+```
