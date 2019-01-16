@@ -88,7 +88,6 @@ exports.createPages = ({ graphql, actions }) => {
             let s = slugger.slug(c);
             slugger.reset();
 
-            console.log(s);
             // set the key (slug) to the raw tag which will be used to
             // pass to the page graphql context
             if (!tags[s]) {
@@ -97,7 +96,6 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
-        console.log(tags);
         Object.keys(tags).forEach(tag => {
           createPage({
             path: `/tags/${tag}`,

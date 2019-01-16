@@ -19,7 +19,7 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 const code = ({ className, classes, children }: Props) => {
-  const lang = className.replace('language-', '');
+  const lang = className ? className.replace('language-', '') : 'text';
   return (
     <SyntaxHighlighter showLineNumbers className={classes.code} language={lang} style={obsidian} children={children} />
   );
