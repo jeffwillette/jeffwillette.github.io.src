@@ -1,0 +1,66 @@
+---
+title: "Project Euler: Problem 19 Solution in Go"
+published: true
+createdAt: Mon, 09 Jan 2017 06:30:02 GMT
+updatedAt: Sat, 19 Jan 2019 11:49:12 GMT
+categories:
+  - Go
+  - Programming
+  - Project Euler
+---
+
+## The Problem States
+
+```text
+You are given the following information, but you may prefer to do some research for yourself.
+
+- 1 Jan 1900 was a Monday.
+- Thirty days has September,
+- April, June and November.
+- All the rest have thirty-one,
+- Saving February alone,
+- Which has twenty-eight, rain or shine.
+- And on leap years, twenty-nine.
+
+A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
+How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+```
+
+## My Solution
+
+The [time library](https://golang.org/pkg/time) in go was really easy to work with in this problem. I called the
+[date](https://golang.org/pkg/time/#Date) function which takes `year, month, day, hour, minute, second` as input. The
+only tricky part of using it is to notice that the `month` input is of type `Month` so I first had to instantiate a
+variable of type `Month`.
+
+After that I looped through each month of each year and tested to see if it was the first day of the week (on the `0`
+day of the month) and added to the answer if it was.
+
+```go
+package main
+
+import (
+  "fmt"
+  "time"
+)
+
+func main() {
+  answer := 0
+  var month time.Month
+  for year := 1901; year <= 2000; year++ {
+    for month = 1; month <= 12; month++ {
+      t := time.Date(year, month, 0, 0, 0, 0, 0, time.UTC)
+      if t.Weekday() == time.Weekday(1) {
+        answer += 1
+      }
+    }
+  }
+  fmt.Println(answer)
+}
+```
+
+## The Output
+
+```text
+171
+```

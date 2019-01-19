@@ -1,0 +1,73 @@
+---
+title: "Migrating A Wordpress Database to Django"
+published: true
+createdAt: Wed, 03 Feb 2016 03:42:08 GMT
+updatedAt: Sat, 19 Jan 2019 11:45:35 GMT
+categories:
+  - Programming
+  - Python
+---
+
+I wanted to take down an old wordpress blog I had and migrate all the posts to this site, but there were too many to
+copy and paste here so I was able to...
+
+* Dump the *wp_posts* column from my wp database into a JSON file (in phpMyAdmin)
+* Write a small python function to extract the posts and data I wanted
+* Write another function for creating the *BlogPost* objects that I wanted
+
+Here is an example of the script in case anyone needs an idea of how to write it, this is probably horribly written...
+
+```python
+import json
+#These should the model names you need
+from blog.models import BlogPost, BlogTag
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+def wp():
+  wp = open('wp_posts.json')
+  data = json.load(wp)
+  posts = []
+  for i in data:
+    x = {}
+    #There were many revisions stored, the published post was only the final post...
+    if i['post_status'] == 'publish':
+      x['post_title'] = i['post_title']
+      x['post_date'] = i['post_date']
+      #post content was all rendered into HTML, IDK if that is form the html in my setup
+      #or just normal wordpress, either way I'll have to remove it later
+      x['post_content'] = i['post_content']
+      x['post_slug'] = i['post_name']
+      #Asking if I wanted to save it since I didn't want them all
+      save = raw_input('save? %s: ' % x['post_title'])
+      while save != 'y' and save != 'n':
+        save = raw_input('y or n only: ')
+        if save == 'y':
+            posts.append(x)
+        elif save == 'n':
+            pass
+
+      dumpfile = open('post_dump.json', 'w+')
+      dumpfile.write(json.dumps(posts))
+
+def make():
+  thefile = open('post_dump.json')
+  data = json.load(thefile)
+  p_author = User.objects.get(username=*my_username*)
+  tag = BlogTag.objects.get(title=*my_tag_title*)
+
+
+
+for i in data:
+  BlogPost.objects.create(
+    author=p_author,
+    title=i['post_title'],
+    slug=i['post_slug'],
+    post=i['post_content'],
+  )
+```
+
+This gave me all the posts, but I will still have to go through and edit them to remove all the html I don't want and
+to fix the images and make everything work with my site. I skipped the date because my current model automatically
+defines it, but I might go back in the future and put the correct publish date on everything since I still have it in
+the *post_dump.json* file.

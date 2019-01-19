@@ -46,7 +46,7 @@ class link extends React.Component<Props, {}> {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-  };
+  }
 
   public render() {
     const { to, children, classes, white } = this.props;

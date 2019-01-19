@@ -1,0 +1,74 @@
+---
+title: "Project Euler: Problem 10 Solution in C"
+published: true
+createdAt: Tue, 19 Jul 2016 00:05:28 GMT
+updatedAt: Fri, 18 Jan 2019 13:40:32 GMT
+categories:
+  - C
+  - Programming
+  - Project Euler
+---
+
+## The Problem States
+
+```text
+The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+
+Find the sum of all the primes below two million.
+```
+
+## My Solution
+
+I had already written a prime function for another problem so I used it here. It will return 1 if the input is prime
+and return 0 if it is not.
+
+I just looped through all the numbers unbder 2 million and added them to a total sum if they were prime, and printed
+the result.
+
+```c
+#include <stdio.h>
+#include <time.h>
+#include <math.h>
+
+int is_prime(int num)
+{
+  int sqrtDiv = lround(sqrt(num));
+  while (sqrtDiv > 1) {
+    if (num % sqrtDiv == 0) {
+      return(0);
+    } else {
+      sqrtDiv--;
+    }
+  }
+  return(1);
+}
+
+int main ()
+{
+  //Getting the clock time from the time.h header
+  clock_t start = clock();
+
+  long sum = 0;
+  for ( int i = 2; i < 2000000; i++ ) {
+    if (is_prime(i)) {
+      sum += i;
+    }
+  }
+  printf("Sum of primes below 2,000,000 is: %ld\n", sum);
+
+  //Setting the end clock and printint the elapsed time
+  clock_t end = clock();
+    double time_elapsed_in_seconds = (end - start)/(double)CLOCKS_PER_SEC;
+    printf("Finished in %f seconds.\n", time_elapsed_in_seconds);
+}
+```
+
+## The Output
+
+```text
+Sum of primes below 2,000,000 is: 142913828922
+Finished in 4.572524 seconds.
+```
+
+I wrote this same function in python and it took nearly 200 seconds to complete, it is amazing how much faster C is
+in this instance than python.

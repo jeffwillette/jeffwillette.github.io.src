@@ -1,0 +1,52 @@
+---
+title: "Project Euler: Problem 1 Solution in Go"
+published: true
+createdAt: Mon, 08 Aug 2016 02:40:15 GMT
+updatedAt: Fri, 18 Jan 2019 13:54:30 GMT
+categories:
+  - Go
+  - Programming
+  - Project Euler
+---
+
+## The Problem States
+
+```text
+If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.
+The sum of these multiples is 23.
+
+Find the sum of all the multiples of 3 or 5 below 1000.
+```
+
+## My Solution
+
+This was my first time writing anything in `go`. I am still working my way through the tutorial so I have not learned
+everything there yet.
+
+I am unsure if `switch` is the proper thing to do here, but I could not find any `or` statements so I had to go with
+that for now. In any case, it works.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+  var sum int
+  for i := 0; i < 1000; i++ {
+    switch {
+    case i % 3 == 0:
+      sum += i
+    case i % 5 == 0:
+      sum += i
+    }
+  }
+  fmt.Println(sum)
+}
+```
+
+## The Output
+
+```text
+233168
+```

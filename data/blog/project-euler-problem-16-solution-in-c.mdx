@@ -1,0 +1,63 @@
+---
+title: "Project Euler: Problem 16 Solution in C"
+published: true
+createdAt: Fri, 07 Oct 2016 13:05:19 GMT
+updatedAt: Sat, 19 Jan 2019 12:00:54 GMT
+categories:
+  - C
+  - Programming
+  - Project Euler
+---
+
+## The Problem States
+
+```text
+215 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
+
+What is the sum of the digits of the number 21000?
+```
+
+## My Solution
+
+The GNU GMP library does most of the work here because I cannot handle big numbers in C without creating new
+datatypes, which the library GMP does for me.
+
+There are a lot of long function names, they all come from the GMP library and they are for dealing with the
+arbitrarily large number datatypes that GMP creates. The code just sets `2^1000` and then goes through and floor
+divides (`mpz_fdiv_q_ui`) by 10, pulling out the last digit and adding it to the sum. The `while` loop does this
+while the sign (`mpz_sgn`) of `result` is positive
+
+```c
+#include <stdio.h>
+#include <time.h>
+#include <gmp.h>
+
+int main ()
+{
+  clock_t start = clock();
+
+  mpz_t result;
+  mpz_init(result);
+  unsigned long int two = 2;
+  unsigned long int exponent = 1000;
+  mpz_ui_pow_ui(result, two, exponent);
+
+  int sum = 0;
+  while (mpz_sgn(result)) {
+    int r = mpz_fdiv_q_ui(result, result, 10);
+    sum += r;
+  }
+  printf("%i\n", sum);
+
+  clock_t end = clock();
+    double time_elapsed_in_seconds = (end - start)/(double)CLOCKS_PER_SEC;
+    printf("Finished in %f seconds.\n", time_elapsed_in_seconds);
+}
+```
+
+## The Output
+
+```text
+1366
+Finished in 0.000188 seconds.
+```

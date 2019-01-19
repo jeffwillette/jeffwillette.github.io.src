@@ -1,0 +1,64 @@
+---
+title: "Project Euler: Problem 7 Solution in Go"
+published: true
+createdAt: Tue, 30 Aug 2016 22:43:00 GMT
+updatedAt: Sat, 19 Jan 2019 11:59:37 GMT
+categories:
+  - Go
+  - Programming
+  - Project Euler
+---
+
+## The Problem States
+
+```text
+By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+
+What is the 10 001st prime number?
+```
+
+## My Solution
+
+I wanted to implement a [prime sieve](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) instead of just making a
+prime function which I have written in another problem. The problem with doing it this way is that I have to give the
+list an upper limit and I cannot start with just any number so I would have to take a wild guess the first time, and
+when a solution appears I can go back and refactor my code to run faster with a lower "upper" limit.
+
+This solution makes an array of `1,000,000` boolean false values. I then set the first and second one
+(equal to the values `0` and `1`) to `true` to indicate that they are not prime numbers. It then iterates through the
+list until it find a `false` value which indicates that number is prime. After the value is found, it iterates
+through the list, turning every multiple of the prime number into a `true` value indicating that it is not prime.
+There is a prime counter that increments every time a `false` value is found, when that reaches `10,000` I call `os.Exit()`
+
+```go
+package main
+
+import (
+  "fmt"
+  "os"
+)
+
+func main() {
+  var sieve [1000000]bool
+  sieve[0], sieve[1] = true, true
+  primes := 0
+  for i := 2; i < len(sieve); i++ {
+    if !sieve[i] {
+      primes += 1
+      for j := i; j < len(sieve); j += i{
+        sieve[j] = true
+      }
+      if primes == 10001 {
+        fmt.Printf("prime 10001 is: %d\n", i)
+        os.Exit(0)
+      }
+    }
+  }
+}
+```
+
+## The Output
+
+```text
+prime 10001 is: 104743
+```

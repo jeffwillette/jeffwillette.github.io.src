@@ -1,0 +1,95 @@
+---
+title: "10 Bash Hotkeys That Will Save you Time"
+published: true
+createdAt: Sat, 17 Dec 2016 06:01:40 GMT
+updatedAt: Sat, 19 Jan 2019 11:58:17 GMT
+categories:
+  - Programming
+  - Random
+---
+
+If you have to spend any real time with a `BASH` prompt then you had better learn some of these shortcuts. They will
+save you so much time in the long run! There are *TONS* of other commands as well but I find myself using the 10 on
+this list the most.
+
+*UPDATE: If you are on a Mac you can restore the ALT(option) key to its original function by going to edit > Use
+Option as Meta Key. Without doing this, the ALT(option) key is replaced by the escape key*
+
+#### CTRL + A
+
+This will take you to the beginning of a line. Useful for when you are scrolling through your command history and you
+realize you want to use the same argument as the command before but you just need to change something near the
+beginning. Dont even think about touching the backspace button, just tap `CTRL + A` and go back to the beginning and
+change the what you need, press `ENTER` and you are good to go.
+
+### CTRL + E
+
+This will take you to the end of a line. If you just edited another part of a command, but you need to add something
+to the end of the argument, don't lay on the forward arrow and wait for the cursor to scroll to the end, use the hotkey...
+
+### ALT + b  (WINDOWS)
+### OPTION + ← (MAC)
+
+This combination will scroll backwards one word (tap `←` or `b` multiple times to keep skipping words). If you are
+dealing with a path (like `/home/user/path/to/a/file.txt`) then it will treat the slashes (and usually other
+punctuation marks) as the beginning/end of a word object as well. So instead of holding the back arrow for 5 seconds
+to change something in the middle of your command or args, you can make the cursor jump by word instead.....This one
+is REALLY a timesaver.
+
+### ALT + f (WINDOWS)
+### OPTION + → (MAC)
+
+If you can't already tell, this is pretty much the opposite of the previous command. This one makes the cursor jump
+forward at by one word object which can really save some scroll time if you avoid using the forward arrow.
+
+### CTRL + r
+
+Launches a little prompt where you can type a unique part of some recent command. It will automatically complete the
+command it thinks you want from history and then you just press enter to execute it. Really useful for when you know
+your  command is in the history, you are too lazy to type it again, and you don't feel like hitting the up arrow 50
+times to get to it.
+
+There is another feature you can also search deeper with. For instance, if you knew your command included the
+filename `foo.txt` and you did a `CTRL + r` and typed `foo.txt` in the prompt, it may bring up the command
+`vim /path/to/the/file/foo.txt` when in reality you wanted to run the command
+`less /path/to/the/file/foo.txt`. No worries just tap `CTRL + r` again and it will scroll through all the commands
+that include the search term `foo.txt`. A real time saver...
+
+### ALT + . (WINDOWS)
+### ESC + . (MAC)
+
+This combination will pull the last argument of the previous command in your history.
+
+Say you just typed out something like `cat path/to/a/file/that/is/really/crazy/deep/in/dirs.conf` and next you want
+to run `cp` `mv` `vi` on the file. Simply type `cp` and then tap `ALT ( or ESC ) + .` and you will instantly have the
+long path added after `cp`.
+
+### ALT + delete (WINDOWS)
+### ESC + delete (MAC)
+
+This combination will delete the word preceding the cursor. Really useful when you need it.
+
+### ALT + d (WINDOWS)
+### ESC + d (MAC)
+
+This combination is the opposite of `ALT ( or ESC ) + delete`, it will delete the word after the cursor.
+
+### TAB
+
+The grand daddy of them all. If you don't already know this one then I don't know how you can survive on a *nix like
+system. This will auto-complete the word you are typing based on what binaries are in your system path and what files
+may be in the your current directory or the path you are typing (if you are in the middle of typing the path).
+
+If you hit the tab button and nothing happens that is because it has tried to autocomplete, but has found that...
+
+1.  Nothing matches ...or...
+2. Multiple mathces
+
+In this case double tap the `TAB` key. If there are no matches then nothing will happen. If there are multiple
+matches it will show you a list of them. Simply type a few more characters until there are no more similar files,
+paths, or binaries that match and hit `TAB` again and it will finish the word for you.
+
+### CTRL + K
+
+This one will clear the line after the cursor, great for when you need part of the command, but need to change a
+path, or whatever may be on the end...

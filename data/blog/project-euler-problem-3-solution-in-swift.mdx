@@ -1,0 +1,44 @@
+---
+title: "Project Euler: Problem 3 Solution in Swift"
+published: true
+createdAt: Sun, 24 Apr 2016 11:31:48 GMT
+updatedAt: Sat, 19 Jan 2019 11:30:12 GMT
+categories:
+  - Programming
+  - Project Euler
+  - Swift
+---
+
+## The Problem States
+
+```text
+The prime factors of 13195 are 5, 7, 13 and 29.
+
+What is the largest prime factor of the number 600851475143 ?
+```
+
+## My Solution
+
+```swift
+public func problem3(number:Int) -> [Int]{
+    var divisor:Int = 2
+    var list = [Int]()
+    var num = number
+    while (Double(divisor) < sqrt(Double(number))) {
+        while num % divisor == 0 {
+            num /= divisor
+            list.append(divisor)
+        }
+        divisor += 1
+    }
+    return(list)
+}
+
+print(problem3(600851475143))
+```
+
+## The Output
+
+```text
+[71, 839, 1471, 6857]
+```
