@@ -35,6 +35,11 @@ const styles = (theme: Theme) =>
       ...theme.typography.h4,
       color: 'rgba(255,255,255,1)',
       margin: `0px 0px`
+    },
+    titleMobile: {
+      ...theme.typography.h5,
+      color: 'rgba(255,255,255,1)',
+      margin: `0px 0px`
     }
   });
 
@@ -68,11 +73,7 @@ const header = ({ classes }: Props) => (
                 )}
                 <Typography className={classes.flex}>
                   <Link to="/" white className={classes.link}>
-                    {mobile ? (
-                      <Home className={classes.menu} />
-                    ) : (
-                      <span className={classes.title} children="deltaskelta.github.io" />
-                    )}
+                    <span className={mobile ? classes.titleMobile : classes.title} children="deltaskelta.github.io" />
                   </Link>
                 </Typography>
                 <Link to={twitter || ''} white>

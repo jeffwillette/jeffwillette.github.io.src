@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import { Moment } from 'moment';
 import React from 'react';
+import { StateConsumer } from '../context';
 import { Link } from './link';
 import { TagChip } from './tagChip';
 
@@ -25,6 +26,9 @@ const styles = (theme: Theme) =>
     },
     title: {
       fontSize: theme.typography.h2.fontSize
+    },
+    mobileCategories: {
+      display: 'block'
     }
   });
 
@@ -39,30 +43,39 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 const postExcerpt = ({ classes, slug, title, createdAt, updatedAt, categories, timeToRead, excerpt }: Props) => {
+  const cats = (
+    <span>
+      {categories.map((c, i) => {
+        return c && <TagChip key={i} tag={c} />;
+      })}
+      <TagChip tag={`${timeToRead} minute read`} />
+    </span>
+  );
+
   return (
-    <Card elevation={0} classes={{ root: classes.card }}>
-      <CardHeader
-        titleTypographyProps={{ classes: { root: classes.title } }}
-        title={<Link to={slug} children={title} />}
-        action={
-          <span>
-            {categories.map((c, i) => {
-              return c && <TagChip key={i} tag={c} />;
-            })}
-            <TagChip tag={`${timeToRead} minute read`} />
-          </span>
-        }
-        subheader={
-          <span>
-            <span className={classes.subheaderSpan}>created: {createdAt.format('ll')}</span>
-            <span className={classes.subheaderSpan}>updated: {updatedAt.format('ll')}</span>
-          </span>
-        }
-      />
-      <CardContent>
-        <Typography variant="body2">{excerpt}</Typography>
-      </CardContent>
-    </Card>
+    <StateConsumer>
+      {({ mobile }) => {
+        return (
+          <Card elevation={0} classes={{ root: classes.card }}>
+            <CardHeader
+              titleTypographyProps={{ classes: { root: classes.title } }}
+              title={<Link to={slug} children={title} />}
+              action={!mobile && cats}
+              subheader={
+                <span>
+                  <span className={classes.subheaderSpan}>created: {createdAt.format('ll')}</span>
+                  <span className={classes.subheaderSpan}>updated: {updatedAt.format('ll')}</span>
+                </span>
+              }
+            />
+            <CardContent>
+              <span className={classes.mobileCategories} children={mobile && cats} />
+              <Typography variant="body2">{excerpt}</Typography>
+            </CardContent>
+          </Card>
+        );
+      }}
+    </StateConsumer>
   );
 };
 

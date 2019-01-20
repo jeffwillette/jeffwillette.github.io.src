@@ -12,6 +12,6 @@ const styles = (theme: Theme) =>
 
 type Props = WithStyles<typeof styles> & Exclude<FabProps, 'classes'>;
 
-const flatFab = ({ classes, ...props }: Props) => <Fab classes={{ root: classes.root }} {...props} />;
+const flatFab = ({ classes, ...props }: Props) => <Fab disableRipple classes={{ root: classes.root }} {...props} />;
 
 export const FlatFab = withStyles(styles)(flatFab);
