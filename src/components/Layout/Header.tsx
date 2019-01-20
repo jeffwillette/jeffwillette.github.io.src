@@ -6,6 +6,7 @@ import { graphql, StaticQuery } from 'gatsby';
 import React from 'react';
 import { StateConsumer } from '../../context';
 import { HeaderQuery, HeaderQuery_site, HeaderQuery_site_siteMetadata } from '../../gatsby-queries';
+import { safe } from '../../utils';
 import { Link } from '../link';
 
 interface Props extends WithStyles<typeof styles> {}
@@ -51,9 +52,9 @@ const header = ({ classes }: Props) => (
     `}
   >
     {(data: HeaderQuery) => {
-      const { site } = data;
-      const { siteMetadata } = site || ({} as HeaderQuery_site);
-      const { twitter, github } = siteMetadata || ({} as HeaderQuery_site_siteMetadata);
+      const { site } = safe(data);
+      const { siteMetadata } = safe(site);
+      const { twitter, github } = safe(siteMetadata);
 
       return (
         <StateConsumer>

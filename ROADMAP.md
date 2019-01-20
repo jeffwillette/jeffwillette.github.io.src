@@ -13,10 +13,6 @@ TODO:
 - add a resume page.
   - style the resume page
 
-- add categories pages
-  - categories should show other posts with same categories
-  - for `created at`, `edited at`, and `time to read` it should show posts with a similar range of values
-
 - write post about getting typescript types with the lookup (like on my SO question)
 
 - write post about node peerDependencies
@@ -27,5 +23,3 @@ TODO:
 
 - figure out what is wrong with the styles on the home page (build the site and serve locally). It works when coming
   from a page that is not the main page.
-
-- make the drawer darker that the rest of the backgrounds

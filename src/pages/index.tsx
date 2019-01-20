@@ -4,16 +4,17 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Blockquote } from '../components/blockquote';
 import { GlobalLayout } from '../components/Layout/global';
-import { IndexQuery, IndexQuery_site, IndexQuery_site_siteMetadata } from '../gatsby-queries';
+import { IndexQuery } from '../gatsby-queries';
+import { safe } from '../utils';
 
 interface Props {
   data: IndexQuery;
 }
 
 const Index = ({ data }: Props) => {
-  const { site } = data;
-  const { siteMetadata } = site || ({} as IndexQuery_site);
-  const { title, description, author, keywords } = siteMetadata || ({} as IndexQuery_site_siteMetadata);
+  const { site } = safe(data);
+  const { siteMetadata } = safe(site);
+  const { title, description, author, keywords } = safe(siteMetadata);
 
   return (
     <GlobalLayout>
