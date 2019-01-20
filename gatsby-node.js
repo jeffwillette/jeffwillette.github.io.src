@@ -47,6 +47,8 @@ exports.createPages = ({ graphql, actions }) => {
     '/tags/': path.resolve('./src/templates/tags.tsx')
   };
 
+  const blogIndexPage = path.resolve('./src/pages/blog.tsx');
+
   return new Promise((resolve, reject) => {
     resolve(
       graphql(`
@@ -78,9 +80,21 @@ exports.createPages = ({ graphql, actions }) => {
 
         const slugger = new GithubSlugger();
 
+        // sort the files into published and unpublished
+        let published = [];
+        let unpublished = [];
+        result.data.allMdx.edges.forEach(edge => {
+          if (edge.node.frontmatter.published) {
+            published.push(edge.node);
+            return;
+          }
+
+          unpublished.push(edge.node);
+        });
+
         // make a unique set of tags and then make a tag page for each
         let tags = {};
-        result.data.allMdx.edges.forEach(({ node }) => {
+        published.forEach(node => {
           const { frontmatter } = node;
           const { categories } = frontmatter;
 
@@ -88,8 +102,8 @@ exports.createPages = ({ graphql, actions }) => {
             let s = slugger.slug(c);
             slugger.reset();
 
-            // set the key (slug) to the raw tag which will be used to
-            // pass to the page graphql context
+            // set the key (slug) to the raw tag which will be used to pass to the page graphql context, so they can
+            // be queried from the tag page graphql
             if (!tags[s]) {
               tags[s] = c;
             }
@@ -104,26 +118,62 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
-        // make a page for each mdx file
-        result.data.allMdx.edges.forEach(({ node }) => {
-          const { id, fields, code, frontmatter } = node;
-          const { slug } = fields;
-          const { published } = frontmatter;
+        // make paginated blog pages based on the total number of mdx files returned
+        const postsPerPage = 10;
+        const numPages = Math.ceil(published.length / postsPerPage);
 
-          const skip = process.env.NODE_ENV === 'production' && !published;
-          Object.keys(pathAndTemplates).forEach(p => {
-            if (slug.includes(p) && !skip) {
-              createPage({
-                path: slug,
-                component: pathAndTemplates[p],
-                context: { id }
-              });
+        const pagesPaths = [];
+        Array.from({ length: numPages }).forEach((_, i) => {
+          pagesPaths.push({ path: i === 0 ? `/blog` : `/blog/${i + 1}`, page: i + 1 });
+        });
+
+        pagesPaths.forEach(obj => {
+          createPage({
+            path: obj.path,
+            component: blogIndexPage,
+            context: {
+              page: obj.page,
+              pageSlugs: pagesPaths,
+              limit: postsPerPage,
+              skip: (obj.page - 1) * postsPerPage // -1 because page 2 skips 1 * postsPerPage posts
             }
           });
         });
+
+        // make a page for each mdx file
+        published.forEach(node => createMdxPage(node, pathAndTemplates, createPage));
+        if (process.env.NODE_ENV === 'development') {
+          unpublished.forEach(node => createMdxPage(node, pathAndTemplates, createPage));
+        }
       })
     );
   });
+};
+
+// createMdx page creates a page for the mdx file and uses the template based off of the slug
+const createMdxPage = (node, pathAndTemplates, createPage) => {
+  const { id, fields, code, frontmatter } = node;
+  const { slug } = fields;
+
+  Object.keys(pathAndTemplates).forEach(p => {
+    if (slug.includes(p)) {
+      createPage({
+        path: slug,
+        component: pathAndTemplates[p],
+        context: { id }
+      });
+    }
+  });
+};
+
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage, deletePage } = actions;
+  // The blog page needs to be created with the page context for pagination.
+  // This will be taken care of in createPages when I have all the pages in
+  // a graphql query
+  if (page.path === '/blog/') {
+    deletePage(page);
+  }
 };
 
 exports.onCreateWebpackConfig = ({ actions, stage }) => {

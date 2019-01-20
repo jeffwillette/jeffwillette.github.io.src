@@ -1,30 +1,42 @@
-import { graphql } from 'gatsby';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
+import { graphql, navigate } from 'gatsby';
 import moment from 'moment';
 import React from 'react';
 import Helmet from 'react-helmet';
+import { FlatFab } from '../components/flatFab';
 import { GlobalLayout } from '../components/Layout/global';
 import { PostExcerpt } from '../components/postExcerpt';
-import {
-  BlogQuery,
-  BlogQuery_allMdx,
-  BlogQuery_allMdx_edges,
-  BlogQuery_allMdx_edges_node,
-  BlogQuery_allMdx_edges_node_fields,
-  BlogQuery_allMdx_edges_node_frontmatter,
-  BlogQuery_site,
-  BlogQuery_site_siteMetadata
-} from '../gatsby-queries';
+import { BlogQuery } from '../gatsby-queries';
+import { safe } from '../utils';
 
-interface Props {
+const styles = (_: Theme) =>
+  createStyles({
+    pages: {
+      textAlign: 'center'
+    }
+  });
+
+interface Props extends WithStyles<typeof styles> {
   data: BlogQuery;
+  pageContext: {
+    page: number;
+    pageSlugs: [
+      {
+        path: string;
+        page: number;
+      }
+    ];
+  };
 }
 
-const Blog = ({ data }: Props) => {
-  const { site, allMdx } = data;
-  const { siteMetadata } = site || ({} as BlogQuery_site);
-  const { title: pageTitle, description, author, keywords } = siteMetadata || ({} as BlogQuery_site_siteMetadata);
+const Blog = ({ data, classes, pageContext }: Props) => {
+  const { site, allMdx } = safe(data);
+  const { siteMetadata } = safe(site);
+  const { title: pageTitle, description, author, keywords } = safe(siteMetadata);
 
-  const { edges } = allMdx || ({} as BlogQuery_allMdx);
+  const { edges } = safe(allMdx);
+
+  const { page, pageSlugs } = safe(pageContext);
 
   return (
     <GlobalLayout>
@@ -38,11 +50,10 @@ const Blog = ({ data }: Props) => {
       />
       {edges &&
         edges.map((edge, i) => {
-          const { node } = edge || ({} as BlogQuery_allMdx_edges);
-          const { frontmatter, fields, timeToRead, excerpt } = node || ({} as BlogQuery_allMdx_edges_node);
-          const { slug } = fields || ({} as BlogQuery_allMdx_edges_node_fields);
-          const { title, updatedAt, createdAt, categories } =
-            frontmatter || ({} as BlogQuery_allMdx_edges_node_frontmatter);
+          const { node } = safe(edge);
+          const { frontmatter, fields, timeToRead, excerpt } = safe(node);
+          const { slug } = safe(fields);
+          const { title, updatedAt, createdAt, categories } = safe(frontmatter);
 
           return (
             <PostExcerpt
@@ -57,12 +68,25 @@ const Blog = ({ data }: Props) => {
             />
           );
         })}
+      <div className={classes.pages}>
+        {pageSlugs.map(obj => {
+          return (
+            <FlatFab
+              disabled={page === obj.page}
+              onClick={() => navigate(obj.path)}
+              size="small"
+              key={obj.page}
+              children={obj.page}
+            />
+          );
+        })}
+      </div>
     </GlobalLayout>
   );
 };
 
 export const query = graphql`
-  query BlogQuery {
+  query BlogQuery($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
@@ -73,7 +97,9 @@ export const query = graphql`
     }
     allMdx(
       filter: { fileAbsolutePath: { regex: "/blog/" }, frontmatter: { published: { eq: true } } }
-      sort: { fields: frontmatter___createdAt, order: DESC }
+      sort: { fields: [frontmatter___createdAt], order: DESC }
+      limit: $limit
+      skip: $skip
     ) {
       edges {
         node {
@@ -94,4 +120,4 @@ export const query = graphql`
   }
 `;
 
-export default Blog;
+export default withStyles(styles)(Blog);

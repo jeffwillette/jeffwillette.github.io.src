@@ -1,0 +1,69 @@
+---
+title: "Project Euler: Problem 6 Solution in Python"
+published: true
+createdAt: Wed, 29 Oct 2014 06:51:18 GMT
+updatedAt: Sun, 20 Jan 2019 02:38:02 GMT
+categories:
+  - Programming
+  - Project Euler
+  - Python
+---
+
+## The Problem States
+
+```text
+The sum of the squares of the first ten natural numbers is,
+
+1^2 + 2^2 + ... + 10^2 = 385
+The square of the sum of the first ten natural numbers is,
+
+(1 + 2 + ... + 10)2 = 552 = 3025
+Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 − 385 = 2640.
+
+Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
+```
+
+## My Solution
+
+It is pretty straightforward. I should make a list of the first hundred squares, and sum it. Then make a list of the
+first hundred numbers, sum it, and square it. Then I need to take the difference between the two.
+
+```python
+import time
+start_time = time.clock()
+
+#Creating the list of squares and then a for loop to sum them
+squares = [i**2 for i in range(1, 101)]
+squares_sum = 0
+for i in squares:
+    squares_sum += i
+
+#Creating a list of 1-100 and then summing it with a for loop
+sum_list = [i for i in range(1, 101)]
+sum_list_sum = 0
+for i in sum_list:
+    sum_list_sum += i
+
+#squaring the list of sums
+sum_list_squared = sum_list_sum ** 2
+
+#Finding the answer
+answer = sum_list_squared - squares_sum
+
+print('The sum of the first hundred squares is:', squares_sum)
+print('the square of the sum of the 1-100 is:', sum_list_squared)
+print('the difference between the two is:', answer)
+
+print()
+print('finished in:', time.clock() - start_time, 'seconds')
+```
+
+## The Output
+
+```text
+The sum of the first hundred squares is: 338350
+the square of the sum of the 1-100 is: 25502500
+the difference between the two is: 25164150
+
+finished in: 0.00025529774901793755 seconds
+```
