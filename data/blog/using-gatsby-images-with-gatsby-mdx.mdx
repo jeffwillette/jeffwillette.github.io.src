@@ -2,7 +2,7 @@
 title: Using Gatsby Image with Gatsby MDX
 published: true
 createdAt: Sun, 20 Jan 2019 12:16:48 GMT
-updatedAt: Sun, 20 Jan 2019 15:01:50 GMT
+updatedAt: Sun, 20 Jan 2019 16:01:00 GMT
 images:
   - ./media/go-exercise-images-1.png
   - ./media/gatsby.svg
@@ -13,12 +13,13 @@ categories:
   - programming
 ---
 
-My first inclination when trying to embed images in MDX via [gatby-mdx]() was to reach for [gatsby-remark-images]()
+My first inclination when trying to embed images in MDX via [gatby-mdx](https://github.com/ChristopherBiscardi/gatsby-mdx)
+was to reach for [gatsby-remark-images](https://www.gatsbyjs.org/packages/gatsby-remark-images://www.gatsbyjs.org/packages/gatsby-remark-images/)
 since gatsby-mdx supports gatsby remark plugins, but this left a lot to handled since I still had to figure out a way
 to
 
 - style the image and align it properly with the given post
-- load it with responsive settings like [gatsby-image]() does
+- load it with responsive settings like [gatsby-image](https://www.gatsbyjs.org/packages/gatsby-image/) does
 
 I tried do this by putting the `gatsby-remark-image` image into a component, but there was a bunch of styling that was
 already applied to it that needed to be ripped out before I could style it however I wanted. `gatsby-remark-image` does
