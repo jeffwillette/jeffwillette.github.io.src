@@ -1,0 +1,68 @@
+---
+title: "Project Euler: Problem 3 Solution in Python"
+published: true
+createdAt: Wed, 29 Oct 2014 01:36:17 GMT
+updatedAt: Sun, 20 Jan 2019 15:37:44 GMT
+categories:
+  - Project Euler
+  - Python
+---
+
+## The Problem States
+
+```text
+The prime factors of 13195 are 5, 7, 13 and 29.
+What is the largest prime factor of the number 600851475143 ?
+```
+
+## My Solution
+
+An efficient way to find all the prime factors was hard for me to do at first. My first reaction was to just try to
+divide by a number, until it was evenly divisible and then further reduce that into prime factors. The problem with
+this is that I will be dong a whole lot of unnecessary dividing running through every possible divisor.
+
+I did some searching on the internet and found out the most efficient way to go about it before starting.
+
+I should start with 2, and if 2 is less than the square root of `x`, I should try to divide by 2. If `x %  2= 0`,
+then I should accept 2 as a factor, and then divide `x` by two and try again. If  `x % 2 = 0` again, I should accept
+two as a factor again and divide `x` by two. I keep doing this until two fails the test. Once it fails, should then
+add one to two (2 + 1) and try to divide `x` by that. If `x % 3 = 0` then I should accept three and try again.....
+
+I need not check any number larger than the square root of `x`. Because once a divisor gets above the square root of
+`x`, we know that it must be multiplied by one of the factors below the square root of `x` to equal `x`. Any number
+that is above the square root of `x` and is also a factor must be prime, because otherwise it would have composite
+factors that are less than the square root of `x`.  These composite factors would have already been pulled out of the
+number, so I can know for sure at this point that anything larger than the square root of `x` will be prime.
+
+If I get done with all of this and x is greater than 1, that means that x is prime, and it must be a factor, so I
+should accept it as a factor.
+
+If I get to this point and the only factor so far is x, then I know that x is prime and I should append 1 as a factor
+as well.
+
+```python
+def prime_factors(x):
+  factors = []                        # A blank factors list
+  div_test = 2                        # The first number to try dividing by
+  while div_test ** 2 <= x:           # While the (div_test) squared < than x...
+      while x % div_test == 0:        # Try dividing by it, if the modulo is 0...
+      factors.append(div_test)        # append it as factor
+      x /= div_test                   # x is now divided by that number
+  div_test += 1                       # next to try dividing by is div_test +1
+  if x > 1:
+      factors.append(x)
+  if len(factors) == 1:
+      factors.append(1)
+  return factors
+
+print(prime_factors(600851475143))
+```
+
+## The Output
+
+I could easily have used the max() function to find the maximum prime factor if there were a lot of factors, but this
+problem only had a few so I didn't bother.
+
+```text
+[71, 839, 1471, 6857.0]
+```

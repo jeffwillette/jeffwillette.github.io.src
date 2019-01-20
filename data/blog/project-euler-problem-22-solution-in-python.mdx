@@ -1,0 +1,78 @@
+---
+title: "Project Euler: Problem 22 Solution in Python"
+published: true
+createdAt: Wed, 05 Nov 2014 06:42:15 GMT
+updatedAt: Sun, 20 Jan 2019 15:12:05 GMT
+categories:
+  - Programming
+  - Project Euler
+  - Python
+---
+
+## The Problem States
+
+```text
+Using "names.txt" a 46K text file containing over five-thousand first names, begin by sorting it into alphabetical
+order. Then working out the alphabetical value for each name, multiply this value by its alphabetical position in the
+list to obtain a name score.
+
+For example, when the list is sorted into alphabetical order, COLIN, which is worth 3 + 15 + 12 + 9 + 14 = 53, is the
+938th name in the list. So, COLIN would obtain a score of 938 × 53 = 49714.
+
+What is the total of all the name scores in the file?
+```
+
+[names.txt](/media/posts/project-euler-problem-22-solution-in-python/p022_names.txt)
+
+## My Solution
+
+The hardest part I had about this was manipulating the name file to get the data the way I wanted it to begin. Once I
+got that down, the rest was pretty easy. I was trying all sorts of loops to get it the way I wanted but in the end I
+had to replace all the ' " ' with '' meaning replace it with nothing. I then had a list with nothing but letters and
+commas. I then split it at the commas so I had a list like this: ['name', 'name'...]
+
+```python
+import time
+start_time = time.clock()
+
+the_name_file = open('Euler22names.txt', 'r')
+names = the_name_file.read().replace('&quot;', '').split(',')
+names.sort()
+the_name_file.close()
+
+alpha = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+# Defining the alphabet
+
+print('the name list is:', names[:10])
+# Printed to make sure that everything was in order
+
+names_numbers = []
+#I made a new list to append the final data
+
+score_sum = 0
+names_index = 0
+for i in names:
+    # i is each name
+    temp_sum = 0
+    for j in i:
+        # j is each letter in the name
+        temp_sum += alpha.index(j) + 1
+    else:
+        # on exit, it will append the name, and the product of the sum and position, and move index
+        product = temp_sum * (names.index(i) + 1)
+        names_numbers.append([i, product])
+        score_sum += product
+
+print('[name, score] =', names_numbers[:10])
+print('the sum of all the scores is:', score_sum)
+print('finished in:', time.clock() - start_time, 'seconds')
+```
+
+## The Output
+
+```text
+the name list is: ['AARON', 'ABBEY', 'ABBIE', 'ABBY', 'ABDUL', 'ABE', 'ABEL', 'ABIGAIL', 'ABRAHAM', 'ABRAM']
+[name, score] = [['AARON', 49], ['ABBEY', 70], ['ABBIE', 57], ['ABBY', 120], ['ABDUL', 200], ['ABE', 48], ['ABEL', 140], ['ABIGAIL', 328], ['ABRAHAM', 396], ['ABRAM', 350]]
+the sum of all the scores is: 871198282
+finished in: 0.9668754802862923 seconds
+```

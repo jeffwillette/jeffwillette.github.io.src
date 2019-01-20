@@ -1,0 +1,71 @@
+---
+title: "Project Euler: Problem 13 Solution in Python"
+published: true
+createdAt: Fri, 31 Oct 2014 06:26:47 GMT
+updatedAt: Sun, 20 Jan 2019 15:07:19 GMT
+categories:
+  - Programming
+  - Project Euler
+  - Python
+---
+
+## The Problem States
+
+```text
+Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
+```
+
+[Euler 13 number](/media/posts/project-euler-problem-13-solution-in-python/Euler13number.txt) (I saved the number in this text file)
+
+## My Solution
+
+As usual with large things like this, I imported from a file just for the practice. After that I got everything into
+a list and then added them together with a loop, and used floor division to get down to just the first ten digits.
+Pretty straightforward.
+
+```python
+import time
+start_time = time.clock()
+
+the_number_file = open('Euler13number.txt', 'r')
+raw_number = the_number_file.read()
+the_number_file.close()
+
+number_list = []
+sindex = 0
+findex = 51
+#This loop is for taking the number file and getting it
+for i in raw_number:
+    #The ending index is 5151 because each time it adds there is one added (50 + 1)
+    if findex == 5151:
+        break
+    else:
+        number_list.append([raw_number[sindex:findex]])
+        sindex += 51
+        findex += 51
+
+sum = 0
+index =0
+for i in number_list:
+    #Index [0][0] is actually a long string right now, so when everything converts to integers, it only goes through this list 100 times
+    sum += int(number_list[index][0])
+    index += 1
+
+print()
+print('the sum is', sum)
+
+# 10 9's is the highest 10 digit number possible, so floor divide until I get something lower than that
+while sum > 9999999999:
+ sum //= 10
+
+print('the first ten digits are:', sum)
+print('finished in:', time.clock() - start_time, 'seconds')
+```
+
+## The Output
+
+```text
+the sum is 5537376230390876637302048746832985971773659831892672
+the first ten digits are: 5537376230
+finished in: 0.006543661901963953 seconds
+```

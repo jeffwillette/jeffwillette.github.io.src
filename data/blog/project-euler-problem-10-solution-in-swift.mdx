@@ -1,0 +1,43 @@
+---
+title: "Project Euler: Problem 10 Solution in Swift"
+published: true
+createdAt: Mon, 15 Aug 2016 01:28:18 GMT
+updatedAt: Sun, 20 Jan 2019 15:30:30 GMT
+categories:
+  - Programming
+  - Project Euler
+  - Swift
+---
+
+## The Problem States
+
+```text
+The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+
+Find the sum of all the primes below two million.
+```
+
+## My Solution
+
+I had already defined a function to tell if a number was prime or not in [Problem 7](/post/project-euler-problem-7-
+solution-in-swift) so I just used that to create  a simple loop here to add it to a sum if it is prime and below two
+million.
+
+```swift
+import Foundation
+
+public func problem10 () -> Int {
+    var sum = 2
+    for i in 2..<2000000 {
+        if (is_prime(i)) {
+            sum += i        }
+    }
+return(sum)
+}
+```
+
+## The Output
+
+```text
+"142913828922\n"
+```

@@ -9,11 +9,7 @@ import getPageContext from './src/getPageContext';
 export const replaceRenderer = ({ bodyComponent, setHeadComponents, replaceBodyHTMLString }) => {
   const pageContext = getPageContext();
 
-  const bodyHTML = renderToString(
-    <JssProvider registry={pageContext.sheetsRegistry} generateClassName={pageContext.generateClassName}>
-      {React.cloneElement(bodyComponent, { pageContext })}
-    </JssProvider>
-  );
+  const bodyHTML = renderToString(<JssProvider registry={pageContext.sheetsRegistry}>{bodyComponent}</JssProvider>);
 
   replaceBodyHTMLString(bodyHTML);
   setHeadComponents([

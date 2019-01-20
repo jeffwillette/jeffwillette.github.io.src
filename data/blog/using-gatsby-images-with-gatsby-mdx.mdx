@@ -1,0 +1,170 @@
+---
+title: Using Gatsby Image with Gatsby MDX
+published: true
+createdAt: Sun, 20 Jan 2019 12:16:48 GMT
+updatedAt: Sun, 20 Jan 2019 15:01:50 GMT
+images:
+  - ./media/go-exercise-images-1.png
+  - ./media/gatsby.svg
+categories:
+  - javascript
+  - typescript
+  - gatsby
+  - programming
+---
+
+My first inclination when trying to embed images in MDX via [gatby-mdx]() was to reach for [gatsby-remark-images]()
+since gatsby-mdx supports gatsby remark plugins, but this left a lot to handled since I still had to figure out a way
+to
+
+- style the image and align it properly with the given post
+- load it with responsive settings like [gatsby-image]() does
+
+I tried do this by putting the `gatsby-remark-image` image into a component, but there was a bunch of styling that was
+already applied to it that needed to be ripped out before I could style it however I wanted. `gatsby-remark-image` does
+give a style setting, but there is only one global setting so it must be applied to each image.
+[See more here](https://github.com/ChristopherBiscardi/gatsby-mdx/issues/251).
+
+## But, there is a better way...
+
+First, we must include all the images we want to display in the post, in the frontmatter of the mdx file
+
+```text
+---
+title: Cool and Interesting Post
+images:
+  - ./path/to/img.svg
+  - ./path/to/other.svg
+---
+```
+
+Then we can rely on gatsby sharp plugins (which should be installed along with gatsby-image) when we make queries for
+the page template which receives the data from the mdx file...
+
+```graphql
+...
+frontmatter {
+  title
+  images {
+    publicURL
+    childImageSharp {
+      fluid {
+        base64
+        tracedSVG
+        aspectRatio
+        src
+        srcSet
+        srcWebp
+        srcSetWebp
+        sizes
+        originalImg
+        originalName
+        presentationWidth
+        presentationHeight
+      }
+    }
+  }
+}
+...
+```
+
+So far we have sourced the images when the mdx post is found and parsed, we have then queried each image in the array
+via our page graphql query, here is where the cool part comes.
+
+Since the queried images will be sent to the template component, I can render them in a react component and pass them back to
+the `MDXRenderer` through `scope` and call them just like other components passed to `MDXRenderer`.
+
+One thing to remember is that not all images have a `childImageSharp` that can be queried with graphql. `svg` files will
+not have one, so we need to be able to handle both types of images. I made two components that handle both
+`childImageSharp` and plain `src` tags which can accept `align` and `width` options
+
+see the [full implementation here](https://github.com/deltaskelta/deltaskelta.github.io.src/blob/master/src/components/images.tsx)
+
+```typescript
+const mdxSharpImg = ({ classes, width, fluid, align }: MDXSharpImgProps) => (
+  <StateConsumer>
+    {({ mobile }) => (
+      <span
+        className={c({
+          [classes.leftImg]: !mobile && align === 'left',
+          [classes.rightImg]: !mobile && align === 'right',
+          [classes.mobile]: mobile
+        })}
+        style={{ width: width || '40%' }}
+      >
+        <Img fluid={fluid} />
+      </span>
+    )}
+  </StateConsumer>
+);
+
+export const MDXSharpImg = withStyles(styles)(mdxSharpImg);
+
+interface MDXSrcImgProps extends BaseProps {
+  src: string;
+}
+
+const mdxSrcImg = ({ src, classes, width, align }: MDXSrcImgProps) => (
+  <StateConsumer>
+    {({ mobile }) => (
+      <img
+        className={c({
+          [classes.leftImg]: !mobile && align === 'left',
+          [classes.rightImg]: !mobile && align === 'right',
+          [classes.mobile]: mobile
+        })}
+        style={{ width: width || '40%' }}
+        src={src}
+      />
+    )}
+  </StateConsumer>
+);
+
+export const MDXSrcImg = withStyles(styles)(mdxSrcImg);
+```
+
+Now that there are image components which can display the images, I can wrap the components based with the images in
+the data from the graphql query that was fed into the page template. In the following code `images` is the resulting
+slice of image files from the graphql query
+
+Remember, not all images have a result for `childImageSharp` so check for that first and if it doesn't exist, render
+`MDXSrcImage` with the `publicURL`.
+
+see the full implementation [here](https://github.com/deltaskelta/deltaskelta.github.io.src/blob/master/src/templates/blogPost.tsx)
+```typescript
+// this block is in the render method before returning
+const imgs: { [k: string]: React.ReactNode } = {};
+if (images) {
+  images.forEach((image, i) => {
+    const { childImageSharp, publicURL } = safe(image);
+    const { fluid } = safe(childImageSharp);
+    imgs[`Image${i + 1}`] = ({ align, width }) =>
+      f ? (
+        <MDXSharpImg align={align} width={width} fluid={fluid || undefined} />
+      ) : (
+        <MDXSrcImg align={align} width={width} src={publicURL || ''} />
+      );
+  });
+}
+
+// ... and now in the render method, you can do this...
+<MDXRenderer scope={{ ...imgs }}>{body}</MDXRenderer>
+```
+
+<Image1 align="left" width="20%" />
+<Image2 align="right" width="20%" />
+
+The images on the left and right here were called with the code...
+
+```typescript.tsx
+<Image1 align="left" width="100px" />
+<Image2 align="right" width="100px" />
+```
+
+This method gives a lot more freedom and flexibility when rendering images because the sharp plugins take care of
+rendering placeholders with traced SVG's, resizing, and a lot of cool stuff like
+[here](https://medium.com/@kyle.robert.gill/ridiculously-easy-image-optimization-with-gatsby-js-59d48e15db6e)
+and [here](https://www.orangejellyfish.com/blog/a-comprehensive-guide-to-images-in-gatsby/).
+
+You can click on the `EDIT THIS PAGE ON GITHUB` link below to see the full mdx file and repository that holds all of the
+code.

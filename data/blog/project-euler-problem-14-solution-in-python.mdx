@@ -1,0 +1,91 @@
+---
+title: "Project Euler: Problem 14 Solution in Python"
+published: true
+createdAt: Mon, 03 Nov 2014 07:25:46 GMT
+updatedAt: Sun, 20 Jan 2019 15:26:26 GMT
+categories:
+  - Programming
+  - Project Euler
+  - Python
+---
+
+## The Problem States
+
+```text
+The following iterative sequence is defined for the set of positive integers:
+
+n → n/2 (n is even)
+n → 3n + 1 (n is odd)
+
+Using the rule above and starting with 13, we generate the following sequence:
+13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.
+
+Which starting number, under one million, produces the longest chain?
+NOTE: Once the chain starts the terms are allowed to go above one million.
+```
+
+## My Solution
+
+This took me quite a while to figure out. I had a solution that did a brute force method that took 220 seconds to
+complete. While thinking through the code, I thought it would be much better to store some of the sequence values,
+that way if the function encountered that value later in the range/sequencing somewhere, it could just pull from the
+already known values and add it to the sequence.
+
+The solution I came up with is below, note that I am only caching the values once they are found at the end of the
+sequence. I am still doing many inefficient calculations because I am not remembering the values of sometimes when it
+goes above the starting number. Those numbers are definitely encountered later in the sequence and I could save much
+more time by doing that, but I am happy with this for now.
+
+```python
+import time
+start_time = time.clock()
+
+#My goal here and now is to cache some of the known lengths so that if a number reaches a known length, it will
+#just add to the current loop and be done, c_length is my length cache. Big is the variable where I will store the
+#winner
+limit = 10000
+c_length = [0] * limit
+big = [0, 0]
+for i in range(1, limit):
+    seq = 1
+     j = i
+    while j > 1:
+    #The try loop is here to deal with the inevitable error of when the number goes above the limit during the cycle and thus our of the index range
+        try:
+            #This is the shortcut that saves time. if the index of the current process has already been cached, then it will just add the already known sequence - 1. It also makes j = 1 so the while loop will break next time around
+            if c_length[j] > 1:
+            seq += c_length[j] - 1
+            j = 1
+        #When it goes out of range, and throws an error, this loop will run and pass.
+        except IndexError:
+            pass
+        #Once it gets here, if j is equal to 1 it will pass, it would only be one here it it took the shortcut
+        if j == 1:
+            pass
+        elif j % 2 == 0:
+            j = int(j / 2)
+            seq += 1
+        else:
+            j = int((j * 3) + 1)
+            seq += 1
+    else:
+        c_length[i] = seq
+        if seq > big[1]:
+        big[0], big[1] = i, seq
+
+print()
+print('the number[0] that gave the longest sequence[1] is:', big)
+print()
+print('finished in:', time.clock() - start_time, 'seconds')
+```
+
+## The Output
+
+It's not perfect, but I was able to speed up the result over ten times of the brute force solution
+
+```text
+the number[0] that gave the longest sequence[1] is: [837799, 525]
+
+finished in: 19.168326171888364 seconds
+```

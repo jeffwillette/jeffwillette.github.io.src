@@ -211,6 +211,11 @@ export interface BlogQuery {
   allMdx: BlogQuery_allMdx | null;
 }
 
+export interface BlogQueryVariables {
+  skip: number;
+  limit: number;
+}
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -293,6 +298,10 @@ export interface BlogPostQuery_mdx_frontmatter_images_childImageSharp {
 
 export interface BlogPostQuery_mdx_frontmatter_images {
   __typename: "File";
+  /**
+   * Copy file to static directory and return public url to it
+   */
+  publicURL: string | null;
   /**
    * The child of this node of type imageSharp
    */

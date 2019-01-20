@@ -1,0 +1,57 @@
+---
+title: "Project Euler: Problem 9 Solution in Python"
+published: true
+createdAt: Thu, 30 Oct 2014 04:07:27 GMT
+updatedAt: Sun, 20 Jan 2019 15:35:06 GMT
+categories:
+  - Programming
+  - Project Euler
+  - Python
+---
+
+## The Problem States
+
+```text
+A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+
+a2 + b2 = c2
+For example, 32 + 42 = 9 + 16 = 25 = 52.
+
+There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+Find the product abc.
+```
+
+## My Solution
+
+At first I just attempted a brute-force solution but it was taking much too long (about 72 seconds). All of the
+problems from the site are supposedly supposed to take less than a minute to crunch on the computer so that was not
+good enough for me. I knew I had to eliminate some of the numbers in the loop so there were less permutations, but I
+wasn't sure how to do it until I read the Wikipedia on [pythagorean
+triples](http://en.wikipedia.org/wiki/Pythagorean_triple) and realized that the pattern will always be a &lt; b &lt; c.
+I then added some to the b and c loops to reflect that and it cut the time down to about 30 seconds.
+
+```python
+import time
+start_time = time.clock()
+
+#The range for this problem
+pyth_range = [i for i in range(1, 1000)]
+
+#This function loops through the list 3 times, making sure a &lt; b &lt; c
+def pythagorean(x):
+    for a in x:
+        for b in x[a - 1:]:
+            for c in x[b - 1:]:
+                if a + b + c == 1000 and a ** 2 + b ** 2 == c ** 2:
+                    return [a, b, c, 'the product:', a * b * c]
+
+print(pythagorean(pyth_range))
+print('finished in:', time.clock() - start_time, 'seconds')
+```
+
+## The Output
+
+```text
+[200, 375, 425, 'the product:', 31875000]
+finished in: 30.189189743958167 seconds
+```

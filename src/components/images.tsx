@@ -21,14 +21,16 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface Props extends WithStyles<typeof styles> {
-  children: React.ReactNode;
+interface BaseProps extends WithStyles<typeof styles> {
   align: 'left' | 'right';
   width?: string;
+}
+
+interface MDXSharpImgProps extends BaseProps {
   fluid: BlogPostQuery_mdx_frontmatter_images_childImageSharp_fluid;
 }
 
-const mdxImg = ({ classes, width, fluid, align }: Props) => (
+const mdxSharpImg = ({ classes, width, fluid, align }: MDXSharpImgProps) => (
   <StateConsumer>
     {({ mobile }) => (
       <span
@@ -45,4 +47,26 @@ const mdxImg = ({ classes, width, fluid, align }: Props) => (
   </StateConsumer>
 );
 
-export const MDXImg = withStyles(styles)(mdxImg);
+export const MDXSharpImg = withStyles(styles)(mdxSharpImg);
+
+interface MDXSrcImgProps extends BaseProps {
+  src: string;
+}
+
+const mdxSrcImg = ({ src, classes, width, align }: MDXSrcImgProps) => (
+  <StateConsumer>
+    {({ mobile }) => (
+      <img
+        className={c({
+          [classes.leftImg]: !mobile && align === 'left',
+          [classes.rightImg]: !mobile && align === 'right',
+          [classes.mobile]: mobile
+        })}
+        style={{ width: width || '40%' }}
+        src={src}
+      />
+    )}
+  </StateConsumer>
+);
+
+export const MDXSrcImg = withStyles(styles)(mdxSrcImg);

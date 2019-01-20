@@ -7,7 +7,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { FlatButton } from '../components/button';
 import { DisplayCard } from '../components/displayCard';
-import { MDXImg } from '../components/images';
+import { MDXSharpImg, MDXSrcImg } from '../components/images';
 import { DrawerTOC, TableOfContents } from '../components/Layout/drawerTOC';
 import { GlobalLayout } from '../components/Layout/global';
 import { Link } from '../components/link';
@@ -61,9 +61,14 @@ const BlogPost = ({ classes, data }: Props) => {
   const imgs: { [k: string]: React.ReactNode } = {};
   if (images) {
     images.forEach((image, i) => {
-      const { childImageSharp: c } = safe(image);
+      const { childImageSharp: c, publicURL } = safe(image);
       const { fluid: f } = safe(c);
-      imgs[`Image${i}`] = ({ align, width }) => <MDXImg align={align} width={width} fluid={f || undefined} />;
+      imgs[`Image${i + 1}`] = ({ align, width }) =>
+        f ? (
+          <MDXSharpImg align={align} width={width} fluid={f || undefined} />
+        ) : (
+          <MDXSrcImg align={align} width={width} src={publicURL || ''} />
+        );
     });
   }
 
@@ -91,9 +96,7 @@ const BlogPost = ({ classes, data }: Props) => {
         <Typography variant="h1">{title}</Typography>
         {categories && categories.map((c, i) => c && <TagChip key={i} tag={c} />)}
         <div className={classes.postBody}>
-          <MDXRenderer images={imgs} scope={{ MDXImg, ...imgs }}>
-            {body}
-          </MDXRenderer>
+          <MDXRenderer scope={{ ...imgs }}>{body}</MDXRenderer>
         </div>
         <div className={classes.button}>
           <Link to={githubLink || ''}>
@@ -129,6 +132,7 @@ export const pageQuery = graphql`
         updatedAt
         categories
         images {
+          publicURL
           childImageSharp {
             fluid {
               base64

@@ -2,7 +2,7 @@
 title: "Golang Exercise: Slices Explanation"
 published: true
 createdAt: Sat, 20 Aug 2016 01:53:46 GMT
-updatedAt: Wed, 16 Jan 2019 04:07:56 GMT
+updatedAt: Sun, 20 Jan 2019 15:47:04 GMT
 images:
   - ./media/golang-exercise-slices-x.png
   - ./media/golang-exercise-slices-y.png
@@ -75,7 +75,7 @@ func main() {
 }
 ```
 
-<Image0 align="left" width="30%" />
+<Image1 align="left" width="30%" />
 
 ## Inputting an `x` value
 
@@ -83,7 +83,7 @@ If you just input pixel values of x then the first loops value remains the same 
 every time the inner `y` loop finishes an iteration. This results in a pixel value that gets closer to 255 (white) in
 only one direction, which is along the y axis (pictured on the left)
 
-<Image1 align="right" width="30%" />
+<Image2 align="right" width="30%" />
 
 ## Inputting a `y` value..
 
@@ -97,7 +97,7 @@ It starts to get a bit interesting when something like `x + y` is input because 
 example the pixel values change in relation to each other. The very top row of pixels will be a straight gradient
 like the previous example because x would have been 0 and y would have incremented up to 255.
 
-<Image2 align="left" width="30%" />
+<Image3 align="left" width="30%" />
 
 On the second row, however, x will have started as 1 and y would have incremented up to 255, the sum would have
 reached 255 sooner and therefore it would have turned white sooner. This is what causes the diagonally slanted line
@@ -115,12 +115,12 @@ foo, bar := 255, 1              //computer has read these as 11111111, and 1 res
 image[x][y] = uint8(foo + bar)  //comptuer reads this as 100000000 and takes rightmost 8 digits
 ```
 
-<Image3 align="left" width="30%" />
+<Image4 align="left" width="30%" />
 
 This results in a 0 and thus a solid blue pixel which is why there is a solid blue diagonal line in the middle of the
 picture
 
-<Image4 align="right" width="30%" />
+<Image5 align="right" width="30%" />
 
 If an expression like `x * y` is input then this image will be the output (pictured right).  It is quite confusing to
 look at so I instead used `x * y / 100` to provide a more "zoomed in" version with less noise and distraction.
