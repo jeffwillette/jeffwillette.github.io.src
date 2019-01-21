@@ -1,0 +1,133 @@
+---
+title: "Project Euler: Problem 19 Solution in Python"
+published: true
+createdAt: Tue, 04 Nov 2014 10:24:08 GMT
+updatedAt: Mon, 21 Jan 2019 05:23:16 GMT
+categories:
+  - Programming
+  - Project Euler
+  - Python
+---
+
+## The Problem States
+
+```text
+You are given the following information, but you may prefer to do some research for yourself.
+
+* 1 Jan 1900 was a Monday.
+* Thirty days has September, April, June and November.
+  All the rest have thirty-one,
+  Saving February alone,
+  Which has twenty-eight, rain or shine.
+  And on leap years, twenty-nine.
+
+A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
+
+How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+```
+
+## My Solution
+
+I plan to define the months, weekdays, and years/leap years and then iterate through them logically to build all the
+dates in a list [1901, month, 1, day, 1, tue], [1901, month, 1, day, 2, wed]...
+
+I could eliminate caching the dates to save memory, but I am not going to worry about that at this time. I want
+everything there, so if I get a wrong answer I can go look at the dates it is creating. If it is too slow, or I need
+to speed it up I can always go back and speed it up.
+
+I commented the code pretty thoroughly so it should all make sense if you read through it.
+
+```python
+import time
+start_time = time.clock()
+
+#I first made lists of all the possible amounts of days in a month and put them here, I then defined each month as a
+#list of days, and then defined the two types of years in terms of the months. It ends with a list months containing
+#lists of days
+thirtyone = [i for i in range(1, 32)]
+thirty = [i for i in range(1, 31)]
+twentyeight = [i for i in range(1, 29)]
+twentynine = [i for i in range(1, 30)]
+
+jan = thirtyone
+feb = twentyeight
+mar = thirtyone
+apr = thirty
+may = thirtyone
+jun = thirty
+jul = thirtyone
+aug = thirtyone
+sep = thirty
+oct = thirtyone
+nov = thirty
+dec = thirtyone
+febleap = twentynine
+
+yearraw = [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+leapyear = [jan, febleap, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+
+#I then defined the possible weekdays
+weekdays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+
+#I made this empty list so I could have a place to put everything. I aimed to have a list of lists with something like
+#dates = [[year, month, day, weekday], [year month day weekday]] that way I can search the list to see how
+#many times things match up certain ways
+dates = []
+
+#Defined the start year, start month index, starting day index, which will both be first month and first day
+#The starting year was 1901 and the first day was a tuesday so I also included the index of the name of the day
+n_year = 1901
+monthcount = 0
+daycount = 0
+index_d = 2
+while n_year <= 2000:
+    #if the year is a century and divisible by 400 it will be leapyear
+    if n_year % 100 == 0 and n_year % 400 == 0:
+        year = leapyear
+        # if it is divisible by 4 it will be a leapyear
+    elif n_year % 4 == 0:
+        year = leapyear
+    #If not any of the above it will be a regular year
+    else:
+        year = yearraw
+    #This is my loop, taking the months in year and the days in the months. I originally had it as month in year>
+    #Day in year but that looped around the other way going jan1 feb1...dec1 jan1, etc.
+    for month in year:
+        for day in month:
+            #Appending to my list of dates
+            dates.append([n_year, 'month', monthcount + 1, 'day', year[monthcount][daycount], weekdays[index_d]])
+            daycount += 1
+            index_d += 1
+            #If the days reach the end of the list, it resets
+            if index_d == 7:
+                index_d = 0
+            #If the dates in the month reach the end of the month, it resets
+            if daycount == len(month):
+                daycount = 0
+                monthcount += 1
+           #If the month is the 12th month, it resets
+           if monthcount == 12:
+                monthcount = 0
+                n_year += 1
+ else:
+     #printed this to make sure everything came out ok
+     print(dates[:5])
+
+#My final for loop to count the number of sundays that are also the first day of the month
+count = 0
+for i in dates:
+    if i[4] == 1 and i[5] == 'sun':
+    count += 1
+
+print('there are', count, 'sundays')
+print()
+print('finished in:', time.clock() - start_time, 'seconds')
+```
+
+## The Output
+
+```text
+[[1901, 'month', 1, 'day', 1, 'tue'], [1901, 'month', 1, 'day', 2, 'wed'], [1901, 'month', 1, 'day', 3, 'thu'], [1901, 'month', 1, 'day', 4, 'fri'], [1901, 'month', 1, 'day', 5, 'sat']]
+there are 171 sundays
+finished in: 0.17781323339240385 seconds
+```

@@ -26,3 +26,10 @@ TODO:
   - add gatsby-plugin-offline if I can
   - put the hydrator back in gatsby browser
   - follow the comment https://github.com/gatsbyjs/gatsby/issues/8237 here and try to mimic his example
+
+- make folder for each post
+  - make dir based on the markdown filename
+  - mov the file into the dir and rename it index
+  - go through and find all that have images and copy them into the dir
+  - change the media location to the current dir
+  - redo gatsby-node to do whatever it needs to make the paths work for the new system of dirs

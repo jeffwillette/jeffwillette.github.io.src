@@ -1,0 +1,92 @@
+---
+title: "Project Euler: Problem 37 Solution in Python"
+published: true
+createdAt: Thu, 20 Nov 2014 01:05:42 GMT
+updatedAt: Mon, 21 Jan 2019 05:30:05 GMT
+categories:
+  - Programming
+  - Project Euler
+  - Python
+---
+
+## The Problem States
+
+```text
+The number 3797 has an interesting property. Being prime itself, it is possible to continuously remove digits from
+left to right, and remain prime at each stage: 3797, 797, 97, and 7. Similarly we can work from right to left: 3797,
+379, 37, and 3.
+
+Find the sum of the only eleven primes that are both truncatable from left to right and right to left.
+
+NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
+```
+
+## My Solution
+
+I thought I would make a function that would return a list of numbers truncated from both left and right, which
+includes the original number. I could then integrate that into the sieve of Eratosthenes that I made earlier to check
+if all the numbers are prime, if they are I can print them and add the original number to the sum.
+
+It's not terribly fast, but it's still under one minute so I'll leave it like this for now.
+
+```python
+import time
+start_time = time.clock()
+
+#Takes x as an integer and returns a list of numbers truncated from left and right
+def truncate_left_and_right(x):
+    # Turns x into a string, and then loops through and appends the integers of x at the stated index positions until all numbers have been used
+    trunc = [x]
+    x = str(x)
+    l = len(x) - 1
+    s = 1
+    for i in range(0, len(x) - 1):
+        # The two appends truncate from left to right, excluding the original number
+        trunc.append((int(x[s:])))
+        trunc.append((int(x[:l])))
+        s += 1
+        l -= 1
+    return trunc
+
+limit = 1000000
+sieve = [True] * limit
+sieve[0], sieve[1] = False, False
+# Sieve position 0 and 1 False to avoid false positives from having 0 and 1 listed as 'True' prime
+
+answer = 0
+for i in range(2, limit):
+    if sieve[i]:
+        for j in range(i + i, limit, i):
+            sieve[j] = False
+    if i > 10:
+       # Everything until here was the basic sieve.
+       # This part takes the truncated list and checks for prime against the sieve, if not broken by a non-prime it prints and adds to the final answer
+       x = truncate_left_and_right(i)
+       for k in x:
+           if not sieve[k]:
+           break
+       else:
+           print(x)
+           answer += i
+
+print('The sum is:', answer)
+print('finished in:', time.clock() - start_time, 'seconds')
+```
+
+## The Output
+
+```text
+[23, 3, 2]
+[37, 7, 3]
+[53, 3, 5]
+[73, 3, 7]
+[313, 13, 31, 3, 3]
+[317, 17, 31, 7, 3]
+[373, 73, 37, 3, 3]
+[797, 97, 79, 7, 7]
+[3137, 137, 313, 37, 31, 7, 3]
+[3797, 797, 379, 97, 37, 7, 3]
+[739397, 39397, 73939, 9397, 7393, 397, 739, 97, 73, 7, 7]
+The sum is: 748317
+finished in: 24.38632973664584 seconds
+```

@@ -1,0 +1,82 @@
+---
+title: "Project Euler: Problem 10 Solution in Python"
+published: true
+createdAt: Thu, 30 Oct 2014 09:27:32 GMT
+updatedAt: Mon, 21 Jan 2019 05:13:43 GMT
+categories:
+  - Programming
+  - Project Euler
+  - Python
+---
+
+## The Problem States
+
+```text
+The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17. Find the sum of all the primes below two million.
+```
+
+## My Solution
+
+I originally had a solution that I was about to post, but it took way too long (200+ seconds) The method I was using
+was pretty straightforward...
+
+I was trying to build a list, take out all the even numbers, and then check the rest for being prime using the fast
+is_prime function I wrote in a few problems back ([Problem 7](http://chivyleague.com/project-euler-problem-7-solution-in-python/),
+the problem with that is that it was still looping through 2 million numbers and checking for primes through trial
+division, even though the trial division was efficient, it still wasn't enough when taking into account appending or
+removing from a list, checking the next number, blah, blah.
+
+I found the Sieve of Eratosthenes explanation and thought I would try that. I generated a list of possible numbers,
+then built a complex loop that first tested for a prime, and then if it was found to be prime it would go through the
+list and remove all the multiples of that number, and then move onto the next one. I thought for sure this would work
+but it ended up taking way too long and I didn't know why.
+
+Then as I was reading [this](http://stackoverflow.com/questions/19345627/python-prime-numbers-sieve-of-eratosthenes),
+it hit me. It was because my numbers were big, and some of them were really big. if I'm testing a number like 1276733
+for primality it is going to take up a lot of memory. If I could instead substitute the numbers for a list of 1's and
+0's or True/False then it would go much quicker in the machine.
+
+I'll comment the code below to explain how it works, it was an eye opener for me.
+
+```python
+limit = int(input(&quot;what is the upper limit:&quot;))
+
+import time
+start_time = time.clock()
+
+#My empty list of primes and the sieve, there will be 2,000,000 [True]'s here
+primes = []
+sieve = [True] * limit
+
+# I started with the first prime, 2. if sieve[2] (remember, thats index 2) is true
+#append it to the empty primes list. Then for the range of i + i (2 + 2) until the
+#limit (2,000,000), skipping by two (4, 6, 8, 10...) make the sieve False
+for i in range(2, limit):
+    if sieve[i]:
+        primes.append(i)
+        for j in range(i + i, limit, i):
+            sieve[j] = False
+
+total = 0
+for i in primes:
+    total += i
+
+print('the sum of the primes is:', total, '\n'
+      'the first 20 primes are:', primes[0:19], '\n'
+      'the sieve looks like:', sieve[0:19])
+print('finished in:', time.clock() - start_time, 'seconds')
+```
+
+## The Output
+
+```text
+what is the upper limit:2000000
+the sum of the primes is: 142913828922
+the first 20 primes are: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67]
+the sieve looks like: [True, True, True, True, False, True, False, True, False, False, False, True, False, True, False, False, False, True, False]
+finished in: 3.2108584076775775 seconds
+```
+
+You can see in the output above that the sieve worked perfectly. I entered 2,000,000 as my limit, so there were 2,000,
+000 Trues in there (one for every number from 0-1,999,999). If you start counting at 0 and count the 'Trues,' you can
+see that it matches up with the prime numbers perfectly

@@ -1,0 +1,123 @@
+---
+title: "Project Euler: Problem 33 Solution in Python"
+published: true
+createdAt: Fri, 14 Nov 2014 06:09:10 GMT
+updatedAt: Mon, 21 Jan 2019 05:37:53 GMT
+categories:
+  - Programming
+  - Project Euler
+  - Python
+---
+
+## The Problem States
+
+> The fraction <sup>49</sup>/<sub>98</sub> is a curious fraction, as an inexperienced mathematician in attempting to
+> simplify it may incorrectly believe that<sup>49</sup>/<sub>98</sub> = <sup>4</sup>/<sub>8</sub>, which is correct, is
+> obtained by cancelling the 9s.
+>
+> We shall consider fractions like, <sup>30</sup>/<sub>50</sub> = <sup>3</sup>/<sub>5</sub>, to be trivial examples.
+>
+> There are exactly four non-trivial examples of this type of fraction, less than one in value, and containing two
+> digits in the numerator and denominator.
+>
+> If the product of these four fractions is given in its lowest common terms, find the value of the denominator.
+
+## My Solution
+
+I planned to first make a function that would do the simplifying error for me. I made both numerator and denominator
+into strings and then iterated through them until I found a match. I then removed one instance of each with and then
+returned the answer of their division for use later in the problem.
+
+For the main loop, I iterated through all the two digit numbers below 1 (denominator greater than numerator). I took
+the value of numer/denom and stored it as 'x'. If x turned out to be equal to the result of the above function that I
+wrote, it continued onto the next line.
+
+In the next section I took both the numerator and the denominator and floor divided them by 10, essentially removing
+the last digit. I just couldn't think of any fraction that could be floor divided like this and still turn out to be
+'non-trivial' according to the problem. I then printed out the numerator and denominator in a form I could use and
+then multiplied each by a variable I had already set equal to 1.
+
+I should now have the un-reduced numerator and denominator.  I wrote a function to reduce fractions which is
+explained in the code and reduced it down. I had to use my previously written prime factor function so I have
+included that here as well.
+
+```python
+import time
+start_time = time.clock()
+
+
+#Creates the simplification error explained in the problem
+def simplify_error(x, y):
+    #Turns numerator and denominator into a string, and replaces them with nothing if they match, it returns the
+    #division of the two if there are matching numbers and the denom is greater than 0
+    sx, sy = str(x), str(y)
+    for i in sx:
+        for j in sy:
+            if i == j:
+                sx = sx.replace(i, '', 1)
+                sy = sy.replace(j, '', 1)
+                if int(sy) == 0:
+                    return False
+                return int(sx) / int(sy)
+    return False
+
+
+#Takes a fraction and reduces it down to its lowest terms where the numerator and denominator are above >= 1
+def frac_reduce(numer, denom):
+    #Makes a list of prime factors, and then iterates through it, stopping at the ones that are similar in both
+    #lists. then it checks to make sure they are bigger than 1 and less than or equal to numerator and denominator
+    #it then divided the numer and denom and returns the numer and denom when there are no matching prime factors
+    #left.
+    nf = prime_factors(numer)
+    df = prime_factors(denom)
+    for i in nf:
+        if i in df and i > 1 and denom >= i <= numer:
+            numer /= i
+            denom /= i
+    return[numer, denom]
+
+
+#Returns the prime factors of x in a list
+def prime_factors(x):
+    factors = []
+    div = 2
+    while div ** 2 <= x:
+        while x % div == 0:
+            factors.append(div)
+            x /= div
+       div += 1
+    if x > 1:
+        factors.append(x)
+    if len(factors) == 1:
+        factors.append(1)
+    return factors
+
+numer = 1
+denom = 1
+for i in range(10, 100):
+    for j in range(i + 1, 100):
+        x = i / j
+        y = simplify_error(i, j)
+        if y and x == y:
+            a, b = i // 10, j // 10
+            if x != a / b:
+                print(i, '/', j)
+                numer *= i
+                denom *= j
+
+print('multiplying those fractions together gives:', numer, '/', denom)
+print('and it reduces to:', frac_reduce(numer, denom))
+print('finished in:', time.clock() - start_time, 'seconds')
+```
+
+## The Output
+
+```text
+16 / 64
+19 / 95
+26 / 65
+49 / 98
+multiplying those fractions together gives: 387296 / 38729600
+and it reduces to: [1.0, 100.0]
+finished in: 0.024990934158039862 seconds
+```

@@ -1,0 +1,76 @@
+---
+title: "Project Euler: Problem 26 Solution in Python"
+published: true
+createdAt: 2014-11-07T04:27:50.000Z
+updatedAt: 2019-01-21T16:08:42.795Z
+categories:
+  - Programming
+  - Project Euler
+  - Python
+---
+
+## The Problem States
+
+A unit fraction contains 1 in the numerator. The decimal representation of the unit fractions with denominators 2 to
+10 are given:
+
+<InlineMath math="1/2=0.5, 1/2=0.(3), 1/4=0.25, 1/5=0.2, 1/6=0.1(6), 1/7=0.(142857), 1/8=0.125, 1/9=0.(1), 1/10=0.1" />
+
+Where <InlineMath math="0.1(6)" /> means <InlineMath math="0.166666..." />, and has a 1-digit recurring cycle.
+It can be seen that <InlineMath math="\frac{1}{7}" /> has a 6-digit recurring cycle. Find the value of <InlineMath math="d < 1000" />
+for which <InlineMath math="\frac{1}{d}" /> contains the longest recurring cycle in its decimal fraction part.
+
+## My Solution
+
+Thinking about repeating decimals, I can see that what makes things repeat is having the same remainder. for instance
+take <InlineMath children="\frac{1}{3}" /> as an example
+
+- <InlineMath math="3\overline{)1}" /> doesn't work, so we move the decimal over one place
+- <InlineMath math="3\overline{)10}" /> 3 goes into 10 three times, so we multiply <InlineMath math="3x3" /> and we are left with a
+remainder of one, move over one decimal
+- It repeats forever because the remainder will always be one and nothing else.
+
+For the case of <InlineMath math="\frac{1}{7}" />
+
+- <InlineMath math="\stackrel{0.142857}{7\overline{)1.00000}}" /> each step in this division generates a remainder
+- the set of remainders is <InlineMath math="3, 2, 6, 4, 5, 1, 3..." />
+- once a remainder is repeated, we can be sure that the sequence will regenerate forever
+
+Since the remainder was finally repeated there, it can be safely assumed that all the rest of the digits will repeat
+in just the same way.
+
+All I have to do is write a function that will do this for me and do it for all the numbers between 0 and 1000 and
+find the largest one.
+
+```python
+import time
+start_time = time.clock()
+
+#counts dividing of digits to find the longest repeating remainder
+def count_decimal_repeats(a, b):
+    #A is the numerator, b is the denominator. r_list is a list of remainders, once it find a remainder that
+    #has already been found before, it is sure to repeat the sequence. Returns the length of the remainder list
+    r_list = []
+    test = (a % b) * 10
+    while test not in r_list:
+        r_list.append(test)
+        test = (test % b) * 10
+    return len(r_list)
+
+#creating the list of numbers that I will use to
+r = [i for i in range(1, 1000)]
+
+plength = []
+for i in range(1, 1000):
+    plength.append(count_decimal_repeats(1, i))
+
+print('repeats:', max(plength), 'the fraction is:', '1 /', r[plength.index(max(plength))])
+print('finished in:', time.clock() - start_time, 'seconds')
+```
+
+## The Output
+
+```text
+repeats: 982 the fraction is: 1 / 983
+finished in: 1.2764464822623884 seconds
+```

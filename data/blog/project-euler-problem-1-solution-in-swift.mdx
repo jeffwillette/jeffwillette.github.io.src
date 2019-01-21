@@ -1,0 +1,44 @@
+---
+title: "Project Euler: Problem 1 Solution in Swift"
+published: true
+createdAt: Fri, 22 Apr 2016 04:52:56 GMT
+updatedAt: Mon, 21 Jan 2019 05:20:26 GMT
+categories:
+  - Programming
+  - Project Euler
+  - Swift
+---
+
+## The Problem States
+
+```text
+If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+
+Find the sum of all the multiples of 3 or 5 below 1000.
+```
+
+## My Solution
+
+```swift
+var sum = 0
+func problemOne() -> Int {
+  for i in 1..<1000 {
+    if i % 3 == 0 || i % 5 == 0 {
+        sum += i
+    }
+  }
+  return sum
+}
+
+var x = problemOne()
+print(x)
+```
+
+## The Output
+
+```text
+"233168\n"
+```
+
+Pretty easy, I had some trouble getting XCode to work properly and I actually hate the environment of it which is
+surprising, but I guess I will have to deal with it.

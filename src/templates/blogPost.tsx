@@ -2,6 +2,7 @@ import { Avatar, CardHeader, createStyles, Theme, Typography, WithStyles, withSt
 import { Edit } from '@material-ui/icons';
 import { graphql } from 'gatsby';
 import MDXRenderer from 'gatsby-mdx/mdx-renderer';
+import 'katex/dist/katex.min.css';
 import moment from 'moment';
 import React from 'react';
 import Helmet from 'react-helmet';
@@ -11,6 +12,7 @@ import { MDXSharpImg, MDXSrcImg } from '../components/images';
 import { DrawerTOC, TableOfContents } from '../components/Layout/drawerTOC';
 import { GlobalLayout } from '../components/Layout/global';
 import { Link } from '../components/link';
+import { BlockMath, InlineMath } from '../components/math';
 import { TagChip } from '../components/tagChip';
 import { BlogPostQuery } from '../gatsby-queries';
 import { safe } from '../utils';
@@ -96,7 +98,7 @@ const BlogPost = ({ classes, data }: Props) => {
         <Typography variant="h1">{title}</Typography>
         {categories && categories.map((c, i) => c && <TagChip key={i} tag={c} />)}
         <div className={classes.postBody}>
-          <MDXRenderer scope={{ ...imgs }}>{body}</MDXRenderer>
+          <MDXRenderer scope={{ ...imgs, BlockMath, InlineMath }}>{body}</MDXRenderer>
         </div>
         <div className={classes.button}>
           <Link to={githubLink || ''}>
