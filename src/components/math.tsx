@@ -10,7 +10,6 @@ const styles = (theme: Theme) =>
     blockMath: {}
   });
 
-
 interface Props extends WithStyles<typeof styles> {}
 
 // these spread the math prop into the katex component like the react-katex docs show

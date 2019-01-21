@@ -33,3 +33,6 @@ TODO:
   - go through and find all that have images and copy them into the dir
   - change the media location to the current dir
   - redo gatsby-node to do whatever it needs to make the paths work for the new system of dirs
+
+- after post recover is finished
+  - take createdAt date replace out of nvim-deltaskelta
