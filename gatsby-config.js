@@ -2,6 +2,7 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-typescript`,
+    `gatsby-plugin-remove-serviceworker`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -23,6 +24,12 @@ module.exports = {
       options: {
         name: `data`,
         path: `${__dirname}/data/`
+      }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-27984437-10'
       }
     }
   ],

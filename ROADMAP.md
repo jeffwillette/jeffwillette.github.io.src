@@ -21,5 +21,8 @@ TODO:
   - write the resolutions and run again to see it fixed
   - ask others for opinions
 
-- figure out what is wrong with the styles on the home page (build the site and serve locally). It works when coming
-  from a page that is not the main page.
+- styles
+  - if I don't need it, remove gatsby-plugin-remove-serviceworker
+  - add gatsby-plugin-offline if I can
+  - put the hydrator back in gatsby browser
+  - follow the comment https://github.com/gatsbyjs/gatsby/issues/8237 here and try to mimic his example
