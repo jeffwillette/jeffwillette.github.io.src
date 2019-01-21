@@ -1,9 +1,9 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import { JssProvider } from 'react-jss';
 
 import React from 'react';
 
+import { JssProvider } from 'react-jss';
 import getPageContext, { PageContext } from './getPageContext';
 
 interface Props {
@@ -30,7 +30,7 @@ const withRoot = (Component: React.SFC) => {
     public render() {
       // MuiThemeProvider makes the theme available down the React tree thanks to React context.
       return (
-        <JssProvider generateClassName={this.pageContext}>
+        <JssProvider generateClassName={this.pageContext.generateClassName}>
           <MuiThemeProvider theme={this.pageContext.theme} sheetsManager={this.pageContext.sheetsManager}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />

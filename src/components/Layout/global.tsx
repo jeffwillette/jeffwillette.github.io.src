@@ -202,7 +202,4 @@ class globalLayout extends React.Component<ExtendedProps, State> {
   }
 }
 
-export const GlobalLayout = compose<ExtendedProps, Props>(
-  withRoot,
-  withStyles(styles)
-)(globalLayout);
+export const GlobalLayout = withRoot(compose<ExtendedProps, Props>(withStyles(styles))(globalLayout));

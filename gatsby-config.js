@@ -2,7 +2,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-typescript`,
-    `gatsby-plugin-remove-serviceworker`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
