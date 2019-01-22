@@ -1,7 +1,7 @@
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import React from 'react';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { obsidian } from 'react-syntax-highlighter/dist/styles/hljs';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/styles/prism';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -21,7 +21,7 @@ interface Props extends WithStyles<typeof styles> {
 const code = ({ className, classes, children }: Props) => {
   const lang = className ? className.replace('language-', '') : 'text';
   return (
-    <SyntaxHighlighter showLineNumbers className={classes.code} language={lang} style={obsidian} children={children} />
+    <SyntaxHighlighter showLineNumbers className={classes.code} language={lang} style={atomDark} children={children} />
   );
 };
 

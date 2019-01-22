@@ -97,7 +97,7 @@ export const query = graphql`
     }
     allMdx(
       filter: { fileAbsolutePath: { regex: "/blog/" }, frontmatter: { published: { eq: true } } }
-      sort: { fields: [frontmatter___createdAt], order: DESC }
+      sort: { fields: [frontmatter___updatedAt], order: DESC }
       limit: $limit
       skip: $skip
     ) {

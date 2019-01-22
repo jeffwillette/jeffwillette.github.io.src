@@ -1,0 +1,53 @@
+---
+title: "Project Euler: Problem 24 Solution in Python"
+published: true
+createdAt: 2014-11-06T17:47:25.000Z
+updatedAt: 2019-01-22T04:16:11.881Z
+categories:
+  - Programming
+  - Project Euler
+  - Python
+---
+
+## The Problem States
+
+```text
+A permutation is an ordered arrangement of objects. For example, 3124 is one possible permutation of the digits
+1, 2, 3 and 4. If all of the permutations are listed numerically or alphabetically, we call it lexicographic order.
+The lexicographic permutations of 0, 1 and 2 are:
+
+012   021   102   120   201   210
+
+What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
+```
+
+## My Solution
+
+This one was pretty easy. I just needed to take the numbers, be they a list of numbers or strings and mash them up
+every which way with a permutation and then find the 1,000,000th. I made a list of numbers as strings, user
+'itertools' permutation function which I found online by searching, and then found the millionth. I wasn't sure if
+they would be in order, but the website took my answer so I guess they are in order.
+
+```python
+import itertools
+import time
+start_time = time.clock()
+# 1...make list of ints ------------------------------------------
+strs = [str(i) for i in range(0, 10)]
+
+# 2...make all permutations ------------------------------------
+p = list(list(itertools.permutations(strs, 10)))
+
+# 3...find the millionth ------------------------------------------
+mil = ''.join(p[999999])
+
+print(mil)
+print('finished in:', time.clock() - start_time, 'seconds')
+```
+
+## The Output
+
+```text
+2783915460
+finished in: 2.2940615767117434 seconds
+```

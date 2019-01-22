@@ -11,6 +11,10 @@ const styles = (theme: Theme) =>
       padding: `0px ${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px 0px`,
       float: 'left'
     },
+    centerImg: {
+      display: 'block',
+      margin: 'auto'
+    },
     rightImg: {
       padding: `0px 0px ${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px`,
       float: 'right',
@@ -22,7 +26,7 @@ const styles = (theme: Theme) =>
   });
 
 interface BaseProps extends WithStyles<typeof styles> {
-  align: 'left' | 'right';
+  align: 'left' | 'right' | 'center';
   width?: string;
 }
 
@@ -37,6 +41,7 @@ const mdxSharpImg = ({ classes, width, fluid, align }: MDXSharpImgProps) => (
         className={c({
           [classes.leftImg]: !mobile && align === 'left',
           [classes.rightImg]: !mobile && align === 'right',
+          [classes.centerImg]: !mobile && align === 'center',
           [classes.mobile]: mobile
         })}
         style={{ width: width || '40%' }}

@@ -1,0 +1,89 @@
+---
+title: "Project Euler: Problem 32 Solution in Python"
+published: true
+createdAt: 2014-11-13T19:16:34.000Z
+updatedAt: 2019-01-22T04:18:52.336Z
+categories:
+  - Programming
+  - Project Euler
+  - Python
+---
+
+## The Problem States
+
+We shall say that an <InlineMath math="n-digit" /> is pandigital if it makes use of all the digits <InlineMath
+math="1-n" /> exactly once; for example, the 5-digit number, 15234, is 1 through 5 pandigital.
+
+The product 7254 is unusual, as the identity, <InlineMath math="39 × 186 = 7254" />, containing multiplicand,
+multiplier, and product is 1 through 9 pandigital.
+
+Find the sum of all products whose multiplicand/multiplier/product identity can be written as a 1 through 9 pandigital.
+
+- *HINT: Some products can be obtained in more than one way so be sure to only include it once in your sum.*
+
+## My Solution
+
+My first thought is just brute force it because I haven't been able to come up with a reasonable way to cut down on
+the calculations yet. I think I should take all the numbers up to a certain point, eliminate any that have repeat
+numbers. Then I should loop through and take all the factors of each remaining number, and check to make sure they:
+
+1. are 9 digits in length (2 factors and the original number)
+2. are pan-digital
+3. multiply to equal the number
+
+```python
+import time
+from aFormulas import all_factors
+start_time = time.clock()
+
+
+def pandigit_chk(x):
+#This can be easily changed to 0-9 if you take out s[0] = False. It creates a true for all the digits, and
+#then turns that value to False once it hits those digits. If it then hits a false, it must have hit a
+#repeat so it returns False.
+s = [True] * 10
+s[0] = False
+x = str(x)
+for i in x:
+    i = int(i)
+ if s[i]:
+    s[i] = False
+ else:
+     return False
+ return True
+
+pans = [i for i in range(1000, 10000) if pandigit_chk(i)]
+finals = []
+for i in pans:
+    #I picked 10,000 as the upper limit because, it would be rather hard for a 6 digit number to be a product of
+    #3 remaining digits.
+    x, lenx = str(i), len(str(i))
+    fac = all_factors(i)
+    for j in fac:
+        for k in fac:
+            # I found all the factors, and then ran all the factors against each other to check that the total length
+            # was 9 (digits 1-9) and that it was pandigital, and that j * k = i
+            fac1, len1 = str(j), len(str(j))
+            fac2, len2 = str(k), len(str(k))
+            tot_len, digits = lenx + len1 + len2, x + fac1 + fac2
+            if tot_len == 9 and pandigit_chk(digits) and j * k == i:
+                finals.append(i)
+else:
+#Made a set of the list to eliminate duplicates, and added them together.
+answer = 0
+finals = list(set(finals))
+    for i in finals:
+        answer += i
+
+print(finals)
+print(answer)
+print('finished in:', time.clock() - start_time, 'seconds')
+```
+
+## The Output
+
+```text
+[5346, 5796, 6952, 4396, 7852, 7632, 7254]
+45228
+finished in: 3.4213965844012777 seconds
+```
