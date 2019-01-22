@@ -1,0 +1,104 @@
+---
+title: "Project Euler: Problem 41 (Pandigital Prime) Solution in Python"
+published: true
+createdAt: 2014-12-07T20:08:18.000Z
+updatedAt: 2019-01-22T16:26:52.237Z
+categories:
+  - Programming
+  - Project Euler
+  - Python
+---
+
+## The Problem States
+
+We shall say that an `n-digit` number is pandigital if it makes use of all the digits 1 to `n` exactly once. For
+example, 2143 is a 4-digit pandigital and is also prime.
+
+What is the largest `n-digit` pandigital prime that exists?
+
+## My Solution
+
+I had no idea where to begin on this one. I started experimenting with making all the permutations of the numbers and
+realized that there were way too many for that. I then moved onto making a sieve of Eratosthenes, but then realized
+that the list 987654321 of [False] tags was enough to seize up all the memory in my computer.
+
+I then came across divisibility rules which led me in the right direction. It turns out that if you add up every
+digit of a number, if the sum is divisible by three, then the number will be divisible by three. Since every n digit
+number will be made up of the numbers 1-n somehow, then I can just add up the digits 1-n and find the largest number
+of digits not divisible by three.  I thought that would be a good starting point, and if I didn't find the right
+answer then I would try something else. It turns out that a 7 digit pandigital number <InlineMath math="(7+6+5+4+3+2+1)" />
+is the largest set that isn't divisible by three. I modified my previously written pandigital number function and
+used that along with my prime number check function to just run through numbers systematically.
+
+## The Code
+
+```python
+def is_prime(x):
+
+    '''Checks for primality of x'''
+    
+    if x < 0:
+        x *= -1
+
+    div_by = [i for i in range(2, int(x ** 0.5) + 1)]
+
+    for i in div_by:
+        if x % i == 0:
+            break
+    else:
+        return True
+
+def pan_digit_chk(x, digits):
+
+    '''Checks to see if a number is pan-digital 1-9, it will return false
+       if the x includes 0 or numbers like (1245) it needs to include all
+       digits from 1 to the length'''
+    
+    s = [True] * digits
+    digits = [i for i in range(1, digits + 1)]
+    x = str(x)
+
+    if len(x) < digits[-1]:
+        # Your number is incorrect, it needs to contain all the digits 1-n
+        return False
+
+    for i in range(len(x)):
+        check = int(x[i])
+        try:
+            if s[check - 1]:
+                s[check - 1] = False
+
+            else:
+                return False
+
+        except IndexError:
+            # You must supply a number that is digits 1-n > 124 is not valid
+            # > 123 is valid.')
+            return False
+   
+    return True
+
+####This is where my solution actually begins-----------------------------------
+start = 7654321
+
+go = True
+while go:
+    if pan_digit_chk(start, 7):
+        if is_prime(start):
+            print start
+            break
+    start -= 2
+    if len(str(start)) < 7:
+        print 'end'
+        break
+```
+
+## The Output
+
+This finished pretty quickly mostly due to narrowing down the solution by math theory rather than programming
+wits.
+
+```text
+7652413
+finished in: 0.011673 seconds
+```
