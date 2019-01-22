@@ -1,0 +1,58 @@
+---
+title: "Project Euler: Problem 1 Solution in Javascript"
+published: true
+createdAt: 2014-12-18T19:41:30.000Z
+updatedAt: 2019-01-22T14:47:14.593Z
+categories:
+  - Javascript
+  - Programming
+  - Project Euler
+---
+
+I had already done a ton of problems in Python, but I wanted to get the hang of writing Javascript so I decided to
+try a few of these problems in Javascript. The only way I could see to actually run the Javascript was to save these
+in an html file with a script tag and then load it into Chrome and right click > inspect element > console.
+
+Its a pain in the ass to reload the code to run it every time, but it works.
+
+## The Problem States
+
+```text
+If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these
+multiples is 23.
+
+Find the sum of all the multiples of 3 or 5 below 1000.
+```
+
+## My Solution
+
+Pretty easy, loop through all the numbers under 1000, push them to an array if they are divisible by 3 or 5. Then
+loop through the array and add each number to the sum. Yeah, I could have condensed that more, but I didn't care all
+that much.
+
+## The Code
+
+```javascript
+var ansList = []
+
+for (var i = 0; i < 1000; i++) {
+    if (i % 3 === 0 || i % 5 === 0) {
+    ansList.push(i)
+    }
+}
+
+var len = ansList.length
+var sum = 0
+for (var i = 0; i < len; i++) {
+    sum += ansList[i]
+}
+
+console.log(sum)
+```
+
+
+## The Output
+
+```text
+233168
+```

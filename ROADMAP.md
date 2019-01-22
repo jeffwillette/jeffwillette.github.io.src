@@ -39,5 +39,3 @@ TODO:
 
 - look into tree shaking
   - if there is no way to tree shake styles, import only what is needed from syntax-highlighter in code component
-
-- check 36 in python

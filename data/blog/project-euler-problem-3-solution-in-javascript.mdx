@@ -1,0 +1,70 @@
+---
+title: "Project Euler: Problem 3 Solution in Javascript"
+published: true
+createdAt: 2014-12-18T19:56:29.000Z
+updatedAt: 2019-01-22T14:46:35.670Z
+categories:
+  - Javascript
+  - Programming
+  - Project Euler
+---
+
+## The Problem States
+
+```text
+The prime factors of 13195 are 5, 7, 13 and 29.
+
+What is the largest prime factor of the number 600851475143 ?
+```
+
+## My Solution
+
+I had a little trouble getting this to run, it kept going into a feedback loop and crashing. I think I discovered
+that I could not set a variable equal to a functions return if the function takes that variable as an input. I had to
+declare a new variable and then everything was fine.
+
+The first function tests for primality by seeing if any number up to the square root of a number is evenly divisible,
+it returns false if the number is not prime and returns the number if it is prime.
+
+Then the second function finds the largest prime factor by looping through until the square root of the number, if it
+finds an evenly divisible factor, then it gets the other factor (because one must be above the square root and one
+must be below the square root.) and checks them individually for being prime and then changes the largestPrimeFactor
+variable if it is bigger than it.
+
+## The Code
+
+```javascript
+function is_prime(num) {
+    if (num === 0 || num === 1) {return false}
+    if (num === 2) {return 2}
+    var sqrt = Math.sqrt(num)
+    for (var i = 2; i < sqrt + 1; i++) {
+        if (num % i === 0) {
+            return false
+        }
+    }
+    return num
+}
+
+function LPF(num) {
+    var sqrt = Math.sqrt(num);
+    var biggestPrimeFactor = false
+    for (var i = 2; i < sqrt + 1; i++) {
+        if (num % i === 0) {
+            var two = is_prime(num / i)
+            var one = is_prime(i)
+            if (one &amp;&amp; one > biggestPrimeFactor) {biggestPrimeFactor = one}
+            if (two &amp;&amp; two > biggestPrimeFactor) {biggestPrimeFactor = two}
+        }
+    }
+    return biggestPrimeFactor
+}
+
+console.log(LPF(600851475143))
+```
+
+## The Output
+
+```text
+6857
+```
