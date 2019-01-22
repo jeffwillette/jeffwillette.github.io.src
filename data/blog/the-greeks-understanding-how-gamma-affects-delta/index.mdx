@@ -2,9 +2,10 @@
 title: "The Greeks: Understanding How Gamma Affects Delta"
 published: true
 createdAt: 2014-05-28T11:04:56.000Z
-updatedAt: 2019-01-22T15:30:00.787Z
+updatedAt: 2019-01-22T16:31:59.319Z
 images:
-  -
+  - ./why-is-long-option-gamma-positive.png
+  - ./why-is-short-option-gamma-negative.png
 categories:
   - Finance
 ---
@@ -22,7 +23,7 @@ here, but I will talk about how to apply it in practice. You can read more about
 will bring you to a whole lot of articles already written on the subject. This article will tell you how to interpret
 Gamma numbers and apply them in real life.
 
-<img class='imgright' src="/media/posts/the-greeks-understanding-how-gamma-affects-delta/why-is-long-option-gamma-positive.png" alt="why is long option gamma positive" height="350" /> The most confusing part to me was interpreting what was meant by positive and negative Gamma and how it would affect positive and negative Deltas on both the long and short sides of calls and puts. I made the following chart to illustrate what actually happens in long puts and calls
+<Image1 align="left" width="40%" />
 
 ## I'll make a few statements from the chart to make things a little more clear
 
@@ -41,7 +42,7 @@ below.
 ```text
 Long Option                    Delta          Gamma
 SPY 192 Call (ATM)	           .42	         .08
-SPY 192 Put (ATM)	            -.57	         .08
+SPY 192 Put (ATM)	          -.57	         .08
 ```
 
 So if the price of SPY rises to 193, the Delta of the call will become approximately .50 (.42 + .08). If the price of
@@ -55,7 +56,7 @@ Delta approaches -1.
 
 ## So, Why do short options have negative Gamma
 
-<img class='imgright' src="/media/posts/the-greeks-understanding-how-gamma-affects-delta/Why-is-short-option-gamma-negative.png" alt="How Gamma Affects the Delta of Short Puts and Calls"  height="350" /> Well, because everything is reversed. Gamma still reaches its peak (negative) when the options are ATM. See the chart below for a visual. Gamma will always be negative when talking about short options because it has a negative relationship with price. This means that when price goes up, Gamma subtracts from delta. When price goes down, Gamma adds to Delta. Look at the examples below.
+<Image1 align="right" width="40%" />
 
 1. Delta is most volatile (Gamma is highest[absolute value]) when an option is ATM, which means the Delta will be the
 most unstable
