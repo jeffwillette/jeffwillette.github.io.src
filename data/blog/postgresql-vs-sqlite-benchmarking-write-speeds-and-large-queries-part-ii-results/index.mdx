@@ -1,0 +1,56 @@
+---
+title: "PostgreSQL vs. SQLite: Benchmarking Write Speeds and  Large Queries (Part II: Results)"
+published: false
+createdAt: 2017-01-05T22:44:29.000Z
+updatedAt: 2019-01-24T16:37:54.207Z
+categories:
+  - Programming
+  - Random
+---
+
+In order to test how well PostgreSQL and SQLite perform on a small machine, I wrote a script that would access each
+endpoint of the API that I created in
+[Part: I](https://jrwillette.com/post/postgresql-vs-sqlite-benchmarking-large-queries-part-i-making-a-django-project/).
+I let this run, which times how long it took to create, retrieve, and destroy objects with each database in each amount.
+
+## PostgreSQL / SQLite create/destroy
+
+```text
+name: createDestroy
+type: line
+labels: objects, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000
+sqlite-create: 0, 3.672, 7.4, 16.96, 29.49, 62.12, 120.24, 259.24, 556.13, 1223.25, 2549.58
+sqlite-destroy: 0, 3.63, 6.89, 17.12, 32.15, 58.80, 133.09, 252.46, 569.35, 1233.57, 2535.18
+postgresql-create: 0, 2.26, 5.01, 9.80, 20.11, 34.72, 63.87, 129.277, 276.99, 637.08, 1418.89
+postgresql-destroy: 0, 2.02, 4.51, 9.01, 21.15, 33.14, 63.62, 136.50, 291.17, 663.59, 934.69
+```
+
+It is pretty obvious to see that PostgreSQL has a huge advantage when it is writing or destroying a large number of
+objects. The advantage extends all the way down to the beginning of the chart, which is hard to see with the numbers
+doubling every time, so here is a closer view of the beginning of the chart...
+
+```text
+name: createDestroySmall
+type: line
+labels: 500, 1000, 2000, 4000, 8000
+sqlite-create: 3.672, 7.4, 16.96, 29.49, 62.12
+sqlite-destroy: 3.63, 6.89, 17.12, 32.15, 58.80
+postgresql-create: 2.26, 5.01, 9.80, 20.11, 34.72
+postgresql-destroy: 2.02, 4.51, 9.01, 21.15, 33.14
+```
+
+It was surprising to see such a huge difference in write speeds and then see the following chart showing the read
+speeds are almost identical all the way up.
+
+## PostgreSQL / SQLite - retrieve
+
+```text
+name: dbRetrieve
+type: line
+labels: 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000
+sqlite-retrieve: 0.02, 0.04, 0.09, 0.14, 0.203, 0.525, 1.336, 2.286, 8.524, 26.57
+postgresql-retrieve: 0.06, 0.061, 0.104, 0.198, 0.361, 0.881, 1.05, 3.08, 7.08, 27.21
+```
+
+From this data it is pretty easy to see that if an application is doing any heavy writing to SQLite, it may be
+beneficial to switch to PostgreSQL or (probably) MySQL even if there is only one writer.

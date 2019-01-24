@@ -1,6 +1,6 @@
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import c from 'classnames';
-import Img from 'gatsby-image';
+import Img, { GatsbyImageProps } from 'gatsby-image';
 import React from 'react';
 import { StateConsumer } from '../context';
 import { BlogPostQuery_mdx_frontmatter_images_childImageSharp_fluid } from '../gatsby-queries';
@@ -30,9 +30,7 @@ interface BaseProps extends WithStyles<typeof styles> {
   width?: string;
 }
 
-interface MDXSharpImgProps extends BaseProps {
-  fluid: BlogPostQuery_mdx_frontmatter_images_childImageSharp_fluid;
-}
+interface MDXSharpImgProps extends BaseProps, GatsbyImageProps {}
 
 const mdxSharpImg = ({ classes, width, fluid, align }: MDXSharpImgProps) => (
   <StateConsumer>
@@ -65,6 +63,7 @@ const mdxSrcImg = ({ src, classes, width, align }: MDXSrcImgProps) => (
         className={c({
           [classes.leftImg]: !mobile && align === 'left',
           [classes.rightImg]: !mobile && align === 'right',
+          [classes.centerImg]: !mobile && align === 'center',
           [classes.mobile]: mobile
         })}
         style={{ width: width || '40%' }}

@@ -1,0 +1,41 @@
+---
+title: "Volatility skew: How does it affect credit spreads?"
+published: true
+createdAt: 2014-05-22T14:34:08.000Z
+updatedAt: 2019-01-24T02:26:26.939Z
+images:
+  - ./credit-spread-skew.png
+  - ./volatility-skew.png
+categories:
+  - Finance
+---
+
+I was watching a segment on TastyTrade [Market Measures - The Skewed Side](https://www.tastytrade.com/tt/shows/market-measures/episodes/11473)
+
+I thought about it for a few minutes and couldn't figure out why on earth that would be true. I knew it had something
+to do with volatility skew because that was the title of the episode but I thought that even if you were selling a
+put spread, you would be selling and buying a put, so the added IV in the put side would be cancelled out, right?
+
+Below is a generic volatility skew graph. If you want to read about why the volatility is skewed like this, you can read
+[wikipedia - volatility smile](http://en.wikipedia.org/wiki/Volatility_smile). They call it a volatility smile
+because the REALLY far OTM calls also sometimes have a higher implied volatility as well. It is important to note
+that this can look different in different underlyings at different times. It can bee equal on both ends (volatility
+smile), or it can even be reversed (reverse skew).
+
+<Image2 align="left" width="40%" />
+
+When you sell a put credit spread, the further out of the money you go in the puts, the larger the IV becomes. This
+would mean that your "risk defining" put that you buy further OTM would be a higher IV and thus more expensive than
+your closer, and lower IV, put that you are selling. Conversely, when you sell a call credit spread, your "risk
+defining," further OTM call, will be a lower IV and thus cheaper.
+
+I have an illustration below. The red lines are short strikes, and the green lines are long strikes.
+
+<Image1 align="right" width="40%" />
+
+When you sell a put credit spread, you are selling something cheaper (red), and buying something more expensive
+(green). When you sell a call credit spread, you are selling something more expensive (red), and buying something
+cheaper (green).
+
+This is so simple that I can't believe I had never realized this before. Sometimes the most obvious things are the
+hardest to see.
