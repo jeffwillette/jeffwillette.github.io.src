@@ -3,6 +3,8 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import Helmet from 'react-helmet';
 import { Blockquote } from '../components/blockquote';
+import { BarChart } from '../components/Charts/bar';
+import { LineChart } from '../components/Charts/line';
 import { GlobalLayout } from '../components/Layout/global';
 import { IndexQuery } from '../gatsby-queries';
 import { safe } from '../utils';
@@ -45,6 +47,8 @@ const Index = ({ data }: Props) => {
           </Blockquote>
         </div>
         <Typography variant="body1">Posted April 09, 2011</Typography>
+        <BarChart data={[5, 10, 1, 3]} size={[500, 500]} />
+        <LineChart data={[5, 10, 15, 20, 3, 2, 30, 50]} />
       </div>
     </GlobalLayout>
   );
