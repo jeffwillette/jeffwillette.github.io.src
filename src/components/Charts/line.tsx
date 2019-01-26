@@ -2,6 +2,7 @@ import { createStyles, Theme, Tooltip, WithStyles, withStyles } from '@material-
 import c from 'classnames';
 import { axisBottom, axisLeft, curveMonotoneX, line, max, scaleLinear, select } from 'd3';
 import React from 'react';
+import { clearChart, margin, randomColor } from './utils';
 
 const styles = (_: Theme) =>
   createStyles({
@@ -34,47 +35,26 @@ interface State {
   height: number;
 }
 
-const margin = 50;
-type GeneratedColor = (opacity: string) => string;
-
 class lineChart extends React.Component<ExtendedProps, State> {
   public node: SVGSVGElement | null = null;
 
   // height and width need to be a part of state so that a re-render will happen if they are changed
   public state = {
     width: 768 - margin * 2,
-    height: 768 / 1.618 - margin * 2,
-    circles: []
+    height: 768 / 1.618 - margin * 2
   };
 
-  // clear all inner g containers in order to clear the whole chart on update.
-  public clearChart = () =>
-    this.node &&
-    select('#innerG')
-      .selectAll('g')
-      .remove()
-
   public componentDidMount() {
-    this.clearChart();
-    this.createBarChart();
+    clearChart(this.node);
+    this.createLineChart();
   }
 
   public componentDidUpdate() {
-    this.clearChart();
-    this.createBarChart();
+    clearChart(this.node);
+    this.createLineChart();
   }
 
-  public randomRGBAValue = () => Math.floor(Math.random() * 150);
-  public randomColor = (): GeneratedColor => {
-    const r = this.randomRGBAValue();
-    const g = this.randomRGBAValue();
-    const b = this.randomRGBAValue();
-
-    // returns a color generator function to generate different opacities of the same color
-    return (opacity: string) => `rgba(${r}, ${g}, ${b}, ${opacity})`;
-  }
-
-  public createBarChart = () => {
+  public createLineChart = () => {
     const { data } = this.props;
     const { width, height } = this.state;
 
@@ -103,7 +83,7 @@ class lineChart extends React.Component<ExtendedProps, State> {
         .domain([0, dataMax || 0])
         .range([height, 0]);
 
-      const s = select('#innerG'); // select the inner g container where elements will be
+      const s = select(this.node).select('.innerG'); // select the inner g container where elements will be
 
       s.append('g')
         .attr('class', 'xAxis') // set the class for the x axis
@@ -126,11 +106,11 @@ class lineChart extends React.Component<ExtendedProps, State> {
       .y(d => yScale(d[1]))
       .curve(curveMonotoneX);
 
-    const s = select('#innerG');
+    const s = select(this.node).select('.innerG');
 
     Object.keys(data).forEach(k => {
       const dataset = data[k].map((y, x) => [x, y] as [number, number]);
-      const color = this.randomColor();
+      const color = randomColor();
 
       s.select(`.line-${k}`) // select the line for the current data key
         .datum(dataset)
@@ -167,7 +147,7 @@ class lineChart extends React.Component<ExtendedProps, State> {
 
     return (
       <svg ref={this.refCb} className={classes.svg}>
-        <g id="innerG" transform={`translate(${margin}, ${margin})`}>
+        <g className="innerG" transform={`translate(${margin}, ${margin})`}>
           {Object.keys(data).map(k =>
             data[k].map((d, i) => (
               <Tooltip key={`${k}${i}`} title={`${k}: ${d}`}>

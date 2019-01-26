@@ -47,7 +47,23 @@ const Index = ({ data }: Props) => {
           </Blockquote>
         </div>
         <Typography variant="body1">Posted April 09, 2011</Typography>
-        <BarChart data={[5, 10, 1, 3]} size={[500, 500]} />
+        <BarChart
+          data={{
+            one: Math.floor(Math.random() * 100),
+            two: Math.floor(Math.random() * 100),
+            three: Math.floor(Math.random() * 100),
+            four: Math.floor(Math.random() * 100),
+            five: Math.floor(Math.random() * 100),
+            six: Math.floor(Math.random() * 100),
+            seven: Math.floor(Math.random() * 100),
+            eight: Math.floor(Math.random() * 100),
+            nine: Math.floor(Math.random() * 100),
+            ten: Math.floor(Math.random() * 100),
+            eleven: Math.floor(Math.random() * 100),
+            twelve: Math.floor(Math.random() * 100)
+          }}
+          width={100}
+        />
         <LineChart
           width={100}
           data={{
