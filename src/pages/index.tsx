@@ -48,7 +48,13 @@ const Index = ({ data }: Props) => {
         </div>
         <Typography variant="body1">Posted April 09, 2011</Typography>
         <BarChart data={[5, 10, 1, 3]} size={[500, 500]} />
-        <LineChart data={[5, 10, 15, 20, 3, 2, 30, 50]} />
+        <LineChart
+          width={100}
+          data={{
+            one: [20, 40, 10, 50, 90],
+            two: [100, 20, 40, 5, 45]
+          }}
+        />
       </div>
     </GlobalLayout>
   );
