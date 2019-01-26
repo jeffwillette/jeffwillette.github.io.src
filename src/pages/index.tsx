@@ -51,8 +51,9 @@ const Index = ({ data }: Props) => {
         <LineChart
           width={100}
           data={{
-            one: [20, 40, 10, 50, 90],
-            two: [100, 20, 40, 5, 45]
+            one: Array.from({ length: 20 }, () => Math.floor(Math.random() * 100)),
+            two: Array.from({ length: 20 }, () => Math.floor(Math.random() * 100)),
+            three: Array.from({ length: 20 }, () => Math.floor(Math.random() * 100))
           }}
         />
       </div>

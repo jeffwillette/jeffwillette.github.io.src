@@ -1,5 +1,6 @@
 import { createStyles, Theme, Tooltip, WithStyles, withStyles } from '@material-ui/core';
-import { axisBottom, axisLeft, BaseType, curveMonotoneX, line, max, scaleLinear, select } from 'd3';
+import c from 'classnames';
+import { axisBottom, axisLeft, curveMonotoneX, line, max, scaleLinear, select } from 'd3';
 import React from 'react';
 
 const styles = (_: Theme) =>
@@ -13,6 +14,10 @@ const styles = (_: Theme) =>
       '& .tick line, & .tick text': {
         stroke: 'rgba(0,0,0,.2)',
         fill: 'rgba(0,0,0,.2)'
+      },
+      '& .line': {
+        fill: 'none',
+        strokeWidth: 4
       }
     }
   });
@@ -116,26 +121,29 @@ class lineChart extends React.Component<ExtendedProps, State> {
   public makeLinesFromDataProps = (xScale, yScale) => {
     const { data } = this.props;
 
-    const s = select('#innerG');
-    Object.keys(data).forEach(k => {
-      const chartLine = line() // make the line generator function
-        .x((_, i) => xScale(i))
-        .y(d => yScale(d[1]))
-        .curve(curveMonotoneX);
+    const chartLine = line() // make the line generator function
+      .x((_, i) => xScale(i))
+      .y(d => yScale(d[1]))
+      .curve(curveMonotoneX);
 
+    const s = select('#innerG');
+
+    Object.keys(data).forEach(k => {
       const dataset = data[k].map((y, x) => [x, y] as [number, number]);
       const color = this.randomColor();
 
-      s.select(`.line${k}`)
+      s.select(`.line-${k}`) // select the line for the current data key
         .datum(dataset)
-        .style('fill', 'none')
-        .style('stroke-width', 4)
-        .style('stroke', color('.2'))
+        .transition()
+        .duration(1000)
+        .style('stroke', color('.2')) // give a dynamic stroke color
         .attr('d', chartLine);
 
-      s.selectAll(`.dot${k}`)
+      s.selectAll(`.dot-${k}`) // select the dot for the current data key
         .data(dataset)
-        .style('stroke', color('.5'))
+        .transition()
+        .duration(1000)
+        .style('stroke', color('.5')) // add a dynamic color
         .style('fill', color('.5'))
         .attr('cx', (_, i) => xScale(i))
         .attr('cy', d => yScale(d[1]))
@@ -163,13 +171,13 @@ class lineChart extends React.Component<ExtendedProps, State> {
           {Object.keys(data).map(k =>
             data[k].map((d, i) => (
               <Tooltip key={`${k}${i}`} title={`${k}: ${d}`}>
-                <circle className={`dot${k}`} />
+                <circle className={c('dot', `dot-${k}`)} />
               </Tooltip>
             ))
           )}
           {Object.keys(data).map(k => (
             <Tooltip key={k} title={k}>
-              <path className={`line${k}`} />
+              <path className={c('line', `line-${k}`)} />
             </Tooltip>
           ))}
         </g>
