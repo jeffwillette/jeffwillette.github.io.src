@@ -1,4 +1,4 @@
-import { forceCollide, forceManyBody, forceSimulation, select, SimulationNodeDatum } from 'd3';
+import { forceCollide, forceManyBody, forceSimulation, select, Simulation, SimulationNodeDatum } from 'd3';
 import React from 'react';
 import { GeneratedColor, margin, randomColor } from './utils';
 
@@ -7,8 +7,6 @@ interface Props {
 }
 
 interface Planet extends SimulationNodeDatum {
-  cx: number;
-  cy: number;
   r: number;
   color: GeneratedColor;
 }
@@ -16,66 +14,70 @@ interface Planet extends SimulationNodeDatum {
 interface State {
   height: number;
   width: number;
-  objects: Planet[];
+  planets: Planet[];
+  simulation: Simulation<Planet, undefined>;
 }
+
+const w = 768 - margin * 2;
+const h = 768 / 1.618 - margin * 2;
+
+const makePlanet = (width: number, height: number): Planet => ({
+  x: Math.floor(Math.random() * width),
+  y: Math.floor(Math.random() * height),
+  r: Math.floor(Math.random() * 20),
+  color: randomColor()
+});
 
 export class Circles extends React.Component<Props, State> {
   public node: SVGSVGElement | null = null;
 
   constructor(props) {
     super(props);
-
-    const width = 768 - margin * 2;
-    const height = 768 / 1.618 - margin * 2;
+    const planets = [makePlanet(w, h)];
 
     this.state = {
-      width,
-      height,
-      objects: Array.from({ length: 20 }).map(_ => ({
-        cx: Math.floor(Math.random() * width),
-        cy: Math.floor(Math.random() * height),
-        r: Math.floor(Math.random() * 10),
-        color: randomColor()
-      }))
+      width: w,
+      height: h,
+      planets,
+      simulation: forceSimulation<Planet>(planets)
+        .force('charge', forceManyBody().strength(d => d.r / 10))
+        .alphaDecay(0)
+        .force('collide', forceCollide().radius(d => d.r))
+        .on('tick', this.tick)
     };
-  }
 
-  public componentDidMount() {
-    this.update();
-  }
+    setInterval(() => {
+      this.setState(prev => {
+        const newPlanets = [...prev.planets, makePlanet(prev.width, prev.height)];
 
-  public componentDidUpdate() {
-    this.update();
-  }
-
-  public update = () => {
-    const { objects } = this.state;
-    forceSimulation<Planet>(objects)
-      .force('charge', forceManyBody().strength(10))
-      .force('collide', forceCollide().radius(2))
-      .on('tick', this.tick);
+        return {
+          planets: newPlanets,
+          simulation: prev.simulation.nodes(newPlanets)
+        };
+      });
+    }, 1000);
   }
 
   public tick = () => {
-    const { width, height, objects } = this.state;
+    const { width, planets, height, simulation } = this.state;
 
-    if (this.node) {
+    if (this.node && simulation) {
       this.node.style.width = `${width + margin * 2}`;
       this.node.style.height = `${height + margin * 2}`;
 
       const s = select(this.node)
         .select('.innerG')
         .selectAll('circle')
-        .data(objects);
+        .data(planets);
 
       s.enter()
-        .merge(s)
         .append('circle')
-        .attr('cx', d => d.cx)
-        .attr('cy', d => d.cy)
         .attr('r', d => d.r)
-        .style('stroke', d => d.color('0.5'))
-        .style('fill', d => d.color('0.3'));
+        .style('fill', d => d.color('0.3'))
+        .merge(s)
+        .attr('cx', d => d.x)
+        .attr('cy', d => d.y)
+        .style('stroke', d => d.color('0.5'));
 
       s.exit().remove();
     }
@@ -95,7 +97,6 @@ export class Circles extends React.Component<Props, State> {
     return (
       <svg ref={this.refCb}>
         <g className="innerG" transform={`translate(${margin}, ${margin})`} />
-        ;;
       </svg>
     );
   }

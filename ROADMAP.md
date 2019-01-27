@@ -41,7 +41,4 @@ TODO:
   - if there is no way to tree shake styles, import only what is needed from syntax-highlighter in code component
 
 - add a charting solution
-  - change the z index of the circles on the line chart to be above that of the line itself
-  - change line chart to use color grabber function
   - add clean label axes to bar chart (optional?)
-  - see why there is some double up on the line chart axis
