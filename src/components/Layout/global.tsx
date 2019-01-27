@@ -102,9 +102,9 @@ const styles = (theme: Theme) =>
         duration: theme.transitions.duration.leavingScreen
       })
     },
-    contentPadding: { padding: `0px ${theme.spacing.unit * 30}px` },
-    contentPaddingOpen: { padding: `0px ${theme.spacing.unit * 10}px` },
-    contentMobile: { padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 1.5}px` },
+    contentPadding: { margin: `0px ${theme.spacing.unit * 30}px` },
+    contentPaddingOpen: { margin: `0px ${theme.spacing.unit * 10}px` },
+    contentMobile: { margin: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 1.5}px` },
     contentShift: {
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.easeOut,

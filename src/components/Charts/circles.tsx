@@ -86,11 +86,13 @@ export class Circles extends React.Component<Props, State> {
   // check for the window is for the build step of gatsbyjs which doesn't have the window defined. It's set to
   // be a rectangle based on teh width of the container div
   public refCb = node => {
-    this.node = node;
-    const baseWidth = node.parentElement.clientWidth * (this.props.width / 100);
-    const width = baseWidth - margin * 2;
-    const height = baseWidth / 2 - margin * 2;
-    this.setState({ width, height });
+    if (node) {
+      this.node = node;
+      const baseWidth = node.parentElement.clientWidth * (this.props.width / 100);
+      const width = baseWidth - margin * 2;
+      const height = baseWidth / 2 - margin * 2;
+      this.setState({ width, height });
+    }
   }
 
   public render() {

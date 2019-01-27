@@ -1,8 +1,8 @@
-import { Typography } from '@material-ui/core';
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import { graphql } from 'gatsby';
 import React from 'react';
 import Helmet from 'react-helmet';
-import { Blockquote } from '../components/blockquote';
+import { FlatButton } from '../components/button';
 import { BarChart } from '../components/Charts/bar';
 import { Circles } from '../components/Charts/circles';
 import { LineChart } from '../components/Charts/line';
@@ -10,74 +10,88 @@ import { GlobalLayout } from '../components/Layout/global';
 import { IndexQuery } from '../gatsby-queries';
 import { safe } from '../utils';
 
-interface Props {
+const styles = (_: Theme) =>
+  createStyles({
+    button: {
+      margin: 'auto'
+    }
+  });
+
+interface Props extends WithStyles<typeof styles> {
   data: IndexQuery;
 }
 
-const Index = ({ data }: Props) => {
-  const { site } = safe(data);
-  const { siteMetadata } = safe(site);
-  const { title, description, author, keywords } = safe(siteMetadata);
+interface State {
+  barData: { [k: string]: number };
+  lineData: { [k: string]: number[] };
+}
 
-  return (
-    <GlobalLayout>
-      <Helmet
-        title={title || undefined}
-        meta={[
-          { name: 'description', content: description || '' },
-          { name: 'keywords', content: keywords || '' },
-          { name: 'author', content: author || '' }
-        ]}
-      />
-      <Typography variant="h1">Hi people</Typography>
-      <Typography variant="body1">
-        Welcome to your new <strong>{title}</strong>
-      </Typography>
-      <Typography variant="body1">Now go build something great.</Typography>
-      <div>
-        <Typography variant="h1">Richard Hamming on Luck</Typography>
-        <div>
-          <Typography variant="body1">
-            From Richard Hamming’s classic and must-read talk,{' '}
-            <a href="http://www.cs.virginia.edu/~robins/YouAndYourResearch.html">You and Your Research</a>.
-          </Typography>
-          <Blockquote>
-            There is indeed an element of luck, and no, there isn’t. The prepared mind sooner or later finds something
-            important and does it. So yes, it is luck.{' '}
-            <em>The particular thing you do is luck, but that you do something is not.</em>
-          </Blockquote>
-        </div>
-        <Typography variant="body1">Posted April 09, 2011</Typography>
-        <Circles width={100} />
-        <BarChart
-          data={{
-            one: Math.floor(Math.random() * 100),
-            two: Math.floor(Math.random() * 100),
-            three: Math.floor(Math.random() * 100),
-            four: Math.floor(Math.random() * 100),
-            five: Math.floor(Math.random() * 100),
-            six: Math.floor(Math.random() * 100),
-            seven: Math.floor(Math.random() * 100),
-            eight: Math.floor(Math.random() * 100),
-            nine: Math.floor(Math.random() * 100),
-            ten: Math.floor(Math.random() * 100),
-            eleven: Math.floor(Math.random() * 100),
-            twelve: Math.floor(Math.random() * 100)
-          }}
-          width={100}
-        />
-        <LineChart
-          width={100}
-          data={{
-            one: Array.from({ length: 20 }, () => Math.floor(Math.random() * 100)),
-            two: Array.from({ length: 20 }, () => Math.floor(Math.random() * 100)),
-            three: Array.from({ length: 20 }, () => Math.floor(Math.random() * 100))
-          }}
-        />
-      </div>
-    </GlobalLayout>
-  );
-};
+const randomNum = () => Math.floor(Math.random() * 100);
+const barData = () => ({
+  one: randomNum(),
+  two: randomNum(),
+  three: randomNum(),
+  four: randomNum(),
+  five: randomNum(),
+  six: randomNum(),
+  seven: randomNum(),
+  eight: randomNum(),
+  nine: randomNum(),
+  ten: randomNum()
+});
+
+const lineData = () => ({
+  one: Array.from({ length: 20 }).map(_ => randomNum()),
+  two: Array.from({ length: 20 }).map(_ => randomNum()),
+  three: Array.from({ length: 20 }).map(_ => randomNum())
+});
+
+export const Index = withStyles(styles)(
+  class extends React.Component<Props, State> {
+    public state = {
+      barData: barData(),
+      lineData: lineData()
+    };
+
+    public render() {
+      const { data, classes } = this.props;
+      const { site } = safe(data);
+      const { siteMetadata } = safe(site);
+      const { title, description, author, keywords } = safe(siteMetadata);
+
+      return (
+        <GlobalLayout>
+          <Helmet
+            title={title || undefined}
+            meta={[
+              { name: 'description', content: description || '' },
+              { name: 'keywords', content: keywords || '' },
+              { name: 'author', content: author || '' }
+            ]}
+          />
+          <div>
+            <Circles width={100} />
+            <BarChart data={this.state.barData} width={100} />
+            <FlatButton
+              fullWidth
+              className={classes.button}
+              onClick={() => this.setState({ barData: barData() })}
+              children="randomize"
+            />
+            <LineChart width={100} data={this.state.lineData} />
+            <FlatButton
+              fullWidth
+              color="inherit"
+              className={classes.button}
+              onClick={() => this.setState({ lineData: lineData() })}
+              children="randomize"
+            />
+          </div>
+        </GlobalLayout>
+      );
+    }
+  }
+);
 
 export const query = graphql`
   query IndexQuery {
