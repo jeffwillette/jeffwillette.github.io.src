@@ -16,7 +16,8 @@ export const randomColor = (): GeneratedColor => {
 // clear all inner g containers in order to clear the whole chart on update.
 export const clearChart = (node: SVGSVGElement | null) =>
   node &&
-  select('#innerG')
+  select(node)
+    .select('.innerG')
     .selectAll('g')
     .remove();
 
