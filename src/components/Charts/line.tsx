@@ -79,7 +79,7 @@ export const LineChart = withStyles(styles)(
 
         this.makeLinesFromDataProps(xScale, yScale);
       }
-    }
+    };
 
     public makeLinesFromDataProps = (xScale, yScale) => {
       const { data } = this.props;
@@ -114,7 +114,7 @@ export const LineChart = withStyles(styles)(
       });
 
       s.selectAll('.dot').style('stroke-width', 3);
-    }
+    };
 
     // check for the window is for the build step of gatsbyjs which doesn't have the window defined. It's set to
     // be a rectangle based on teh width of the container div
@@ -125,7 +125,7 @@ export const LineChart = withStyles(styles)(
       const width = baseWidth - margin * 2;
       const height = baseWidth / 2 - margin * 2;
       this.setState({ width, height });
-    }
+    };
 
     public render() {
       const { classes, data } = this.props;
