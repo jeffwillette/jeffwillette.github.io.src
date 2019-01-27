@@ -107,11 +107,13 @@ export const LineChart = withStyles(styles)(
           .transition()
           .duration(1000)
           .style('stroke', color('.5')) // add a dynamic color
-          .style('fill', color('.5'))
+          .style('fill', 'rgba(255,255,255,.8)')
           .attr('cx', (_, i) => xScale(i))
           .attr('cy', d => yScale(d[1]))
-          .attr('r', 5);
+          .attr('r', 3);
       });
+
+      s.selectAll('.dot').style('stroke-width', 3);
     }
 
     // check for the window is for the build step of gatsbyjs which doesn't have the window defined. It's set to

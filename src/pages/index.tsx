@@ -4,6 +4,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Blockquote } from '../components/blockquote';
 import { BarChart } from '../components/Charts/bar';
+import { Circles } from '../components/Charts/circles';
 import { LineChart } from '../components/Charts/line';
 import { GlobalLayout } from '../components/Layout/global';
 import { IndexQuery } from '../gatsby-queries';
@@ -47,6 +48,7 @@ const Index = ({ data }: Props) => {
           </Blockquote>
         </div>
         <Typography variant="body1">Posted April 09, 2011</Typography>
+        <Circles width={100} />
         <BarChart
           data={{
             one: Math.floor(Math.random() * 100),

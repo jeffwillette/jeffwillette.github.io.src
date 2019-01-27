@@ -1,6 +1,6 @@
 import { Tooltip, withStyles, WithStyles } from '@material-ui/core';
 import c from 'classnames';
-import { axisBottom, axisLeft, scaleLinear, select } from 'd3';
+import { axisBottom, axisLeft, scaleBand, scaleLinear, scaleOrdinal, select, svg } from 'd3';
 import React from 'react';
 import { styles } from './styles';
 import { clearChart, margin, randomColor } from './utils';
@@ -52,8 +52,8 @@ export const BarChart = withStyles(styles)(
           }
         });
 
-        const xScale = scaleLinear() // set the x scale and fit to width
-          .domain([0, keys.length])
+        const xScale = scaleBand() // set the x scale and fit to width
+          .domain(keys)
           .range([0, width]);
 
         const yScale = scaleLinear()
@@ -71,18 +71,20 @@ export const BarChart = withStyles(styles)(
           .attr('class', 'yAxis') // set the class for the y axis
           .call(axisLeft(yScale)); // set the axis
 
-        const colors = Array.from({ length: keys.length }).map(() => randomColor());
-        const datapoints = Object.keys(data).map(k => data[k]);
-        console.log(datapoints);
-        s.selectAll('.rect')
-          .data(datapoints)
-          .style('fill', (_, i) => colors[i]('0.4'))
-          .style('stroke-width', 2)
-          .style('stroke', 'rgba(255,255,255,.5)')
-          .attr('x', (_, i) => xScale(i))
-          .attr('y', d => height - yScale(d))
-          .attr('height', d => yScale(d))
-          .attr('width', width / keys.length);
+        Object.keys(data).forEach((k, i) => {
+          const color = randomColor();
+          s.select(`.rect-${k}`)
+            .datum(data[k])
+            .transition()
+            .duration(1000)
+            .style('fill', color('0.4'))
+            .style('stroke-width', 2)
+            .style('stroke', 'rgba(255,255,255,.5)')
+            .attr('x', xScale(k))
+            .attr('y', yScale(data[k]))
+            .attr('height', yScale(0) - yScale(data[k]))
+            .attr('width', width / keys.length);
+        });
       }
     }
 

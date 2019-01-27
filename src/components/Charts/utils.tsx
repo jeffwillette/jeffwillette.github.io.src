@@ -1,6 +1,6 @@
 import { select } from 'd3';
 
-type GeneratedColor = (opacity: string) => string;
+export type GeneratedColor = (opacity: string) => string;
 
 export const randomRGBAValue = () => Math.floor(Math.random() * 150);
 
