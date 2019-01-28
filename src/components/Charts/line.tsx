@@ -7,7 +7,7 @@ import { clearChart, margin, randomColor } from './utils';
 
 interface Props {
   data: { [k: string]: number[] };
-  width: number; // should match a percentage
+  width?: number; // should match a percentage
 }
 
 interface ExtendedProps extends Props, WithStyles<typeof styles> {}
@@ -19,6 +19,10 @@ interface State {
 
 export const LineChart = withStyles(styles)(
   class extends React.Component<ExtendedProps, State> {
+    public static defaultProps: Partial<Props> = {
+      width: 100
+    };
+
     public node: SVGSVGElement | null = null;
 
     // height and width need to be a part of state so that a re-render will happen if they are changed
@@ -79,7 +83,7 @@ export const LineChart = withStyles(styles)(
 
         this.makeLinesFromDataProps(xScale, yScale);
       }
-    };
+    }
 
     public makeLinesFromDataProps = (xScale, yScale) => {
       const { data } = this.props;
@@ -114,18 +118,19 @@ export const LineChart = withStyles(styles)(
       });
 
       s.selectAll('.dot').style('stroke-width', 3);
-    };
+    }
 
     // check for the window is for the build step of gatsbyjs which doesn't have the window defined. It's set to
     // be a rectangle based on teh width of the container div
     public refCb = node => {
-      this.node = node;
-
-      const baseWidth = node.parentElement.clientWidth * (this.props.width / 100);
-      const width = baseWidth - margin * 2;
-      const height = baseWidth / 2 - margin * 2;
-      this.setState({ width, height });
-    };
+      if (node) {
+        this.node = node;
+        const baseWidth = node.parentElement.clientWidth * (this.props.width! / 100);
+        const width = baseWidth - margin * 2;
+        const height = baseWidth / 2 - margin * 2;
+        this.setState({ width, height });
+      }
+    }
 
     public render() {
       const { classes, data } = this.props;

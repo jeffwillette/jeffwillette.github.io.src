@@ -70,15 +70,15 @@ export const Index = withStyles(styles)(
             ]}
           />
           <div>
-            <Circles width={100} />
-            <BarChart data={this.state.barData} width={100} />
+            <Circles />
+            <BarChart data={this.state.barData} />
             <FlatButton
               fullWidth
               className={classes.button}
               onClick={() => this.setState({ barData: barData() })}
               children="randomize"
             />
-            <LineChart width={100} data={this.state.lineData} />
+            <LineChart data={this.state.lineData} />
             <FlatButton
               fullWidth
               color="inherit"

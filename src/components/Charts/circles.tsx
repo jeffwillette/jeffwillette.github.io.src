@@ -3,7 +3,7 @@ import React from 'react';
 import { GeneratedColor, margin, randomColor } from './utils';
 
 interface Props {
-  width: number;
+  width?: number;
 }
 
 interface Planet extends SimulationNodeDatum {
@@ -29,6 +29,10 @@ const makePlanet = (width: number, height: number): Planet => ({
 });
 
 export class Circles extends React.Component<Props, State> {
+  public static defaultProps: Partial<Props> = {
+    width: 100
+  };
+
   public node: SVGSVGElement | null = null;
 
   constructor(props) {
@@ -81,19 +85,19 @@ export class Circles extends React.Component<Props, State> {
 
       s.exit().remove();
     }
-  };
+  }
 
   // check for the window is for the build step of gatsbyjs which doesn't have the window defined. It's set to
   // be a rectangle based on teh width of the container div
   public refCb = node => {
     if (node) {
       this.node = node;
-      const baseWidth = node.parentElement.clientWidth * (this.props.width / 100);
+      const baseWidth = node.parentElement.clientWidth * (this.props.width! / 100);
       const width = baseWidth - margin * 2;
       const height = baseWidth / 2 - margin * 2;
       this.setState({ width, height });
     }
-  };
+  }
 
   public render() {
     return (

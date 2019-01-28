@@ -7,6 +7,8 @@ import moment from 'moment';
 import React from 'react';
 import Helmet from 'react-helmet';
 import { FlatButton } from '../components/button';
+import { BarChart } from '../components/Charts/bar';
+import { LineChart } from '../components/Charts/line';
 import { DisplayCard } from '../components/displayCard';
 import { MDXSharpImg, MDXSrcImg } from '../components/images';
 import { DrawerTOC, TableOfContents } from '../components/Layout/drawerTOC';
@@ -98,7 +100,7 @@ const BlogPost = ({ classes, data }: Props) => {
         <Typography variant="h1">{title}</Typography>
         {categories && categories.map((c, i) => c && <TagChip key={i} tag={c} />)}
         <div className={classes.postBody}>
-          <MDXRenderer scope={{ ...imgs, BlockMath, InlineMath }}>{body}</MDXRenderer>
+          <MDXRenderer scope={{ ...imgs, BlockMath, InlineMath, BarChart, LineChart }}>{body}</MDXRenderer>
         </div>
         <div className={classes.button}>
           <Link to={githubLink || ''}>

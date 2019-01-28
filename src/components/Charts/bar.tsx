@@ -1,13 +1,13 @@
 import { Tooltip, withStyles, WithStyles } from '@material-ui/core';
 import c from 'classnames';
-import { axisBottom, axisLeft, scaleBand, scaleLinear, scaleOrdinal, select, svg } from 'd3';
+import { axisBottom, axisLeft, scaleBand, scaleLinear, select } from 'd3';
 import React from 'react';
 import { styles } from './styles';
 import { clearChart, margin, randomColor } from './utils';
 
 interface Props {
   data: { [k: string]: number };
-  width: number;
+  width?: number;
 }
 
 interface ExtendedProps extends Props, WithStyles<typeof styles> {}
@@ -19,6 +19,10 @@ interface State {
 
 export const BarChart = withStyles(styles)(
   class extends React.Component<ExtendedProps, State> {
+    public static defaultProps: Partial<Props> = {
+      width: 100
+    };
+
     public node: SVGSVGElement | null = null;
     public state = {
       width: 768 - margin * 2,
@@ -71,7 +75,7 @@ export const BarChart = withStyles(styles)(
           .attr('class', 'yAxis') // set the class for the y axis
           .call(axisLeft(yScale)); // set the axis
 
-        Object.keys(data).forEach((k, i) => {
+        Object.keys(data).forEach(k => {
           const color = randomColor();
           s.select(`.rect-${k}`)
             .datum(data[k])
@@ -86,17 +90,20 @@ export const BarChart = withStyles(styles)(
             .attr('width', width / keys.length);
         });
       }
-    };
+    }
 
     // check for the window is for the build step of gatsbyjs which doesn't have the window defined. It's set to
     // be a rectangle based on teh width of the container div
     public refCb = node => {
-      this.node = node;
-      const baseWidth = node.parentElement.clientWidth * (this.props.width / 100);
-      const width = baseWidth - margin * 2;
-      const height = baseWidth / 2 - margin * 2;
-      this.setState({ width, height });
-    };
+      console.log(`width: ${this.props.width}`);
+      if (node) {
+        this.node = node;
+        const baseWidth = node.parentElement.clientWidth * (this.props.width! / 100);
+        const width = baseWidth - margin * 2;
+        const height = baseWidth / 2 - margin * 2;
+        this.setState({ width, height });
+      }
+    }
 
     public render() {
       const { data, classes } = this.props;
