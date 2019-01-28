@@ -90,7 +90,7 @@ export const BarChart = withStyles(styles)(
             .attr('width', width / keys.length);
         });
       }
-    }
+    };
 
     // check for the window is for the build step of gatsbyjs which doesn't have the window defined. It's set to
     // be a rectangle based on teh width of the container div
@@ -103,7 +103,7 @@ export const BarChart = withStyles(styles)(
         const height = baseWidth / 2 - margin * 2;
         this.setState({ width, height });
       }
-    }
+    };
 
     public render() {
       const { data, classes } = this.props;
