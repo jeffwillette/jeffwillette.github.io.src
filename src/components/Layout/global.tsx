@@ -102,9 +102,11 @@ const styles = (theme: Theme) =>
         duration: theme.transitions.duration.leavingScreen
       })
     },
-    contentPadding: { margin: `0px ${theme.spacing.unit * 30}px` },
-    contentPaddingOpen: { margin: `0px ${theme.spacing.unit * 10}px` },
-    contentMobile: { margin: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 1.5}px` },
+    contentPadding: { padding: `0px ${theme.spacing.unit * 30}px` },
+    contentPaddingOpen: {
+      padding: `0px ${theme.spacing.unit * 20}px`
+    },
+    contentMobile: { padding: `${theme.spacing.unit * 5}px ${theme.spacing.unit * 1.5}px` },
     contentShift: {
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.easeOut,
@@ -182,18 +184,19 @@ class globalLayout extends React.Component<ExtendedProps, State> {
             {drawer}
           </Drawer>
           <StateConsumer>
-            {({ mobile, drawerOpen }) => (
-              <main
-                className={c(classes.content, {
-                  [classes.contentShift]: drawerOpen && !mobile,
-                  [classes.contentPaddingOpen]: drawerOpen && !mobile,
-                  [classes.contentPadding]: !drawerOpen && !mobile,
-                  [classes.contentMobile]: mobile
-                })}
-              >
-                {children}
-              </main>
-            )}
+            {({ mobile, drawerOpen }) => {
+              return (
+                <main
+                  className={c(classes.content, {
+                    [classes.contentShift]: drawerOpen && !mobile,
+                    [classes.contentPaddingOpen]: drawerOpen && !mobile,
+                    [classes.contentPadding]: !drawerOpen && !mobile,
+                    [classes.contentMobile]: mobile
+                  })}
+                  children={children}
+                />
+              );
+            }}
           </StateConsumer>
           <Footer />
         </MDXProvider>

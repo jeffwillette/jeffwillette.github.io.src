@@ -40,5 +40,6 @@ TODO:
 - look into tree shaking
   - if there is no way to tree shake styles, import only what is needed from syntax-highlighter in code component
 
-- add a charting solution
-  - add clean label axes to bar chart (optional?)
+- look at what webp images are
+  - what is a logarithm post has messed up webp image. Maybe I shouldn't let gatsby-image use webp's?
+  - bond prices post causes katex eror

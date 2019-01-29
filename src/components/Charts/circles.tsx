@@ -1,10 +1,16 @@
+import { withStyles, WithStyles } from '@material-ui/core';
 import { forceCollide, forceManyBody, forceSimulation, select, Simulation, SimulationNodeDatum } from 'd3';
 import React from 'react';
-import { GeneratedColor, margin, randomColor } from './utils';
+import { compose } from 'recompose';
+import { withDrawerOpen } from '../../utils';
+import { styles } from './styles';
+import { GeneratedColor, getWidthAndHeight, margin, randomColor } from './utils';
 
 interface Props {
   width?: number;
 }
+
+interface ExtendedProps extends Props, WithStyles<typeof styles> {}
 
 interface Planet extends SimulationNodeDatum {
   r: number;
@@ -12,14 +18,10 @@ interface Planet extends SimulationNodeDatum {
 }
 
 interface State {
-  height: number;
-  width: number;
   planets: Planet[];
   simulation: Simulation<Planet, undefined>;
+  timer: NodeJS.Timeout;
 }
-
-const w = 768 - margin * 2;
-const h = 768 / 1.618 - margin * 2;
 
 const makePlanet = (width: number, height: number): Planet => ({
   x: Math.floor(Math.random() * width),
@@ -28,82 +30,75 @@ const makePlanet = (width: number, height: number): Planet => ({
   color: randomColor()
 });
 
-export class Circles extends React.Component<Props, State> {
-  public static defaultProps: Partial<Props> = {
-    width: 100
-  };
-
-  public node: SVGSVGElement | null = null;
-
-  constructor(props) {
-    super(props);
-    const planets = [makePlanet(w, h)];
-
-    this.state = {
-      width: w,
-      height: h,
-      planets,
-      simulation: forceSimulation<Planet>(planets)
-        .force('charge', forceManyBody().strength(d => d.r / 10))
-        .alphaDecay(0)
-        .force('collide', forceCollide().radius(d => d.r))
-        .on('tick', this.tick)
+export const Circles = compose<ExtendedProps, Props>(
+  withStyles(styles),
+  withDrawerOpen
+)(
+  class extends React.Component<ExtendedProps, State> {
+    public static defaultProps: Partial<Props> = {
+      width: 100
     };
 
-    setInterval(() => {
+    public node: SVGSVGElement | null = null;
+
+    constructor(props) {
+      super(props);
+      const planets = [] as Planet[];
+
+      this.state = {
+        planets,
+        simulation: forceSimulation<Planet>(planets)
+          .force('charge', forceManyBody().strength(d => d.r / 10))
+          .alphaDecay(0)
+          .force('collide', forceCollide().radius(d => d.r))
+          .on('tick', this.tick),
+        timer: setInterval(this.timer, 1000)
+      };
+    }
+
+    public timer = () => {
       this.setState(prev => {
-        const newPlanets = [...prev.planets, makePlanet(prev.width, prev.height)];
+        const [width, height] = getWidthAndHeight(this.node, margin);
+        const newPlanets = [...prev.planets, makePlanet(width, height)];
 
         return {
           planets: newPlanets,
           simulation: prev.simulation.nodes(newPlanets)
         };
       });
-    }, 1000);
-  }
+    };
 
-  public tick = () => {
-    const { width, planets, height, simulation } = this.state;
+    public tick = () => {
+      const { planets, simulation } = this.state;
 
-    if (this.node && simulation) {
-      this.node.style.width = `${width + margin * 2}`;
-      this.node.style.height = `${height + margin * 2}`;
+      if (this.node && simulation) {
+        const s = select(this.node)
+          .select('.innerG')
+          .selectAll('circle')
+          .data(planets);
 
-      const s = select(this.node)
-        .select('.innerG')
-        .selectAll('circle')
-        .data(planets);
+        s.enter()
+          .append('circle')
+          .attr('r', d => d.r)
+          .style('fill', d => d.color('0.3'))
+          .merge(s)
+          .attr('cx', d => d.x)
+          .attr('cy', d => d.y)
+          .style('stroke', d => d.color('0.5'));
 
-      s.enter()
-        .append('circle')
-        .attr('r', d => d.r)
-        .style('fill', d => d.color('0.3'))
-        .merge(s)
-        .attr('cx', d => d.x)
-        .attr('cy', d => d.y)
-        .style('stroke', d => d.color('0.5'));
+        s.exit().remove();
+      }
+    };
 
-      s.exit().remove();
+    public render() {
+      const { classes } = this.props;
+      return (
+        <div className={classes.svgContainer}>
+          <svg ref={n => (this.node = n)} width="100%" className={classes.svg}>
+            <g className="innerG" transform={`translate(${margin}, ${margin})`} />
+          </svg>
+        </div>
+      );
     }
-  };
-
-  // check for the window is for the build step of gatsbyjs which doesn't have the window defined. It's set to
-  // be a rectangle based on teh width of the container div
-  public refCb = node => {
-    if (node) {
-      this.node = node;
-      const baseWidth = node.parentElement.clientWidth * (this.props.width! / 100);
-      const width = baseWidth - margin * 2;
-      const height = baseWidth / 2 - margin * 2;
-      this.setState({ width, height });
-    }
-  };
-
-  public render() {
-    return (
-      <svg ref={this.refCb}>
-        <g className="innerG" transform={`translate(${margin}, ${margin})`} />
-      </svg>
-    );
   }
-}
+);

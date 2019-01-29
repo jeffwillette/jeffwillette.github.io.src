@@ -169,8 +169,8 @@ export interface BlogQuery_site {
 export interface BlogQuery_allMdx_edges_node_frontmatter {
   __typename: "frontmatter_2";
   title: string | null;
-  createdAt: string | null;
-  updatedAt: string | null;
+  createdAt: any | null;
+  updatedAt: any | null;
   categories: (string | null)[] | null;
 }
 
@@ -259,7 +259,11 @@ export interface BlogPostQuery_site {
 
 export interface BlogPostQuery_authorAvatar_childImageSharp_fluid {
   __typename: "ImageSharpFluid";
+  tracedSVG: string | null;
+  aspectRatio: number | null;
   src: string | null;
+  srcSet: string | null;
+  sizes: string | null;
 }
 
 export interface BlogPostQuery_authorAvatar_childImageSharp {
@@ -277,18 +281,11 @@ export interface BlogPostQuery_authorAvatar {
 
 export interface BlogPostQuery_mdx_frontmatter_images_childImageSharp_fluid {
   __typename: "ImageSharpFluid";
-  base64: string | null;
   tracedSVG: string | null;
   aspectRatio: number | null;
   src: string | null;
   srcSet: string | null;
-  srcWebp: string | null;
-  srcSetWebp: string | null;
   sizes: string | null;
-  originalImg: string | null;
-  originalName: string | null;
-  presentationWidth: number | null;
-  presentationHeight: number | null;
 }
 
 export interface BlogPostQuery_mdx_frontmatter_images_childImageSharp {
@@ -311,8 +308,8 @@ export interface BlogPostQuery_mdx_frontmatter_images {
 export interface BlogPostQuery_mdx_frontmatter {
   __typename: "frontmatter_2";
   title: string | null;
-  createdAt: string | null;
-  updatedAt: string | null;
+  createdAt: any | null;
+  updatedAt: any | null;
   categories: (string | null)[] | null;
   images: (BlogPostQuery_mdx_frontmatter_images | null)[] | null;
 }
@@ -370,8 +367,8 @@ export interface TagPage_site {
 export interface TagPage_allMdx_edges_node_frontmatter {
   __typename: "frontmatter_2";
   title: string | null;
-  createdAt: string | null;
-  updatedAt: string | null;
+  createdAt: any | null;
+  updatedAt: any | null;
   categories: (string | null)[] | null;
 }
 
@@ -414,6 +411,406 @@ export interface TagPage {
 
 export interface TagPageVariables {
   tagRegex?: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpFixed
+// ====================================================
+
+export interface GatsbyImageSharpFixed {
+  __typename: "ImageSharpFixed";
+  base64: string | null;
+  width: number | null;
+  height: number | null;
+  src: string | null;
+  srcSet: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpFixed_tracedSVG
+// ====================================================
+
+export interface GatsbyImageSharpFixed_tracedSVG {
+  __typename: "ImageSharpFixed";
+  tracedSVG: string | null;
+  width: number | null;
+  height: number | null;
+  src: string | null;
+  srcSet: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpFixed_withWebp
+// ====================================================
+
+export interface GatsbyImageSharpFixed_withWebp {
+  __typename: "ImageSharpFixed";
+  base64: string | null;
+  width: number | null;
+  height: number | null;
+  src: string | null;
+  srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpFixed_withWebp_tracedSVG
+// ====================================================
+
+export interface GatsbyImageSharpFixed_withWebp_tracedSVG {
+  __typename: "ImageSharpFixed";
+  tracedSVG: string | null;
+  width: number | null;
+  height: number | null;
+  src: string | null;
+  srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpFixed_noBase64
+// ====================================================
+
+export interface GatsbyImageSharpFixed_noBase64 {
+  __typename: "ImageSharpFixed";
+  width: number | null;
+  height: number | null;
+  src: string | null;
+  srcSet: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpFixed_withWebp_noBase64
+// ====================================================
+
+export interface GatsbyImageSharpFixed_withWebp_noBase64 {
+  __typename: "ImageSharpFixed";
+  width: number | null;
+  height: number | null;
+  src: string | null;
+  srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpFluid
+// ====================================================
+
+export interface GatsbyImageSharpFluid {
+  __typename: "ImageSharpFluid";
+  base64: string | null;
+  aspectRatio: number | null;
+  src: string | null;
+  srcSet: string | null;
+  sizes: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpFluid_tracedSVG
+// ====================================================
+
+export interface GatsbyImageSharpFluid_tracedSVG {
+  __typename: "ImageSharpFluid";
+  tracedSVG: string | null;
+  aspectRatio: number | null;
+  src: string | null;
+  srcSet: string | null;
+  sizes: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpFluid_withWebp
+// ====================================================
+
+export interface GatsbyImageSharpFluid_withWebp {
+  __typename: "ImageSharpFluid";
+  base64: string | null;
+  aspectRatio: number | null;
+  src: string | null;
+  srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
+  sizes: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpFluid_withWebp_tracedSVG
+// ====================================================
+
+export interface GatsbyImageSharpFluid_withWebp_tracedSVG {
+  __typename: "ImageSharpFluid";
+  tracedSVG: string | null;
+  aspectRatio: number | null;
+  src: string | null;
+  srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
+  sizes: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpFluid_noBase64
+// ====================================================
+
+export interface GatsbyImageSharpFluid_noBase64 {
+  __typename: "ImageSharpFluid";
+  aspectRatio: number | null;
+  src: string | null;
+  srcSet: string | null;
+  sizes: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpFluid_withWebp_noBase64
+// ====================================================
+
+export interface GatsbyImageSharpFluid_withWebp_noBase64 {
+  __typename: "ImageSharpFluid";
+  aspectRatio: number | null;
+  src: string | null;
+  srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
+  sizes: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpResolutions
+// ====================================================
+
+export interface GatsbyImageSharpResolutions {
+  __typename: "ImageSharpResolutions";
+  base64: string | null;
+  width: number | null;
+  height: number | null;
+  src: string | null;
+  srcSet: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpResolutions_tracedSVG
+// ====================================================
+
+export interface GatsbyImageSharpResolutions_tracedSVG {
+  __typename: "ImageSharpResolutions";
+  tracedSVG: string | null;
+  width: number | null;
+  height: number | null;
+  src: string | null;
+  srcSet: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpResolutions_withWebp
+// ====================================================
+
+export interface GatsbyImageSharpResolutions_withWebp {
+  __typename: "ImageSharpResolutions";
+  base64: string | null;
+  width: number | null;
+  height: number | null;
+  src: string | null;
+  srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpResolutions_withWebp_tracedSVG
+// ====================================================
+
+export interface GatsbyImageSharpResolutions_withWebp_tracedSVG {
+  __typename: "ImageSharpResolutions";
+  tracedSVG: string | null;
+  width: number | null;
+  height: number | null;
+  src: string | null;
+  srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpResolutions_noBase64
+// ====================================================
+
+export interface GatsbyImageSharpResolutions_noBase64 {
+  __typename: "ImageSharpResolutions";
+  width: number | null;
+  height: number | null;
+  src: string | null;
+  srcSet: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpResolutions_withWebp_noBase64
+// ====================================================
+
+export interface GatsbyImageSharpResolutions_withWebp_noBase64 {
+  __typename: "ImageSharpResolutions";
+  width: number | null;
+  height: number | null;
+  src: string | null;
+  srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpSizes
+// ====================================================
+
+export interface GatsbyImageSharpSizes {
+  __typename: "ImageSharpSizes";
+  base64: string | null;
+  aspectRatio: number | null;
+  src: string | null;
+  srcSet: string | null;
+  sizes: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpSizes_tracedSVG
+// ====================================================
+
+export interface GatsbyImageSharpSizes_tracedSVG {
+  __typename: "ImageSharpSizes";
+  tracedSVG: string | null;
+  aspectRatio: number | null;
+  src: string | null;
+  srcSet: string | null;
+  sizes: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpSizes_withWebp
+// ====================================================
+
+export interface GatsbyImageSharpSizes_withWebp {
+  __typename: "ImageSharpSizes";
+  base64: string | null;
+  aspectRatio: number | null;
+  src: string | null;
+  srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
+  sizes: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpSizes_withWebp_tracedSVG
+// ====================================================
+
+export interface GatsbyImageSharpSizes_withWebp_tracedSVG {
+  __typename: "ImageSharpSizes";
+  tracedSVG: string | null;
+  aspectRatio: number | null;
+  src: string | null;
+  srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
+  sizes: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpSizes_noBase64
+// ====================================================
+
+export interface GatsbyImageSharpSizes_noBase64 {
+  __typename: "ImageSharpSizes";
+  aspectRatio: number | null;
+  src: string | null;
+  srcSet: string | null;
+  sizes: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GatsbyImageSharpSizes_withWebp_noBase64
+// ====================================================
+
+export interface GatsbyImageSharpSizes_withWebp_noBase64 {
+  __typename: "ImageSharpSizes";
+  aspectRatio: number | null;
+  src: string | null;
+  srcSet: string | null;
+  srcWebp: string | null;
+  srcSetWebp: string | null;
+  sizes: string | null;
 }
 
 /* tslint:disable */

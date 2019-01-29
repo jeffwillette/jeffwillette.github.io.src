@@ -125,7 +125,7 @@ export const pageQuery = graphql`
     authorAvatar: file(name: { eq: "jeff" }, extension: { eq: "png" }) {
       childImageSharp {
         fluid {
-          src
+          ...GatsbyImageSharpFluid_tracedSVG
         }
       }
     }
@@ -139,18 +139,7 @@ export const pageQuery = graphql`
           publicURL
           childImageSharp {
             fluid {
-              base64
-              tracedSVG
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
-              originalImg
-              originalName
-              presentationWidth
-              presentationHeight
+              ...GatsbyImageSharpFluid_tracedSVG
             }
           }
         }

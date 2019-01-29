@@ -47,7 +47,7 @@
     "develop": "gatsby develop --port 8001",
     "clean": "rm -r ./.cache",
     "get-schema": "apollo service:download --endpoint http://localhost:8001/___graphql ./gatsby-schema.json",
-    "gatsby-gen": "apollo client:codegen --addTypename --outputFlat --tagName=graphql --target=typescript --localSchemaFile=./gatsby-schema.json --includes=./src/**/*.tsx ./src/gatsby-queries.d.ts",
+    "gatsby-gen": "apollo client:codegen --addTypename --outputFlat --tagName=graphql --target=typescript --localSchemaFile=./gatsby-schema.json  --includes='./{src,.cache}/**/*.{ts,tsx,js,jsx}' ./src/gatsby-queries.d.ts",
     "gen": "yarn get-schema && yarn gatsby-gen",
     "format": "prettier --write \"src/**/*.ts*\"",
     "test": "jest --coverage && yarn typecheck && yarn lint",
