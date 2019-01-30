@@ -31,6 +31,7 @@ export const LineChart = compose<ExtendedProps, Props>(
     }
 
     public componentDidUpdate() {
+      clearChart(this.node);
       this.createLineChart();
     }
 
@@ -65,11 +66,13 @@ export const LineChart = compose<ExtendedProps, Props>(
 
           const s = select(this.node).select('.innerG'); // select the inner g container where elements will be
 
+          s.selectAll('.xAxis').remove();
           s.append('g')
-            .attr('class', 'xAxis') // set the class for the x axis
+            .attr('class', 'xAxis')
             .attr('transform', `translate(0, ${height})`)
             .call(axisBottom(xScale)); // add the axis
 
+          s.selectAll('.yAxis').remove();
           s.append('g')
             .attr('class', 'yAxis') // set the class for the y axis
             .call(axisLeft(yScale)); // set the axis

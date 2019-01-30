@@ -5,6 +5,7 @@ import Helmet from 'react-helmet';
 import { FlatButton } from '../components/button';
 import { BarChart } from '../components/Charts/bar';
 import { Circles } from '../components/Charts/circles';
+import { Graph } from '../components/Charts/graph';
 import { LineChart } from '../components/Charts/line';
 import { GlobalLayout } from '../components/Layout/global';
 import { IndexQuery } from '../gatsby-queries';
@@ -86,6 +87,7 @@ export const Index = withStyles(styles)(
               onClick={() => this.setState({ lineData: lineData() })}
               children="randomize"
             />
+            <Graph xMin={-10} xMax={10} width="100%" fx={x => 2 * (x * x) + 3 * x + 4} />
           </div>
         </GlobalLayout>
       );

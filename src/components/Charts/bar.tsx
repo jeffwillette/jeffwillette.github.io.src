@@ -61,11 +61,13 @@ export const BarChart = compose<ExtendedProps, Props>(
 
           const s = select(this.node).select('.innerG');
 
+          s.selectAll('.xAxis').remove();
           s.append('g')
             .attr('class', 'xAxis') // set the class for the x axis
             .attr('transform', `translate(0, ${height})`)
             .call(axisBottom(xScale)); // add the axis
 
+          s.selectAll('.yAxis').remove();
           s.append('g')
             .attr('class', 'yAxis') // set the class for the y axis
             .call(axisLeft(yScale)); // set the axis
