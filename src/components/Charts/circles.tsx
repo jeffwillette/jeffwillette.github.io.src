@@ -57,6 +57,11 @@ export const Circles = compose<ExtendedProps, Props>(
     }
 
     public timer = () => {
+      if (this.state.planets.length === 75) {
+        clearInterval(this.state.timer);
+        console.log('cleared');
+      }
+
       this.setState(prev => {
         const [width, height] = getWidthAndHeight(this.node, margin);
         const newPlanets = [...prev.planets, makePlanet(width, height)];

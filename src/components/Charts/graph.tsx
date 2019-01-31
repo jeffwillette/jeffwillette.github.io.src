@@ -100,7 +100,7 @@ export const Graph = compose<ExtendedProps, Props>(
 
       return (
         <div className={classes.svgContainer}>
-          <svg ref={n => (this.node = n)} width={this.props.width} className={c(classes.svg)}>
+          <svg ref={n => (this.node = n)} width={this.props.width} className={c(classes.svg)} style={{ margin: 20 }}>
             <g className="innerG" transform={`translate(${margin}, ${margin})`}>
               <path className="curve" />
             </g>
