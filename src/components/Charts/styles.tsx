@@ -24,5 +24,14 @@ export const styles = (_: Theme) =>
         fill: 'none',
         strokeWidth: 4
       }
+    },
+    left: {
+      float: 'left'
+    },
+    right: {
+      float: 'right'
+    },
+    center: {
+      margin: 'auto'
     }
   });

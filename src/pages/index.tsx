@@ -7,6 +7,7 @@ import { BarChart } from '../components/Charts/bar';
 import { Circles } from '../components/Charts/circles';
 import { Graph } from '../components/Charts/graph';
 import { LineChart } from '../components/Charts/line';
+import { TreeChart } from '../components/Charts/tree';
 import { GlobalLayout } from '../components/Layout/global';
 import { IndexQuery } from '../gatsby-queries';
 import { safe } from '../utils';
@@ -88,6 +89,32 @@ export const Index = withStyles(styles)(
               children="randomize"
             />
             <Graph xMin={-10} xMax={10} width="100%" fx={x => 2 * (x * x) + 3 * x + 4} />
+            <TreeChart
+              data={{
+                name: 'winner',
+                children: [
+                  {
+                    name: 'loser-1-1',
+                    children: [
+                      {
+                        name: 'loser2-1',
+                        children: [
+                          { name: 'loser3-1', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] },
+                          { name: 'loser3-2', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] }
+                        ]
+                      },
+                      {
+                        name: 'loser2-2',
+                        children: [
+                          { name: 'loser3-1', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] },
+                          { name: 'loser3-2', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }}
+            />
           </div>
         </GlobalLayout>
       );

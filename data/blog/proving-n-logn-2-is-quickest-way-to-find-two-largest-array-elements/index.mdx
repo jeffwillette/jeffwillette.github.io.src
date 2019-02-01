@@ -1,0 +1,58 @@
+---
+title: Finding The Two Largest Elements In An Array
+published: false
+createdAt: 2019-01-31T14:40:05.784Z
+updatedAt: 2019-02-01T15:29:40.325Z
+categories:
+  - Programming
+  - Algorithms
+---
+
+## Prove that no algorithm for finding the two largest elements in an array can do it in less than <InlineMath math="n + [log_2n] - 2"/> comparisons
+
+The fastest method to find the largest member of an array is to compare each element with its neighbor, choosing the
+larger element and  then comparing all winners with other winners and so forth much like a tournament bracket is set
+up.
+
+<TreeChart
+  width="75%"
+  align="center"
+  data={{
+    name: 'winner',
+    children: [
+      {
+        name: 'loser-1-1',
+        children: [
+          {
+            name: 'loser2-1',
+            children: [
+              { name: 'loser3-1', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] },
+              { name: 'loser3-2', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] }
+            ]
+          },
+          {
+            name: 'loser2-2',
+            children: [
+              { name: 'loser3-1', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] },
+              { name: 'loser3-2', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] }
+            ]
+          }
+        ]
+      }
+    ]
+  }}
+/>
+
+In the example here, the number of beginning elements is 8 every element is compared once (count the nodes where a
+decision is made), we can say that there are <InlineMath math="n - 1 = 7" comparisons to find the max element. The
+second largest element in the list must have lost to the largest somewhere along the line. It could have been in the
+first comparison or the last. Counting the layers of comparisons shows that there are <InlineMath math="log_2 n" />
+comparisons where the second largest could have lost to the largest.
+
+Finding the largest element can be done with a complexity of <InlineMath math="n - 1" /> so therefore finding the
+largest in the list of losers is <InlineMath math="log_2 - 1" />.
+
+Therefore <InlineMath math="n + log_2 n - 1" /> is the fastest possible method of finding the greatest to elements in an
+array.
+
+## What is the fastest algorithm for finding three largest elements?
