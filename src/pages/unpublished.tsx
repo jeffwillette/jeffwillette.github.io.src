@@ -2,7 +2,7 @@ import { graphql } from 'gatsby';
 import { Blog } from '../components/blogPage';
 
 export const query = graphql`
-  query BlogQuery($skip: Int!, $limit: Int!) {
+  query Unpublished {
     site {
       siteMetadata {
         title
@@ -12,10 +12,8 @@ export const query = graphql`
       }
     }
     allMdx(
-      filter: { fileAbsolutePath: { regex: "/blog/" }, frontmatter: { published: { eq: true } } }
+      filter: { fileAbsolutePath: { regex: "/blog/" }, frontmatter: { published: { eq: false } } }
       sort: { fields: [frontmatter___updatedAt], order: DESC }
-      limit: $limit
-      skip: $skip
     ) {
       edges {
         node {

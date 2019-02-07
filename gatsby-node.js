@@ -40,7 +40,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 // this is for creating pages from the markdown files at the slug location, this is run
 // when it is time to take the nodes created and generate pages from them.
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage, deletePage } = actions;
 
   const pathAndTemplates = {
     '/blog/': path.resolve('./src/templates/blogPost.tsx'),
@@ -48,6 +48,7 @@ exports.createPages = ({ graphql, actions }) => {
   };
 
   const blogIndexPage = path.resolve('./src/pages/blog.tsx');
+  const unpublishedPage = path.resolve('./src/pages/unpublished.tsx');
 
   return new Promise((resolve, reject) => {
     resolve(
@@ -172,6 +173,11 @@ exports.onCreatePage = ({ page, actions }) => {
   // This will be taken care of in createPages when I have all the pages in
   // a graphql query
   if (page.path === '/blog/') {
+    deletePage(page);
+  }
+
+  // delete the unpublished page on production
+  if (process.env.NODE_ENV === 'production' && page.path === '/unpublished/') {
     deletePage(page);
   }
 };

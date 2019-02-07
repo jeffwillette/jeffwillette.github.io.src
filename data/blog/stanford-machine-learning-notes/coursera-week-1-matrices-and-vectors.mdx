@@ -1,0 +1,81 @@
+---
+title: Coursera Week 1 Matrices and Vectors
+published: false
+createdAt: 2019-02-05T16:03:28.765Z
+updatedAt: 2019-02-06T07:20:27.674Z
+categories:
+  - Programming
+  - Algorithms
+---
+
+- vectors are an `[n x 1]` matrix
+- matrix addition only works on matrices of the same dimension
+- matrix multiplication/division by a scalar multiplies/divides each element by the scalar
+- a 4x3 matrix multiplied by a 4x1 vector works like this
+
+<BlockMath math="
+  \begin{bmatrix}
+   1 & 0 & 3 & 2 \\
+   5 & 3 & 6 & 8 \\
+   4 & 9 & 1 & 3
+  \end{bmatrix} *
+  \begin{bmatrix}
+   3 \\
+   2 \\
+   1 \\
+   6
+  \end{bmatrix} =
+  \begin{bmatrix}
+   1*3 + 0*2 + 3*1 + 2*6 \\
+   5*3 + 3*2 + 6*1 + 8*6 \\
+   4*3 + 9*2 + 1*1 + 3*6
+  \end{bmatrix} =
+  \begin{bmatrix}
+  18 \\
+  75 \\
+  49
+  \end{bmatrix}
+" />
+
+- matrix multiplication is not commutative but it is associative. Meaning that the operations can happen in any order
+but the positions cannot be switched.
+- if one of the matrices being multiplied is an identity matrix, then multiplication is commutative.
+
+<BlockMath math="
+  \begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+  \quad = Identity Matrix = I_{nxn}
+" />
+
+- `m by m` matrices haev an inverse that when multiplied by itself, gives the identity matrix.
+
+<BlockMath math="3(3^-1) = 1" />
+<BlockMath math="A(A^-1) = A^-1A = I" />
+
+- the number of columns in the first matrix must be equal to the number of rows in the second matrix
+
+<BlockMath math="
+  A =
+  \begin{bmatrix}
+    1 & 2 & 3 \\
+    7 & 3 & 1 \\
+    5 & 9 & 1
+  \end{bmatrix}
+  B =
+  \begin{bmatrix}
+    0 & 1 \\
+    7 & 1
+  \end{bmatrix}
+  C =
+  \begin{bmatrix}
+    4 & 2 \\
+    2 & 8 \\
+    3 & 5
+  \end{bmatrix}
+" />
+
+In the above example matrices, <InlineMath math="A * C" /> is ok <InlineMath math="A * B" /> is not ok,
+<InlineMath math="B * C" /> is not ok, but <InlineMath math="C * B" /> is ok

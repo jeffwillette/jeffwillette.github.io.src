@@ -1,4 +1,4 @@
-import { withStyles, WithStyles } from '@material-ui/core';
+import { Tooltip, withStyles, WithStyles } from '@material-ui/core';
 import c from 'classnames';
 import { axisBottom, axisLeft, curveMonotoneX, line, scaleLinear, select } from 'd3';
 import React from 'react';
@@ -7,12 +7,17 @@ import { withDrawerOpen } from '../../utils';
 import { styles } from './styles';
 import { clearChart, margin, randomColor } from './utils';
 
+type PointProp = [number, number];
+
 interface Props {
   fx: (x: number) => number;
   samples?: number;
   xMin: number;
   xMax: number;
+  xLabel: string | React.ReactNode;
+  yLabel: string | React.ReactNode;
   width?: string;
+  points?: PointProp[];
 }
 
 interface ExtendedProps extends Props, WithStyles<typeof styles> {}
@@ -29,7 +34,13 @@ export const Graph = compose<ExtendedProps, Props>(
   class extends React.Component<ExtendedProps, {}> {
     public static defaultProps: Partial<Props> = {
       width: '100%',
-      samples: 1000
+      samples: 1000,
+      yLabel: 'Y',
+      xLabel: 'X',
+      xMin: -10,
+      xMax: 10,
+      yMin: -10,
+      yMax: 10
     };
 
     public node: SVGSVGElement | null = null;
@@ -45,11 +56,11 @@ export const Graph = compose<ExtendedProps, Props>(
 
     public createChart = () =>
       setTimeout(() => {
-        const { fx, xMin, xMax, samples } = this.props;
+        const { fx, xMin, xMax, samples, points } = this.props;
 
         if (this.node) {
           const sample = (xMax - xMin) / samples!;
-          const points = Array.from({ length: samples! }).map((_, i) => ({
+          const curvePoints = Array.from({ length: samples! }).map((_, i) => ({
             x: xMin + i * sample,
             y: fx(xMin + i * sample)
           }));
@@ -87,22 +98,40 @@ export const Graph = compose<ExtendedProps, Props>(
           const color = randomColor();
 
           s.select('.curve')
-            .datum(points)
+            .datum(curvePoints)
             .attr('d', chartLine)
             .style('stroke', color('0.4'))
             .style('fill', 'none')
             .style('stroke-width', 3);
+
+          const pointColor = randomColor();
+          s.selectAll('.graph-point')
+            .data(points || [])
+            .attr('r', 3)
+            .attr('cx', d => xScale(d[0]))
+            .attr('cy', d => yScale(d[1]))
+            .style('fill', pointColor('0.3'));
         }
       }, 1000);
 
     public render() {
-      const { classes } = this.props;
+      const { classes, points, xLabel, yLabel } = this.props;
+      const textColor = randomColor();
 
       return (
         <div className={classes.svgContainer}>
           <svg ref={n => (this.node = n)} width={this.props.width} className={c(classes.svg)} style={{ margin: 20 }}>
+            <g className="axisLabels">
+              <foreignObject y="100" children={<span style={{ color: textColor('0.4') }}>{xLabel}</span>} />
+            </g>
             <g className="innerG" transform={`translate(${margin}, ${margin})`}>
               <path className="curve" />
+              {points &&
+                points.map((p, i) => (
+                  <Tooltip key={`point-${i}`} title={`x: ${p[0]} y: ${p[1]}`}>
+                    <circle className="graph-point" />
+                  </Tooltip>
+                ))}
             </g>
           </svg>
         </div>

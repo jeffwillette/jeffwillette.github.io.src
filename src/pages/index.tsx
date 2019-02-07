@@ -9,6 +9,7 @@ import { Graph } from '../components/Charts/graph';
 import { LineChart } from '../components/Charts/line';
 import { TreeChart } from '../components/Charts/tree';
 import { GlobalLayout } from '../components/Layout/global';
+import { InlineMath } from '../components/math';
 import { IndexQuery } from '../gatsby-queries';
 import { safe } from '../utils';
 
@@ -88,7 +89,14 @@ export const Index = withStyles(styles)(
               onClick={() => this.setState({ lineData: lineData() })}
               children="randomize"
             />
-            <Graph xMin={-10} xMax={10} width="100%" fx={x => 2 * (x * x) + 3 * x + 4} />
+            <Graph
+              xMin={-10}
+              xMax={10}
+              xLabel={<InlineMath math="\check{y}_1" />}
+              width="100%"
+              fx={x => 2 * (x * x) + 3 * x + 4}
+              points={[[1, 1], [1, 2], [5, 5]]}
+            />
             <TreeChart
               data={{
                 name: 'winner',
