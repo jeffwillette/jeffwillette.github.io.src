@@ -1,18 +1,63 @@
 ---
 title: Multivariate Regression Analysis
-published: false
+published: true
 createdAt: 2019-02-06T15:07:03.555Z
-updatedAt: 2019-02-06T15:19:59.910Z
+updatedAt: 2019-02-07T15:35:19.247Z
 categories:
   - Programming
   - Algorithms
 ---
 
-ever feature should have a scale of approximately -1 to 1 in order to make the gradient descent an easier process. As
-long as t is something small and consistent.
+every feature in a machine learning model should have a scale of approximately -1 to 1 in order to make the gradient
+descent an easier process. As long as it is something small and consistent.
 
 Another way to go about it is to normalize the mean to 0 and divide by the range of values. the `mu` is the average of
-all the values. In the example given, the average house age was 38 years and the range of values were from 30 to 50
+all the values. In the example given, the average house age was 38 years old and the range of values were from 30 to 50
 years. This means that for th eaverage case, the value would be 0
 
 <BlockMath math="\frac{x_i - \mu_i}{s_i}" />
+
+The gradient descent for each theta value is as follows:
+
+<BlockMath math="\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta)" />
+
+When running a regression analysis it is important to have the right values for <InlineMath math="\alpha" /> because if
+it is too big then it will cause a "wobble" by overshooting the minimum and instead of converging on the minimum value,
+it will actually diverge.
+
+## Polynomial Regressions
+
+if the data with respect to a feature appears to be quadratic or cubic, the hypothesis function should show this. This
+can be done by taking the same features and squaring or cubing them to fit the data shape. In the following
+example, <InlineMath math="\theta_1x_1" /> and <InlineMath math="\theta_2_x_2^2"/> are the same metric split into
+different features such as `size` and `size * size`
+
+<BlockMath math="
+  \begin{aligned}
+    & h_\theta(x) \quad linear \quad = \theta_0 + \theta_1x_1 \\
+    & h_\theta(x) \quad quadratic \quad = theta_0 + \theta_1x_1 + \theta_2x_2^2 \\
+  \end{aligned}
+" />
+
+## Normal Equations
+
+The gradient descent method for finding the minimum error of the theta values in the hypothesis function can be solved
+by an equation instead of iterating through the algorithm. This is better when the number of features is small because
+it can be calculated easily, but when the number of features grows large (like <InlineMath math="10^6"/>) it can become
+costly and it would be relatively more efficient to use gradient descent.
+
+<BlockMath math="\theta = (X^TX)^{-1}X^Ty"/>
+
+#### Gradient Descent
+
+- needs an alpha value (a multiple to step by the derivative)
+- need many iterations
+- <InlineMath math="O(kn^2)" />
+- works well when n is large
+
+#### Normal Equations
+
+- no need for alpha
+- no iterations
+- <InlineMath math="O(n^3)" />
+- slow if n is large
