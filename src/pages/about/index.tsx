@@ -1,8 +1,10 @@
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import { graphql } from 'gatsby';
 import React from 'react';
+import { GlobalLayout } from '../../components/Layout/global';
 import { Resume } from '../../components/Resume/resume';
 import { AboutPage } from '../../gatsby-queries';
+import resumePDF from '../../jeff-willette-site.pdf';
 import { safe } from '../../utils';
 
 const styles = (_: Theme) => createStyles({});
@@ -15,7 +17,12 @@ const About = ({ data }: Props) => {
   const { site } = safe(data);
   const { siteMetadata } = safe(site);
   const { resume } = safe(siteMetadata);
-  return <Resume resume={safe(resume)} />;
+  // return <Resume resume={safe(resume)} />;
+  return (
+    <GlobalLayout>
+      <embed width="100%" height="1000px" src={resumePDF} />
+    </GlobalLayout>
+  );
 };
 
 export const pageQuery = graphql`

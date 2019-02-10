@@ -178,6 +178,12 @@ class globalLayout extends React.Component<ExtendedProps, State> {
                     </ListItemIcon>
                     <ListItemText>Blog</ListItemText>
                   </ListItem>
+                  <ListItem className={classes.nestedList} button onClick={() => navigate('/about/')}>
+                    <ListItemIcon>
+                      <LibraryBooks />
+                    </ListItemIcon>
+                    <ListItemText>About</ListItemText>
+                  </ListItem>
                 </List>
               </Collapse>
             </List>
