@@ -1,0 +1,66 @@
+---
+title: Neural Networks
+published: true
+createdAt: 2019-02-26T14:20:26.310Z
+updatedAt: 2019-02-26T15:20:30.556Z
+categories:
+  - Programming
+  - Algorithms
+  - Machine Learning
+  - Neural Networks
+---
+
+Neural networks solve the problem of having too many quadratic combinations of features when designing a learning
+algorithm. The features are fed into a "hidden" layer in the following way.
+
+<BlockMath math="
+  \begin{bmatrix}
+    x_0 \\
+    x_1 \\
+    x_2
+  \end{bmatrix}
+  \to
+  \begin{bmatrix}
+  ...
+  \end{bmatrix}
+  \to
+  h_\theta(x)
+" />
+
+inside the hidden layer is a matrix of theta values which looks like this
+
+<BlockMath math="
+  \begin{aligned}
+  &\begin{bmatrix}
+    x_0 \\
+    x_1 \\
+    x_2 \\
+  \end{bmatrix}
+  \to
+  \begin{bmatrix}
+    a_1^{(2)} \\
+    a_2^{(2)} \\
+    a_3^{(2)}
+  \end{bmatrix}
+  \to
+  h_\theta(x) \\
+  &\begin{bmatrix}
+    x_0 \\
+    x_1 \\
+    x_2 \\
+  \end{bmatrix}
+  \to
+  \begin{bmatrix}
+    g(\theta_{10}^{(1)}x_0 + \theta_{11}^{(1)}x_1 \theta_{12}^{(1)}x_2)) \\
+    g(\theta_{20}^{(1)}x_0 + \theta_{21}^{(1)}x_1 \theta_{22}^{(1)}x_2)) \\
+    g(\theta_{30}^{(1)}x_0 + \theta_{31}^{(1)}x_1 \theta_{32}^{(1)}x_2))
+  \end{bmatrix}
+  \to
+  g(\theta_{10}^{(1)}a_0^{(2)} + \theta_{11}^{(2)}a_1^{(2)} + \theta_{12}^{(2)}a_2^{(2)} + \theta_{13}^{(2)}a_3^{(2)})
+  \end{aligned}
+" />
+
+The jump from the second layer to the third layer where the hypothesis outputs a prediction is similar to the logistic
+regression with no neural network. The difference in the neural network is that each input feature can be mapped to each
+dimension of the hidden layer vector and the network can then combine the inputs according to some algorithm instead of
+manually coming up with a function to fit intended shape of the data.
