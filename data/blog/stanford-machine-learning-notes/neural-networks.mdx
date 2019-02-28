@@ -2,7 +2,7 @@
 title: Neural Networks
 published: true
 createdAt: 2019-02-26T14:20:26.310Z
-updatedAt: 2019-02-26T15:20:30.556Z
+updatedAt: 2019-02-28T16:11:07.333Z
 categories:
   - Programming
   - Algorithms
@@ -51,9 +51,9 @@ inside the hidden layer is a matrix of theta values which looks like this
   \end{bmatrix}
   \to
   \begin{bmatrix}
-    g(\theta_{10}^{(1)}x_0 + \theta_{11}^{(1)}x_1 \theta_{12}^{(1)}x_2)) \\
-    g(\theta_{20}^{(1)}x_0 + \theta_{21}^{(1)}x_1 \theta_{22}^{(1)}x_2)) \\
-    g(\theta_{30}^{(1)}x_0 + \theta_{31}^{(1)}x_1 \theta_{32}^{(1)}x_2))
+    g(\theta_{10}^{(1)}x_0 + \theta_{11}^{(1)}x_1 + \theta_{12}^{(1)}x_2)) \\
+    g(\theta_{20}^{(1)}x_0 + \theta_{21}^{(1)}x_1 + \theta_{22}^{(1)}x_2)) \\
+    g(\theta_{30}^{(1)}x_0 + \theta_{31}^{(1)}x_1 + \theta_{32}^{(1)}x_2))
   \end{bmatrix}
   \to
   g(\theta_{10}^{(1)}a_0^{(2)} + \theta_{11}^{(2)}a_1^{(2)} + \theta_{12}^{(2)}a_2^{(2)} + \theta_{13}^{(2)}a_3^{(2)})
@@ -64,3 +64,66 @@ The jump from the second layer to the third layer where the hypothesis outputs a
 regression with no neural network. The difference in the neural network is that each input feature can be mapped to each
 dimension of the hidden layer vector and the network can then combine the inputs according to some algorithm instead of
 manually coming up with a function to fit intended shape of the data.
+
+## The Example Problem
+
+#### The cost function
+
+The example problem for this week `ex3.m` first had us implement a vectorized cost function and gradient (partial
+derivative). The arguments to this function are as follows.
+
+1. The `X` is the entire training set, which is a `5000x400` of 5000 examples with 400 features each. Each pixel in the
+handwritten digit is a feature.
+2. It also takes thetas for each feature plus a bias, so 401 theta values
+3. `y` is the expected output of the classification, which is a vector of `0`'s or `1`'s
+4. lambda is the lambda regularization value
+
+```matlab
+function [J, grad] = lrCostFunction(theta, X, y, lambda)
+```
+
+#### The oneVsAll training
+
+The second function that we had to implement was the training of the theta values for the on vs all comparisons.
+
+```matlab
+function [all_theta] = oneVsAll(X, y, num_labels, lambda)
+```
+1. `X` is the `5000x400` training set
+2. `y` is the expected values of the digits. This is a `5000x1` matrix with the actual value of the 1-10 digit.
+3. `num_labels` are the number of different labels or possible outcomes that we have.
+4. `lambda` is the lambda regularization value that is to be fed to the cost function.
+5. The return value `all_theta` is a `10x401` matrix. Each row of the matrix is used to identify one of the 10 labels
+that we have.
+
+to implement the function I made a loop that calls the `fmincg` function for every label that we have. The result is a
+`10x401` matrix of theta values where each of the 10 rows is a set of theta values for every pixel that is trained to
+identify whether an input is a single label (digit). If an input was to be tested, it would have to be tested against
+all of the rows so that the question "is this a 1?" "is this a 2?" ... for every possible label is asked and answered.
+
+the `y` input to the cost function is done in the form of `y == c` where `c` is the loop iterator which also
+corresponds to the digit in the oneVsAll `y` arg. The argument that is passed to the cost function will be a `5000x1`
+vector of `0`'s and `1`'s where the `1`'s are the oneVsAll digit we are trying to identify for this particular set of
+thetas.
+
+#### The prediction
+
+for the prediction, we are not using a neural network and it is just a one vs all logistic regression. The function
+takes two args which are
+
+1. `all_theta` which is a `10x401` matrix where each row is a set of theta values to make a decision about a single
+label.
+2. `X` which is a `5000x400` matrix of 5000 training examples with 400 features each.
+3. the return value `p` should be a `5000x1` vector of output hypotheses
+
+```matlab
+function p = predictOneVsAll(all_theta, X)
+```
+
+Multiplying the `all_theta` matrix with the `X'` matrix gives <InlineMath math="10 x 401 * 401 x 5000 = 10 x 5000"/> so
+in the end there will be a `10x5000` matrix where each column will be an output of something near 0 or near 1. If we
+take the index of the max then we can construct the return value.
+
+## Prediction With A Neural Network
+
+the last problem in the set was to make a prediction using a neural network [To be continued]...
