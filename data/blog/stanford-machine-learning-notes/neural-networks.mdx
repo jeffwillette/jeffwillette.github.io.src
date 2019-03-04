@@ -2,7 +2,7 @@
 title: Neural Networks
 published: true
 createdAt: 2019-02-26T14:20:26.310Z
-updatedAt: 2019-02-28T16:11:07.333Z
+updatedAt: 2019-03-04T04:20:03.243Z
 categories:
   - Programming
   - Algorithms
@@ -120,10 +120,75 @@ label.
 function p = predictOneVsAll(all_theta, X)
 ```
 
-Multiplying the `all_theta` matrix with the `X'` matrix gives <InlineMath math="10 x 401 * 401 x 5000 = 10 x 5000"/> so
+Multiplying the `all_theta` matrix with the `X'` matrix
+gives <InlineMath math="[10 x 401] * [401 x 5000] = [10 x 5000]"/> so
 in the end there will be a `10x5000` matrix where each column will be an output of something near 0 or near 1. If we
 take the index of the max then we can construct the return value.
 
 ## Prediction With A Neural Network
 
-the last problem in the set was to make a prediction using a neural network [To be continued]...
+the last problem in the set was to make a prediction using a neural network. This is done by multiplying the `5000x401`
+input matrix by the `25x401` matrix (transposed) that makes up the first hidden layer. The output from this layer
+is <InlineMath math="[5000 x 401] * [401 x 25] = [5000 x 25]" />. I like to visualize this as 25 different predictions
+being made for every example input.
+
+<BlockMath math="
+  \begin{aligned}
+    \begin{bmatrix}
+      x_0 & ... & x_{401} \\
+      & . & \\
+      & . & \\
+      & . &
+    \end{bmatrix}
+    *
+    \begin{bmatrix}
+      \theta_0 & ... & \theta_{401} \\
+      & . & \\
+      & . & \\
+      & . &
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+     (x_0 * \theta_{0,0} + ... + x_{401} * \theta_{401,0}) & ... & (x_0 * \theta_{0,25} + ... + x_{401} * \theta_{401,25}) \\
+     & . & \\
+     & . & \\
+     & . &
+    \end{bmatrix}
+  \end{aligned}
+" />
+
+Then the output from the second layer is ready to be fed into the third layer. The output from the second layer can be
+seen as 5000 inputs with 25 features each since the first layer has cut the original 401 input features down to 25.
+The <InlineMath math="l2" /> layer has 26 theta values, one for each of the outputs of <InlineMath math="l1" /> plus an
+extra bias unit. This gives us the following multiplication of
+matrices <InlineMath math="[5000 x 26] * [26 x 10] = [5000 x 10]" />.
+
+<BlockMath math="
+  \begin{aligned}
+    \begin{bmatrix}
+      a^{(2)}_{0,0} & ... & a^{(2)}_{0,25} \\
+      & . & \\
+      & . & \\
+      & . &
+    \end{bmatrix}
+    *
+    \begin{bmatrix}
+      \theta^{(3)}_{0,0} & ... & \theta^{(3)}_{0,10} \\
+      & . & \\
+      & . & \\
+      & . &
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    (a^{(2)}_{0,0} * \theta^{(3)}_{0,0} + ... + a^{(2)}_{0,26} * \theta^{(3)}_{26,0}) & ... & (a^{(2)}_{0,0} *
+    \theta^{(3)}_{0,10} + ... + a^{(2)}_{0,25} * \theta^{(3)}_{25,10}) \\
+    & . & \\
+    & . & \\
+    & . &
+    \end{bmatrix}
+  \end{aligned}
+" />
+
+The output from this layer is the one vs all prediction, so each row of the `5000x10` output matrix is a row
+of <InlineMath math="\approx 0 \quad or \quad \approx 1" />. If index 5 si approximately 1, then the prediction is that
+the hadnwritten digit is a `5`.
