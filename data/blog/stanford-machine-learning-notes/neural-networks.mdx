@@ -2,7 +2,7 @@
 title: Neural Networks
 published: true
 createdAt: 2019-02-26T14:20:26.310Z
-updatedAt: 2019-03-12T02:16:51.574Z
+updatedAt: 2019-03-14T01:54:02.485Z
 categories:
   - Programming
   - Algorithms
@@ -10,8 +10,13 @@ categories:
   - Neural Networks
 ---
 
-Neural networks solve the problem in a different way than linear or logistic regression, by having hidden layers added
-to them, each feature (column) gets fed into each neuron (row) in the first hidden theta layer in forward propogation
+Neural networks solve the problem in a different way than plain linear or logistic regression. With plain linear or
+logistic regression, a function must be chosen that models the structure of the data. By having multiple neurons in
+hidden layers, each neuron can make a linear function that when combined can simulate a higher power function. For
+example the function of a circle can be simulated by making multiple intersecting lines to mark out a section on a
+graph.
+
+Each feature (column) gets fed into each neuron (row) in the first hidden theta layer in forward propogation
 in the following way.
 
 <BlockMath math="
@@ -28,7 +33,7 @@ in the following way.
   h_\theta(x)
 " />
 
-inside the hidden layer is a matrix of theta values which looks like this
+Inside the hidden layer is a matrix of theta values which looks like this
 
 <BlockMath math="
   \begin{aligned}
@@ -63,7 +68,7 @@ inside the hidden layer is a matrix of theta values which looks like this
 
 The jump from the second layer to the third layer where the hypothesis outputs a prediction is similar to the logistic
 regression with no neural network. The difference in the neural network is that each input feature can be mapped to each
-dimension of the hidden layer vector and the network can then combine the inputs according to some algorithm instead of
+dimension of the hidden layer vector and the network can then combine the inputs according to the theta values instead of
 manually coming up with a function to fit intended shape of the data.
 
 ## The Example Problem
@@ -251,25 +256,25 @@ propogations and back propogation to work. For example, in forward propogation..
 
 <BlockMath math="
   \begin{aligned}
-    &examples = mx401 \\
-    &\Theta^{(1)} = 25x401 \\
-    &\Theta^{(2)} = 10x25 \\
-    &a^{(2)} = examples * \Theta^{(1)T} = mx401 * 401x25 = mx25 \\
-    &a^{(3)} = a^{(2)} * \Theta^{(2)T} = mx25 * 25x10 = mx10
+    &examples = m \times 401 \\
+    &\Theta^{(1)} = 25 \times 401 \\
+    &\Theta^{(2)} = 10 \times 25 \\
+    &a^{(2)} = examples * \Theta^{(1)T} = m \times 401 * 401 \times 25 = m \times 25 \\
+    &a^{(3)} = a^{(2)} * \Theta^{(2)T} = m \times 25 * 25 \times 10 = m \times 10
   \end{aligned}
 " />
 
 
-at the end of forward prop we are left with `mx10` one vs all predictions. Now it is time to go through the back
+at the end of forward prop we are left with `Mx10` one vs all predictions. Now it is time to go through the back
 propogation cycle which should leave us with matrices of gradients that will match the sizes of
 the <InlineMath math="\Theta" /> matrices.
 
 <BlockMath math="
   \begin{aligned}
-    & \delta^{(3)} = mx10 - mx10 = mx10 \\
-    & \delta^{(2)} = \Theta^{(2)T} * \delta^{(3)T} .* g'(z^{(2)})^{T} = 25x10 * 10xm .* 25xm = 25xm \\
-    & \Theta^{(1)}dx = \delta^{(2)} * examples / m = 25xm * mx401 = 25x401 \\
-    & \Theta^{(2)}dx = \delta^{(3)T} * a^{(2)} / m = 10xm * mx25 = 10x25
+    & \delta^{(3)} = m\times10 - m \times 10 = m\times10 \\
+    & \delta^{(2)} = \Theta^{(2)T} * \delta^{(3)T} .* g'(z^{(2)})^{T} = 25 \times 10 * 10 \times m .* 25 \times m = 25 \times m \\
+    & \Theta^{(1)}dx = \delta^{(2)} * examples / m = 25 \times m * m \times 401 = 25 \times 401 \\
+    & \Theta^{(2)}dx = \delta^{(3)T} * a^{(2)} / m = 10 \times m * m \times 25 = 10 \times 25
   \end{aligned}
 " />
 

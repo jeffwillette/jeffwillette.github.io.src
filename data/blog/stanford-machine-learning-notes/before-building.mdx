@@ -1,0 +1,63 @@
+---
+title: "Machine Learning: Thinking About Design"
+published: true
+createdAt: 2019-03-14T01:56:11.402Z
+updatedAt: 2019-03-18T13:06:03.219Z
+categories:
+  - Programming
+  - Algorithms
+  - Machine Learning
+  - Neural Networks
+---
+
+Before starting to build a network, it would be best to think very carefully about how to best go about it by
+brainstorming and testing ideas as much as possible. In the example of building a spam classifier, one could
+
+- Collect lots of data
+- Develop sophisticated features such as the email routing and header information
+- Develop algorithms to process the input in different ways
+
+When starting it would be best to learn about the provlem first. This is often done by tinkering with it on toy examples
+to see what the specific issues with the problem set are. A good approach would be to
+
+- Write a simple algorithm and test it on the cross validation data
+- Plot learning curves to decide if more data (possibly when there is high variance and overfitting) or more features
+  (possibly when there is high bias, and underfitting) are needed
+- Manually examine the cross validation set errors that were made to see if you can find a specific type of example that
+  it is failing on.
+
+## Precision vs. Recall vs Accuracy
+
+Accuracy is defined as <InlineMath math="\frac{\text{True positives + True negatives}}{total examples}"/>. This gives
+the overall correctness of the predictions.
+
+Precision is the ratio of how many of the true classifications on the cross validation set were actually
+correct <InlineMath math="\frac{\text{True positive}}{\text{True positive} + \text{False positive}}" />.
+In other words, of all of the predicted `true`s, how many were actually true. Recall is a similar metric that
+measures the ratio of <InlineMath math="\frac{\text{True positives}}{\text{True positives} + \text{False negatives}}"/>.
+
+These ratios are useful in the case that there is a high error rate. Perhaps just predicting 0 all the time would give a
+lower error rate that actually running the algorithm. In that case though, we are not doing anything so the precision
+and recall rates would both be 0. In order to influence the amount of recall and precision, we can change the point at
+which the hypothesis is considereed to output true or false. If the true prediction threshold is greateer than `0.9`
+this would lead to having more precision, but we will also have a higher false negagive rate. If the threshold is moved
+in the other direction, and we predict one when the hypothesis predicts anything higer than `0.1` then we will have few
+false negatives but many false positives (higher recall, lower precision).
+
+Ideally, both of these ratios would be high, meaning that the algorithm is largely predicting things correctly. In some
+cases though, it may be better to err on the side of caution. For instance, would it be acceptable to have a higher
+false positive flag or a higher false negative flag?
+
+In order to help choose a proper acceptable precision vs recall would be to use the following formula
+
+<BlockMath math="F_1 Score = 2 \frac{PR}{P+R}" />
+
+With this formula, if precision or recall is 0 (meaning that we were just predicting 1 or 0 the whole time), then the
+output score will be 0 (not good). A score closer to 1 is generally better.
+
+## Working With Large Datasets
+
+- One should ask if a human expert would be able to give insight with the feature set or not.
+- Use an algorithm with many parameters and many features, many hidden units. This is likely to make an algorithm which
+  can fit complex functions and have low bias
+- Use a large training set, unlikely to overfit the data (low variance)
