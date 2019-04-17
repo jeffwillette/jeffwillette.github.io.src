@@ -1,9 +1,9 @@
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import c from 'classnames';
-import Img, { GatsbyImageProps } from 'gatsby-image';
+import Img, { FluidObject, GatsbyImageProps } from 'gatsby-image';
 import React from 'react';
 import { StateConsumer } from '../context';
-import { BlogPostQuery_mdx_frontmatter_images_childImageSharp_fluid } from '../gatsby-queries';
+import { BlogPostQuery_mdx_frontmatter_images_childImageSharp_fluid as FluidQuery } from '../gatsby-queries';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -31,6 +31,16 @@ interface BaseProps extends WithStyles<typeof styles> {
 }
 
 interface MDXSharpImgProps extends BaseProps, GatsbyImageProps {}
+
+export const safeFluid = (f: FluidQuery | FluidObject | null): FluidObject => {
+  return {
+    aspectRatio: f ? f.aspectRatio || 1 : 1,
+    sizes: f ? f.sizes || '' : '',
+    src: f ? f.src || '' : '',
+    srcSet: f ? f.srcSet || '' : '',
+    tracedSVG: f ? f.tracedSVG || '' : ''
+  };
+};
 
 const mdxSharpImg = ({ classes, width, fluid, align }: MDXSharpImgProps) => (
   <StateConsumer>

@@ -12,7 +12,7 @@ import { Graph } from '../components/Charts/graph';
 import { LineChart } from '../components/Charts/line';
 import { TreeChart } from '../components/Charts/tree';
 import { DisplayCard } from '../components/displayCard';
-import { MDXSharpImg, MDXSrcImg } from '../components/images';
+import { MDXSharpImg, MDXSrcImg, safeFluid } from '../components/images';
 import { DrawerTOC, TableOfContents } from '../components/Layout/drawerTOC';
 import { GlobalLayout } from '../components/Layout/global';
 import { Link } from '../components/link';
@@ -71,7 +71,7 @@ const BlogPost = ({ classes, data }: Props) => {
       const { fluid: f } = safe(c);
       imgs[`Image${i + 1}`] = ({ align, width }) =>
         f ? (
-          <MDXSharpImg align={align} width={width} fluid={f || undefined} />
+          <MDXSharpImg align={align} width={width} fluid={safeFluid(f)} />
         ) : (
           <MDXSrcImg align={align} width={width} src={publicURL || ''} />
         );
