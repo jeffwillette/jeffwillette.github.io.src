@@ -1,25 +1,24 @@
-import { createStyles, List, ListItem, ListItemText, Theme, WithStyles, withStyles } from '@material-ui/core';
+import { List, ListItem, ListItemText, makeStyles, Theme } from '@material-ui/core';
 import c from 'classnames';
 import React from 'react';
 import { Link } from '../link';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    tocButtonRoot: {
-      paddingTop: theme.spacing.unit,
-      paddingBottom: theme.spacing.unit
-    },
-    tocButtonGutters: {
-      paddingLeft: theme.spacing.unit * 3,
-      paddingRight: theme.spacing.unit * 3
-    },
-    levelOne: {
-      fontSize: theme.typography.fontSize
-    },
-    levelTwo: {
-      fontSize: theme.typography.fontSize - 3
-    }
-  });
+const useStyles = makeStyles((theme: Theme) => ({
+  tocButtonRoot: {
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1)
+  },
+  tocButtonGutters: {
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3)
+  },
+  levelOne: {
+    fontSize: theme.typography.fontSize
+  },
+  levelTwo: {
+    fontSize: theme.typography.fontSize - 3
+  }
+}));
 
 export interface TableOfContents {
   url: string;
@@ -27,12 +26,13 @@ export interface TableOfContents {
   items?: TableOfContents[];
 }
 
-interface Props extends WithStyles<typeof styles> {
+interface Props {
   level: number;
   items: TableOfContents[];
 }
 
-const drawerTOC = ({ items, level, classes }: Props) => {
+export const DrawerTOC = ({ items, level }: Props) => {
+  const classes = useStyles();
   return (
     <List>
       {items &&
@@ -56,5 +56,3 @@ const drawerTOC = ({ items, level, classes }: Props) => {
     </List>
   );
 };
-
-export const DrawerTOC = withStyles(styles)(drawerTOC);

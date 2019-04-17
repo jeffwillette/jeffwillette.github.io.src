@@ -1,4 +1,4 @@
-import { Avatar, CardHeader, createStyles, Theme, Typography, WithStyles, withStyles } from '@material-ui/core';
+import { Avatar, CardHeader, makeStyles, Theme, Typography } from '@material-ui/core';
 import { Edit } from '@material-ui/icons';
 import { graphql } from 'gatsby';
 import MDXRenderer from 'gatsby-mdx/mdx-renderer';
@@ -21,34 +21,34 @@ import { TagChip } from '../components/tagChip';
 import { BlogPostQuery } from '../gatsby-queries';
 import { safe } from '../utils';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    postBody: {
-      marginTop: theme.spacing.unit * 3
-    },
-    editButtonText: {
-      margin: `0px ${theme.spacing.unit * 2}px`
-    },
-    button: {
-      margin: `${theme.spacing.unit * 3}px 0px`,
-      textAlign: 'center'
-    },
-    avatar: {
-      width: 60,
-      height: 60,
-      backgroundColor: 'rgba(0,0,0,.03)'
-    },
-    avatarCard: {
-      marginTop: theme.spacing.unit * 2,
-      paddingBottom: 0
-    }
-  });
+const useStyles = makeStyles((theme: Theme) => ({
+  postBody: {
+    marginTop: theme.spacing(3)
+  },
+  editButtonText: {
+    margin: `0px ${theme.spacing(2)}px`
+  },
+  button: {
+    margin: `${theme.spacing(3)}px 0px`,
+    textAlign: 'center'
+  },
+  avatar: {
+    width: 60,
+    height: 60,
+    backgroundColor: 'rgba(0,0,0,.03)'
+  },
+  avatarCard: {
+    marginTop: theme.spacing(2),
+    paddingBottom: 0
+  }
+}));
 
-interface Props extends WithStyles<typeof styles> {
+interface Props {
   data: BlogPostQuery;
 }
 
-const BlogPost = ({ classes, data }: Props) => {
+export default ({ data }: Props) => {
+  const classes = useStyles();
   const { mdx, authorAvatar, site } = safe(data);
 
   const { siteMetadata } = safe(site);
@@ -160,5 +160,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-
-export default withStyles(styles)(BlogPost);
