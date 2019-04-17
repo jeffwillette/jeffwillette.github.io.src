@@ -2,7 +2,7 @@
 title: "Machine Learning: Hypothesis, Cost Function, Gradient Descent Notes"
 published: true
 createdAt: 2019-02-05T12:23:50.151Z
-updatedAt: 2019-02-15T03:38:33.446Z
+updatedAt: 2019-04-17T14:23:37.957Z
 categories:
   - Programming
   - Algorithms
@@ -11,25 +11,25 @@ categories:
 
 ## Hypothesis
 
-The hypothesis is the prediction about a set of data. It is the y value on a graph. In the house price example, the
-`x-axis` is size in square feet and the y-axis is the price. The hypothesis would then be a linear function like
-below. The `x` values are the values of each feature.
+The hypothesis is the prediction about a set of data. It is the `y` value on a graph. In the house price example, the
+x-axis is size in square feet and the y-axis is the price. The hypothesis would then be a linear function like
+below. The `x` values are the values of each feature (of which there is only one -- house size).
 
 <BlockMath math="h_\theta(x) = \theta_{0} + \theta_{1}x" />
 <BlockMath math="f(x) = mx + b" />
 
 It is similar to the normal linear function that everyone knows. These <InlineMath math="\theta" /> parameters are
-chosen so that the cost function is minimized (the regression line) accurately fits the data.
+chosen through an algorithm so that the cost function is minimized (the regression line) to accurately fit the data.
 
 ## The Cost Function
 
 <BlockMath math="\frac{1}{2m} \displaystyle\sum_{i=1}^m (\check{y}_i - y_i)^2" />
 
-since the y-axis (price) is the value we are trying to predict, we want to minimize the error of our prediction. We
-could do this by taking the difference of the predicted y value and the actual y value, when we plot the hypothesis
-for every point on the line. If we could find a line to minimize these differences, that would be the line of best
-fit for the data.  <InlineMath math="\check{y}_i" /> in the cost function formula is shorthand
-for <InlineMath math="h_{0}(x) \quad OR \quad \theta_{0} + \theta_{1}x" />
+since the y-axis (price) is the value we are trying to predict, we want to minimize the error of our prediction (fit the
+best possible line to the data). We could do this by taking the difference of the predicted y value and the actual y
+value when we plot the hypothesis for every point on the line. If we could find a line to minimize these differences,
+that would be the line of best fit for the data.  <InlineMath math="\check{y}_i" /> in the cost function
+formula is shorthand for <InlineMath math="h_{0}(x) \text{ or } \theta_{0} + \theta_{1}x" />
 
 If we wanted to plot a possible hypothesis for the data we could plot something like below and then calculate the cost
 function based on the error from the actual values of the data.
@@ -40,9 +40,9 @@ We can see that it missed the y values by `0.5, 1, 1.5` respectively. if we appl
 
 <BlockMath math="\frac{1}{2 * 3} (.5^2 + 1^2 + 1.5^2) = \frac{1}{6} * 1.8125 = ~0.302" />
 
-The cost function can be looked at in respect to <InlineMath math="\theta_{0} \quad OR \quad \theta_{1}" /> on a 2-dimensional
-graph. The y-axis will be the cost function of <InlineMath math="\theta_{i}" /> which is annotated with
-<InlineMath math="J(\theta_i)" /> and the x-axis will be <InlineMath math="\theta_{1}" />. In the chart below, the
+The cost function can be looked at in respect to <InlineMath math="\theta_{0} \text{ or } \theta_{1}" /> on a 2-dimensional
+graph. The y-axis will be the cost function of <InlineMath math="\theta_{i}" /> which is annotated
+with <InlineMath math="J(\theta_i)" /> and the x-axis will be <InlineMath math="\theta_{i}" />. In the chart above, the
 hypothesis functions <InlineMath math="\theta_{1}" /> or slope is `0.5` and we can see that it does not fit the line very well.
 
 If we went on to graph different lines of this function (the cost function with respect to <InlineMath math="\theta_1" />)
@@ -55,7 +55,7 @@ The graph would look something like the quadratic function of <InlineMath math="
 <Graph width="100%" fx={(x) => (x - 1) * (x - 1)} />
 
 This was all assuming that the cost function was only a function of <InlineMath math="\theta_1" /> but in reality it is
-a function of both <InlineMath math="\theta_1 \quad AND \quad \theta_0" /> so we must express it as such which is
+a function of both <InlineMath math="\theta_1 \text{ and } \theta_0" /> so we must express it as such which is
 actually a 3 dimensional function.
 
 <BlockMath math="J(\theta_0, \theta_1) = \frac{1}{2m} \displaystyle\sum_{i=1}^m (\theta_0 + \theta_{1}x - y_i)^2" />
@@ -65,18 +65,19 @@ which means that we need a more sophisticated way to find a global minimum.
 ## Finding a Global Minimum Through Gradient Descent
 
 The gradient descent function takes small steps towards the local minimum for every parameter (dimension) in the
-hypothesis. since this example is a linear regression, there are only two parameters.
+hypothesis. since this example is a linear regression problem, there are only two parameters.
 
 <BlockMath math="\theta_j := \theta_j - \alpha \frac{\partial}{\partial\theta_j} J(\theta_0,\theta_1)" />
 
-the <InlineMath math="\alpha" /> is the size step that is taken for each step. The step is multiplied by the derivative to
-get a movement in the right direction. The right direction is guaranteed because subtracting a positive derivative will
-push you in a downward direction and subtracting a negative derivative (adding by a negative slope) will also push you
-in a downward direction.
+the <InlineMath math="\alpha" /> is the size step that is taken for each step. The step is multiplied by the derivative
+(which is the slope of the tangent line) to get a movement in the right direction. The right direction is guaranteed
+because subtracting a positive derivative will push you in a downward direction and subtracting a negative derivative
+(adding by a negative slope) will also push you in a downward direction.
 
-This would be repeated for every paramter (dimension) of the hypothesis before resetting the values to the now lower
-values and repeating the process until minimums are found. A minimum is found when the derivative slowly evens out to 0
-meaning that the minimum is found and the next step is just <InlineMath math="\theta_j - 0" /> or static.
+This would be repeated for every paramter (dimension) of the hypothesis simultaneously before resetting the values to
+the now lower values and repeating the process until minimums are found. A minimum is found when the derivative slowly
+evens out to 0 meaning that the minimum is found and the next step is just <InlineMath math="\theta_j - 0" /> or static.
+In reality it will often approach 0 but never actually get there.
 
 ## Deriving the cost function
 
@@ -86,10 +87,9 @@ which helped me understand everything after looking closely at the math.
 #### Derivative of the hypothesis
 
 since the hypothesis is <InlineMath math="h_{\theta}(x_{i}) = \theta_{0} + \theta_{1}x_{i}" />. We can derive the
-following partial derivatives with respect to <InlineMath math="\theta_0 \quad and \quad \theta_1" />.
-
-The partial derivative with respect to <InlineMath math="\theta_{0}" /> makes the term
-with <InlineMath math="\theta_1 x_1" /> irrelevant, so it changes to 0, and the partial derivative of a constant is 1.
+following partial derivatives with respect to <InlineMath math="\theta_0 \text{and} \theta_1" />. The partial
+derivative with respect to <InlineMath math="\theta_{0}" /> makes the term with <InlineMath math="\theta_1 x_1" />
+irrelevant, so it changes to 0, and the partial derivative of a variable with no coefficient is 1.
 
 <BlockMath math="
   \frac{\partial}{\partial\theta_{0}} h_{\theta}(x_{i})
@@ -99,8 +99,9 @@ with <InlineMath math="\theta_1 x_1" /> irrelevant, so it changes to 0, and the 
   = 1
 " />
 
-When the derivative is taken with respect to <InlineMath math="\theta_{0}" /> then it becomes reduces to taking the
-derivative of theta (which is a constant), and leaves the `x` term unchanged.
+When the derivative is taken with respect to <InlineMath math="\theta_{0}" /> then <InlineMath math="\theta_0" />
+becomes irrelevant, and we need to take the derivative of the variable theta (which is 1), and leaves the `x` term
+unchanged.
 
 <BlockMath math="
   \frac{\partial}{\partial\theta_1} h_{\theta} (x_{i})

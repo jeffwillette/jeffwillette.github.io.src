@@ -56,9 +56,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
-    "@types/node": "^10.12.12",
+    "@types/node": "^11.13.4",
     "@types/react": "^16.7.13",
-    "@types/react-dom": "16.0.11",
+    "@types/react-dom": "16.8.4",
     "@types/react-helmet": "^5.0.7",
     "prettier": "^1.15.3",
     "tslint": "^5.12.0",
