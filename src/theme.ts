@@ -1,19 +1,11 @@
-import { createGenerateClassName, createMuiTheme, Theme } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core';
 import grey from '@material-ui/core/colors/grey';
 import indigo from '@material-ui/core/colors/indigo';
-import { GenerateId, SheetsRegistry as SheetsRegistryType } from 'jss';
-import { SheetsRegistry } from 'react-jss';
-
-export interface PageContext {
-  theme: Theme;
-  sheetsManager: Map<any, any>; // tslint:disable-line
-  sheetsRegistry: SheetsRegistryType;
-  generateClassName: GenerateId;
-}
+import createSpacing from '@material-ui/core/styles/createSpacing';
 
 export const spacing = 8;
 
-const theme = createMuiTheme({
+export const theme = createMuiTheme({
   palette: {
     primary: indigo,
     secondary: grey,
@@ -39,12 +31,9 @@ const theme = createMuiTheme({
       }
     }
   },
-  spacing: {
-    unit: spacing
-  },
+  spacing: createSpacing(spacing),
   typography: {
     fontFamily: '"Ubuntu", sans-serif',
-    useNextVariants: true,
     h1: {
       fontSize: '2rem',
       fontWeight: 'bold',
@@ -86,40 +75,3 @@ const theme = createMuiTheme({
     }
   }
 });
-
-const createPageContext = (): PageContext => {
-  return {
-    theme, // This is needed in order to deduplicate the injection of CSS in the page.
-    sheetsManager: new Map(), // This is needed in order to inject the critical CSS.
-    sheetsRegistry: new SheetsRegistry(), // The standard class name generator.
-    generateClassName: createGenerateClassName()
-  };
-};
-
-interface Process {
-  browser: any; // tslint:disable-line
-}
-declare var process: Process;
-
-interface Global {
-  __INIT_MATERIAL_UI__: any; // tslint:disable-line
-}
-
-declare var global: Global;
-
-const getPageContext = () => {
-  // Make sure to create a new context for every server-side request so that data
-  // isn't shared between connections (which would be bad).
-  if (!process.browser) {
-    return createPageContext();
-  }
-
-  // Reuse context on the client-side.
-  if (!global.__INIT_MATERIAL_UI__) {
-    global.__INIT_MATERIAL_UI__ = createPageContext();
-  }
-
-  return global.__INIT_MATERIAL_UI__;
-};
-
-export default getPageContext;

@@ -1,28 +1,26 @@
-import { Button, createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
+import { Button, makeStyles, Theme } from '@material-ui/core';
 import { ButtonProps } from '@material-ui/core/Button';
 import React from 'react';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    buttonRoot: {
+const useStyles = makeStyles((theme: Theme) => ({
+  buttonRoot: {
+    boxShadow: 'none',
+    padding: `${theme.spacing(1)}px ${theme.spacing(1)}px`,
+    backgroundColor: 'rgba(0,0,0,.20)',
+    '&:hover': {
+      backgroundColor: 'rgba(0,0,0,.15)'
+    },
+    '&:active': {
       boxShadow: 'none',
-      padding: `${theme.spacing.unit}px ${theme.spacing.unit}px`,
-      backgroundColor: 'rgba(0,0,0,.20)',
-      '&:hover': {
-        backgroundColor: 'rgba(0,0,0,.15)'
-      },
-      '&:active': {
-        boxShadow: 'none',
-        backgroundColor: '#0062cc'
-      },
-      '&:focus': {
-        boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
-      }
+      backgroundColor: '#0062cc'
+    },
+    '&:focus': {
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
     }
-  });
+  }
+}));
 
-type Props = WithStyles<typeof styles> & Exclude<ButtonProps, 'classes'>;
-
-const button = ({ classes, ...props }: Props) => <Button classes={{ root: classes.buttonRoot }} {...props} />;
-
-export const FlatButton = withStyles(styles)(button);
+export const FlatButton = ({ ...props }: ButtonProps) => {
+  const classes = useStyles();
+  return <Button classes={{ root: classes.buttonRoot }} {...props} />;
+};
