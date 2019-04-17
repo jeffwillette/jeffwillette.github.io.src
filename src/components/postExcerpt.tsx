@@ -1,38 +1,28 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  createStyles,
-  Theme,
-  Typography,
-  WithStyles,
-  withStyles
-} from '@material-ui/core';
+import { Card, CardContent, CardHeader, makeStyles, Theme, Typography } from '@material-ui/core';
 import { Moment } from 'moment';
 import React from 'react';
 import { StateConsumer } from '../context';
 import { Link } from './link';
 import { TagChip } from './tagChip';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    card: {
-      margin: `${theme.spacing.unit * 2}px 0px`,
-      borderLeft: `4px solid rgba(0,0,0,.1)`,
-      backgroundColor: 'rgba(0,0,0,.01)'
-    },
-    subheaderSpan: {
-      marginRight: theme.spacing.unit * 2
-    },
-    title: {
-      fontSize: theme.typography.h2.fontSize
-    },
-    mobileCategories: {
-      display: 'block'
-    }
-  });
+const useStyles = makeStyles((theme: Theme) => ({
+  card: {
+    margin: `${theme.spacing(2)}px 0px`,
+    borderLeft: `4px solid rgba(0,0,0,.1)`,
+    backgroundColor: 'rgba(0,0,0,.01)'
+  },
+  subheaderSpan: {
+    marginRight: theme.spacing(2)
+  },
+  title: {
+    fontSize: theme.typography.h2.fontSize
+  },
+  mobileCategories: {
+    display: 'block'
+  }
+}));
 
-interface Props extends WithStyles<typeof styles> {
+interface Props {
   title: string;
   createdAt: Moment;
   updatedAt: Moment;
@@ -42,7 +32,8 @@ interface Props extends WithStyles<typeof styles> {
   excerpt: string;
 }
 
-const postExcerpt = ({ classes, slug, title, createdAt, updatedAt, categories, timeToRead, excerpt }: Props) => {
+export const PostExcerpt = ({ slug, title, createdAt, updatedAt, categories, timeToRead, excerpt }: Props) => {
+  const classes = useStyles();
   const cats = (
     <span>
       {categories.map((c, i) => {
@@ -78,5 +69,3 @@ const postExcerpt = ({ classes, slug, title, createdAt, updatedAt, categories, t
     </StateConsumer>
   );
 };
-
-export const PostExcerpt = withStyles(styles)(postExcerpt);

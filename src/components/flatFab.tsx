@@ -1,17 +1,15 @@
-import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
+import { makeStyles, Theme } from '@material-ui/core';
 import Fab, { FabProps } from '@material-ui/core/Fab';
 import React from 'react';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      boxShadow: 'none',
-      margin: theme.spacing.unit
-    }
-  });
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    boxShadow: 'none',
+    margin: theme.spacing(1)
+  }
+}));
 
-type Props = WithStyles<typeof styles> & Exclude<FabProps, 'classes'>;
-
-const flatFab = ({ classes, ...props }: Props) => <Fab disableRipple classes={{ root: classes.root }} {...props} />;
-
-export const FlatFab = withStyles(styles)(flatFab);
+export const FlatFab = ({ ...props }: FabProps) => {
+  const classes = useStyles();
+  return <Fab disableRipple classes={{ root: classes.root }} {...props} />;
+};
