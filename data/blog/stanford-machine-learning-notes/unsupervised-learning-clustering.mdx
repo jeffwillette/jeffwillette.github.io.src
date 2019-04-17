@@ -2,7 +2,7 @@
 title: "Unsupervised Learning: Clustering"
 published: true
 createdAt: 2019-03-19T14:00:27.341Z
-updatedAt: 2019-03-20T03:31:59.483Z
+updatedAt: 2019-03-20T14:55:26.713Z
 categories:
   - Programming
   - Algorithms
@@ -28,7 +28,7 @@ for k = 1 to K
   u(k) := average of points assigned to cluster k
 ```
 
-<BlockMath math="J(C, \Mu) = \frac{1}{m} \sum_{i=1}^m \begin{Vmatrix} x^{(i)} - \mu_{c^{(i)}} \end{Vmatrix}" />
+<BlockMath math="J(C,M) = \frac{1}{m} \sum_{i=1}^m \begin{Vmatrix} x^{(i)} - \mu_{c^{(i)}} \end{Vmatrix}" />
 
 - the first loop of the algorithm is actually minimizing a cost function with respect to the `C` vector, which contains
   the index of the centroid that the ith training example belongs to.

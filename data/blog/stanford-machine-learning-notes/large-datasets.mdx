@@ -1,0 +1,67 @@
+---
+title: Working With Large Datasets
+published: true
+createdAt: 2019-04-05T03:54:53.273Z
+updatedAt: 2019-04-05T04:50:16.242Z
+images:
+  - ./large-dataset-train-vs-cv.png
+  - ./stochastic-gradient-descent-convergence.png
+categories:
+  - Programming
+  - Algorithms
+  - Machine Learning
+---
+
+When working with large datasets, it can be computationally expensive, so it is best to figure out how many training
+examples you need before training with all of the examples.
+
+- try different values of m and plot the errors with the training set and cross validation set
+- if there is a large gap between the errors tat is closing, then training with more examples may help
+- if the gap closes quickly, it may be better to train with only a small subset.
+
+<Image1 width="50%" align="center" />
+
+## Stochastic Gradient Descent
+
+As opposed to batch gradient descent, stochastic gradient descent works on only one example at a time. This can avoid
+having to load the entire dataset into memory when running gradient descent. Because it doesn't have the advantage of
+seeing the entire dataset on every run, it may take a more roundabout way when finding the minimum. For this reason, it
+may be necessary to run through the data multiple times.
+
+<BlockMath math="\theta_j := \theta_j - \alpha (h_\theta(x)^{(i)} - y^{(i)})x_j^{(i)}" />
+
+```text
+random_shuffle(data)
+
+for 1:num_passes
+  for i:m
+    theta - theta - alpha * derivative_of_cost_function
+  endfor
+endfor
+```
+
+## Mini-batch Gradient Descent
+
+Instead of performing a full batch gradient descent, we can get the best of both worlds by loading less data into memory
+and still doing a vectorized calculation with mini batch gradient descent
+
+<BlockMath math="
+\begin{aligned}
+  &b = 10 \quad m = 1000 \\
+  &\theta_j := \theta_j - \alpha \frac{1}{10} \sum_{k=1}^{i + 9} (h_\theta(x^{(k)}) - y^{(k)})x^{(k)}_j
+\end{aligned}
+" />
+
+## Checking For Convergence
+
+- compute the cost before updating theta
+- every so often (maybe every 1000 iterations) plot the average cost over the last 1000 iterations
+
+<Image2 width="50%" align="center" />
+
+If seeing non expected learning curves, try plotting the values over a different amount of iterations to either make a
+more noisy (lower iterations) or more stable (more iterations) average of the curve.
+
+The learning rate can also be changed to be <InlineMath math="const / iterations + const"/> in order to deacrease alpha
+as the number of iterations goes up. Without this, stochastic gradient descent is likely to meander around the minimum
+instead of converging at the optimum since it doesn't have the advantage of seeing the entire training set at once.
