@@ -114,7 +114,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-export const GlobalLayout = ({ drawer, children }) => {
+interface Props {
+  drawer?: React.ReactNode;
+  children: React.ReactNode;
+}
+
+export const GlobalLayout = ({ drawer, children }: Props) => {
   const [defaultItemOpen, toggleDefaultItem] = useState(false);
   const classes = useStyles();
 

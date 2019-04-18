@@ -1,14 +1,14 @@
 module.exports = {
   plugins: [
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-typescript`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     `gatsby-plugin-top-layout`,
     {
       resolve: `gatsby-plugin-material-ui`,
       options: {}
     },
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-typescript`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-mdx`,
       options: {

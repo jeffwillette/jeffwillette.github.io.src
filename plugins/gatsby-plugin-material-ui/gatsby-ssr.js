@@ -17,6 +17,9 @@ export const onRenderBody = ({ setHeadComponents, pathname }) => {
   }
 
   const sheets = globalLeak.get(pathname);
+  console.log(sheets);
+  console.log('pathname');
+  console.log(pathname);
   setHeadComponents([sheets.getStyleElement()]);
   globalLeak.delete(pathname);
 };

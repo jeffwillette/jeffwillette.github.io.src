@@ -1,6 +1,6 @@
-import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
+import { makeStyles, Theme } from '@material-ui/core';
 import { graphql } from 'gatsby';
-import React from 'react';
+import React, { useState } from 'react';
 import Helmet from 'react-helmet';
 import { FlatButton } from '../components/button';
 import { BarChart } from '../components/Charts/bar';
@@ -13,24 +13,19 @@ import { InlineMath } from '../components/math';
 import { IndexQuery } from '../gatsby-queries';
 import { safe } from '../utils';
 
-const styles = (_: Theme) =>
-  createStyles({
-    button: {
-      margin: 'auto'
-    }
-  });
+const useStyles = makeStyles((_: Theme) => ({
+  button: {
+    margin: 'auto'
+  }
+}));
 
-interface Props extends WithStyles<typeof styles> {
+interface Props {
   data: IndexQuery;
 }
 
-interface State {
-  barData: { [k: string]: number };
-  lineData: { [k: string]: number[] };
-}
-
 const randomNum = () => Math.floor(Math.random() * 100);
-const barData = () => ({
+
+const getBarData = () => ({
   one: randomNum(),
   two: randomNum(),
   three: randomNum(),
@@ -43,92 +38,86 @@ const barData = () => ({
   ten: randomNum()
 });
 
-const lineData = () => ({
+const getLineData = () => ({
   one: Array.from({ length: 20 }).map(_ => randomNum()),
   two: Array.from({ length: 20 }).map(_ => randomNum()),
   three: Array.from({ length: 20 }).map(_ => randomNum())
 });
 
-export const Index = withStyles(styles)(
-  class extends React.Component<Props, State> {
-    public state = {
-      barData: barData(),
-      lineData: lineData()
-    };
+export default ({ data }: Props) => {
+  const [barData, setBarData] = useState(getBarData());
+  const [lineData, setLineData] = useState(getLineData());
 
-    public render() {
-      const { data, classes } = this.props;
-      const { site } = safe(data);
-      const { siteMetadata } = safe(site);
-      const { title, description, author, keywords } = safe(siteMetadata);
+  const { site } = safe(data);
+  const { siteMetadata } = safe(site);
+  const { title, description, author, keywords } = safe(siteMetadata);
+  const classes = useStyles();
 
-      return (
-        <GlobalLayout>
-          <Helmet
-            title={title || undefined}
-            meta={[
-              { name: 'description', content: description || '' },
-              { name: 'keywords', content: keywords || '' },
-              { name: 'author', content: author || '' }
-            ]}
-          />
-          <div>
-            <Circles />
-            <BarChart data={this.state.barData} />
-            <FlatButton
-              fullWidth
-              className={classes.button}
-              onClick={() => this.setState({ barData: barData() })}
-              children="randomize"
-            />
-            <LineChart data={this.state.lineData} />
-            <FlatButton
-              fullWidth
-              color="inherit"
-              className={classes.button}
-              onClick={() => this.setState({ lineData: lineData() })}
-              children="randomize"
-            />
-            <Graph
-              xMin={-10}
-              xMax={10}
-              xLabel={<InlineMath math="\check{y}_1" />}
-              width="100%"
-              fx={x => 2 * (x * x) + 3 * x + 4}
-              points={[[1, 1], [1, 2], [5, 5]]}
-            />
-            <TreeChart
-              data={{
-                name: 'winner',
+  return (
+    <GlobalLayout>
+      <Helmet
+        title={title || undefined}
+        meta={[
+          { name: 'description', content: description || '' },
+          { name: 'keywords', content: keywords || '' },
+          { name: 'author', content: author || '' }
+        ]}
+      />
+      <div>
+        <Circles />
+        <BarChart data={barData} />
+        <FlatButton
+          fullWidth
+          className={classes.button}
+          onClick={() => setBarData(getBarData())}
+          children="randomize"
+        />
+        <LineChart data={lineData} />
+        <FlatButton
+          fullWidth
+          color="inherit"
+          className={classes.button}
+          onClick={() => setLineData(getLineData())}
+          children="randomize"
+        />
+        <Graph
+          xMin={-10}
+          xMax={10}
+          xLabel={<InlineMath>{`\check{y}_1`}</InlineMath>}
+          width="100%"
+          fx={x => 2 * (x * x) + 3 * x + 4}
+          points={[[1, 1], [1, 2], [5, 5]]}
+        />
+        <TreeChart
+          data={{
+            name: 'winner',
+            children: [
+              {
+                name: 'loser-1-1',
                 children: [
                   {
-                    name: 'loser-1-1',
+                    name: 'loser2-1',
                     children: [
-                      {
-                        name: 'loser2-1',
-                        children: [
-                          { name: 'loser3-1', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] },
-                          { name: 'loser3-2', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] }
-                        ]
-                      },
-                      {
-                        name: 'loser2-2',
-                        children: [
-                          { name: 'loser3-1', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] },
-                          { name: 'loser3-2', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] }
-                        ]
-                      }
+                      { name: 'loser3-1', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] },
+                      { name: 'loser3-2', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] }
+                    ]
+                  },
+                  {
+                    name: 'loser2-2',
+                    children: [
+                      { name: 'loser3-1', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] },
+                      { name: 'loser3-2', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] }
                     ]
                   }
                 ]
-              }}
-            />
-          </div>
-        </GlobalLayout>
-      );
-    }
-  }
-);
+              }
+            ]
+          }}
+        />
+      </div>
+    </GlobalLayout>
+  );
+};
 
 export const query = graphql`
   query IndexQuery {
@@ -142,5 +131,3 @@ export const query = graphql`
     }
   }
 `;
-
-export default Index;
