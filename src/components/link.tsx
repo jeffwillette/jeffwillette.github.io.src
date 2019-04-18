@@ -1,4 +1,4 @@
-import { createStyles, WithStyles, withStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import c from 'classnames';
 import { Link as GatsbyLink } from 'gatsby';
 import React from 'react';
@@ -36,23 +36,22 @@ export const copyToClipboard = (v: string) => {
 interface Props {
   to: string;
   children: string | JSX.Element;
-  className?: string;
   white?: boolean;
 }
 
-export const Link = ({ to, children, className, white }: Props) => {
+export const Link = ({ to, children, white }: Props) => {
   // Tailor the following test to your environment.
   // This example assumes that any internal link (intended for Gatsby)
   // will start with exactly one slash, and that anything else is external.
-  const otherInternalPage = /^\/(?!\/)/.test(this.props.to);
-  const samePageAnchor = /^#.*/.test(this.props.to);
+  const otherInternalPage = /^\/(?!\/)/.test(to);
+  const samePageAnchor = /^#.*/.test(to);
   const classes = useStyles();
   const className = c(classes.link, { [classes.white]: white });
 
   switch (true) {
-    case this.otherInternalPage:
+    case otherInternalPage:
       return <GatsbyLink to={to} children={children} className={className} />;
-    case this.samePageAnchor:
+    case samePageAnchor:
       return (
         <AnchorLink
           href={to}

@@ -81,7 +81,7 @@ export const BarChart = compose<ExtendedProps, Props>(
               .style('fill', color('0.4'))
               .style('stroke-width', 2)
               .style('stroke', 'rgba(255,255,255,.5)')
-              .attr('x', xScale(k))
+              .attr('x', xScale(k) || '')
               .attr('y', yScale(data[k]))
               .attr('height', yScale(0) - yScale(data[k]))
               .attr('width', width / keys.length);

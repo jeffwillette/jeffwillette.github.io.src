@@ -50,7 +50,7 @@ export const DrawerTOC = ({ items, level }: Props) => {
                 </ListItemText>
               </ListItem>
             </Link>
-            {item.items && <DrawerTOC level={level + 1} items={item.items} classes={classes} />}
+            {item.items && <DrawerTOC level={level + 1} items={item.items} />}
           </div>
         ))}
     </List>

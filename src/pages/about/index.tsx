@@ -1,22 +1,18 @@
-import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import { graphql } from 'gatsby';
 import React from 'react';
 import { GlobalLayout } from '../../components/Layout/global';
-import { Resume } from '../../components/Resume/resume';
-import { AboutPage } from '../../gatsby-queries';
 import resumePDF from '../../jeff-willette-site.pdf';
-import { safe } from '../../utils';
 
-const styles = (_: Theme) => createStyles({});
+// interface Props {
+//   data: AboutPage;
+// }
 
-interface Props extends WithStyles<typeof styles> {
-  data: AboutPage;
-}
+// TODO: change this to query file from graphql and put the resume in the data folder
 
-const About = ({ data }: Props) => {
-  const { site } = safe(data);
-  const { siteMetadata } = safe(site);
-  const { resume } = safe(siteMetadata);
+export default () => {
+  // const { site } = safe(data);
+  // const { siteMetadata } = safe(site);
+  // const { resume } = safe(siteMetadata);
   // return <Resume resume={safe(resume)} />;
   return (
     <GlobalLayout>
@@ -103,5 +99,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-
-export default withStyles(styles)(About);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StateConsumer } from './context';
 
-export const safe = <T extends {}>(obj: T | null): T => {
+export const safe = <T extends {}>(obj: T | null | undefined): T => {
   return obj ? (obj as T) : ({} as T);
 };
 

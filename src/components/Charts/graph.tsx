@@ -14,6 +14,8 @@ interface Props {
   samples?: number;
   xMin: number;
   xMax: number;
+  yMin: number;
+  yMax: number;
   xLabel: string | React.ReactNode;
   yLabel: string | React.ReactNode;
   width?: string;
@@ -115,7 +117,7 @@ export const Graph = compose<ExtendedProps, Props>(
       }, 1000);
 
     public render() {
-      const { classes, points, xLabel, yLabel } = this.props;
+      const { classes, points, xLabel } = this.props;
       const textColor = randomColor();
 
       return (

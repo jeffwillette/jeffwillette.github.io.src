@@ -48,9 +48,9 @@ export const Circles = compose<ExtendedProps, Props>(
       this.state = {
         planets,
         simulation: forceSimulation<Planet>(planets)
-          .force('charge', forceManyBody().strength(d => d.r / 10))
+          .force('charge', forceManyBody<Planet>().strength(d => d.r / 10))
           .alphaDecay(0)
-          .force('collide', forceCollide().radius(d => d.r))
+          .force('collide', forceCollide<Planet>().radius(d => d.r))
           .on('tick', this.tick),
         timer: setInterval(this.timer, 1000)
       };

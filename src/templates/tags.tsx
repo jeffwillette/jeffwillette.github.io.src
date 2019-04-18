@@ -30,7 +30,7 @@ const Tags = ({ data, pageContext }: Props) => {
         meta={[
           { name: 'description', content: `posts tagged with ${tagName}` },
           { name: 'keywords', content: `${tagName}` },
-          { name: 'author', content: author }
+          { name: 'author', content: author || '' }
         ]}
       />
       {edges &&

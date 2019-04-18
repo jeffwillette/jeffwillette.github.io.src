@@ -16,10 +16,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   flex: {
     flexGrow: 1
   },
-  link: {
-    color: 'white',
-    textDecoration: 'none'
-  },
   bar: {
     zIndex: theme.zIndex.drawer + 1
   },
@@ -72,7 +68,7 @@ export const Header = () => {
                     <Menu className={classes.menu} onClick={toggleDrawer} />
                   )}
                   <Typography className={classes.flex}>
-                    <Link to="/" white className={classes.link}>
+                    <Link to="/" white>
                       <span className={mobile ? classes.titleMobile : classes.title} children="deltaskelta.github.io" />
                     </Link>
                   </Typography>
