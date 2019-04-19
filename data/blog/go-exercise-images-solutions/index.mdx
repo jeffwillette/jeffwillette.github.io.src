@@ -2,7 +2,7 @@
 title: Go Exercise Images Solutions
 published: true
 createdAt: 2016-10-12T15:42:36.000Z
-updatedAt: 2019-01-22T14:29:33.035Z
+updatedAt: 2019-04-19T04:52:26.932Z
 images:
   - ./go-exercise-images-1.png
   - ./go-exercise-images-2.png
@@ -17,7 +17,7 @@ to inherit from pre-existing image structs.
 
 ## The Hard Way:
 
-<Image1 align="left" width="30%" />
+<props.imgs.Img1 align="left" width="30%" />
 
 This code produces the image to the left. I wrote most of it without looking at the current implementations of image
 structs in the `image` package so it can probably be improved a lot.
@@ -120,7 +120,7 @@ func main() {
 
 ## The Easy Way:
 
-<Image2 align="right" width="30%" />
+<props.imgs.Img2 align="right" width="30%" />
 
 This one was much easier since I am inheriting from the `image.RGBA` struct. All I have to do in this case is to make
 a `crazyColors()` method to give the pixels `RGBA` values.

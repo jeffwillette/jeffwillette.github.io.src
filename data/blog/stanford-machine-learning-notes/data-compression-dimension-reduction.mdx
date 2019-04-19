@@ -2,13 +2,15 @@
 title: Data Compression and Dimension Reduction
 published: true
 createdAt: 2019-03-19T14:00:27.341Z
-updatedAt: 2019-03-20T03:22:08.447Z
+updatedAt: 2019-04-19T03:52:56.589Z
 categories:
   - Programming
   - Algorithms
   - Machine Learning
   - Neural Networks
 ---
+
+import { M } from '../../../src/components/math';
 
 It can be useful to compress feature data for the reasons of saving space, memory, and compute power when
 running machine learning algorithms. Sometimes there may be obvious features that can be combined such as length in cm
@@ -27,24 +29,24 @@ Before applying PCA it is important to preprocess the data with feature scaling 
 following formula, `s_j` is some calculation regarding the range of values of x. Standard deviation would be
 the most likely scenario because that would reduce each feature to the amount that it is above or below the mean.
 
-<BlockMath math="
+<M b="
   \begin{aligned}
     &\mu_j = \frac{1}{m} \sum_{i=1}^m x^{(i)}_j \\
     &\text{then replace each } x_j^{(i)} \text{ with } \frac{x_j - \mu_j}{s_j}
   \end{aligned}
 "/>
 
-1. Compute covariance matrix <InlineMath math="\Sigma = \frac{1}{m} \sum_{i=1}^n (x^{(i)})(x^{(i)})^T" />. This is done
+1. Compute covariance matrix <M i="\Sigma = \frac{1}{m} \sum_{i=1}^n (x^{(i)})(x^{(i)})^T" />. This is done
 by multiplying the feature vector by itself transposed, and divided the the constant `m`.
-2. Compute the eigenvectors of the matrix <InlineMath math="\Sigma"/>. In Octave this can be accomplished by
+2. Compute the eigenvectors of the matrix <M i="\Sigma"/>. In Octave this can be accomplished by
 [U, S, V] = svd(Sigma) and then take the first k columns of the `U` variable. k is the new number of dimensions that are
 desired. This U matrix will be `n x n`.
-3. Multiply the reduced U by a training example. <InlineMath math="z = U_{reduced}^T * x^{(i)}" />. In this case `U` is an
+3. Multiply the reduced U by a training example. <M i="z = U_{reduced}^T * x^{(i)}" />. In this case `U` is an
 `n x n` matrix. `Ureduced` is an `n x k` matrix. The ith training example is an `n x 1` matrix. The result of the
 multiplication will be a `k x 1` matrix.
 
 If we wanted to go the other way and get an approximate value of x back out, we can do the
-following <InlineMath math="X_{approx} = U_{reduce} * z" />. `Ureduced` is an `n x k` and z is a `k x 1`, so the result
+following <M i="X_{approx} = U_{reduce} * z" />. `Ureduced` is an `n x k` and z is a `k x 1`, so the result
 will be a `n x 1` or the original length of the feature set. If the dimensionality was changed when choosing `Ureduced`,
 then the dimensionality of the resulting `Xapprox` will indeed be approximate, but if the dimensionality was not
 changed, then it would be the exact value. This is because when the number of dimensions are changed, approximations
@@ -53,7 +55,7 @@ dimensions would not be changed, this statement was just for a theoretical examp
 
 ## Choosing The Proper Number of Dimensions (k value)
 
-<BlockMath math="
+<M b="
   \frac
     {\frac{1}{m} \sum_{i=1}^m \begin{Vmatrix} x^{(i)} - x^{(i)}_{approx} \end{Vmatrix}^2}
     {\frac{1}{m} \sum_{(i=1)}^m \begin{Vmatrix} x^{(i)} \end{Vmatrix}^2}
@@ -72,7 +74,7 @@ This can be done by looking at the return values of the `svd()` function call. T
 used to compute the following. `1 - ...` gives the amount of change in the data caused by compression. Without the `1 -
 ...`, the fraction would give the amount of retained variance (or integrity?) of the compressed data.
 
-<BlockMath math="1 - \frac{\sum_{i=1}^k S_{i,i}}{\sum_{(i=1)^n S_{i,i}}}" />
+<M b="1 - \frac{\sum_{i=1}^k S_{i,i}}{\sum_{(i=1)^n S_{i,i}}}" />
 
 ## Notes
 

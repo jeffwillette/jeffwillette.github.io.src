@@ -2,7 +2,7 @@
 title: "PostgreSQL vs. SQLite: Benchmarking Write Speeds and  Large Queries (Part I: Making a Django Project)"
 published: true
 createdAt: 2017-01-05T22:38:42.000Z
-updatedAt: 2019-01-24T16:25:12.943Z
+updatedAt: 2019-04-19T04:53:35.527Z
 images:
   - ./Screen_Shot_2016-12-22_at_2.33.47_PM.png
 categories:
@@ -25,12 +25,11 @@ nonetheless.
 
 ## Creating A Django Project to Work With
 
-<Image1 width="20%" align="left" />
+<props.imgs.Img1 width="20%" align="left" />
 
 I created a Django project that has a simple *REST API* for creating, retrieving and destroying data. I made the
 model structure reasonable close to what I used in production and my goal is to get the total time elapsed for
 requests as well as memory usage information from graphite.
-
 
 I have a server that I had setup with [graphite](https://github.com/graphite-project/graphite-web) which I cloned,
 and removed all that was unnecessary. I was left with the smallest Digital Ocean droplet with these specs.

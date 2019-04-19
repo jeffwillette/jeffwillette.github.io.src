@@ -2,13 +2,15 @@
 title: Evaluation and Troubleshooting
 published: true
 createdAt: 2019-03-14T01:56:11.402Z
-updatedAt: 2019-03-14T04:31:37.652Z
+updatedAt: 2019-04-19T03:50:13.702Z
 categories:
   - Programming
   - Algorithms
   - Machine Learning
   - Neural Networks
 ---
+
+import { M } from '../../../src/components/math';
 
 When troubleshooting the performance of a learning algorithm, it is best to try to narrow down the vause before jumping
 to conclusions about what is causing it. Some common things that could be the problem are...
@@ -17,7 +19,7 @@ to conclusions about what is causing it. Some common things that could be the pr
 - try fewer features --> fixes high variance (overfitting)
 - try more features --> fixes high bias (underfitting)
 - try adding polynomial features --> fixes high bias (underfitting)
-- try changing <InlineMath math="\lambda" /> values. increasing --> fixes high bias (underfitting). decreasing --> fixes
+- try changing <M i="\lambda" /> values. increasing --> fixes high bias (underfitting). decreasing --> fixes
   high variance (overfitting)
 
 ## Evaluating a Hypothesis
@@ -26,7 +28,7 @@ To evaluate a hypothesis, take part of the training data (~%70) and train the mo
 and make predictions. If the training error is low and the test set error is high, then there is a problem somewhere. We
 can begin to evaluate the hypothesis by calculating the error in the following way.
 
-<BlockMath math="
+<M b="
   \begin{aligned}
     err(h\theta(x), y) &=
       \begin{cases}
@@ -41,12 +43,12 @@ can begin to evaluate the hypothesis by calculating the error in the following w
 
 When selecting how to combine training data into a set of features, we need to avoid overfitting and find which degree
 of polynomial features makes the best prediction for the training dat athat we have. One way to do this would be to
-first split the training data into three seperate groups <InlineMath math="J_{\Theta train} \text{   } J_{\Theta cross
+first split the training data into three seperate groups <M i="J_{\Theta train} \text{   } J_{\Theta cross
 validation} J_{\Theta test}"/>.
 
 We can then make different sets of polynomial features such as...
 
-<BlockMath math="
+<M b="
   \begin{aligned}
     & 1. \quad \theta_0 + x_1\theta_1 + x_2\theta_2 + ... + x_n\theta_n \\
     & 2. \quad \theta_0 + x_1\theta_2 + x_1^2\theta_2 + ... + x_n^2\theta_{2n} \\
@@ -63,9 +65,9 @@ level of error that we saw on the cross validation data set.
 After we have done the above, we can use the output of the training set and the cross validation set to see what is
 happening.
 
-- if <InlineMath math="J_{train}(\Theta)" /> is high and <InlineMath math="J_{cv}(\Theta)" /> is also high, there is
+- if <M i="J_{train}(\Theta)" /> is high and <M i="J_{cv}(\Theta)" /> is also high, there is
   probably an underfitting to the data and we should look to higher polynomial features. This is high bias.
-- if <InlineMath math="J_{train}(\Theta)" /> is low and <InlineMath math="J_{cv}(\Theta)" /> is high then that means
+- if <M i="J_{train}(\Theta)" /> is low and <M i="J_{cv}(\Theta)" /> is high then that means
   that the trained (low error) hypothesis did not perform well on new data and there is probably an overfitting problem.
   We should look to lower degree polynomial features. This is high variance.
 

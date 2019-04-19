@@ -2,7 +2,7 @@
 title: Using Gatsby Image with Gatsby MDX
 published: true
 createdAt: 2019-01-20T12:16:48.000Z
-updatedAt: 2019-01-22T14:29:18.187Z
+updatedAt: 2019-04-19T04:55:30.427Z
 images:
   - ../go-exercise-images-solutions/go-exercise-images-1.png
   - ./gatsby.svg
@@ -139,7 +139,7 @@ if (images) {
   images.forEach((image, i) => {
     const { childImageSharp, publicURL } = safe(image);
     const { fluid } = safe(childImageSharp);
-    imgs[`Image${i + 1}`] = ({ align, width }) =>
+    imgs[`Img${i + 1}`] = ({ align, width }) =>
       f ? (
         <MDXSharpImg align={align} width={width} fluid={fluid || undefined} />
       ) : (
@@ -149,17 +149,17 @@ if (images) {
 }
 
 // ... and now in the render method, you can do this...
-<MDXRenderer scope={{ ...imgs }}>{body}</MDXRenderer>
+<MDXRenderer imgs={imgs}>{body}</MDXRenderer>
 ```
 
-<Image1 align="left" width="20%" />
-<Image2 align="right" width="20%" />
+<props.imgs.Img1 align="left" width="20%" />
+<props.imgs.Img2 align="right" width="20%" />
 
 The images on the left and right here were called with the code...
 
 ```typescript.tsx
-<Image1 align="left" width="100px" />
-<Image2 align="right" width="100px" />
+<props.imgs.Img1 align="left" width="100px" />
+<props.imgs.Img2 align="right" width="100px" />
 ```
 
 This method gives a lot more freedom and flexibility when rendering images because the sharp plugins take care of

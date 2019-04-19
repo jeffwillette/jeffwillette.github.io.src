@@ -2,7 +2,7 @@
 title: "Bond Futures: What Do The Quote Prices Really Mean?"
 published: true
 createdAt: 2013-09-30T22:30:17.000Z
-updatedAt: 2019-01-22T15:04:28.440Z
+updatedAt: 2019-04-19T04:47:31.491Z
 images:
   - ./bond-futures-prices.png
   - ./bond-futures-tick-size.jpg
@@ -12,7 +12,9 @@ categories:
   - Finance
 ---
 
-<Image1 align="center" width="100%" />
+import { M } from '../../../src/components/math';
+
+<props.imgs.Img1 align="center" width="100%" />
 
 Looking through some commodity charts, I came across a bond chart. I was curious about the contract so I went to look
 up the specifics. Quickly I realized that I had forgotten almost everything I ever learned on the subject. Why were
@@ -44,12 +46,14 @@ Treasury Notes are longer term U.S. government liabilities with a term of 1-10 
 until maturity. (The principal is paid in a flat amount, like $200,000 and interest payments are made throughout the
 life of the bond. The principal of $200,000 would then be collected at the end.)
 
+
 Treasury Bonds are even longer term U.S. government liabilities with a term of 10+ years. Interest is paid semi-
 annually until maturity. (These are treated the same way that Treasury Notes are.)
 
-<Image4 align="left" width="30%" />
 
 ## What is being traded?
+
+<props.imgs.Img4 align="left" width="30%" />
 
 This type of contract is the easiest to understand. Take a look at the
 [contract specifications](http://www.cmegroup.com/trading/interest-rates/us-treasury/13-week-t-bill_contract_specifications.html).
@@ -88,7 +92,7 @@ If the quote price was 99.98 then you would be entering into a contract to be pa
 weeks (or 3/12 of a year) on the hypothetical future purchase of the bill at a different market interest rate. You
 can easily figure out what the current discounted present value is by doing some simple math...
 
-<BlockMath math="X*1.0002*\frac{3}{12}=$1,000,000" />
+<M b="X*1.0002*\frac{3}{12}=$1,000,000" />
 
 So if you were to go to the treasury and buy this bill, you would give the government $999,950.00, and they would
 give you $100,000 in 13 weeks time if the market interest rate was 0.02%.
@@ -108,7 +112,7 @@ such as the Eurodollar and 30-Day Fed Funds operate the same way though.
 
 ## Treasury Notes and Bonds
 
-<Image2 align="left" width="30%" />
+<props.imgs.Img2 align="left" width="30%" />
 
 Before I continue, it's important to understand what is being traded. Futures prices on bonds aren't directly
 reflecting of market interest rates. When you enter a futures contract, you have the ability to eventually take
@@ -144,7 +148,7 @@ Treasury Note futures, a quote price of 100'000 is made to equal $200,000 (prese
 6% interest for two years to equal $200,000 (+ interest received) at maturity (future value).  Treasury notes do not
 compound interest so the total amount you would receive would be $224,000...
 
-<BlockMath math="\$200,000 + (\$200,000*.06*2)" />
+<M b="\$200,000 + (\$200,000*.06*2)" />
 
 You can calculate that at a quote price of 100'000, the total of future interest payments would be $24,000. So at a
 futures quote price of 100'000 you would hypothetically pay $200,000 at a delivery date in the future and receive
@@ -158,13 +162,13 @@ that decimals do. The first two digits represent 1/32, so 100'020 would be 100 p
 points (100') plus 1/32 ('01) and 1/4 of 1/32 ('002). The '002 is meant to represent the decimal of .025. Below are
 some more examples and their equivalents:
 
-<BlockMath math="100'052 = 100+\frac{5}{32}+\frac{\frac{1}{4}}{32}" />
+<M b="100'052 = 100+\frac{5}{32}+\frac{\frac{1}{4}}{32}" />
 
-<BlockMath math="100'105 = 100+\frac{10}{32}+\frac{\frac{2}{4}}{32}" />
+<M b="100'105 = 100+\frac{10}{32}+\frac{\frac{2}{4}}{32}" />
 
-<BlockMath math="100'157 = 100+\frac{15}{32}+\frac{\frac{3}{4}}{32}" />
+<M b="100'157 = 100+\frac{15}{32}+\frac{\frac{3}{4}}{32}" />
 
-<BlockMath math="107'310 = 107+\frac{31}{32}+\frac{\frac{0}{4}}{32}" />
+<M b="107'310 = 107+\frac{31}{32}+\frac{\frac{0}{4}}{32}" />
 
 This seems absolutely bizarre at first, but becomes easier to read with time. There is also a fundamental difference
 in what the quote price means. In the earlier example of T-bills, the quote price is the inverse of the interest rate
@@ -182,18 +186,18 @@ is above 100'000 then the interest rate must be below 6%.
 The smallest allowable movement in price is 1/4 of 1/32 of a point or $15.625 per contract. You can arrive at this
 number by dividing $200,000 by the arbitrary base quote price at 6% which is 100'000....
 
-<BlockMath math="\$200,000/100'000 =\$2,000\ per\ point" />
+<M b="\$200,000/100'000 =\$2,000\ per\ point" />
 
-<BlockMath math="\$2,000/32=\$62.5\ per\ \frac{1}{32}" />
+<M b="\$2,000/32=\$62.5\ per\ \frac{1}{32}" />
 
-<BlockMath math="\$62.5/4 =\$15.625\ per\ \frac{\frac{1}{4}}{32}" />
+<M b="\$62.5/4 =\$15.625\ per\ \frac{\frac{1}{4}}{32}" />
 
 The current price quote at the time of writing is 110'030. So if you followed the information above, you would
 hypothetically pay 10 points, and 3/32 ($20,187) above the face value of the "$200,000 @ 6%" bond which is $220,187.5
 . So the effective interest rate (yield) is much lower than 6%. If you wanted to figure out what it would be, you
 have to do some simple math...
 
-<BlockMath math="\$220,187.5 + (\$220,187.5 * R *2) = \$224,000" />
+<M b="\$220,187.5 + (\$220,187.5 * R *2) = \$224,000" />
 
 At this quote price, if you were to take delivery, you would pay about $220,187.5 to receive 0.865% annual interest
 payments to total $3,812.5. Almost no one would opts to take delivery though. Delivery becomes even more complicated

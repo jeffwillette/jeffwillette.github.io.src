@@ -2,12 +2,14 @@
 title: "Project Euler: Problem 41 (Pandigital Prime) Solution in Python"
 published: true
 createdAt: 2014-12-07T20:08:18.000Z
-updatedAt: 2019-01-22T16:26:52.237Z
+updatedAt: 2019-04-18T13:17:32.275Z
 categories:
   - Programming
   - Project Euler
   - Python
 ---
+
+import { M } from '../../../src/components/math';
 
 ## The Problem States
 
@@ -26,7 +28,7 @@ I then came across divisibility rules which led me in the right direction. It tu
 digit of a number, if the sum is divisible by three, then the number will be divisible by three. Since every n digit
 number will be made up of the numbers 1-n somehow, then I can just add up the digits 1-n and find the largest number
 of digits not divisible by three.  I thought that would be a good starting point, and if I didn't find the right
-answer then I would try something else. It turns out that a 7 digit pandigital number <InlineMath math="(7+6+5+4+3+2+1)" />
+answer then I would try something else. It turns out that a 7 digit pandigital number <M i="(7+6+5+4+3+2+1)" />
 is the largest set that isn't divisible by three. I modified my previously written pandigital number function and
 used that along with my prime number check function to just run through numbers systematically.
 

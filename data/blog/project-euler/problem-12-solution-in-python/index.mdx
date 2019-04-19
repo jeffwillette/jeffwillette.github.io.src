@@ -2,12 +2,14 @@
 title: "Project Euler: Problem 12 Solution in Python"
 published: true
 createdAt: 2014-10-30T20:58:04.000Z
-updatedAt: 2019-01-22T04:52:34.920Z
+updatedAt: 2019-04-19T04:14:00.662Z
 categories:
   - Programming
   - Project Euler
   - Python
 ---
+
+import { M } from '../../../../src/components/math';
 
 ## The Problem States
 
@@ -36,7 +38,7 @@ What is the value of the first triangle number to have over five hundred divisor
 From reading the [Triangular Number](http://en.wikipedia.org/wiki/Triangular_number) article on Wikipedia, I can see
 that the formula for finding the (n)th triangular number is this:
 
-<BlockMath math="T_n = \sum_{k=1}^n k=1 + 2 + 3 + ... + n = \frac{n(n+1)}{2} = \dbinom{n+1}{2}" />
+<M b="T_n = \sum_{k=1}^n k=1 + 2 + 3 + ... + n = \frac{n(n+1)}{2} = \dbinom{n+1}{2}" />
 
 I wrote a function for finding that number. I then had to find all the factors of that number and pull the first one
 with over 500 factors. Based on my prime factoring function I made for problem 3
@@ -64,10 +66,10 @@ number is made from by just using the prime factors. Prime factoring still uses 
 divisions, but it spends a lot less time and memory appending numbers to lists which seems to take a lot of resources.
 The formula goes like this...
 
-<BlockMath math="prime\;factors\;of\;12\;are\;[2,2,3]" />
-<BlockMath math="2^2 * 3^1:\;add\;one\;to\;each\;exponent\;and\;then\;multiply\;the\;exponents" />
-<BlockMath math="to\;get\;the\;number\;of\;factors\;of\;12:\;2^2 * 3^1 = 3 * 2 = 6\;factors\;in\;12" />
-<BlockMath math="the\;factors\;of\;12\;are\;[1,2,3,4,6,12]" />
+<M b="prime\;factors\;of\;12\;are\;[2,2,3]" />
+<M b="2^2 * 3^1:\;add\;one\;to\;each\;exponent\;and\;then\;multiply\;the\;exponents" />
+<M b="to\;get\;the\;number\;of\;factors\;of\;12:\;2^2 * 3^1 = 3 * 2 = 6\;factors\;in\;12" />
+<M b="the\;factors\;of\;12\;are\;[1,2,3,4,6,12]" />
 
 So, in the end, the quickest way to go about doing this was to use the triangle number function, prime factor
 function, and then my number of factors function.

@@ -2,13 +2,15 @@
 title: Neural Networks
 published: true
 createdAt: 2019-02-26T14:20:26.310Z
-updatedAt: 2019-03-14T01:54:02.485Z
+updatedAt: 2019-04-19T04:04:27.279Z
 categories:
   - Programming
   - Algorithms
   - Machine Learning
   - Neural Networks
 ---
+
+import { M } from '../../../src/components/math';
 
 Neural networks solve the problem in a different way than plain linear or logistic regression. With plain linear or
 logistic regression, a function must be chosen that models the structure of the data. By having multiple neurons in
@@ -19,7 +21,7 @@ graph.
 Each feature (column) gets fed into each neuron (row) in the first hidden theta layer in forward propogation
 in the following way.
 
-<BlockMath math="
+<M b="
   \begin{bmatrix}
     x_0 \\
     x_1 \\
@@ -35,7 +37,7 @@ in the following way.
 
 Inside the hidden layer is a matrix of theta values which looks like this
 
-<BlockMath math="
+<M b="
   \begin{aligned}
   &\begin{bmatrix}
     x_0 \\
@@ -126,7 +128,7 @@ function p = predictOneVsAll(all_theta, X)
 ```
 
 Multiplying the `all_theta` matrix with the `X'` matrix
-gives <InlineMath math="[10 x 401] * [401 x 5000] = [10 x 5000]"/> so
+gives <M i="[10 x 401] * [401 x 5000] = [10 x 5000]"/> so
 in the end there will be a `10x5000` matrix where each column will be an output of something near 0 or near 1. If we
 take the index of the max then we can construct the return value.
 
@@ -134,10 +136,10 @@ take the index of the max then we can construct the return value.
 
 the last problem in the set was to make a prediction using a neural network. This is done by multiplying the `5000x401`
 input matrix by the `25x401` matrix (transposed) that makes up the first hidden layer. The output from this layer
-is <InlineMath math="[5000 x 401] * [401 x 25] = [5000 x 25]" />. I like to visualize this as 25 different interim predictions
+is <M i="[5000 x 401] * [401 x 25] = [5000 x 25]" />. I like to visualize this as 25 different interim predictions
 being made for every example input.
 
-<BlockMath math="
+<M b="
   \begin{aligned}
     & \begin{bmatrix}
       x_{0,0} & ... & x_{0,401} \\
@@ -164,11 +166,11 @@ being made for every example input.
 
 Then the output from the second layer is ready to be fed into the third layer. The output from the second layer can be
 seen as 5000 inputs with 25 features each since the first layer has cut the original 401 input features down to 25.
-The <InlineMath math="l2" /> layer has 26 theta values, one for each of the outputs of <InlineMath math="l1" /> plus an
+The <M i="l2" /> layer has 26 theta values, one for each of the outputs of <M i="l1" /> plus an
 extra bias unit. This gives us the following multiplication of
-matrices <InlineMath math="[5000 x 26] * [26 x 10] = [5000 x 10]" />.
+matrices <M i="[5000 x 26] * [26 x 10] = [5000 x 10]" />.
 
-<BlockMath math="
+<M b="
   \begin{aligned}
     &\begin{bmatrix}
       a^{(2)}_{0,0} & ... & a^{(2)}_{0,25} \\
@@ -195,14 +197,14 @@ matrices <InlineMath math="[5000 x 26] * [26 x 10] = [5000 x 10]" />.
 " />
 
 The output from this layer is the one vs all prediction, so each row of the `5000x10` output matrix is a row
-of <InlineMath math="\approx 0 \quad or \quad \approx 1" />. If index 5 is approximately 1, then the prediction is that
+of <M i="\approx 0 \quad or \quad \approx 1" />. If index 5 is approximately 1, then the prediction is that
 the hadnwritten digit is a `5`.
 
 ## Back Propogation
 
 #### The Cost Function
 
-<BlockMath math="
+<M b="
   J(\theta) = - \frac{1}{m} \sum^m_{i=1} \sum^K_{k=1}
   [y^{(i)}_k log((h_\theta(x^{(i)}))_k) + (i - y^{(i)}_k) log(1 - (h_\theta(x^{(i)}))_k)]
   + \frac{\lambda}{2m} \sum^{L-1}_{l=1} \sum^{s_l}_{i=1} \sum^{s_{l+1}}_{j=1} (\theta_{i,j}^{(l)})^{2}
@@ -213,19 +215,19 @@ prediction. All of the `K` one vs all output layers must be summed together befo
 example. The triple summation term gets added to the cost function after everything else is calculated, and it is just
 the summation of all of the theta values of each layer.
 
-- <InlineMath math="L" /> is the number of layers
-- <InlineMath math="S_l" /> is the number of units in each layer
+- <M i="L" /> is the number of layers
+- <M i="S_l" /> is the number of units in each layer
 
 So the triple summation could be described as a triple nested for loop that loops through and sums all of the values in
 a 3-dimensional array.
 
 #### Getting Gradients For Minimizing the cost function
 
-In order to get the gradients for the entire network, we first need to find the <InlineMath math="\delta" />, which is
+In order to get the gradients for the entire network, we first need to find the <M i="\delta" />, which is
 the partial derivative of the cost function with respect to z (the value of the layer before it goes through the
 sigmoid) function.
 
-<BlockMath math="
+<M b="
   \begin{aligned}
     \delta^{(l-1)}_j &= \frac{\partial}{\partial z^{(l-1)}} J(\theta) \\
     &= \frac{\partial J}{\partial z^{(l)}} \frac{\partial z^{(l)}}{\partial z^{(l-1)}} \\
@@ -235,11 +237,11 @@ sigmoid) function.
   \end{aligned}
 " />
 
-The <InlineMath math="\Delta" /> term is a result of derviving the partial derivative of the cost function with respect
-to <InlineMath math="\Theta" /> which is the gradients that we are ultimately trying to find to plug into the functions
+The <M i="\Delta" /> term is a result of derviving the partial derivative of the cost function with respect
+to <M i="\Theta" /> which is the gradients that we are ultimately trying to find to plug into the functions
 which iteratively minimize the cost function.
 
-<BlockMath math="
+<M b="
   \begin{aligned}
   & \frac{\partial}{\partial\Theta^{(l)}} J(\Theta) = \Delta^{(l)} \\
   & \Delta^{(l)} = \delta^{(l+1)} * a^{(l)}
@@ -249,12 +251,12 @@ which iteratively minimize the cost function.
 and then the gradient is ultimately scaled by the number of examples and lambda regularization is
 added which makes the gradient equal to...
 
-<BlockMath math="\frac{\lambda}{m} \Delta^{(l)}" />.
+<M b="\frac{\lambda}{m} \Delta^{(l)}" />.
 
 The sizing of the matrices is an important design decision because they must all be compatible in order for forward
 propogations and back propogation to work. For example, in forward propogation...
 
-<BlockMath math="
+<M b="
   \begin{aligned}
     &examples = m \times 401 \\
     &\Theta^{(1)} = 25 \times 401 \\
@@ -267,9 +269,9 @@ propogations and back propogation to work. For example, in forward propogation..
 
 at the end of forward prop we are left with `Mx10` one vs all predictions. Now it is time to go through the back
 propogation cycle which should leave us with matrices of gradients that will match the sizes of
-the <InlineMath math="\Theta" /> matrices.
+the <M i="\Theta" /> matrices.
 
-<BlockMath math="
+<M b="
   \begin{aligned}
     & \delta^{(3)} = m\times10 - m \times 10 = m\times10 \\
     & \delta^{(2)} = \Theta^{(2)T} * \delta^{(3)T} .* g'(z^{(2)})^{T} = 25 \times 10 * 10 \times m .* 25 \times m = 25 \times m \\

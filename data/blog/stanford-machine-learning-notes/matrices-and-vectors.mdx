@@ -2,17 +2,19 @@
 title: Matrices and Vectors
 published: true
 createdAt: 2019-02-05T16:03:28.765Z
-updatedAt: 2019-02-15T03:38:40.704Z
+updatedAt: 2019-04-19T03:48:58.724Z
 categories:
   - Machine Learning
 ---
+
+import { M } from '../../../src/components/math';
 
 - vectors are an `[n x 1]` matrix
 - matrix addition only works on matrices of the same dimension
 - matrix multiplication/division by a scalar multiplies/divides each element by the scalar
 - a 4x3 matrix multiplied by a 4x1 vector works like this
 
-<BlockMath math="
+<M b="
   \begin{bmatrix}
    1 & 0 & 3 & 2 \\
    5 & 3 & 6 & 8 \\
@@ -40,7 +42,7 @@ categories:
 but the positions cannot be switched.
 - if one of the matrices being multiplied is an identity matrix, then multiplication is commutative.
 
-<BlockMath math="
+<M b="
   \begin{bmatrix}
     1 & 0 & 0 \\
     0 & 1 & 0 \\
@@ -51,12 +53,12 @@ but the positions cannot be switched.
 
 - `m by m` matrices haev an inverse that when multiplied by itself, gives the identity matrix.
 
-<BlockMath math="3(3^-1) = 1" />
-<BlockMath math="A(A^-1) = A^-1A = I" />
+<M b="3(3^-1) = 1" />
+<M b="A(A^-1) = A^-1A = I" />
 
 - the number of columns in the first matrix must be equal to the number of rows in the second matrix
 
-<BlockMath math="
+<M b="
   A =
   \begin{bmatrix}
     1 & 2 & 3 \\
@@ -76,5 +78,4 @@ but the positions cannot be switched.
   \end{bmatrix}
 " />
 
-In the above example matrices, <InlineMath math="A * C" /> is ok <InlineMath math="A * B" /> is not ok,
-<InlineMath math="B * C" /> is not ok, but <InlineMath math="C * B" /> is ok
+In the above example matrices, <M i="A * C" /> is ok <M i="A * B" /> is not ok, <M i="B * C" /> is not ok, but <M i="C * B" /> is ok

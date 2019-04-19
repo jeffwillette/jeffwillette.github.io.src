@@ -2,7 +2,7 @@
 title: Logistic Regression
 published: true
 createdAt: 2019-02-15T12:38:13.957Z
-updatedAt: 2019-02-28T11:34:06.531Z
+updatedAt: 2019-04-19T04:54:12.080Z
 images:
   - ./sigmoid.svg
 categories:
@@ -11,9 +11,11 @@ categories:
   - Machine Learning
 ---
 
+import { M } from '../../../src/components/math';
+
 ## Logistic Regression
 
-<Image1 align="left" width="40%" />
+<props.imgs.Img1 align="left" width="40%" />
 
 Linear regression is good for predicting values that have a linear relationship to the data. In classification
 problems, however, there are a limited number of values that are being predicted. Like "Is this a
@@ -22,7 +24,7 @@ picture of a dog?", "Is this a spam email?", etc.
 The hypothesis function is then given in terms of the likelihood of `x` being classfied as `0` or `1`. The `g(z)`
 below of the function that produces the curve in the picture.
 
-<BlockMath math="
+<M b="
   \begin{aligned}
    &h_\theta(x) = g(\theta^Tx) \\
    &z = \theta^Tx \\
@@ -33,22 +35,22 @@ below of the function that produces the curve in the picture.
 
 If we are only choosing from two possibilities, then the following must be true...
 
-<BlockMath math="h_\theta(x) = P(y = 1 | x;\theta) = 1 - P(y = 0|x;\theta)" />
+<M b="h_\theta(x) = P(y = 1 | x;\theta) = 1 - P(y = 0|x;\theta)" />
 
 ## Decision Boundary
 
-From the equations and chart above we can deduce that when <InlineMath math="z = 0" />
-then <InlineMath math="g(z) = 1/2" />. So if `z` where to be more than 0, teh result would then be greater than `0.5`.
-Since <InlineMath math="\theta^Tx" /> can be substituted for <InlineMath math="z" /> we can then say the following.
+From the equations and chart above we can deduce that when <M i="z = 0" />
+then <M i="g(z) = 1/2" />. So if `z` where to be more than 0, teh result would then be greater than `0.5`.
+Since <M i="\theta^Tx" /> can be substituted for <M i="z" /> we can then say the following.
 
-<BlockMath math="
+<M b="
  \begin{aligned}
    &g(z) >= 0.5 \quad when \quad z \geq  0 \\
    &h_\theta(x) = g(\theta^Tx) \geq 0.5 \quad whenever \quad \theta^Tx \geq 0 \\
  \end{aligned}
 " />
 
-The same is true in the opposite case, whenever <InlineMath math="\theta^Tx" /> is less than 0, then `g(z)` will be less
+The same is true in the opposite case, whenever <M i="\theta^Tx" /> is less than 0, then `g(z)` will be less
 than 0.5.
 
 ## The Cost Function and Gradient Descent
@@ -56,7 +58,7 @@ than 0.5.
 For logistic regression, the cost function is also the mean of the sum of all the costs, but instead of the mean of
 squared error, it is defined as...
 
-<BlockMath math="
+<M b="
   \begin{aligned}
     J(\theta) &= \frac{1}{m} \sum_{i=1}^m Cost(h_\theta(x^{(i)}), y^{(i)}) \\
     Cost(h_\theta(x), y) &= \begin{cases}
@@ -71,7 +73,7 @@ squared error, it is defined as...
 In order to run gradient descent with this cost function we need to take the partial derivative of the cost function and
 update each theta just like the linear regression method.
 
-<BlockMath math="
+<M b="
   \begin{aligned}
     \theta_j &:= \theta_j - \alpha \frac{\partial}{\partial \theta_j}J(\theta) \\
     \theta_j &:= \theta_j - \frac{\alpha}{m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) x_J^{(i)} \\

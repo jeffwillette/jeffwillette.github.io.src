@@ -2,13 +2,15 @@
 title: ORACLE
 published: true
 createdAt: 2019-03-26T03:47:48.013Z
-updatedAt: 2019-03-29T03:36:47.920Z
+updatedAt: 2019-04-19T03:41:58.886Z
 categories:
   - Programming
   - Algorithms
   - Machine Learning
   - Neural Networks
 ---
+
+import { M } from '../../../src/components/math';
 
 ## The Problem
 
@@ -38,30 +40,28 @@ categories:
 
 ## Problem Setting
 
-- <InlineMath math="D_t"/> - dataset of the `t`th task.
-- <InlineMath math="\{x^i_t, y^i_t\}_{i=1}^{N_t}" /> - x_i^t is the i^th training example of the t^th dataset, and y_i^t
-  is its label. N_t is the number of examples in for task t
-- <InlineMath math="\Theta_t = {\theta^l_t}" /> - a set of weights for the task t and layer l.
-- <InlineMath math="\theta_t = \sigma + \tau_t" /> - sigma is the task shared parameter, and tau is the task adaptive
+- <M i="D_t"/> - dataset of the `t`th task.
+- <M i="\lbrace x_t^i, y^i_t \rbrace_{i=1}^{N_t}" /> - x is the i<sup>th</sup> training example of the
+  t<sup>th</sup> dataset, and y is its label. N is the number of examples in for task t
+- <M i="\Theta_t = {\theta^l_t}" /> - a set of weights for the task t and layer l.
+- <M i="\theta_t = \sigma + \tau_t" /> - sigma is the task shared parameter, and tau is the task adaptive
   parameter.
-- <InlineMath math="\odot" /> - hadamard product (elementwise multiplication)
-- <InlineMath math="\otimes" /> - tensor product  (what???)
-- <InlineMath math="|| \sigma ||" />  - magnitude of the vector <InlineMath math="sqrt(sum(sigma .* sigma))" />
-- <InlineMath math="|| \sigma ||_p = (\sum_{i=1}^n |x_i|^p)^{1/p}" />.
-- <InlineMath math="\sigma^{(t - 1)} = U \Sigma V^T" /> which is the single value decomposition `svd()` function
-- <InlineMath math="\tau_t = P_t Q_t" /> where <InlineMath math="P_t = U \Sigma^{1/2}" /> and <InlineMath math="Q_t = V \Sigma^{1/2}" />
-- `l2` regularizer - AKA "ridge regression" <InlineMath math="\lambda \sum_{j=1}^P \theta_j^2" /> - same as <InlineMath
-  math="|| \theta ||_2^2"/>
-- `l1` regulizer - AKA "lasso refression" <InlineMath math="\lambda \sum_{j=1}^P | \theta_j |" /> - same as <InlineMath
-  math="|| \theta ||_1 " />.
+- <M i="\odot" /> - hadamard product (elementwise multiplication)
+- <M i="\otimes" /> - tensor product  (what???)
+- <M i="|| \sigma ||" />  - magnitude of the vector <M i="sqrt(sum(sigma .* sigma))" />
+- <M i="|| \sigma ||_p = (\sum_{i=1}^n |x_i|^p)^{1/p}" />.
+- <M i="\sigma^{(t - 1)} = U \Sigma V^T" /> which is the single value decomposition `svd()` function
+- <M i="\tau_t = P_t Q_t" /> where <M i="P_t = U \Sigma^{1/2}" /> and <M i="Q_t = V \Sigma^{1/2}" />
+- `l2` regularizer - AKA "ridge regression" <M i="\lambda \sum_{j=1}^P \theta_j^2" /> - same as <M i="|| \theta ||_2^2"/>
+- `l1` regulizer - AKA "lasso refression" <M i="\lambda \sum_{j=1}^P | \theta_j |" /> - same as <M i="|| \theta ||_1 " />.
 - first learn the task adaptive parameters, then update the task shared parameters
 
 - The initial task theta values are are learned for the first task. This means that the shared parameters and the task
-  specific parameters are learned since <InlineMath math="\theta_t = \sigma + \tau_t" />.
-- The shared parameter <InlineMath math="\sigma^{(t - 1)}" /> in the algorithm is shared by every level, so it doesn't
+  specific parameters are learned since <M i="\theta_t = \sigma + \tau_t" />.
+- The shared parameter <M i="\sigma^{(t - 1)}" /> in the algorithm is shared by every level, so it doesn't
   need to be recovered for every level.
 - The P and Q values need to be stored at every iteration of the learning algorithm
-- The <InlineMath math="\theta" /> values at each task should remain the samer. Since the theta values are
+- The <M i="\theta" /> values at each task should remain the samer. Since the theta values are
   constructed from the shared params, task-params, and masks, and the shared parameters are "relatively" static,
   then most of the changes are happening in the task specific parameters.
 

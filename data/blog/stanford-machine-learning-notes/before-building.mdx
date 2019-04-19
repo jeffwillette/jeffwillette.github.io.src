@@ -2,13 +2,15 @@
 title: "Machine Learning: Thinking About Design"
 published: true
 createdAt: 2019-03-14T01:56:11.402Z
-updatedAt: 2019-03-18T13:06:03.219Z
+updatedAt: 2019-04-19T03:37:21.343Z
 categories:
   - Programming
   - Algorithms
   - Machine Learning
   - Neural Networks
 ---
+
+import { M } from '../../../src/components/math';
 
 Before starting to build a network, it would be best to think very carefully about how to best go about it by
 brainstorming and testing ideas as much as possible. In the example of building a spam classifier, one could
@@ -28,13 +30,13 @@ to see what the specific issues with the problem set are. A good approach would 
 
 ## Precision vs. Recall vs Accuracy
 
-Accuracy is defined as <InlineMath math="\frac{\text{True positives + True negatives}}{total examples}"/>. This gives
+Accuracy is defined as <M i="\frac{\text{True positives + True negatives}}{total examples}"/>. This gives
 the overall correctness of the predictions.
 
 Precision is the ratio of how many of the true classifications on the cross validation set were actually
-correct <InlineMath math="\frac{\text{True positive}}{\text{True positive} + \text{False positive}}" />.
+correct <M i="\frac{\text{True positive}}{\text{True positive} + \text{False positive}}" />.
 In other words, of all of the predicted `true`s, how many were actually true. Recall is a similar metric that
-measures the ratio of <InlineMath math="\frac{\text{True positives}}{\text{True positives} + \text{False negatives}}"/>.
+measures the ratio of <M i="\frac{\text{True positives}}{\text{True positives} + \text{False negatives}}"/>.
 
 These ratios are useful in the case that there is a high error rate. Perhaps just predicting 0 all the time would give a
 lower error rate that actually running the algorithm. In that case though, we are not doing anything so the precision
@@ -50,7 +52,7 @@ false positive flag or a higher false negative flag?
 
 In order to help choose a proper acceptable precision vs recall would be to use the following formula
 
-<BlockMath math="F_1 Score = 2 \frac{PR}{P+R}" />
+<M b="F_1 Score = 2 \frac{PR}{P+R}" />
 
 With this formula, if precision or recall is 0 (meaning that we were just predicting 1 or 0 the whole time), then the
 output score will be 0 (not good). A score closer to 1 is generally better.
