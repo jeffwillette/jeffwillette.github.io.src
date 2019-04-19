@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core';
 import React from 'react';
-import { BlockMath as BM, InlineMath as IM } from 'react-katex';
+import { BlockMath, InlineMath } from 'react-katex';
 
 const useStyles = makeStyles((theme: Theme) => ({
   inlineMath: {
@@ -10,25 +10,29 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
-  children: React.ReactNode;
+  i?: string;
+  b?: string;
 }
 
 // these spread the math prop into the katex component like the react-katex docs show
-// TODO: check that these still work
-export const InlineMath = ({ children }) => {
+export const M = ({ i, b }: Props) => {
   const classes = useStyles();
-  return (
-    <span className={classes.inlineMath}>
-      <IM children={children} />
-    </span>
-  );
-};
 
-export const BlockMath = ({ children }: Props) => {
-  const classes = useStyles();
-  return (
-    <span className={classes.blockMath}>
-      <BM children={children} />
-    </span>
-  );
+  if (i) {
+    return (
+      <span className={classes.inlineMath}>
+        <InlineMath children={i} />
+      </span>
+    );
+  }
+
+  if (b) {
+    return (
+      <span className={classes.blockMath}>
+        <BlockMath children={b} />
+      </span>
+    );
+  }
+
+  throw new Error('i or b need to be passed as props');
 };

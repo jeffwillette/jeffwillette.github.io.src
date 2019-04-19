@@ -1,4 +1,3 @@
-import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import { graphql } from 'gatsby';
 import moment from 'moment';
 import React from 'react';
@@ -8,14 +7,12 @@ import { PostExcerpt } from '../components/postExcerpt';
 import { TagPage } from '../gatsby-queries';
 import { safe } from '../utils';
 
-const styles = (_: Theme) => createStyles({});
-
-interface Props extends WithStyles<typeof styles> {
+interface Props {
   data: TagPage;
   pageContext: { tagRegex: string; tagName: string };
 }
 
-const Tags = ({ data, pageContext }: Props) => {
+export default ({ data, pageContext }: Props) => {
   const { tagName } = safe(pageContext);
 
   const { allMdx, site } = safe(data);
@@ -90,4 +87,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-export default withStyles(styles)(Tags);

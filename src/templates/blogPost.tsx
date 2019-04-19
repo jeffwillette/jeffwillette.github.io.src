@@ -7,16 +7,11 @@ import moment from 'moment';
 import React from 'react';
 import Helmet from 'react-helmet';
 import { FlatButton } from '../components/button';
-import { BarChart } from '../components/Charts/bar';
-import { Graph } from '../components/Charts/graph';
-import { LineChart } from '../components/Charts/line';
-import { TreeChart } from '../components/Charts/tree';
 import { DisplayCard } from '../components/displayCard';
 import { MDXSharpImg, MDXSrcImg, safeFluid } from '../components/images';
 import { DrawerTOC, TableOfContents } from '../components/Layout/drawerTOC';
 import { GlobalLayout } from '../components/Layout/global';
 import { Link } from '../components/link';
-import { BlockMath, InlineMath } from '../components/math';
 import { TagChip } from '../components/tagChip';
 import { BlogPostQuery } from '../gatsby-queries';
 import { safe } from '../utils';
@@ -69,7 +64,7 @@ export default ({ data }: Props) => {
     images.forEach((image, i) => {
       const { childImageSharp: c, publicURL } = safe(image);
       const { fluid: f } = safe(c);
-      imgs[`Image${i + 1}`] = ({ align, width }) =>
+      imgs[`Img${i + 1}`] = ({ align, width }) =>
         f ? (
           <MDXSharpImg align={align} width={width} fluid={safeFluid(f)} />
         ) : (
@@ -102,9 +97,7 @@ export default ({ data }: Props) => {
         <Typography variant="h1">{title}</Typography>
         {categories && categories.map((c, i) => c && <TagChip key={i} tag={c} />)}
         <div className={classes.postBody}>
-          <MDXRenderer scope={{ ...imgs, BlockMath, InlineMath, BarChart, LineChart, TreeChart, Graph }}>
-            {body}
-          </MDXRenderer>
+          <MDXRenderer imgs={imgs}>{body}</MDXRenderer>
         </div>
         <div className={classes.button}>
           <Link to={githubLink || ''}>

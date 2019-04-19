@@ -1,28 +1,29 @@
-import { createStyles, Typography, withStyles, WithStyles } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 
-const styles = () =>
-  createStyles({
-    quote: {
-      borderLeft: `5px solid rgba(0,0,0,.2)`
-    },
-    text: {
-      color: 'rgba(0,0,0,.54)'
-    }
-  });
+const useStyles = makeStyles({
+  quote: {
+    borderLeft: `5px solid rgba(0,0,0,.2)`
+  },
+  text: {
+    color: 'rgba(0,0,0,.54)'
+  }
+});
 
-interface Props extends WithStyles<typeof styles> {
+interface Props {
   children: Array<string | JSX.Element>;
 }
 
-const blockquote = ({ classes, children }: Props) => (
-  <div className={classes.quote}>
-    <blockquote>
-      <Typography variant="body1" className={classes.text}>
-        {children}
-      </Typography>
-    </blockquote>
-  </div>
-);
+export const Blockquote = ({ children }: Props) => {
+  const classes = useStyles();
 
-export const Blockquote = withStyles(styles)(blockquote);
+  return (
+    <div className={classes.quote}>
+      <blockquote>
+        <Typography variant="body1" className={classes.text}>
+          {children}
+        </Typography>
+      </blockquote>
+    </div>
+  );
+};

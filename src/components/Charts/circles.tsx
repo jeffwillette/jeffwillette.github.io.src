@@ -84,10 +84,8 @@ const circles = (_: Props) => {
   );
 
   const [timerState, setTimerState] = useState<number>(0);
-  if (!timerState) {
-    setTimerState(
-      window ? window.setInterval(() => timer(node.current, timerState, planets, setPlanets, setSimulation), 1000) : 0
-    );
+  if (!timerState && typeof window !== 'undefined') {
+    setTimerState(window.setInterval(() => timer(node.current, timerState, planets, setPlanets, setSimulation), 1000));
   }
 
   return (
