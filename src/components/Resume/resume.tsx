@@ -1,4 +1,3 @@
-import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import React from 'react';
 import { AboutPage_site_siteMetadata_resume } from '../../gatsby-queries';
 import { safe } from '../../utils';
@@ -12,13 +11,11 @@ import { References } from './references';
 import { Skills } from './skills';
 import { Work } from './work';
 
-const styles = (_: Theme) => createStyles({});
-
-interface Props extends WithStyles<typeof styles> {
+interface Props {
   resume: AboutPage_site_siteMetadata_resume;
 }
 
-const resumeComponent = ({ resume }: Props) => {
+export const Resume = ({ resume }: Props) => {
   const { basics, work, education, skills, interests, languages, references, publications } = safe(resume);
   return (
     <GlobalLayout>
@@ -33,5 +30,3 @@ const resumeComponent = ({ resume }: Props) => {
     </GlobalLayout>
   );
 };
-
-export const Resume = withStyles(styles)(resumeComponent);

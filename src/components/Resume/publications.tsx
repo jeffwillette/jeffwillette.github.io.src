@@ -1,18 +1,13 @@
-import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core';
 import React from 'react';
 import { AboutPage_site_siteMetadata_resume } from '../../gatsby-queries';
 
-const styles = (_: Theme) => createStyles({});
-
-interface Props extends WithStyles<typeof styles> {
+interface Props {
   publications: AboutPage_site_siteMetadata_resume['publications'];
 }
 
-const publicationsComponent = ({ publications }: Props) => (
+export const Publications = ({ publications }: Props) => (
   <div>
     publications
     <div>{JSON.stringify(publications)}</div>
   </div>
 );
-
-export const Publications = withStyles(styles)(publicationsComponent);

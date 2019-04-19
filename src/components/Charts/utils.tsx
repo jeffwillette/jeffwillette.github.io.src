@@ -23,7 +23,7 @@ export const clearChart = (node: SVGSVGElement | null) =>
 
 export const margin = 50;
 
-export const getWidthAndHeight = (node, m) => [
+export const getWidthAndHeight = (node: SVGSVGElement, m: number) => [
   parseInt(select(node).style('width'), 10) - m * 2,
   parseInt(select(node).style('height'), 10) - m * 2
 ];
