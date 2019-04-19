@@ -13,7 +13,7 @@ import {
   Typography
 } from '@material-ui/core';
 import { ExpandLess, ExpandMore, LibraryBooks, Web } from '@material-ui/icons';
-import { MDXProvider } from '@mdx-js/tag';
+import { MDXProvider } from '@mdx-js/react';
 import c from 'classnames';
 import { navigate } from 'gatsby';
 import { ContextProvider, StateConsumer } from '../../context';
@@ -123,27 +123,27 @@ export const GlobalLayout = ({ drawer, children }: Props) => {
   const [defaultItemOpen, toggleDefaultItem] = useState(false);
   const classes = useStyles();
 
+  const components = {
+    h1: props => <AutolinkHeader {...props} variant="h1" />,
+    h2: props => <AutolinkHeader {...props} variant="h2" />,
+    h3: props => <AutolinkHeader {...props} variant="h3" />,
+    h4: props => <AutolinkHeader {...props} variant="h4" />,
+    h5: props => <AutolinkHeader {...props} variant="h5" />,
+    h6: props => <AutolinkHeader {...props} variant="h6" />,
+    p: props => <Typography className={classes.postP} {...props} variant="body1" />,
+    code: props => <Code {...props} />,
+    ul: props => <div className={classes.ul} children={<ul {...props} />} />,
+    ol: props => <div className={classes.ol} children={<ol {...props} />} />,
+    blockquote: props => (
+      <DisplayCard indented variant="leftPad">
+        <CardContent className={classes.blockquote} children={props.children} />
+      </DisplayCard>
+    )
+  };
+
   return (
-    <ContextProvider>
-      <MDXProvider
-        components={{
-          h1: props => <AutolinkHeader {...props} variant="h1" />,
-          h2: props => <AutolinkHeader {...props} variant="h2" />,
-          h3: props => <AutolinkHeader {...props} variant="h3" />,
-          h4: props => <AutolinkHeader {...props} variant="h4" />,
-          h5: props => <AutolinkHeader {...props} variant="h5" />,
-          h6: props => <AutolinkHeader {...props} variant="h6" />,
-          p: props => <Typography className={classes.postP} {...props} variant="body1" />,
-          code: props => <Code {...props} />,
-          ul: props => <div className={classes.ul} children={<ul {...props} />} />,
-          ol: props => <div className={classes.ol} children={<ol {...props} />} />,
-          blockquote: props => (
-            <DisplayCard indented variant="leftPad">
-              <CardContent className={classes.blockquote} children={props.children} />
-            </DisplayCard>
-          )
-        }}
-      >
+    <MDXProvider components={components}>
+      <ContextProvider>
         <Header />
         <Drawer>
           <List>
@@ -189,7 +189,7 @@ export const GlobalLayout = ({ drawer, children }: Props) => {
           }}
         </StateConsumer>
         <Footer />
-      </MDXProvider>
-    </ContextProvider>
+      </ContextProvider>
+    </MDXProvider>
   );
 };
