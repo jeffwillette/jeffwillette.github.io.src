@@ -16,7 +16,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: theme.typography.fontSize
   },
   levelTwo: {
-    fontSize: theme.typography.fontSize - 3
+    fontSize: theme.typography.fontSize,
+    marginLeft: theme.spacing(1.5),
+    '&::before': {
+      content: '"- "'
+    }
   }
 }));
 
@@ -42,7 +46,7 @@ export const DrawerTOC = ({ items, level }: Props) => {
               <ListItem button classes={{ root: classes.tocButtonRoot, gutters: classes.tocButtonGutters }}>
                 <ListItemText
                   primaryTypographyProps={{
-                    variant: 'subtitle2',
+                    variant: 'subtitle1',
                     className: c({ [classes.levelOne]: level === 1, [classes.levelTwo]: level !== 1 })
                   }}
                 >
@@ -50,7 +54,10 @@ export const DrawerTOC = ({ items, level }: Props) => {
                 </ListItemText>
               </ListItem>
             </Link>
-            {item.items && <DrawerTOC level={level + 1} items={item.items} />}
+            {item.items &&
+              item.items.map((tocObj, j) => (
+                <DrawerTOC key={j} level={level + 1} items={tocObj.items || ([] as TableOfContents[])} />
+              ))}
           </div>
         ))}
     </List>

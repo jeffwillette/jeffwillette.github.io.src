@@ -70,6 +70,9 @@ export const theme = createMuiTheme({
       fontWeight: 'bold',
       color: 'rgba(0,0,0,.74)'
     },
+    subtitle1: {
+      color: 'rgba(0,0,0,.74)'
+    },
     body1: {
       // margin: `${spacing * 2}px 0px`
     }
