@@ -12,14 +12,15 @@ export const wrapRootElement = ({ element, pathname }, pluginOptions) => {
 
 export const onRenderBody = ({ setHeadComponents, pathname }) => {
   // onRenderBody is called in develop mode. It's strange?
-  if (!pathname) {
+  // TODO: see if I should add this to the mui repo. they had if (!pathname)
+  console.log(process.env.BUILD_STAGE);
+  console.log(process.env);
+  console.log(pathname);
+  if (process.env.BUILD_STAGE === `develop-html`) {
     return;
   }
 
   const sheets = globalLeak.get(pathname);
-  console.log(sheets);
-  console.log('pathname');
-  console.log(pathname);
   setHeadComponents([sheets.getStyleElement()]);
   globalLeak.delete(pathname);
 };
