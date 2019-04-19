@@ -26,7 +26,7 @@ export const Pages = ({ show, pageContext }: Props) => {
   const center = Math.ceil(show / 2);
   const limbs = Math.floor(show / 2);
 
-  const startIndex = page - limbs < 0 ? 0 : page - limbs - 1;
+  const startIndex = page - limbs <= 0 ? 0 : page - limbs - 1;
   const endIndex = startIndex + show;
   const pages = pageSlugs.slice(startIndex, endIndex);
 

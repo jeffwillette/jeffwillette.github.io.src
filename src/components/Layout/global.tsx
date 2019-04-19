@@ -18,6 +18,7 @@ import c from 'classnames';
 import { navigate } from 'gatsby';
 import { ContextProvider, StateConsumer } from '../../context';
 import { AutolinkHeader } from '../AutolinkHeader';
+import { BlockQuote } from '../blockquote';
 import { Code } from '../code';
 import { DisplayCard } from '../displayCard';
 import { Drawer, drawerWidth } from './drawer';
@@ -134,11 +135,7 @@ export const GlobalLayout = ({ drawer, children }: Props) => {
     code: props => <Code {...props} />,
     ul: props => <div className={classes.ul} children={<ul {...props} />} />,
     ol: props => <div className={classes.ol} children={<ol {...props} />} />,
-    blockquote: props => (
-      <DisplayCard indented variant="leftPad">
-        <CardContent className={classes.blockquote} children={props.children} />
-      </DisplayCard>
-    )
+    blockquote: props => <BlockQuote {...props} />
   };
 
   return (
