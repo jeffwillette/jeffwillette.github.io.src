@@ -78,3 +78,10 @@ export const theme = createMuiTheme({
     }
   }
 });
+
+export const themeAddons = {
+  green: `rgba(15,89,52,0.6)`,
+  lightGreen: `rgb(119, 179, 149, 0.6)`,
+  greenOutline: `5px solid rgba(15, 89, 52, 0.4)`,
+  greenBg: `rgb(119, 179, 149, 0.4)`
+};

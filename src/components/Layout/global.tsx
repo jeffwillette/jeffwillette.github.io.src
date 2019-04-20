@@ -1,26 +1,16 @@
 import React, { useState } from 'react';
 import { Header } from './header';
 
-import {
-  CardContent,
-  Collapse,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  makeStyles,
-  Theme,
-  Typography
-} from '@material-ui/core';
+import { Collapse, List, ListItem, ListItemIcon, ListItemText, makeStyles, Theme, Typography } from '@material-ui/core';
 import { ExpandLess, ExpandMore, LibraryBooks, Web } from '@material-ui/icons';
 import { MDXProvider } from '@mdx-js/react';
 import c from 'classnames';
 import { navigate } from 'gatsby';
 import { ContextProvider, StateConsumer } from '../../context';
+import { themeAddons } from '../../theme';
 import { AutolinkHeader } from '../AutolinkHeader';
 import { BlockQuote } from '../blockquote';
 import { Code } from '../code';
-import { DisplayCard } from '../displayCard';
 import { Drawer, drawerWidth } from './drawer';
 import { Footer } from './footer';
 
@@ -38,49 +28,63 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   },
   ul: {
-    margin: `${theme.spacing(2)}px ${theme.spacing(3)}px`,
+    margin: `${theme.spacing(2)}px ${theme.spacing(1)}px`,
+    display: 'flex',
+    flexDirection: 'column',
     '& ul': {
-      borderLeft: `5px solid ${theme.palette.divider}`,
+      borderLeft: themeAddons.greenOutline,
+      padding: theme.spacing(1),
+      backgroundColor: themeAddons.greenBg,
+      borderRadius: 5,
       listStyle: 'none'
     },
     '& ul li': {
-      ...theme.typography.h5,
       fontSize: '1.0em',
-      padding: theme.spacing(1),
       position: 'relative',
+      left: theme.spacing(3),
+      padding: `${theme.spacing(1)}px ${theme.spacing(3)}px ${theme.spacing(1)}px ${theme.spacing(1)}px`,
       '&:before': {
+        fontSize: '1.2em',
+        fontWeight: 'bold',
         padding: `0px ${theme.spacing(1) - 1}px`,
         borderRadius: '50%',
         content: '"❯"',
         color: 'rgba(0,0,0,.5)',
         backgroundColor: theme.palette.divider,
         position: 'absolute',
-        left: -26
+        left: theme.spacing(-3)
       }
     }
   },
   ol: {
-    margin: `${theme.spacing(2)}px ${theme.spacing(3)}px`,
+    margin: `${theme.spacing(2)}px ${theme.spacing(1)}px`,
+    display: 'flex',
+    flexDirection: 'column',
     '& ol': {
-      borderLeft: `5px solid ${theme.palette.divider}`,
+      borderLeft: themeAddons.greenOutline,
+      backgroundColor: themeAddons.greenBg,
+      padding: theme.spacing(1),
+      borderRadius: 5,
       listStyle: 'none',
       counterReset: 'ol-counter'
     },
     '& ol li': {
-      ...theme.typography.h5,
       counterIncrement: 'ol-counter',
       fontSize: '1.0em',
-      padding: theme.spacing(1),
       position: 'relative',
+      left: theme.spacing(3),
+      padding: `${theme.spacing(1)}px ${theme.spacing(3)}px ${theme.spacing(1)}px ${theme.spacing(1)}px`,
       '&:before': {
+        fontSize: '1.2em',
+        fontWeight: 'bold',
         content: 'counter(ol-counter)',
-        padding: `${theme.spacing(4)}px ${theme.spacing(1)}px`,
+        padding: `${theme.spacing(1) / 4}px ${theme.spacing(1)}px`,
         borderRadius: '50%',
-        color: 'rgba(0,0,0,.5)',
-        backgroundColor: theme.palette.divider,
+        backgroundColor: `rgba(0,0,0,.05)`,
+        color: `rgba(0,0,0,.4)`,
         position: 'absolute',
-        left: -28,
-        top: 7
+        left: theme.spacing(-3),
+        top: 4
       }
     }
   },
