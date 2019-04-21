@@ -2,11 +2,12 @@
 title: "Machine Learning: Hypothesis, Cost Function, Gradient Descent Notes"
 published: true
 createdAt: 2019-02-05T12:23:50.151Z
-updatedAt: 2019-04-19T09:25:05.566Z
+updatedAt: 2019-04-20T11:09:02.719Z
 categories:
   - Programming
   - Algorithms
   - Machine Learning
+  - Week 2
 ---
 
 import { M } from '../../../src/components/math';
@@ -14,8 +15,8 @@ import { Graph } from '../../../src/components/Charts/graph';
 
 ## Hypothesis
 
-The hypothesis is the prediction about a set of data. It is the `y` value on a graph. In the house price example, the
-x-axis is size in square feet and the y-axis is the price. The hypothesis would then be a linear function like
+The hypothesis is the prediction about a set of data. It is the `y` value on a graph in the house price example problem.
+In the, the x-axis is size in square feet and the y-axis is the price. The hypothesis would then be a linear function like
 below. The `x` values are the values of each feature (of which there is only one -- house size).
 
 <M b="h_\theta(x) = \theta_{0} + \theta_{1}x" />
@@ -94,6 +95,10 @@ following partial derivatives with respect to <M i="\theta_0 \text{and} \theta_1
 derivative with respect to <M i="\theta_{0}" /> makes the term with <M i="\theta_1 x_1" />
 irrelevant, so it changes to 0, and the partial derivative of a variable with no coefficient is 1.
 
+When the derivative is taken with respect to <M i="\theta_{0}" /> then <M i="\theta_0" />
+becomes irrelevant, and we need to take the derivative of the variable theta (which is 1), and leaves the `x` term
+unchanged.
+
 <M b="
   \frac{\partial}{\partial\theta_{0}} h_{\theta}(x_{i})
   = \frac{\partial}{\partial\theta_{0}} (\theta_{0} + \theta_{1}x_{i})
@@ -101,10 +106,6 @@ irrelevant, so it changes to 0, and the partial derivative of a variable with no
   = 1 + 0
   = 1
 " />
-
-When the derivative is taken with respect to <M i="\theta_{0}" /> then <M i="\theta_0" />
-becomes irrelevant, and we need to take the derivative of the variable theta (which is 1), and leaves the `x` term
-unchanged.
 
 <M b="
   \frac{\partial}{\partial\theta_1} h_{\theta} (x_{i})

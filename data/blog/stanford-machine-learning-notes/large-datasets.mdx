@@ -2,7 +2,7 @@
 title: Working With Large Datasets
 published: true
 createdAt: 2019-04-05T03:54:53.273Z
-updatedAt: 2019-04-19T04:41:39.578Z
+updatedAt: 2019-04-20T11:09:19.270Z
 images:
   - ./large-dataset-train-vs-cv.png
   - ./stochastic-gradient-descent-convergence.png
@@ -10,6 +10,7 @@ categories:
   - Programming
   - Algorithms
   - Machine Learning
+  - Week 10
 ---
 
 import { M } from '../../../src/components/math';
@@ -62,7 +63,7 @@ and still doing a vectorized calculation with mini batch gradient descent
 <props.imgs.Img2 width="50%" align="center" />
 
 If seeing non expected learning curves, try plotting the values over a different amount of iterations to either make a
-more noisy (lower iterations) or more stable (more iterations) average of the curve.
+more noisy (fewer iterations) or more stable (more iterations) average of the curve.
 
 The learning rate can also be changed to be <M i="const / iterations + const"/> in order to deacrease alpha
 as the number of iterations goes up. Without this, stochastic gradient descent is likely to meander around the minimum

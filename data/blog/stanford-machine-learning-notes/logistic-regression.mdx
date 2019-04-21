@@ -2,13 +2,14 @@
 title: Logistic Regression
 published: true
 createdAt: 2019-02-15T12:38:13.957Z
-updatedAt: 2019-04-19T04:54:12.080Z
+updatedAt: 2019-04-20T11:09:36.613Z
 images:
   - ./sigmoid.svg
 categories:
   - Programming
   - Algorithms
   - Machine Learning
+  - Week 3
 ---
 
 import { M } from '../../../src/components/math';
@@ -22,7 +23,11 @@ problems, however, there are a limited number of values that are being predicted
 picture of a dog?", "Is this a spam email?", etc.
 
 The hypothesis function is then given in terms of the likelihood of `x` being classfied as `0` or `1`. The `g(z)`
-below of the function that produces the curve in the picture.
+below is the function that produces the curve in the picture. It is called a sigmoid function.
+
+The sigmoid function takes any `x` value and converts it to somewhere between 0 and 1. An `x` value of `0` gives the otput
+`0.5` and a very large value of `x` will give a number very close to 1 and a very small value of `x` will give a number
+very close to `0`.
 
 <M b="
   \begin{aligned}
@@ -40,7 +45,7 @@ If we are only choosing from two possibilities, then the following must be true.
 ## Decision Boundary
 
 From the equations and chart above we can deduce that when <M i="z = 0" />
-then <M i="g(z) = 1/2" />. So if `z` where to be more than 0, teh result would then be greater than `0.5`.
+then <M i="g(z) = 1/2" />. So if `z` were to be more than 0, the result would then be greater than `0.5`.
 Since <M i="\theta^Tx" /> can be substituted for <M i="z" /> we can then say the following.
 
 <M b="
@@ -63,7 +68,7 @@ squared error, it is defined as...
     J(\theta) &= \frac{1}{m} \sum_{i=1}^m Cost(h_\theta(x^{(i)}), y^{(i)}) \\
     Cost(h_\theta(x), y) &= \begin{cases}
      -log(h_\theta(x)) &\text{if } y = 1 \\
-     -log(1 - h_\theta(x)) &\text{if } if y = 0
+     -log(1 - h_\theta(x)) &\text{if } y = 0
     \end{cases} \\
     Cost(h_\theta(x), y) &= -y * log(h_\theta(x)) - (1 - y)log(1 - h_\theta(x)) \\
     J(\theta) &= \frac{1}{m} (-y^T log(h_\theta(x))) - (1 - y)^T log(1 - h_\theta(x))))
@@ -71,7 +76,7 @@ squared error, it is defined as...
 " />
 
 In order to run gradient descent with this cost function we need to take the partial derivative of the cost function and
-update each theta just like the linear regression method.
+update each theta simultaneously.
 
 <M b="
   \begin{aligned}

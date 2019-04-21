@@ -2,18 +2,26 @@
 title: Anomaly Detection
 published: true
 createdAt: 2019-03-20T14:26:44.585Z
-updatedAt: 2019-04-19T04:05:39.301Z
+updatedAt: 2019-04-20T11:07:35.532Z
 categories:
   - Programming
   - Algorithms
   - Machine Learning
   - Neural Networks
+  - Week 9
 ---
 
 import { M } from '../../../src/components/math';
 
-- Choose features of <M i="x^{(i)}"/> that you think might be likely to be anomalous in the desired way.
-- Fit the average and standard deviation of each of the features
+Anomaly detection is useful for predicting anomalous datapoints out of a large group. In order to do this, you need to
+have training data that has labeled anomalies. Anomaly detection works best when there is...
+
+- a large number of negative examples
+- a small number of positive examples
+- the positive examples are not well known (there can be many anomaly types)
+
+The algorithm works by first choosing features of <M i="x^{(i)}"/> that you think might be likely to be anomalous. Then
+find the average and standard deviation of each of the features
 
 <M b="
   \begin{aligned}
@@ -22,7 +30,9 @@ import { M } from '../../../src/components/math';
   \end{aligned}
 "/>
 
-- Given a new example x, compute p(x)
+Given a new example x, compute the guassian probability of x -> p(x). `X` is considered an anomaly if the <M i="p(x)" />
+value is smaller than an <M i="\epsilon" /> value which can be a learnable parameter since the dataset has labeled
+anomalous examples.
 
 <M b="
   p(x)

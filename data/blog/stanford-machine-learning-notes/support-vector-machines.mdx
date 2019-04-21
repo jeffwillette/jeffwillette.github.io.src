@@ -6,12 +6,13 @@ images:
   - ./support-vector-machine-large-margin.png
   - ./negative-log-sigmoid.png
   - ./negative-log-one-minus-sigmoid.png
-updatedAt: 2019-04-19T04:52:06.649Z
+updatedAt: 2019-04-20T11:39:20.418Z
 categories:
   - Programming
   - Algorithms
   - Machine Learning
   - Neural Networks
+  - Week 7
 ---
 
 import { M } from '../../../src/components/math';
@@ -20,12 +21,12 @@ import { M } from '../../../src/components/math';
 
 Support Vector Machines are also known as large margin classifiers because they increase the margin of the decision
 boundary. In the image below, the dark green line would be the line that the SVM would make for the decision boundary
-becauseit provides the largest margin between the to sets of data. The other lines are valid, but they don't seem to be
+because it provides the largest margin between the to sets of data. The other lines are valid, but they don't seem to be
 the natural way to draw the boundary between the two sets.
 
 <props.imgs.Img2 width="30%" align="right" /> In order to achieve this, the cost function needs to be changed to not include the lambda term. It instead includes a
 `C` regularization term which is multiplied by the cost sum. The <M i="h_\theta(x)" /> function is also
-changed from being the log of the sigmoid to being something different as is shown in the Octave sharts here. The light
+changed from being the log of the sigmoid to being something different as is shown in the Octave charts here. The light
 blue lines are the log of the sigmoid and the dark green lines are the new cost function.
 
 What this does is basically change the cost from always approaching 0 to actually
@@ -47,7 +48,7 @@ being 0 if <M i="\theta^TX"/> is greater than 1 or less than 1
 Kernels take in a feature and give an output based on its proximity to landmarks in the features. The landmarks
 themselves can be other features. The formula for finding the similarity is as follows...
 
-<M b="f_1 = similarity(x,l^{(1)}) = exp \Big( - \frac{\begin{Vmatrix}x - l^{(1)}\end{Vmatrix}^2}{2\sigma^2} \Big)" />
+<M b="f_1 = similarity(x,l^{(1)}) = exp \Big( - \frac{|| x - l^{(1)}||^2}{2\sigma^2} \Big)" />
 
 This makes the value of <M i="f_1" /> nearly equal to 1 if the feature x is close to the landmark. If the
 feature x is far from the landmark, the value oof <M i="f_1" /> is close to 0.
@@ -71,6 +72,6 @@ examples is large, with a non linear decision boundary.
 Feature scaling should be applied before using the Gaussian kernel.
 
 - if n (number of features) is large relative to m, use logistic regression or an SVM with linear kernel.
-- if n is mall relative to to m and m is intermediate, use an SVM with a Gaussian kernel.
+- if n is small relative to to m and m is intermediate, use an SVM with a Gaussian kernel.
 - if n is small and m is very large, use logistic regression or SVM without a kernel.
 - neural networks also work for most cases, but they may be slow to train.

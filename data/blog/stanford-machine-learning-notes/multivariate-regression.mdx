@@ -2,10 +2,11 @@
 title: Multivariate Regression Analysis
 published: true
 createdAt: 2019-02-06T15:07:03.555Z
-updatedAt: 2019-04-19T03:42:39.790Z
+updatedAt: 2019-04-20T11:10:05.961Z
 categories:
   - Machine Learning
   - Algorithms
+  - Week 2
 ---
 
 import { M } from '../../../src/components/math'
@@ -15,7 +16,7 @@ descent an easier process. As long as it is something small and consistent.
 
 Another way to go about it is to normalize the mean to 0 and divide by the range of values. the `mu` is the average of
 all the values. In the example given, the average house age was 38 years old and the range of values were from 30 to 50
-years. This means that for th eaverage case, the value would be 0
+years. This means that for the average case, the value would be 0
 
 <M b="\frac{x_i - \mu_i}{s_i}" />
 
@@ -31,7 +32,7 @@ it will actually diverge.
 
 if the data with respect to a feature appears to be quadratic or cubic, the hypothesis function should show this. This
 can be done by taking the same features and squaring or cubing them to fit the data shape. In the following
-example, <M i="\theta_1x_1" /> and <M i="\theta_2_x_2^2"/> are the same metric split into
+example, <M i="\theta_1x_1" /> and <M i="\theta_2 x_2^2"/> are the same metric split into
 different features such as `size` and `size * size`
 
 <M b="
@@ -55,7 +56,7 @@ costly and it would be relatively more efficient to use gradient descent.
 - needs an alpha value (a multiple to step by the derivative)
 - need many iterations
 - <M i="O(kn^2)" />
-- works well when n is large
+- works better when n is large
 
 #### Normal Equations
 

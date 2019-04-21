@@ -2,12 +2,13 @@
 title: "Machine Learning: Thinking About Design"
 published: true
 createdAt: 2019-03-14T01:56:11.402Z
-updatedAt: 2019-04-19T03:37:21.343Z
+updatedAt: 2019-04-20T11:07:52.336Z
 categories:
   - Programming
   - Algorithms
   - Machine Learning
   - Neural Networks
+  - Week 6
 ---
 
 import { M } from '../../../src/components/math';
@@ -19,7 +20,7 @@ brainstorming and testing ideas as much as possible. In the example of building 
 - Develop sophisticated features such as the email routing and header information
 - Develop algorithms to process the input in different ways
 
-When starting it would be best to learn about the provlem first. This is often done by tinkering with it on toy examples
+When starting it would be best to learn about the problem first. This is often done by tinkering with toy examples
 to see what the specific issues with the problem set are. A good approach would be to
 
 - Write a simple algorithm and test it on the cross validation data
@@ -30,21 +31,33 @@ to see what the specific issues with the problem set are. A good approach would 
 
 ## Precision vs. Recall vs Accuracy
 
-Accuracy is defined as <M i="\frac{\text{True positives + True negatives}}{total examples}"/>. This gives
-the overall correctness of the predictions.
+#### Accuracy
+
+Accuracy is defined as <M i="\frac{\text{true positives + true negatives}}{\text{total examples}}"/>. This gives
+the overall correctness of the predictions. If every positive was true and every negative was true, then this ratio
+would be 1.
+
+#### Precision
 
 Precision is the ratio of how many of the true classifications on the cross validation set were actually
-correct <M i="\frac{\text{True positive}}{\text{True positive} + \text{False positive}}" />.
-In other words, of all of the predicted `true`s, how many were actually true. Recall is a similar metric that
-measures the ratio of <M i="\frac{\text{True positives}}{\text{True positives} + \text{False negatives}}"/>.
+correct <M i="\frac{\text{true positive}}{\text{true positive} + \text{false positive}}" />.
+In other words, of all of the predicted `true`s, how many were actually true? If it identified many false positives then
+the precision would be very low.
+
+#### Recall
+
+Recall is a similar metric that measures the ratio of <M i="\frac{\text{true positives}}{\text{true positives} + \text{false negatives}}"/>.
+If there are many false negatives, then this number will be lower.
+
+#### Interpretation
 
 These ratios are useful in the case that there is a high error rate. Perhaps just predicting 0 all the time would give a
 lower error rate that actually running the algorithm. In that case though, we are not doing anything so the precision
 and recall rates would both be 0. In order to influence the amount of recall and precision, we can change the point at
-which the hypothesis is considereed to output true or false. If the true prediction threshold is greateer than `0.9`
-this would lead to having more precision, but we will also have a higher false negagive rate. If the threshold is moved
-in the other direction, and we predict one when the hypothesis predicts anything higer than `0.1` then we will have few
-false negatives but many false positives (higher recall, lower precision).
+which the hypothesis is considereed to output true or false. If the true prediction threshold is very high like `0.9`
+this would lead to having more precision (fewer false positives), but we will also have a higher false negagive rate
+(higher recall). If the threshold is moved in the other direction, and we predict one when the hypothesis predicts
+anything higer than `0.1` then we will have few false negatives but many false positives (higher recall, lower precision).
 
 Ideally, both of these ratios would be high, meaning that the algorithm is largely predicting things correctly. In some
 cases though, it may be better to err on the side of caution. For instance, would it be acceptable to have a higher

@@ -27,6 +27,14 @@ const useStyles = makeStyles((theme: Theme) => ({
       outline: '1px solid slategrey'
     }
   },
+  code: {
+    backgroundColor: `rgba(0,0,0,.1)`,
+    color: `rgba(0,0,0,.5)`,
+    borderRadius: 3,
+    margin: theme.spacing(1 / 4),
+    padding: theme.spacing(1 / 2),
+    fontSize: '1.0em'
+  },
   ul: {
     margin: `${theme.spacing(2)}px ${theme.spacing(1)}px`,
     display: 'flex',
@@ -91,9 +99,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   nestedList: {
     paddingLeft: theme.spacing(4)
   },
-  blockquote: {
-    fontStyle: 'italic'
-  },
   content: {
     flexGrow: 1,
     minHeight: 320, // gives enough room for the footer
@@ -136,6 +141,7 @@ export const GlobalLayout = ({ drawer, children }: Props) => {
     h5: props => <AutolinkHeader {...props} variant="h5" />,
     h6: props => <AutolinkHeader {...props} variant="h6" />,
     p: props => <Typography className={classes.postP} {...props} variant="body1" />,
+    inlineCode: props => <span className={classes.code} {...props} />,
     code: props => <Code {...props} />,
     ul: props => <div className={classes.ul} children={<ul {...props} />} />,
     ol: props => <div className={classes.ol} children={<ol {...props} />} />,
