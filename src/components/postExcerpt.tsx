@@ -1,7 +1,6 @@
 import { Card, CardContent, CardHeader, makeStyles, Theme, Typography } from '@material-ui/core';
 import { Moment } from 'moment';
 import React from 'react';
-import { StateConsumer } from '../context';
 import { Link } from './link';
 import { TagChip } from './tagChip';
 
