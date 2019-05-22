@@ -1,0 +1,80 @@
+---
+title: Genome Sequencing and Pattern Matching
+published: true
+createdAt: 2019-05-07T00:59:25.732Z
+updatedAt: 2019-05-22T02:36:33.811Z
+categories:
+  - Programming
+  - Algorithms
+  - Week 1
+images:
+  - ./trie-matching.png
+  - ./suffix-trie.png
+  - ./suffix-tree-compressed.png
+---
+
+import { M } from '../../../../src/components/math';
+
+
+A naive algorithm to find the number of matches of multiple strings in text would be to scan the text letter by letter
+for each string pattern and count the number of matches. The running time of this algorithm would be upper bounded
+by <M i="O(|Text| * \sum |pattern|)" />.
+
+A quicker way to solve this would be to make one pass through the text and check each pattern with the patterns put into
+a tree structure that branches out from the root node when there is a new pattern. The trie can be constructed from the
+following algorithm.
+
+<props.imgs.Img1 align="center" width="40%" />
+
+```text
+TrieConstruction(Patterns)
+  Trie <- a graph with only a root node
+  for string of Patterns:
+    currentNode <- root
+    for i <- 1 to |Pattern|:
+      currentSymbol <- Pattern[i]
+      if there is an outgoing edge from currentNode with label currentSymbol
+        currentNode <- ending node of this edge
+      else
+        add a new node (newNode) to trie
+        add a new edge from currentNode to newNode with label currentSymbol
+        currentNode <- newNode
+  return Trie
+```
+
+Patterns can then be matched by going through the text and matching by going down different paths in the trie.
+
+```text
+PrefixTrieMatching(Text, Trie)
+  symbol <- first letter of Text
+  v <- root of Trie
+  while forever:
+    if v is a leaf in trie:
+      return the pattern spelled by the path from the root to v
+    else if there is an edge (v, w) in Trie labeled by symbol
+      symbol <- next letter of text
+      v <- w
+    else
+      output "no matches found"
+      return
+
+TrieMatching(Text, Trie)
+  while Text is nonempty
+    PrefixTrieMatching(Text, Trie)
+    remove first symbol from text
+```
+
+## Suffix Tries
+
+This algorithm is fast, but uses a lot of memory because the entire text has to be loaded into memory which could be
+huge when matching patterns in a genome. A suffix trie (of the text) could make this faster by making a tree from all of
+the possible starting positions which counts all of the patterns like the image below.
+
+The memory footprint of a suffix trie is <M i="O(|Text| * |Text - 1| /2)" />
+
+<props.imgs.Img2 width="40%" align="center" />
+
+In order to lower the memory requirement, we can compress the suffix tree leaves into a single node and only store the
+start position and length which would give us enough information to reconstruct the suffix tree from the text.
+
+<props.imgs.Img3 width="40%" align="center" />

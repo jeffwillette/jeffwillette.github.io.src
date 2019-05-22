@@ -1,6 +1,6 @@
+import TeX from '@matejmazur/react-katex';
 import { makeStyles, Theme } from '@material-ui/core';
 import React from 'react';
-import { BlockMath, InlineMath } from 'react-katex';
 
 const useStyles = makeStyles((theme: Theme) => ({
   inlineMath: {
@@ -21,7 +21,7 @@ export const M = ({ i, b }: Props) => {
   if (i) {
     return (
       <span className={classes.inlineMath}>
-        <InlineMath children={i} />
+        <TeX math={i} />
       </span>
     );
   }
@@ -29,7 +29,7 @@ export const M = ({ i, b }: Props) => {
   if (b) {
     return (
       <span className={classes.blockMath}>
-        <BlockMath children={b} />
+        <TeX math={b} block />
       </span>
     );
   }

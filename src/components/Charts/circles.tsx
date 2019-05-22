@@ -1,5 +1,5 @@
 import { forceCollide, forceManyBody, forceSimulation, select, Simulation, SimulationNodeDatum } from 'd3';
-import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { withDrawerOpen } from '../../utils';
 import { useStyles } from './styles';
 import { GeneratedColor, getWidthAndHeight, margin, randomColor } from './utils';
@@ -87,6 +87,8 @@ const circles = (_: Props) => {
   if (!timerState && typeof window !== 'undefined') {
     setTimerState(window.setInterval(() => timer(node.current, timerState, planets, setPlanets, setSimulation), 1000));
   }
+
+  useEffect(() => () => clearInterval(timerState), [node]);
 
   return (
     <div className={classes.svgContainer}>

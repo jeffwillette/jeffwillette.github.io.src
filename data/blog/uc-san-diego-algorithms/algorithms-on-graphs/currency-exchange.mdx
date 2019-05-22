@@ -1,0 +1,85 @@
+---
+title: Currency Exchange
+published: true
+createdAt: 2019-04-23T04:06:47.688Z
+updatedAt: 2019-04-24T03:10:02.895Z
+categories:
+  - Programming
+  - Algorithms
+  - Week 4
+---
+
+import { M } from '../../../../src/components/math';
+
+For this problem, they are using directed graphs to simulate the time when it is easy to move a currency in one
+direction but difficult to move it in the other direction. When trying to figure out the best path to take to increase
+profits, it is enough to add the logarithms of the exchange rates together because using logarithms, the following is
+true...
+
+<M b="
+  xy = 2^{log_2(x)}2^{\log_2(y)} = 2^{\log_2(x) + \log_2(y)} \\
+  xy  \rightarrow \max \Leftrightarrow \log_2(x) + \log_2(y) \rightarrow \max
+" />
+
+This means that the larger the sum of the logarithms of `x` and `y` are, the larger the product will be, and the smaller
+the sums, the smaller the product will be. This doesn't work without logarithms because in the case that the exchange
+rate is always `1/2`, if we were to just sum the factors together, the factor would be constantly
+increasing. <M i="\log_2(1/2) = -1" /> and so therefore adding the logarithms will give the same effect from the
+increase as actually multiplying the numbers out. Concretely, if the exchange rate is `1 to 1` then the logarithm will
+be `0` and if the exchange rate is greater/less than `0` the summand will be respectively greater/less than `0`.
+
+<M b="
+  4 * 1 * 1/2 = 2^1 \\
+  \log_2(4) + \log_2(1) + \log_2(1/2) = 2 + 0 + (-1) = 1 \\
+  \prod_{j=1}^k r_{j} \rightarrow \max \Leftrightarrow \sum_{j=1}^k \log(r_{j}) \rightarrow \max
+" />
+
+If we wanted to make it a minimization problem, we could just replace the <M i="\log(r_j)" /> terms
+with <M i="-\log(r_j)" />, which would have the same intended effect.
+
+> Dijkstra's algorithm will not work here because it doesn't work with negative weights between edges.
+
+## Bellman-Ford Algorithm
+
+```text
+Relax(u, v)
+  if dist[v] > dist[u] + w(u, v):
+    dist[v] <- dist[u] + w(u, v)
+    prev[v] <- u
+
+BellmanFord(G, S)
+  {no negative weight cycles in G}
+  for all u of V:
+    dist[u] <- infinity
+    prev[u] <- nil
+  dist[S] <- 0
+  repeat |V| - 1 times:
+    for all (u, v) of E:
+      Relax(u, v)
+```
+
+A graph contains a negative weight cycle only if the `|V|`th iteration of the `BellmanFord(G, S)` algorithm updates a
+distance value.
+
+## Finding Negative Cycles
+
+- run `|V|` iterations of the `BellmanFord` algorithm, save the node `v` that was relaxed on the last iteration
+- v is reachable from a negative cycle
+- start from `x <- v` and follow the `prev[x]` links v times (which guarantees a cycle)
+- save all of the values and find where one of them repeats
+
+## Detecting Infinite Arbitrage
+
+1. do `|V|` iterations of `BellmanFord`, save all nodes relaxed on the `V`th iteration -> set `A`.
+2. put all nodes from `A` into queue `Q`
+3. do breadth first search with `Q`, and find all nodes reachable from A
+
+These nodes are the set of nodes for which there exists a possibility of infinite arbitrage. We still don't know how to
+go about executing the arbitrage though because there is no indication of which edges are directed edges and where the
+exact cycles lie.
+
+## Reconstructing Infinite Arbitrage
+
+1. during `BFS` remember the parent of each visited node
+2. Reconstruct the path to `u` from some node `w` which was relaxed on iteration `V`
+3. go back from `w` to find a negative cycle from which `w` is reachable

@@ -1,0 +1,39 @@
+---
+title: Fastest Route
+published: true
+createdAt: 2019-04-22T00:56:45.165Z
+updatedAt: 2019-04-22T03:30:53.558Z
+categories:
+  - Programming
+  - Algorithms
+  - Week 4
+---
+
+import { M } from '../../../../src/components/math';
+
+Any optimal path consists of subpaths which are also optimal. This is because if there was a path such
+that <M i="A \to B \to C \to D" /> is the optimum path and there was a shorter path from <M i="B \to C" />,
+then the <M i="A \to .. \to D" /> path would not be optimal.
+
+## Dijkstra's Algorithm
+
+- Maintain a set of `R` vertices for which `dist` is already set correctly.
+- The first vertex added to `R` is `S`.
+- On each iteration, take a vertex outside of `R` and relax all of its outgoing edges.
+- `ExtractMin` extracts the minimum distance node from the current node (starting with the starting point `S`)
+
+
+```text
+Dijkstra(G, S)
+  for all u of V: {u = edges}
+    dist[u] <- infinity, prev[u] <- nil
+  dist[S] <- 0
+  H <- MakeQueue(V) {dist-values as keys}
+  while H is not empty:
+    u <- ExtractMin(H)
+    for all (u, v) of E:
+      if dist[v] > dist[u] + w(u,v):
+        dist[v] <- dist[u] + w(u,v)
+        prev[v] <- u
+        ChangePriority(H, v, dist[v])
+```
