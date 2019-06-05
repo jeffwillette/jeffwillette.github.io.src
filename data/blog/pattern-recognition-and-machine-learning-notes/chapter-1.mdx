@@ -2,10 +2,11 @@
 title: "Pattern Recognition and Machine Learning: Chapter 1 Notes"
 published: false
 createdAt: 2019-05-07T00:59:25.732Z
-updatedAt: 2019-05-22T02:38:50.830Z
+updatedAt: 2019-06-05T01:33:50.557Z
 categories:
   - Pattern Recognition
   - Machine Learning
+  - Chapter 1
 images:
   - ./probability-theory-3x5-grid.png
 ---
@@ -107,3 +108,49 @@ I think that under a non-linear transformation of the probability distribution, 
 the same, therefore the mode cannot be guaranteed to be the same because if the distribution changes from a normal
 distribution to a skewed distribution with the same probabilities at the trasnformed points of the curve, then the new
 curve will have to conform differently than a function.
+
+### Probability Densities With Bayes Theorem
+
+The sum and product rules of probability as well as Bayes Theorem apply equally to the case of probability distributions
+
+<M b="
+  p(x) = \int p(x, y) \delta y \\
+  p(x, y) = p(y|x) p(x)
+" />
+
+### Expectationsa of Functions
+
+to get the expected value of a variable with a probability distribution, we can take the following...
+
+<M b="\mathbb{E}_x = \int x \; p(x) \; \delta x" />
+
+The average value of <M i="f(x)" /> under a probability distribution <M i="p(x)" /> is called the expectation
+of <M i="f(x)" /> , and is denoted by <M i="\mathbb{E}[f]" />. It is important to note that this is the expectation of
+the probability density function and not of the variable. For example if the probability density function is a normal
+distribution for human height, we would be getting the expected probability and not the expected height. For
+discrete and continuous distributions respectively...
+
+<M b="
+  \mathbb{E}[f] = \sum_x p(x)f(x) \\
+  \mathbb{E}[f] = \int p(x)f(x) \delta x
+" />
+
+If we were instead to calculate an approximation of the expectation, it can be given by a simple average of points irrespective
+of their probability. This becomes exact as <M i="N \rightarrow \infty" /> because more probable events will occur more
+often and therefore the average of all <M i="f(x)" /> will become closer and closer to exact.
+
+<M b="\mathbb{E}[f] \approx \frac{1}{N} \sum_{n=1}^N f(x_n)" />
+
+> **TODO** how to write the right side of the equation below? (page 20)
+
+<M i="\mathbb{E}[f(x, y)]" /> is the average of the function <M i="f(x, y)" /> with respect to <M i="x" />,
+and can be calculated by
+
+<M b="\mathbb{E}_x[f(x, y)] = p(x) f(x, y)" />
+
+for conditional distributions, it can be said that the conditional expectation with respect to a conditional
+distribution is given by...
+
+<M b="\mathbb{E}_x[f|y] = \sum_x p(x|y)f(x)" />
+
+the variance of <M i="f" /> is given by <M i="var[f] = \mathbb{E}[(f(x) - \mathbb{E}[f(x)])^2]" />.

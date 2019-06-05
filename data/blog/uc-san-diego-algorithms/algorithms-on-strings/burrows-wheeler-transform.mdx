@@ -2,10 +2,12 @@
 title: Burrows-Wheeler Transform
 published: true
 createdAt: 2019-05-20T02:45:44.505Z
-updatedAt: 2019-05-22T02:31:08.794Z
+updatedAt: 2019-06-05T01:38:37.703Z
 categories:
   - Programming
   - Algorithms
+  - UC San Diego
+  - String Algorithms
 images:
   - ./suffix-array.png
 ---
@@ -132,8 +134,6 @@ has to scan the length of the column when it calculates the `topIndex` and `bott
 - `FirstOccurence` is a reference to the index of the first occurence of the symbol
 - `Count` is a hash table of arrays for all of the symbols in the text with the number of times the symbol appears in
   the `LastColumn` index before the current array index.
-
-> **TODO:** write what the count array does once I implement it.
 
 ```text
 BetterBWMatching(FirstOccurence, LastColumn, Pattern, Count)
