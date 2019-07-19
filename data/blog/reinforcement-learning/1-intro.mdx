@@ -1,0 +1,329 @@
+---
+title: Introduction
+published: true
+createdAt: 2019-07-07T11:42:46.361Z
+updatedAt: 2019-07-19T02:06:50.570Z
+categories:
+  - Reinforcement Learning
+---
+
+import { M } from '../../../src/components/math.tsx'
+
+- reinforcement learning is concerned with what to do -- mapping situations to the best actions.
+- used where it is impractical to obtain examples of all actions that are correct and representative of all possible
+  examples.
+- finding patterns (unsupervised learning) can help but it is not useful in itself
+
+I thought this was a weird use of the word because by the bare definition, this would seem to fit into unsupervised
+learning. The author is adamant that is is a totally separate thing though.
+
+- must balance between exploration and exploitation
+
+as opposed to supervised learning, reinforcement learning takes the whole problem into account, it can sense its
+environment and influence it. Planning for the future, real time actions, and learning new ways to model the
+environment must also be taken into account. Reinforcement learning closely resembles biological learning in animals.
+
+1. **policy** - a mapping from percevied environment state to an action
+2. **reward signal** - the constnat reward in each time step from the environment (short term immediate reward)
+3. **value function** - the longer term reward function which predicts future reward based on current state. This may be
+the most important part of the algorithms. (can have lower immediate reward signal for higher total long term reward).
+Provides an action given some state.
+4. **model** - models environment and predicts how it will behave to an action.
+
+In the case of genetic algorithms, and other **evolutionary** methods, a value function is not always necessary.
+Policies that obtain the highest reward are carried into the next generation, and the process repeats. This works best
+when policies are small, there is a lot of time for the search, or the agent cannot completely sense its environment.
+Evolutionary methods do not take advantage of knowledge within a lifetime, whcih states the agent passes through, or
+which actions are the most beneficial.
+
+## Tic-Tac-Toe
+
+An **evolutionary** algorithm would keep a policy with all possible configurations of moves and probabilities associated
+with winning.
+
+A **value function** would set up a table of numbers with one for each possible state. Each number would be the latest
+estimate of the probability of winning from that state. The estimate is the *value* and the whole table is the learned
+*value function*. if state `A` has a higher number than state `B` then it means that we are more likely to win from
+state `A`. probability of winning euqal to `1` means we have already won. `0` means we have already lost. All inital states
+would be set to `0.5`.
+
+**evolutionary** methods hold the policy fixed for many games and then measures the frequency of wins. Only the final
+outcome of each game is used so specific moves are not given credit based on their quality.
+
+**reinforcement agents** can learn to setup long term moves (or traps) without taking into account a model of the
+opponent and without explicitly searching the possible moves and states of the future.
+
+- In a game with too large a number
+  of possible states, the algorithm will have to generalize states based on experience.
+- Models are not required, but can be learned, or it can be **model-free**
+- **model-free** systems don't try to model their environment
+- environment models need to be reasonable accurate in order to work.
+- the tic-tac-toe game example is model free in a sense because it doesn't model the opponents possible moves.
+
+### Exercise 1.1
+
+> Instead of playing against a random opponent, the algorithm played against itself, with both sides learning. What do you
+> think would happen in this case? Would it learn a different policy for selecting moves?
+
+If the algorithm played against itself, I think they would both converge on the same solution given that they started
+from the same policy of `0.5` values. There might be interim games where one or the other wins, but they should converge
+on the same solution.
+
+### Exercise 1.2
+
+> Many tic-tac-toe positions appear different, but are acutally the same due to symmetries, How might we amend the
+> learning process to take advantage of this? In what ways would this change improve the learning process? Suppose the
+> opponent did not take advantage of symmetries. In that case, should we? Should symmetrically equivalent positions have
+> the same value?
+
+We could amend the process to have a smaller policy by eliminating permutations of the symmetry.
+
+It would improve the learning process by having a smaller number of states and a more consistent behavior.
+
+If the opponent did not take advantage of symmetries, that will only make their learning process slower. They may come
+up with different intermediate solutions that could possibly win, but an ultimately symmetrical situation only has a
+limited number of future states and the optimum solution would still be arrived at by both.
+
+### Exercise 1.3
+
+> Suppose the reinforcement learning player was greedy. Would it learn to play better or worse tan a non-greedy player?
+> What problems might occur?
+
+A permanenlty greedy player will play worse than a non-greedy player because the moves will always be static (assuming
+that no policy changes). A non-greedy player will be able to discover new ways to play around the too greedy player.
+
+### Exercise 1.4
+
+> Suppose learning updates occurred after all moves including exploratory moves. If the step size parameter is reduced
+> over time then the state values would converge to a different set of probabilities (than not including exp. moves).
+> Conceptually, what are the two sets of probabilities computed when we do and don't learn from exploratory moves? Given
+> that we continue to make exploratory moves, which set of probabilities might be better to learn? What would result in
+> more wins?
+
+If we learn from exploratory moves then we are arbitrarily lowering the value of <M i="S_{t-1}" /> which could cause it
+to be unfavorable when deciding the action to arrive at <M i="S_{t-1}" /> even though we may have already learned that
+<M i="S_{t-1}" /> is the most favorable state.
+
+Exploratory moves can be seen as *testing* whether this move is a good move or not. If we update before the test is
+complete (arriving at the next state), then we are updating a previous state on an incomplete test.
+
+This *unlearning* can be avoided if we only update previous state values on greedy moves because we only update when we
+determine that we arrived at a favorable state.
+
+### Exercise 1.5
+
+> Can you think of other ways to improve the reinforcement learning player? Can you think of a better way to improve the
+> tic-tac-toe problem as posed?
+
+At first I thought it would be good to store the opponents probable moves, but then it occured to me that the opponents
+probable decisions are already baked into the state values because if the opponent is likely to make a strong (or
+winning) move from <M i="S_t" /> then <M i="S_t" /> would naturally decrease as learning progresses.
+
+## Early History of Reinforcement Learning
+
+there were two main schools of thought...
+
+- learning by trial and error (originated by the psychology of aniaml learning)
+- achieving optimal control, and a solution using value functions and dynamic proramming (this did not involve learning)
+- the two above were connected by a third thread using temporal difference methods (like tic-tac-toe).
+
+### Optimal Control
+
+Developed in the 1950's. Uses value function (optimal return function -- Bellman equation). Introduced discrete
+stochastic version of optimal control known as Markov Decision Processes. Uses Dynamic Programming. Dynamic Programming
+developed as a separate discipline, there was a slow merging of DP and OC. Many Dynamic Programming algorithms are
+iterative and incremental, just like RL.
+
+### Trial and Error Learning
+
+In animals, more reward makes a situation more likely, more dissastisfaction makes a situation less likely to occur.
+Alan Turing proposed something like this saying that when an unknown situation occurs, a random choice is made, and if
+it is unfavorable, all is forgotten and if it is favorable then it will be committed to memory. Some books have call
+unsupervised, training example driven algorithms as trial and error but they miss the main point of trial and error
+which is selecting actions based on feedback from the environment which does not rely on knowledge of what they correct
+action *should* be
+
+## Robot in Obstacle Course
+
+**Agent**: this would be the robot itself or the brain that is making the decisions.
+
+**Environment**: The course that the robot is in.
+
+**State**: The position of the robot in the course
+
+**Action**: moves that the robot takes.
+
+**Rewards**: values, could be robot lifetime if drying ends the game. Could be score. Book doens't focus much on this but it
+can be a hard part to model.
+
+## Multi-armed Bandits
+
+- **evaluative feedback** measures how good a decision was
+- **instructive feedback** gives the correct action independent of the decision or action taken
+- **non-assiociative-setting** there is only one situation and one problem
+- **associative setting** there are multiple possible situations so the algorithm must generalize
+
+A bandit problem involves a set of actions where there is a distribution and variance for the rewards. The algorithm
+should learn which actions to take by balancing out *exploration vs. exploitation* and keeping track of the average
+reward of each of the actions over time in order to find the best one.
+
+### Exercise 2.2
+
+> Consider a multi armed bandit problem with 4 actions. Initial estimates for all actions are <M i="Q_1(a) = 0" />. On
+> some of the steps, the <M i="\epsilon" /> case may have occured, causing an action to be selected at random. On which
+> time steps did this definitely occur? On which steps could it have possibly occured?
+
+<M b="
+\begin{aligned}
+  A_1 = 1, R_1 = -1 \\
+  A_2 = 2, R_2 = 1 \\
+  A_3 = 2, R_3 = -2 \\
+  A_4 = 2, R_4 = 2 \\
+  A_5 = 3, R_5 = 0
+\end{aligned}
+" />
+
+It definitely occured at <M i="A_4" /> because action 2's average was `-0.5` and it was still chosen.
+It definitely occured ar <M i="A_5" /> because actions 2's average was `0.33` and it chose action 3 instead.
+
+It possibly occured at <M i="A_1, A_2" /> because it chose from many 0 values in those steps.
+
+### Exercise 2.3
+
+> In the comparison shown in figure 2.2, which method will perform best in the long run in terms of cumulative reward
+> and probability of selecting the best action? How much better will it be? Express your answer quantitatively.
+
+Assumptions
+------------
+1. the mean of an exploratory move is 0 according to figure 2.1
+
+<M b="
+\begin{aligned}
+  \lim\limits_{t \rarr \infty} \epsilon_{0.1} = .9\mathcal{M} \\
+  \lim\limits_{r \rarr \infty} \epsilon_{0.01} = .99\mathcal{M}
+\end{aligned}
+" />
+
+<M i="\epsilon_{0.01}" /> will learn slower, but as the number of steps reaches infinity, it will perform about 9%
+better.
+
+## Incremental Implementation
+
+Storing all of the past rewards in order to calculate averages is too memory intensive, so incremental averages are used
+instead. Figure 2.3 in the book ends with this incremental average formula...
+
+<M b="Q_{n+1} = Q_n + \frac{1}{n} \lbrack R_n - Q_n \rbrack" />
+
+## Tracking a Non-stationary Problem
+
+In a nonstationary problem, the rewards are moving so it may make sense to give more weight to recent rewards by using a
+fixed step size parameter.
+
+<M b="Q_{n+1} = Q_n + \alpha \lbrack R_n - Q_n \rbrack" />
+
+### Exercise 2.4
+
+> What is the weighting on each prior reward for the general case, analogous to 2.6 in terms of the sequence of step size
+> parameters?
+
+step `n` would be <M i="\alpha" /> weighted, step `n-1` would be <M i="\alpha^2" /> weighted, etc.
+
+### Exercise 2.5 (Programming)
+
+> **TODO**
+
+## Optimistic Initial Values
+
+Sample average methods have hte initial 0 value bias disappear once values are actually explored. Constant alpha methods
+have that bias permanent;y baked in, but it approaches 0 over time. Exploration in the bandit problem could be
+encouraged at the beginning by setting all expected values to `+5` which is higher than all of the expected values, but
+would ensure that each lever is tested right away.
+
+This method only works for stationary cases and it cannot be used in a non-stationary setting.
+
+### Exercise 2.6
+
+> In figure 2.3, why are there random spikes in the early part of the curve?
+
+In the initial tic-tac-toe example all of the values were set to 0 which was the actual mean for all values and caused
+their early averages to be balanced.
+
+If the starting values are 5, it is biased towards making the early averages higher on the higher reward choices, so
+those are much more likely to be chosen at first.
+
+### Exercise 2.7
+
+> **TODO** what is a trace?
+
+## Upper Confidence Bound Action Selection
+
+Instead of selecting actions at random, it could be useful to pick the next most likely action that would take over the
+position of being the greedy action. A formula that can do this is...
+
+<M b="A_t = \argmax_a \Big[ Q_t(a) + c \sqrt{\frac{\ln t }{N_t(a)}} \Big]" />
+
+<M i="Q_t(a)" /> is the estimated reward for action <M i="a" />. `c` is an exploration constant. As the time steps go
+up without selecting this action, the term under the square root increases and makes this action more likely to be
+chosen. As this action is chosen more often, the term will decrease and encourage it to be chosen less.
+
+It is difficult to use this on non-stationary problems.
+
+### Exercise 2.8
+
+> In figure 2.4 there is a spike in performance on step 11. Why is this? In order fo rhte answer to be satisfactory, it
+> must explain both why reward increases on the 11th step and why it decreases on subsequent steps. (HINT: if `c` is `1`
+> then the spike is less prominent)
+
+If <M i="N_t(a)" /> is 0 then it is expected to be the maximizing action. This causes all actions to be taken once,
+which causes the initial average to hover around 0. On the 11th step, it starts using the data that was gathered and
+spikes up sharply. `c` is set to 2 which encrouages more exploration because the second term will be favored more.
+
+If the term under the square root is to be seen as uncertainty, then a c term closer to one would favor uncertainty
+less, and therefore the subsequent oscillations after the first one would be less because it would choose the correct
+action more of the time. The initial spike should be the same though.
+
+## Gradient Bandit Algortihms
+
+Instead of working from action value estimates, we can also learn a numerical preference for every action that is only
+relative to other action preferences.
+
+This can be calculated as stochastic gradient ascent on the formula given in figure 2.12.
+
+Even wehn using the gradient, you still choose the argmax instead of choosing by the probabilities.
+
+#### Exercise 2.9
+
+> Show that in the case of two actoins, the softmax distribution is the same as the sigmoid function
+
+with two actions, it just simplifies to the sigmoid.
+
+## Associative Search
+
+So far there has only been non-associative settings where the setting stays the same the whole time. But we ultimately
+want to map from environmental situations into actions with a constantly changing environment.
+
+In a constantly changing environment you need to take environmental clues about what is going on. The book used an
+example of a slot machine that flashes a certain color that gives a hint as to which lever to pull. These problems can
+be called *contextual bandits*. A full reinforcement learning problem would make our current actions affect the next
+situation as well as the reward.
+
+#### Exercise 2.10
+
+> Facing two cases `A` and `B`, each with a probability of 50%. There are two actions, with rewards `0.1` and `0.2` in
+> case `A` and `0.9` and `0.8` in case `B`. If you don't know which case you are facing, what is the best value you can
+> hope to achieve? What if you can know which case you are facing.
+
+Without knowing which case you are facing, the action values will seem to change at random and their average values will
+both be `0.5` so this is the best you can expect.
+
+If you know which case you are facing, you could learn to choose `0.2` and `0.9` and therefore your expected value would
+be `5.5`.
+
+## Summary
+
+- <M i="\epsilon \text{-greedy}" /> algorithms choose randomly for some fraction of the time.
+- **UCB (Upper Confidence Bound)** methods choose dterministically, achieving exploration by favoring actions with fewer
+  samples.
+- **Gradient Bandits** estimate action preferences, favoring more preferred actions in a graded probabalistic manner
+  using a softmax distribution
+- **optimistic initialization** can put an early bias into exploring significantly more

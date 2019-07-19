@@ -1,0 +1,242 @@
+---
+title: "Chapter 2: Finite Markov Decision (Exercises)"
+published: true
+createdAt: 2019-07-19T02:10:31.993Z
+updatedAt: 2019-07-19T05:09:53.285Z
+categories:
+  - Reinforcement Learning
+---
+
+import { M } from '../../../src/components/math.tsx'
+
+## Exercise 3.1
+
+> Devise three example tasks of your own that fit into the MDP framework, identifying each of its states, actions, and
+> rewards.
+
+### 1. Stock Bot
+
+- **State** - current prices of things in the market
+- **Action** - Buy/Sell $Symbol
+- **Rewards** - Money in account
+
+### 2. Ad picker
+
+- **State** - current viewer, content displayed
+- **Action** - show ads (choosing length, type, content, revenue)
+- **Reward** - + for clicks, + for not skipping, + for every second of ad watched, - for skipping.
+
+### 3. Poker Bot
+
+- **State** - hand, opponents, pot size
+- **Action** - betting, fold, check, raise...
+- **Reward** - total money
+
+## Exercise 3.2
+
+> Is the *MDP* framework adequate to usefully represnet all goal-directed learning tasks?
+
+Maybe it won't work when the future states can't be predicted with any accuracy.
+
+## Exercise 3.3
+
+> Consider the problem of driving, You could define the actions in terms of the accelerator, steering whell, and brake,
+> that is, where the body meets the machine. You could define them in terms of where the rubber meets the road, or
+> further in where your brain meets your limbs. WHat is the right place to draw the line between agent and environment?
+> On what basis is one location of the line to be preferred over another?
+
+The right level depends on what the agent is trying to accomplish. If it is trying to be a safe autonomous driving
+system, then where the rubber meets the road might be the right place.
+
+If the driving system is a delivery truck which is attempting to solve the shortest route, then deciding where to go
+next could be the goal of the agent, and the safety of the driving could be left to lower systems.
+
+## Exercise 3.4
+
+> Give a table analogous to *Example 3.3*, but for <M i="p(s', r |s, a)" />. It should have columns for
+> <M i="s, a, s', \text{ and } p(s', r | s, a)" /> and a row for every 4 tuple for which the probability
+> is greater than 0.
+
+**TODO**
+
+## Exercise 3.5
+
+> The equations in section 3.1 are for the continuing case and need to be modified (very slightly) to apply for episodic
+> tasks. Show that you know the modifications needed by giving the modified version of (3.3).
+
+<M b="
+\begin{aligned}
+  \tag{3.3} \sum_{s' \in S} \sum_{r \in R} p(s',r|s, a) = 1
+\end{aligned}
+" />
+
+Should it be modified to include the episodic notation <M i="s \in S_i" />.
+
+## Exercise 3.6
+
+> Suppose  you treated the pole-balancing task as an episodic task but also used discounting with all rewards 0 except
+> for -1 upon failure. What then would be the return each time? How does this return differ from that in the discounted,
+> continuing formulation of the task?
+
+With -1 upon failure, the return at each step would be 0 assuming that the agent didn't take any action that would lead
+to a faield state. If it was heading towards a failed state, the return would approach -1 form 0 as it got closer.
+
+This differs from the continuing case because in the continuing case, there would always be a value greater than one in
+the return assuming there was more than one step until possible failure.
+
+## Exercise 3.7
+
+> Imagine that you are designing a robot to run a maze. You decide to give it a reward of +1 for escaping from the maze
+> and a reward of 0 all other times. The task seems to break down naturally into episodes -- the successive runs through
+> the maze -- so you decide to treat it as an episodic task. The goal is to maximize the expected total reward. After
+> running for a while it shows no improvement, what is wrong?
+
+The robot gets a +1 for escaping from the maze, but because it gets a 0 the rest of the time. It should eventually
+figure out how to get to the end, but it could take forever.
+
+If the robot was given -1 for every time step in the maze, then it would have more incentive to maximize reward by
+getting out of the maze in a few time steps as possible.
+
+## Exercise 3.8
+
+> Suppose <M i="r = 0.5" /> and the following sequence of rewards is received. What are <M i="G_0, G_1, ... G_5" />?
+
+<M b="
+\begin{aligned}
+  &R_1 = -1 \\
+  &R_2 = 2 \\
+  &R_3 = 6 \\
+  &R_4 = 3 \\
+  &R_5 = 2
+\end{aligned}
+" />
+
+<M b="
+\begin{aligned}
+  &G_5 = 0 = R_{5+1} + ...  \\
+  &G_4 = 2 = R_{4+1} + r(G_{4+1}) = 2 + 0 \\
+  &G_3 = 4 \\
+  &G_2 = 8 \\
+  &G_1 = 6
+\end{aligned}
+" />
+
+## Exercise 3.9
+
+Suppose <M i="\gamma = 0.9" /> and the reward sequence it <M i="R_1 = 2" /> followed by an infinite sequence of 7's.
+What are <M i="G_1 \text{ and } G_0" />.
+
+<M b="\tag{3.10} G_t = \sum_{k=0}^\infty \gamma^k = \frac{1}{1- \gamma}" />
+
+<M b="
+\begin{aligned}
+G_0 &= 2 + \gamma7 + \gamma^2 7 + ... \\
+&= 2 + \gamma7(1 + \gamma + ...) \\
+&= 2 + \gamma7 \frac{1}{1 - \gamma} \\
+&= 2 + 63 = 65 \\
+G_1 &= 7 + \gamma7 + \gamma^27 + ... \\
+&= 7(1 + \gamma + \gamma^2 + ...) \\
+&= 7(\frac{1}{1-0.9}) \\
+& = 70
+\end{aligned}
+" />
+
+## Exercise 3.10
+
+> Prove the second equality in (3.10)
+
+<M b="\tag{3.10} S = \sum_{k=0}^\infty \gamma^k = \frac{1}{1- \gamma}" />
+
+<M b="
+\begin{aligned}
+    &= \gamma^0 + \gamma^1 + \gamma^2 + ... \\
+    &= \gamma(\gamma^{-1} + \gamma^0 + \gamma^1) \\
+    &= \gamma (\gamma^{-1} + S) \\
+    &= 1 + \gamma S \\
+    S - \gamma S &= 1 \\
+    (1 - \gamma)S &= 1 \\
+    S &= \frac{1}{1-\gamma}
+\end{aligned}
+" />
+
+## Exercise 3.11
+
+> If the current state is <M i="S_t" /> and actions are selected acoording to a sotchastic policy, then what is the
+> expectation of <M i="R_{t+1}" /> in terms of <M i="\pi" /> and the four argument function?
+
+It would be eual to the equation 3.14 which is
+
+<M b="
+v_{\pi}(s) = \sum_a \pi(a|s) \sum_{s',r} p(s', r | s, a) \Big[ r + v_{\pi}(s') \Big]
+" />
+
+## Exercise 3.12
+
+> Give an equation for <M i="v_{\pi}" /> in terms of <M i="q_{\pi}" /> and <M i="\pi" />.
+
+<M b="
+v_{\pi}(s) = \max_a q_{\pi}(s, a)
+" />
+
+## Exercise 3.13
+
+> Give an equation for <M i="q_{pi}" /> in terms of <M i="v_{pi}" /> and the four argument p
+
+<M b="
+q_{\pi}(s, a) = \sum_{s', r} p(s', r | s, a) \Big[ r + v_{\pi}(s')\Big]
+"/>
+
+## Exercise 3.14
+
+> The Bellman equation (3.14) must hold for each state for the value function shown in figure 3.2. Show numerically that
+> this equation holds for the center state valued at 0.7.
+
+<M b="
+\begin{aligned}
+    &.25 * .9 * 2.3 \\
+    + &.25 * .9 * .4 \\
+    + &.25 * .9 * -.4 \\
+    + &.25 * .9 * .7 \\
+    = &.675
+\end{aligned}
+" />
+
+## Exercise 3.15
+
+> In the gridworld example, rewards are positive for goals, negative for running into the edge of the world, and zero
+> the rest of the time. Are the signs of these rewards important, or only the intervals between them? Prove using 3.8
+> that adding a constant to all rewards adds a constant to the values of all states.
+
+<M b="
+\begin{aligned}
+G_t &= R_{t+1} + \gamma R_{t+2} + ... \\
+cG_t &= c(...) \\
+cv_{\pi}(s) &= \mathbb{E} \Big[ cG_t | S_t = s \Big]
+\end{aligned}
+" />
+
+## Exercise 3.16
+
+TODO
+
+## Exercise 3.17
+
+> What is the Bellman equation for the action values, that is for <M i="q_{\pi}" /> It must give the action value in
+> terms of the next action values using the <M i="q_{\pi}" /> notation.
+
+<M b="
+q_{\pi}(s, a) = \sum_{s', r} p(s', r | s, a) \Big[ r + \gamma \max_{a'} q_{\pi}(s', a') \Big]
+"/>
+
+## Exercise 3.18
+
+Give an equation for the value at the root node <M i="v_{\pi(s)}" /> in terms of the value expected at the leaf node
+<M i="q_{\pi}(s, a)" />.
+
+<M b="
+v_{\pi}(s) = \sum_a \pi(a | s) \sum_{s', r} p(s', r | s, a) \Big[ r + v_{\pi}(s') \Big]
+" />
+
+## Exercise 3.19
+
+Give an equation for the action value <M i="q_{\pi}(s, a)" /> in terms of the expected reward...
