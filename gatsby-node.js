@@ -65,9 +65,6 @@ exports.createPages = ({ graphql, actions }) => {
                 fields {
                   slug
                 }
-                code {
-                  scope
-                }
               }
             }
           }
@@ -153,7 +150,7 @@ exports.createPages = ({ graphql, actions }) => {
 
 // createMdx page creates a page for the mdx file and uses the template based off of the slug
 const createMdxPage = (node, pathAndTemplates, createPage) => {
-  const { id, fields, code, frontmatter } = node;
+  const { id, fields, frontmatter } = node;
   const { slug } = fields;
 
   Object.keys(pathAndTemplates).forEach(p => {

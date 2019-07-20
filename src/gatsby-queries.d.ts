@@ -1,4 +1,27 @@
 /* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: PagesQuery
+// ====================================================
+
+export interface PagesQuery_allSitePage_nodes {
+  __typename: "SitePage";
+  path: string | null;
+}
+
+export interface PagesQuery_allSitePage {
+  __typename: "SitePageConnection";
+  nodes: PagesQuery_allSitePage_nodes[];
+}
+
+export interface PagesQuery {
+  allSitePage: PagesQuery_allSitePage | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -6,7 +29,7 @@
 // ====================================================
 
 export interface HeaderQuery_site_siteMetadata {
-  __typename: "siteMetadata_2";
+  __typename: "SiteSiteMetadata";
   twitter: string | null;
   github: string | null;
 }
@@ -21,6 +44,7 @@ export interface HeaderQuery {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -28,7 +52,7 @@ export interface HeaderQuery {
 // ====================================================
 
 export interface AboutPage_site_siteMetadata_resume_basics_location {
-  __typename: "location_2";
+  __typename: "SiteSiteMetadataResumeBasicsLocation";
   address: string | null;
   postalCode: string | null;
   city: string | null;
@@ -37,14 +61,14 @@ export interface AboutPage_site_siteMetadata_resume_basics_location {
 }
 
 export interface AboutPage_site_siteMetadata_resume_basics_profiles {
-  __typename: "profiles_2";
+  __typename: "SiteSiteMetadataResumeBasicsProfiles";
   network: string | null;
   username: string | null;
   url: string | null;
 }
 
 export interface AboutPage_site_siteMetadata_resume_basics {
-  __typename: "basics_2";
+  __typename: "SiteSiteMetadataResumeBasics";
   name: string | null;
   label: string | null;
   picture: string | null;
@@ -56,7 +80,7 @@ export interface AboutPage_site_siteMetadata_resume_basics {
 }
 
 export interface AboutPage_site_siteMetadata_resume_work {
-  __typename: "work_2";
+  __typename: "SiteSiteMetadataResumeWork";
   company: string | null;
   position: string | null;
   website: string | null;
@@ -67,7 +91,7 @@ export interface AboutPage_site_siteMetadata_resume_work {
 }
 
 export interface AboutPage_site_siteMetadata_resume_education {
-  __typename: "education_2";
+  __typename: "SiteSiteMetadataResumeEducation";
   institution: string | null;
   area: string | null;
   studyType: string | null;
@@ -78,7 +102,7 @@ export interface AboutPage_site_siteMetadata_resume_education {
 }
 
 export interface AboutPage_site_siteMetadata_resume_awards {
-  __typename: "awards_2";
+  __typename: "SiteSiteMetadataResumeAwards";
   title: string | null;
   date: any | null;
   awarder: string | null;
@@ -86,7 +110,7 @@ export interface AboutPage_site_siteMetadata_resume_awards {
 }
 
 export interface AboutPage_site_siteMetadata_resume_publications {
-  __typename: "publications_2";
+  __typename: "SiteSiteMetadataResumePublications";
   name: string | null;
   publisher: string | null;
   releaseDate: any | null;
@@ -95,32 +119,32 @@ export interface AboutPage_site_siteMetadata_resume_publications {
 }
 
 export interface AboutPage_site_siteMetadata_resume_skills {
-  __typename: "skills_2";
+  __typename: "SiteSiteMetadataResumeSkills";
   name: string | null;
   level: string | null;
   keywords: (string | null)[] | null;
 }
 
 export interface AboutPage_site_siteMetadata_resume_languages {
-  __typename: "languages_2";
+  __typename: "SiteSiteMetadataResumeLanguages";
   name: string | null;
   level: string | null;
 }
 
 export interface AboutPage_site_siteMetadata_resume_interests {
-  __typename: "interests_2";
+  __typename: "SiteSiteMetadataResumeInterests";
   name: string | null;
   keywords: (string | null)[] | null;
 }
 
 export interface AboutPage_site_siteMetadata_resume_references {
-  __typename: "references_2";
+  __typename: "SiteSiteMetadataResumeReferences";
   name: string | null;
   reference: string | null;
 }
 
 export interface AboutPage_site_siteMetadata_resume {
-  __typename: "resume_2";
+  __typename: "SiteSiteMetadataResume";
   basics: AboutPage_site_siteMetadata_resume_basics | null;
   work: (AboutPage_site_siteMetadata_resume_work | null)[] | null;
   education: (AboutPage_site_siteMetadata_resume_education | null)[] | null;
@@ -133,7 +157,7 @@ export interface AboutPage_site_siteMetadata_resume {
 }
 
 export interface AboutPage_site_siteMetadata {
-  __typename: "siteMetadata_2";
+  __typename: "SiteSiteMetadata";
   resume: AboutPage_site_siteMetadata_resume | null;
 }
 
@@ -147,6 +171,7 @@ export interface AboutPage {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -154,7 +179,7 @@ export interface AboutPage {
 // ====================================================
 
 export interface BlogQuery_site_siteMetadata {
-  __typename: "siteMetadata_2";
+  __typename: "SiteSiteMetadata";
   title: string | null;
   description: string | null;
   keywords: string | null;
@@ -167,15 +192,15 @@ export interface BlogQuery_site {
 }
 
 export interface BlogQuery_allMdx_edges_node_frontmatter {
-  __typename: "frontmatter_2";
-  title: string | null;
+  __typename: "MdxFrontmatter";
+  title: string;
   createdAt: any | null;
   updatedAt: any | null;
   categories: (string | null)[] | null;
 }
 
 export interface BlogQuery_allMdx_edges_node_fields {
-  __typename: "fields_2";
+  __typename: "MdxFields";
   slug: string | null;
 }
 
@@ -184,30 +209,21 @@ export interface BlogQuery_allMdx_edges_node {
   frontmatter: BlogQuery_allMdx_edges_node_frontmatter | null;
   fields: BlogQuery_allMdx_edges_node_fields | null;
   timeToRead: number | null;
-  excerpt: string | null;
+  excerpt: string;
 }
 
 export interface BlogQuery_allMdx_edges {
   __typename: "MdxEdge";
-  /**
-   * The item at the end of the edge
-   */
-  node: BlogQuery_allMdx_edges_node | null;
+  node: BlogQuery_allMdx_edges_node;
 }
 
 export interface BlogQuery_allMdx {
   __typename: "MdxConnection";
-  /**
-   * A list of edges.
-   */
-  edges: (BlogQuery_allMdx_edges | null)[] | null;
+  edges: BlogQuery_allMdx_edges[];
 }
 
 export interface BlogQuery {
   site: BlogQuery_site | null;
-  /**
-   * Connection to all Mdx nodes
-   */
   allMdx: BlogQuery_allMdx | null;
 }
 
@@ -217,6 +233,7 @@ export interface BlogQueryVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -224,7 +241,7 @@ export interface BlogQueryVariables {
 // ====================================================
 
 export interface IndexQuery_site_siteMetadata {
-  __typename: "siteMetadata_2";
+  __typename: "SiteSiteMetadata";
   title: string | null;
   description: string | null;
   keywords: string | null;
@@ -241,6 +258,64 @@ export interface IndexQuery {
 }
 
 /* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: Unpublished
+// ====================================================
+
+export interface Unpublished_site_siteMetadata {
+  __typename: "SiteSiteMetadata";
+  title: string | null;
+  description: string | null;
+  keywords: string | null;
+  author: string | null;
+}
+
+export interface Unpublished_site {
+  __typename: "Site";
+  siteMetadata: Unpublished_site_siteMetadata | null;
+}
+
+export interface Unpublished_allMdx_edges_node_frontmatter {
+  __typename: "MdxFrontmatter";
+  title: string;
+  createdAt: any | null;
+  updatedAt: any | null;
+  categories: (string | null)[] | null;
+}
+
+export interface Unpublished_allMdx_edges_node_fields {
+  __typename: "MdxFields";
+  slug: string | null;
+}
+
+export interface Unpublished_allMdx_edges_node {
+  __typename: "Mdx";
+  frontmatter: Unpublished_allMdx_edges_node_frontmatter | null;
+  fields: Unpublished_allMdx_edges_node_fields | null;
+  timeToRead: number | null;
+  excerpt: string;
+}
+
+export interface Unpublished_allMdx_edges {
+  __typename: "MdxEdge";
+  node: Unpublished_allMdx_edges_node;
+}
+
+export interface Unpublished_allMdx {
+  __typename: "MdxConnection";
+  edges: Unpublished_allMdx_edges[];
+}
+
+export interface Unpublished {
+  site: Unpublished_site | null;
+  allMdx: Unpublished_allMdx | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -248,7 +323,7 @@ export interface IndexQuery {
 // ====================================================
 
 export interface BlogPostQuery_site_siteMetadata {
-  __typename: "siteMetadata_2";
+  __typename: "SiteSiteMetadata";
   author: string | null;
 }
 
@@ -273,9 +348,6 @@ export interface BlogPostQuery_authorAvatar_childImageSharp {
 
 export interface BlogPostQuery_authorAvatar {
   __typename: "File";
-  /**
-   * The child of this node of type imageSharp
-   */
   childImageSharp: BlogPostQuery_authorAvatar_childImageSharp | null;
 }
 
@@ -299,15 +371,12 @@ export interface BlogPostQuery_mdx_frontmatter_images {
    * Copy file to static directory and return public url to it
    */
   publicURL: string | null;
-  /**
-   * The child of this node of type imageSharp
-   */
   childImageSharp: BlogPostQuery_mdx_frontmatter_images_childImageSharp | null;
 }
 
 export interface BlogPostQuery_mdx_frontmatter {
-  __typename: "frontmatter_2";
-  title: string | null;
+  __typename: "MdxFrontmatter";
+  title: string;
   createdAt: any | null;
   updatedAt: any | null;
   categories: (string | null)[] | null;
@@ -315,23 +384,18 @@ export interface BlogPostQuery_mdx_frontmatter {
 }
 
 export interface BlogPostQuery_mdx_fields {
-  __typename: "fields_2";
+  __typename: "MdxFields";
   githubLink: string | null;
-}
-
-export interface BlogPostQuery_mdx_code {
-  __typename: "MDXCodeMdx";
-  body: string | null;
 }
 
 export interface BlogPostQuery_mdx {
   __typename: "Mdx";
   frontmatter: BlogPostQuery_mdx_frontmatter | null;
   fields: BlogPostQuery_mdx_fields | null;
-  code: BlogPostQuery_mdx_code | null;
+  body: string;
   timeToRead: number | null;
   tableOfContents: any | null;
-  excerpt: string | null;
+  excerpt: string;
 }
 
 export interface BlogPostQuery {
@@ -345,6 +409,7 @@ export interface BlogPostQueryVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -352,7 +417,7 @@ export interface BlogPostQueryVariables {
 // ====================================================
 
 export interface TagPage_site_siteMetadata {
-  __typename: "siteMetadata_2";
+  __typename: "SiteSiteMetadata";
   title: string | null;
   description: string | null;
   keywords: string | null;
@@ -365,15 +430,15 @@ export interface TagPage_site {
 }
 
 export interface TagPage_allMdx_edges_node_frontmatter {
-  __typename: "frontmatter_2";
-  title: string | null;
+  __typename: "MdxFrontmatter";
+  title: string;
   createdAt: any | null;
   updatedAt: any | null;
   categories: (string | null)[] | null;
 }
 
 export interface TagPage_allMdx_edges_node_fields {
-  __typename: "fields_2";
+  __typename: "MdxFields";
   slug: string | null;
 }
 
@@ -382,30 +447,21 @@ export interface TagPage_allMdx_edges_node {
   frontmatter: TagPage_allMdx_edges_node_frontmatter | null;
   fields: TagPage_allMdx_edges_node_fields | null;
   timeToRead: number | null;
-  excerpt: string | null;
+  excerpt: string;
 }
 
 export interface TagPage_allMdx_edges {
   __typename: "MdxEdge";
-  /**
-   * The item at the end of the edge
-   */
-  node: TagPage_allMdx_edges_node | null;
+  node: TagPage_allMdx_edges_node;
 }
 
 export interface TagPage_allMdx {
   __typename: "MdxConnection";
-  /**
-   * A list of edges.
-   */
-  edges: (TagPage_allMdx_edges | null)[] | null;
+  edges: TagPage_allMdx_edges[];
 }
 
 export interface TagPage {
   site: TagPage_site | null;
-  /**
-   * Connection to all Mdx nodes
-   */
   allMdx: TagPage_allMdx | null;
 }
 
@@ -414,6 +470,7 @@ export interface TagPageVariables {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -430,6 +487,7 @@ export interface GatsbyImageSharpFixed {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -446,6 +504,7 @@ export interface GatsbyImageSharpFixed_tracedSVG {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -464,6 +523,7 @@ export interface GatsbyImageSharpFixed_withWebp {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -482,6 +542,7 @@ export interface GatsbyImageSharpFixed_withWebp_tracedSVG {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -497,6 +558,7 @@ export interface GatsbyImageSharpFixed_noBase64 {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -514,6 +576,7 @@ export interface GatsbyImageSharpFixed_withWebp_noBase64 {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -530,6 +593,7 @@ export interface GatsbyImageSharpFluid {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -546,6 +610,7 @@ export interface GatsbyImageSharpFluid_tracedSVG {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -564,6 +629,7 @@ export interface GatsbyImageSharpFluid_withWebp {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -582,6 +648,7 @@ export interface GatsbyImageSharpFluid_withWebp_tracedSVG {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -597,6 +664,7 @@ export interface GatsbyImageSharpFluid_noBase64 {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -614,6 +682,7 @@ export interface GatsbyImageSharpFluid_withWebp_noBase64 {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -630,6 +699,7 @@ export interface GatsbyImageSharpResolutions {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -646,6 +716,7 @@ export interface GatsbyImageSharpResolutions_tracedSVG {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -664,6 +735,7 @@ export interface GatsbyImageSharpResolutions_withWebp {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -682,6 +754,7 @@ export interface GatsbyImageSharpResolutions_withWebp_tracedSVG {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -697,6 +770,7 @@ export interface GatsbyImageSharpResolutions_noBase64 {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -714,6 +788,7 @@ export interface GatsbyImageSharpResolutions_withWebp_noBase64 {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -730,6 +805,7 @@ export interface GatsbyImageSharpSizes {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -746,6 +822,7 @@ export interface GatsbyImageSharpSizes_tracedSVG {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -764,6 +841,7 @@ export interface GatsbyImageSharpSizes_withWebp {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -782,6 +860,7 @@ export interface GatsbyImageSharpSizes_withWebp_tracedSVG {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -797,6 +876,7 @@ export interface GatsbyImageSharpSizes_noBase64 {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -814,6 +894,7 @@ export interface GatsbyImageSharpSizes_withWebp_noBase64 {
 }
 
 /* tslint:disable */
+/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 //==============================================================

@@ -53,8 +53,7 @@ export default ({ data }: Props) => {
   const { fluid } = safe(childImageSharp);
   const { src } = safe(fluid);
 
-  const { frontmatter, code, timeToRead, tableOfContents, excerpt, fields } = safe(mdx);
-  const { body } = safe(code);
+  const { frontmatter, body, timeToRead, tableOfContents, excerpt, fields } = safe(mdx);
   const { title, createdAt, updatedAt, categories, images } = safe(frontmatter);
   const { githubLink } = safe(fields);
   const { items } = safe(tableOfContents);
@@ -144,9 +143,7 @@ export const pageQuery = graphql`
       fields {
         githubLink
       }
-      code {
-        body
-      }
+      body
       timeToRead
       tableOfContents
       excerpt

@@ -20,8 +20,8 @@
     "gatsby": "^2.0.64",
     "gatsby-image": "^2.0.26",
     "gatsby-link": "^2.0.7",
-    "gatsby-mdx": "^0.6.2",
     "gatsby-plugin-google-analytics": "^2.0.9",
+    "gatsby-plugin-mdx": "^1.0.14",
     "gatsby-plugin-react-helmet": "^3.0.4",
     "gatsby-plugin-sharp": "^2.0.17",
     "gatsby-plugin-typescript": "^2.0.3",
@@ -38,7 +38,7 @@
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0",
     "react-jss": "10.0.0-alpha.3",
-    "react-syntax-highlighter": "^10.1.2",
+    "react-syntax-highlighter": "^11.0.2",
     "recompose": "^0.30.0"
   },
   "license": "MIT",
