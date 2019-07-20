@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core';
 import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/styles/prism';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const useStyles = makeStyles((theme: Theme) => ({
   code: {

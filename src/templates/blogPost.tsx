@@ -1,7 +1,7 @@
 import { Avatar, CardHeader, makeStyles, Theme, Typography } from '@material-ui/core';
 import { Edit } from '@material-ui/icons';
 import { graphql } from 'gatsby';
-import MDXRenderer from 'gatsby-mdx/mdx-renderer';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 import 'katex/dist/katex.min.css';
 import moment from 'moment';
 import React from 'react';
