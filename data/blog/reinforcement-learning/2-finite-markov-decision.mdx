@@ -2,12 +2,10 @@
 title: "Chapter 2: Finite Markov Decision (Exercises)"
 published: true
 createdAt: 2019-07-19T02:10:31.993Z
-updatedAt: 2019-07-20T01:50:37.285Z
+updatedAt: 2019-07-20T07:40:45.196Z
 categories:
   - Reinforcement Learning
 ---
-
-import { M } from '../../../src/components/math.tsx'
 
 ## Exercise 3.1
 
@@ -53,8 +51,8 @@ next could be the goal of the agent, and the safety of the driving could be left
 
 ## Exercise 3.4
 
-> Give a table analogous to *Example 3.3*, but for <M i="p(s', r |s, a)" />. It should have columns for
-> <M i="s, a, s', \text{ and } p(s', r | s, a)" /> and a row for every 4 tuple for which the probability
+> Give a table analogous to *Example 3.3*, but for $ p(s', r |s, a) $. It should have columns for
+> $ s, a, s', \text{ and } p(s', r | s, a) $ and a row for every 4 tuple for which the probability
 > is greater than 0.
 
 **TODO**
@@ -64,13 +62,13 @@ next could be the goal of the agent, and the safety of the driving could be left
 > The equations in section 3.1 are for the continuing case and need to be modified (very slightly) to apply for episodic
 > tasks. Show that you know the modifications needed by giving the modified version of (3.3).
 
-<M b="
+$$
 \begin{aligned}
   \tag{3.3} \sum_{s' \in S} \sum_{r \in R} p(s',r|s, a) = 1
 \end{aligned}
-" />
+$$
 
-Should it be modified to include the episodic notation <M i="s \in S_i" />.
+Should it be modified to include the episodic notation $ s \in S_i $.
 
 ## Exercise 3.6
 
@@ -99,9 +97,9 @@ getting out of the maze in a few time steps as possible.
 
 ## Exercise 3.8
 
-> Suppose <M i="r = 0.5" /> and the following sequence of rewards is received. What are <M i="G_0, G_1, ... G_5" />?
+> Suppose $ r = 0.5 $ and the following sequence of rewards is received. What are $ G_0, G_1, ... G_5 $?
 
-<M b="
+$$
 \begin{aligned}
   &R_1 = -1 \\
   &R_2 = 2 \\
@@ -114,16 +112,18 @@ getting out of the maze in a few time steps as possible.
   &G_2 = 8 \\
   &G_1 = 6
 \end{aligned}
-" />
+$$
 
 ## Exercise 3.9
 
-Suppose <M i="\gamma = 0.9" /> and the reward sequence it <M i="R_1 = 2" /> followed by an infinite sequence of 7's.
-What are <M i="G_1 \text{ and } G_0" />.
+Suppose $ \gamma = 0.9 $ and the reward sequence it $ R_1 = 2 $ followed by an infinite sequence of 7's.
+What are $ G_1 \text{ and } G_0 $.
 
-<M b="\tag{3.10} G_t = \sum_{k=0}^\infty \gamma^k = \frac{1}{1- \gamma}" />
+$$
+\tag{3.10} G_t = \sum_{k=0}^\infty \gamma^k = \frac{1}{1- \gamma}
+$$
 
-<M b="
+$$
 \begin{aligned}
 G_0 &= 2 + \gamma7 + \gamma^2 7 + ... \\
 &= 2 + \gamma7(1 + \gamma + ...) \\
@@ -134,15 +134,17 @@ G_1 &= 7 + \gamma7 + \gamma^27 + ... \\
 &= 7(\frac{1}{1-0.9}) \\
 & = 70
 \end{aligned}
-" />
+$$
 
 ## Exercise 3.10
 
 > Prove the second equality in (3.10)
 
-<M b="\tag{3.10} S = \sum_{k=0}^\infty \gamma^k = \frac{1}{1- \gamma}" />
+$$
+\tag{3.10} S = \sum_{k=0}^\infty \gamma^k = \frac{1}{1- \gamma}
+$$
 
-<M b="
+$$
 \begin{aligned}
     &= \gamma^0 + \gamma^1 + \gamma^2 + ... \\
     &= \gamma(\gamma^{-1} + \gamma^0 + \gamma^1) \\
@@ -152,41 +154,41 @@ G_1 &= 7 + \gamma7 + \gamma^27 + ... \\
     (1 - \gamma)S &= 1 \\
     S &= \frac{1}{1-\gamma}
 \end{aligned}
-" />
+$$
 
 ## Exercise 3.11
 
-> If the current state is <M i="S_t" /> and actions are selected acoording to a sotchastic policy, then what is the
-> expectation of <M i="R_{t+1}" /> in terms of <M i="\pi" /> and the four argument function?
+> If the current state is $ S_t $ and actions are selected acoording to a sotchastic policy, then what is the
+> expectation of $ R_{t+1} $ in terms of $ \pi $ and the four argument function?
 
 It would be eual to the equation 3.14 which is
 
-<M b="
+$$
 v_{\pi}(s) = \sum_a \pi(a|s) \sum_{s',r} p(s', r | s, a) \Big[ r + v_{\pi}(s') \Big]
-" />
+$$
 
 ## Exercise 3.12
 
-> Give an equation for <M i="v_{\pi}" /> in terms of <M i="q_{\pi}" /> and <M i="\pi" />.
+> Give an equation for $ v_{\pi} $ in terms of $ q_{\pi} $ and $ \pi $.
 
-<M b="
+$$
 v_{\pi}(s) = \max_a q_{\pi}(s, a)
-" />
+$$
 
 ## Exercise 3.13
 
-> Give an equation for <M i="q_{pi}" /> in terms of <M i="v_{pi}" /> and the four argument p
+> Give an equation for $ q_{pi} $ in terms of $ v_{pi} $ and the four argument p
 
-<M b="
+$$
 q_{\pi}(s, a) = \sum_{s', r} p(s', r | s, a) \Big[ r + v_{\pi}(s')\Big]
-"/>
+$$
 
 ## Exercise 3.14
 
 > The Bellman equation (3.14) must hold for each state for the value function shown in figure 3.2. Show numerically that
 > this equation holds for the center state valued at 0.7.
 
-<M b="
+$$
 \begin{aligned}
     &.25 * .9 * 2.3 \\
     + &.25 * .9 * .4 \\
@@ -194,7 +196,7 @@ q_{\pi}(s, a) = \sum_{s', r} p(s', r | s, a) \Big[ r + v_{\pi}(s')\Big]
     + &.25 * .9 * .7 \\
     = &.675
 \end{aligned}
-" />
+$$
 
 ## Exercise 3.15
 
@@ -202,13 +204,13 @@ q_{\pi}(s, a) = \sum_{s', r} p(s', r | s, a) \Big[ r + v_{\pi}(s')\Big]
 > the rest of the time. Are the signs of these rewards important, or only the intervals between them? Prove using 3.8
 > that adding a constant to all rewards adds a constant to the values of all states.
 
-<M b="
+$$
 \begin{aligned}
 G_t &= R_{t+1} + \gamma R_{t+2} + ... \\
 cG_t &= c(...) \\
 cv_{\pi}(s) &= \mathbb{E} \Big[ cG_t | S_t = s \Big]
 \end{aligned}
-" />
+$$
 
 ## Exercise 3.16
 
@@ -216,22 +218,22 @@ TODO
 
 ## Exercise 3.17
 
-> What is the Bellman equation for the action values, that is for <M i="q_{\pi}" /> It must give the action value in
-> terms of the next action values using the <M i="q_{\pi}" /> notation.
+> What is the Bellman equation for the action values, that is for $ q_{\pi} $ It must give the action value in
+> terms of the next action values using the $ q_{\pi} $ notation.
 
-<M b="
+$$
 q_{\pi}(s, a) = \sum_{s', r} p(s', r | s, a) \Big[ r + \gamma \max_{a'} q_{\pi}(s', a') \Big]
-"/>
+$$
 
 ## Exercise 3.18
 
-Give an equation for the value at the root node <M i="v_{\pi(s)}" /> in terms of the value expected at the leaf node
-<M i="q_{\pi}(s, a)" />.
+Give an equation for the value at the root node $ v_{\pi(s)} $ in terms of the value expected at the leaf node
+$ q_{\pi}(s, a) $.
 
-<M b="
+$$
 v_{\pi}(s) = \sum_a \pi(a | s) \sum_{s', r} p(s', r | s, a) \Big[ r + v_{\pi}(s') \Big]
-" />
+$$
 
 ## Exercise 3.19
 
-Give an equation for the action value <M i="q_{\pi}(s, a)" /> in terms of the expected reward...
+Give an equation for the action value $ q_{\pi}(s, a) $ in terms of the expected reward...

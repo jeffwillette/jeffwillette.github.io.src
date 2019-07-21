@@ -26,6 +26,9 @@ module.exports = {
               maxWidth: 940,
               sizeByPixelDensity: true
             }
+          },
+          {
+            resolve: 'gatsby-remark-katex'
           }
         ]
       }
