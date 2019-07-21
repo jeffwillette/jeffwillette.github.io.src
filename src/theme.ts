@@ -1,7 +1,7 @@
 import { createMuiTheme } from '@material-ui/core';
 import grey from '@material-ui/core/colors/grey';
 import indigo from '@material-ui/core/colors/indigo';
-import createSpacing from '@material-ui/core/styles/createSpacing';
+import createSpacing from '@material-ui/core/styles/createSpacing'; // this is not available in @material-ui/styles
 
 export const spacing = 8;
 

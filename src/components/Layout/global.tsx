@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Header } from './header';
 
-import { Collapse, List, ListItem, ListItemIcon, ListItemText, makeStyles, Theme, Typography } from '@material-ui/core';
+import { Collapse, List, ListItem, ListItemIcon, ListItemText, NoSsr, Theme, Typography } from '@material-ui/core';
 import { ExpandLess, ExpandMore, LibraryBooks, Web } from '@material-ui/icons';
+import { makeStyles } from '@material-ui/styles';
 import { MDXProvider } from '@mdx-js/react';
 import c from 'classnames';
 import { navigate } from 'gatsby';
-import { ContextProvider, StateConsumer } from '../../context';
+import { StateConsumer } from '../../context';
 import { themeAddons } from '../../theme';
 import { AutolinkHeader } from '../AutolinkHeader';
 import { BlockQuote } from '../blockquote';
@@ -150,39 +151,40 @@ export const GlobalLayout = ({ drawer, children }: Props) => {
 
   return (
     <MDXProvider components={components}>
-      <ContextProvider>
-        <Header />
-        <Drawer>
-          <List>
-            <ListItem button onClick={() => toggleDefaultItem(!defaultItemOpen)}>
-              <ListItemIcon>
-                <Web />
-              </ListItemIcon>
-              <ListItemText>Sections</ListItemText>
-              {defaultItemOpen ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-            <Collapse in={defaultItemOpen}>
-              <List>
-                <ListItem className={classes.nestedList} button onClick={() => navigate('/blog/')}>
-                  <ListItemIcon>
-                    <LibraryBooks />
-                  </ListItemIcon>
-                  <ListItemText>Blog</ListItemText>
-                </ListItem>
-                <ListItem className={classes.nestedList} button onClick={() => navigate('/about/')}>
-                  <ListItemIcon>
-                    <LibraryBooks />
-                  </ListItemIcon>
-                  <ListItemText>About</ListItemText>
-                </ListItem>
-              </List>
-            </Collapse>
-          </List>
-          {drawer}
-        </Drawer>
-        <StateConsumer>
-          {({ mobile, drawerOpen }) => {
-            return (
+      <Header />
+      <Drawer>
+        <List>
+          <ListItem button onClick={() => toggleDefaultItem(!defaultItemOpen)}>
+            <ListItemIcon>
+              <Web />
+            </ListItemIcon>
+            <ListItemText>Sections</ListItemText>
+            {defaultItemOpen ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={defaultItemOpen}>
+            <List>
+              <ListItem className={classes.nestedList} button onClick={() => navigate('/blog/')}>
+                <ListItemIcon>
+                  <LibraryBooks />
+                </ListItemIcon>
+                <ListItemText>Blog</ListItemText>
+              </ListItem>
+              <ListItem className={classes.nestedList} button onClick={() => navigate('/about/')}>
+                <ListItemIcon>
+                  <LibraryBooks />
+                </ListItemIcon>
+                <ListItemText>About</ListItemText>
+              </ListItem>
+            </List>
+          </Collapse>
+        </List>
+        {drawer}
+      </Drawer>
+      <StateConsumer>
+        {({ mobile, drawerOpen }) => {
+          return (
+            <NoSsr>
+              {/* this is a hotfix to fix the erroneous ssr rendering */}
               <main
                 className={c(classes.content, {
                   [classes.contentShift]: drawerOpen && !mobile,
@@ -192,11 +194,11 @@ export const GlobalLayout = ({ drawer, children }: Props) => {
                 })}
                 children={children}
               />
-            );
-          }}
-        </StateConsumer>
-        <Footer />
-      </ContextProvider>
+            </NoSsr>
+          );
+        }}
+      </StateConsumer>
+      <Footer />
     </MDXProvider>
   );
 };
