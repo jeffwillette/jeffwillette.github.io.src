@@ -183,18 +183,15 @@ export const GlobalLayout = ({ drawer, children }: Props) => {
       <StateConsumer>
         {({ mobile, drawerOpen }) => {
           return (
-            <NoSsr>
-              {/* this is a hotfix to fix the erroneous ssr rendering */}
-              <main
-                className={c(classes.content, {
-                  [classes.contentShift]: drawerOpen && !mobile,
-                  [classes.contentPaddingOpen]: drawerOpen && !mobile,
-                  [classes.contentPadding]: !drawerOpen && !mobile,
-                  [classes.contentMobile]: mobile
-                })}
-                children={children}
-              />
-            </NoSsr>
+            <main
+              className={c(classes.content, {
+                [classes.contentShift]: drawerOpen && !mobile,
+                [classes.contentPaddingOpen]: drawerOpen && !mobile,
+                [classes.contentPadding]: !drawerOpen && !mobile,
+                [classes.contentMobile]: mobile
+              })}
+              children={children}
+            />
           );
         }}
       </StateConsumer>
