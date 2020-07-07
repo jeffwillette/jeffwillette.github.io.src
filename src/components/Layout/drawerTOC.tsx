@@ -6,22 +6,22 @@ import { Link } from '../link';
 const useStyles = makeStyles((theme: Theme) => ({
   tocButtonRoot: {
     paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1)
+    paddingBottom: theme.spacing(1),
   },
   tocButtonGutters: {
     paddingLeft: theme.spacing(3),
-    paddingRight: theme.spacing(3)
+    paddingRight: theme.spacing(3),
   },
   levelOne: {
-    fontSize: theme.typography.fontSize
+    fontSize: theme.typography.fontSize,
   },
   levelTwo: {
     fontSize: theme.typography.fontSize,
     marginLeft: theme.spacing(1.5),
     '&::before': {
-      content: '"- "'
-    }
-  }
+      content: '"- "',
+    },
+  },
 }));
 
 export interface TableOfContents {
@@ -47,7 +47,7 @@ export const DrawerTOC = ({ items, level }: Props) => {
                 <ListItemText
                   primaryTypographyProps={{
                     variant: 'subtitle1',
-                    className: c({ [classes.levelOne]: level === 1, [classes.levelTwo]: level !== 1 })
+                    className: c({ [classes.levelOne]: level === 1, [classes.levelTwo]: level !== 1 }),
                   }}
                 >
                   {item.title}

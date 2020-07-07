@@ -8,8 +8,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: theme.typography.fontSize,
     borderRadius: theme.spacing(1),
     padding: `${theme.spacing(2)}px !important`,
-    border: `3px solid rgba(255,255,255,0.50)`
-  }
+    border: `3px solid rgba(255,255,255,0.50)`,
+  },
 }));
 
 export interface CodeProps {

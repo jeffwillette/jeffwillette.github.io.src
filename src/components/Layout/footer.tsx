@@ -9,12 +9,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: `rgba(0,0,0,.65)`,
     height: theme.spacing(40),
     paddingTop: theme.spacing(3),
-    borderTop: `5px solid rgba(255,255,255,.5)`
+    borderTop: `5px solid rgba(255,255,255,.5)`,
   },
   date: {
     color: theme.palette.secondary.contrastText,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 }));
 
 export const Footer = () => {

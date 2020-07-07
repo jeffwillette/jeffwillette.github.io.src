@@ -34,7 +34,7 @@ export const Blog = ({ data, pageContext }: BlogPageProps) => {
         meta={[
           { name: 'description', content: description || undefined },
           { name: 'keywords', content: keywords || undefined },
-          { name: 'author', content: author || undefined }
+          { name: 'author', content: author || undefined },
         ]}
       />
       {edges &&

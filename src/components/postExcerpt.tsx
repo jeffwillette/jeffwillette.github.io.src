@@ -8,17 +8,17 @@ const useStyles = makeStyles((theme: Theme) => ({
   card: {
     margin: `${theme.spacing(2)}px 0px`,
     borderLeft: `4px solid rgba(0,0,0,.2)`,
-    backgroundColor: 'rgba(0,0,0,.05)'
+    backgroundColor: 'rgba(0,0,0,.05)',
   },
   subheaderSpan: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   title: {
-    fontSize: theme.typography.h2.fontSize
+    fontSize: theme.typography.h2.fontSize,
   },
   mobileCategories: {
-    display: 'block'
-  }
+    display: 'block',
+  },
 }));
 
 interface Props {

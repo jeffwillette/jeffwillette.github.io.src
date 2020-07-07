@@ -4,9 +4,9 @@ import React from 'react';
 
 const useStyles = makeStyles((theme: Theme) => ({
   inlineMath: {
-    margin: `0px ${theme.spacing(1)}px`
+    margin: `0px ${theme.spacing(1)}px`,
   },
-  blockMath: {}
+  blockMath: {},
 }));
 
 interface Props {

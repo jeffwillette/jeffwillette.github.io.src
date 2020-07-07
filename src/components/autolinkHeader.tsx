@@ -11,12 +11,12 @@ const useStyles = makeStyles((theme: Theme) => ({
       content: '""',
       display: 'block',
       height: 100,
-      marginTop: -100
-    }
+      marginTop: -100,
+    },
   },
   mobileFont: {
-    fontSize: theme.typography.h2.fontSize + ' !important'
-  }
+    fontSize: theme.typography.h2.fontSize + ' !important',
+  },
 }));
 
 const slugger = new GithubSlugger();

@@ -10,14 +10,14 @@ interface AppState {
 
 const defaultState = {
   drawerOpen: false,
-  mobile: false
+  mobile: false,
 };
 
 export class ContextProvider extends React.Component<{}, AppState> {
   public isMobileWidth = typeof window !== 'undefined' ? window.innerWidth < 960 : false;
   public stateMethods = {
-    toggleDrawer: () => this.setState(prevState => ({ drawerOpen: !prevState.drawerOpen })),
-    toggleMobile: () => this.setState(prevState => ({ mobile: !prevState.mobile }))
+    toggleDrawer: () => this.setState((prevState) => ({ drawerOpen: !prevState.drawerOpen })),
+    toggleMobile: () => this.setState((prevState) => ({ mobile: !prevState.mobile })),
   };
 
   constructor(props) {
@@ -26,7 +26,7 @@ export class ContextProvider extends React.Component<{}, AppState> {
     this.state = {
       ...defaultState,
       ...this.stateMethods,
-      mobile: this.isMobileWidth
+      mobile: this.isMobileWidth,
     };
   }
 
@@ -45,4 +45,4 @@ interface Props {
   children(value: AppState): React.ReactNode;
 }
 
-export const StateConsumer = ({ children }: Props) => <Context.Consumer>{value => children(value)}</Context.Consumer>;
+export const StateConsumer = ({ children }: Props) => <Context.Consumer>{(value) => children(value)}</Context.Consumer>;

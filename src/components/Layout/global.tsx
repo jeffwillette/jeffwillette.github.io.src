@@ -19,15 +19,15 @@ import { Footer } from './footer';
 const useStyles = makeStyles((theme: Theme) => ({
   '@global': {
     '*::-webkit-scrollbar': {
-      width: '0.4em'
+      width: '0.4em',
     },
     '*::-webkit-scrollbar-track': {
-      '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
+      '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)',
     },
     '*::-webkit-scrollbar-thumb': {
       backgroundColor: 'rgba(0,0,0,.1)',
-      outline: '1px solid slategrey'
-    }
+      outline: '1px solid slategrey',
+    },
   },
   code: {
     backgroundColor: `rgba(0,0,0,.1)`,
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: 3,
     margin: theme.spacing(1 / 4),
     padding: theme.spacing(1 / 2),
-    fontSize: '1.0em'
+    fontSize: '1.0em',
   },
   ul: {
     margin: `${theme.spacing(2)}px ${theme.spacing(1)}px`,
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: theme.spacing(1),
       backgroundColor: themeAddons.greenBg,
       borderRadius: 5,
-      listStyle: 'none'
+      listStyle: 'none',
     },
     '& ul li': {
       fontSize: '1.0em',
@@ -62,9 +62,9 @@ const useStyles = makeStyles((theme: Theme) => ({
         color: 'rgba(0,0,0,.5)',
         backgroundColor: theme.palette.divider,
         position: 'absolute',
-        left: theme.spacing(-3)
-      }
-    }
+        left: theme.spacing(-3),
+      },
+    },
   },
   ol: {
     margin: `${theme.spacing(2)}px ${theme.spacing(1)}px`,
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: theme.spacing(1),
       borderRadius: 5,
       listStyle: 'none',
-      counterReset: 'ol-counter'
+      counterReset: 'ol-counter',
     },
     '& ol li': {
       counterIncrement: 'ol-counter',
@@ -94,36 +94,36 @@ const useStyles = makeStyles((theme: Theme) => ({
         color: `rgba(0,0,0,.4)`,
         position: 'absolute',
         left: theme.spacing(-3),
-        top: 4
-      }
-    }
+        top: 4,
+      },
+    },
   },
   nestedList: {
-    paddingLeft: theme.spacing(4)
+    paddingLeft: theme.spacing(4),
   },
   content: {
     flexGrow: 1,
     minHeight: 320, // gives enough room for the footer
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
+      duration: theme.transitions.duration.leavingScreen,
+    }),
   },
   contentPadding: { padding: `0px ${theme.spacing(30)}px` },
   contentPaddingOpen: {
-    padding: `0px ${theme.spacing(20)}px`
+    padding: `0px ${theme.spacing(20)}px`,
   },
   contentMobile: { padding: `${theme.spacing(5)}px ${theme.spacing(1.5)}px` },
   contentShift: {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
+      duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: drawerWidth
+    marginLeft: drawerWidth,
   },
   postP: {
-    margin: `${theme.spacing(3)}px 0px`
-  }
+    margin: `${theme.spacing(3)}px 0px`,
+  },
 }));
 
 interface Props {
@@ -155,7 +155,7 @@ export const GlobalLayout = ({ drawer, children }: Props) => {
     ul: (props: React.HTMLProps<HTMLUListElement>) => <div className={classes.ul} children={<ul {...props} />} />,
     // tslint:disable-next-line
     ol: (props: any) => <div className={classes.ol} children={<ol {...props} />} />,
-    blockquote: (props: BlockQuoteProps) => <BlockQuote {...props} />
+    blockquote: (props: BlockQuoteProps) => <BlockQuote {...props} />,
   };
 
   return (
@@ -178,11 +178,11 @@ export const GlobalLayout = ({ drawer, children }: Props) => {
                 </ListItemIcon>
                 <ListItemText>Blog</ListItemText>
               </ListItem>
-              <ListItem className={classes.nestedList} button onClick={() => navigate('/about/')}>
+              <ListItem className={classes.nestedList} button onClick={() => navigate('/resume/')}>
                 <ListItemIcon>
                   <LibraryBooks />
                 </ListItemIcon>
-                <ListItemText>About</ListItemText>
+                <ListItemText>Resume</ListItemText>
               </ListItem>
             </List>
           </Collapse>
@@ -195,7 +195,7 @@ export const GlobalLayout = ({ drawer, children }: Props) => {
             [classes.contentShift]: drawerOpen && !mobile,
             [classes.contentPaddingOpen]: drawerOpen && !mobile,
             [classes.contentPadding]: !drawerOpen && !mobile,
-            [classes.contentMobile]: mobile
+            [classes.contentMobile]: mobile,
           });
 
           return <main className={cl} children={children} />;

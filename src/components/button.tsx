@@ -8,16 +8,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: `${theme.spacing(1)}px ${theme.spacing(1)}px`,
     backgroundColor: 'rgba(0,0,0,.20)',
     '&:hover': {
-      backgroundColor: 'rgba(0,0,0,.15)'
+      backgroundColor: 'rgba(0,0,0,.15)',
     },
     '&:active': {
       boxShadow: 'none',
-      backgroundColor: '#0062cc'
+      backgroundColor: '#0062cc',
     },
     '&:focus': {
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
-    }
-  }
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+    },
+  },
 }));
 
 export const FlatButton = ({ ...props }: ButtonProps) => {

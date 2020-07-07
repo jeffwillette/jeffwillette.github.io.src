@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core';
+import { Avatar, makeStyles, Theme } from '@material-ui/core';
 import { graphql } from 'gatsby';
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
@@ -15,8 +15,8 @@ import { safe } from '../utils';
 
 const useStyles = makeStyles((_: Theme) => ({
   button: {
-    margin: 'auto'
-  }
+    margin: 'auto',
+  },
 }));
 
 interface Props {
@@ -35,22 +35,27 @@ const getBarData = () => ({
   seven: randomNum(),
   eight: randomNum(),
   nine: randomNum(),
-  ten: randomNum()
+  ten: randomNum(),
 });
 
 const getLineData = () => ({
-  one: Array.from({ length: 20 }).map(_ => randomNum()),
-  two: Array.from({ length: 20 }).map(_ => randomNum()),
-  three: Array.from({ length: 20 }).map(_ => randomNum())
+  one: Array.from({ length: 20 }).map((_) => randomNum()),
+  two: Array.from({ length: 20 }).map((_) => randomNum()),
+  three: Array.from({ length: 20 }).map((_) => randomNum()),
 });
 
 export default ({ data }: Props) => {
   const [barData, setBarData] = useState(getBarData());
   const [lineData, setLineData] = useState(getLineData());
 
-  const { site } = safe(data);
+  const { site, avatar } = safe(data);
   const { siteMetadata } = safe(site);
   const { title, description, author, keywords } = safe(siteMetadata);
+
+  const { childImageSharp } = safe(avatar);
+  const { fluid } = safe(childImageSharp);
+  const { src } = safe(fluid);
+
   const classes = useStyles();
 
   return (
@@ -60,11 +65,11 @@ export default ({ data }: Props) => {
         meta={[
           { name: 'description', content: description || '' },
           { name: 'keywords', content: keywords || '' },
-          { name: 'author', content: author || '' }
+          { name: 'author', content: author || '' },
         ]}
       />
       <div>
-        <Circles />
+        <Circles src={src} />
         <BarChart data={barData} />
         <FlatButton
           fullWidth
@@ -85,8 +90,12 @@ export default ({ data }: Props) => {
           xMax={10}
           xLabel={<M i="\check{y}_1" />}
           width="100%"
-          fx={x => 2 * (x * x) + 3 * x + 4}
-          points={[[1, 1], [1, 2], [5, 5]]}
+          fx={(x) => 2 * (x * x) + 3 * x + 4}
+          points={[
+            [1, 1],
+            [1, 2],
+            [5, 5],
+          ]}
         />
         <TreeChart
           data={{
@@ -99,19 +108,19 @@ export default ({ data }: Props) => {
                     name: 'loser2-1',
                     children: [
                       { name: 'loser3-1', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] },
-                      { name: 'loser3-2', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] }
-                    ]
+                      { name: 'loser3-2', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] },
+                    ],
                   },
                   {
                     name: 'loser2-2',
                     children: [
                       { name: 'loser3-1', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] },
-                      { name: 'loser3-2', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] }
-                    ]
-                  }
-                ]
-              }
-            ]
+                      { name: 'loser3-2', children: [{ name: 'loser4-1' }, { name: 'loser4-2' }] },
+                    ],
+                  },
+                ],
+              },
+            ],
           }}
         />
       </div>
@@ -121,6 +130,13 @@ export default ({ data }: Props) => {
 
 export const query = graphql`
   query IndexQuery {
+    avatar: file(name: { eq: "jeff" }, extension: { eq: "png" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid_tracedSVG
+        }
+      }
+    }
     site {
       siteMetadata {
         title

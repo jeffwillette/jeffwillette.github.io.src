@@ -29,10 +29,10 @@ const createTreeChart = (node: SVGSVGElement, data: TreeData) =>
         .attr('class', 'treeLink')
         .style('stroke', color('0.3'))
         .style('stroke-width', 3)
-        .attr('x1', d => d.source.x)
-        .attr('y1', d => d.source.y)
-        .attr('x2', d => d.target.x)
-        .attr('y2', d => d.target.y)
+        .attr('x1', (d) => d.source.x)
+        .attr('y1', (d) => d.source.y)
+        .attr('x2', (d) => d.target.x)
+        .attr('y2', (d) => d.target.y)
         .transition()
         .duration(1000);
 
@@ -44,8 +44,8 @@ const createTreeChart = (node: SVGSVGElement, data: TreeData) =>
         .style('fill', 'rgba(255,255,255)')
         .style('stroke', color('0.5'))
         .style('stroke-width', 3)
-        .attr('cx', d => d.x)
-        .attr('cy', d => d.y)
+        .attr('cx', (d) => d.x)
+        .attr('cy', (d) => d.y)
         .attr('r', 8)
         .transition()
         .duration(1000);
@@ -80,7 +80,7 @@ const tChart = ({ data, width, align }: Props) => {
       className={c(classes.svgContainer, {
         [classes.left]: align === 'left',
         [classes.right]: align === 'right',
-        [classes.center]: align === 'center'
+        [classes.center]: align === 'center',
       })}
       style={{ width }}
     >
@@ -92,7 +92,7 @@ const tChart = ({ data, width, align }: Props) => {
 };
 
 tChart.defaultProps = {
-  width: '100%'
+  width: '100%',
 };
 
 // this is needed so that a re-render is triggered when the drawer state changes

@@ -14,7 +14,7 @@ const createChart = (node: SVGSVGElement, props: Props) =>
       const sample = (xMax - xMin) / samples!;
       const curvePoints = Array.from({ length: samples! }).map((_, i) => ({
         x: xMin + i * sample,
-        y: fx(xMin + i * sample)
+        y: fx(xMin + i * sample),
       }));
 
       const width = parseInt(select(node).style('width'), 10) - margin * 2;
@@ -24,9 +24,7 @@ const createChart = (node: SVGSVGElement, props: Props) =>
         .domain([xMin, xMax])
         .range([0, width]);
 
-      const yScale = scaleLinear()
-        .domain([xMin, xMax])
-        .range([height, 0]);
+      const yScale = scaleLinear().domain([xMin, xMax]).range([height, 0]);
 
       const s = select(node).select('.innerG');
 
@@ -43,8 +41,8 @@ const createChart = (node: SVGSVGElement, props: Props) =>
         .call(axisLeft(yScale));
 
       const chartLine = line<Point>() // make the line generator function
-        .x(d => xScale(d.x))
-        .y(d => yScale(d.y))
+        .x((d) => xScale(d.x))
+        .y((d) => yScale(d.y))
         .curve(curveMonotoneX);
 
       const color = randomColor();
@@ -60,8 +58,8 @@ const createChart = (node: SVGSVGElement, props: Props) =>
       s.selectAll('.graph-point')
         .data(points || [])
         .attr('r', 3)
-        .attr('cx', d => xScale(d[0]))
-        .attr('cy', d => yScale(d[1]))
+        .attr('cx', (d) => xScale(d[0]))
+        .attr('cy', (d) => yScale(d[1]))
         .style('fill', pointColor('0.3'));
     }
   }, 1000);
@@ -125,7 +123,7 @@ graph.defaultProps = {
   xMin: -10,
   xMax: 10,
   yMin: -10,
-  yMax: 10
+  yMax: 10,
 };
 
 export const Graph = withDrawerOpen(graph);

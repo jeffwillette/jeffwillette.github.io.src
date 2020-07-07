@@ -6,16 +6,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   leftPad: {
     width: '100%',
     margin: theme.spacing(1),
-    borderLeft: `${theme.spacing(1)}px solid ${theme.palette.divider}`
+    borderLeft: `${theme.spacing(1)}px solid ${theme.palette.divider}`,
   },
   post: {
-    margin: 'auto'
+    margin: 'auto',
   },
   interview: {},
   indented: {
     margin: `${theme.spacing(2)}px ${theme.spacing(3)}px`,
-    paddingRight: theme.spacing(8)
-  }
+    paddingRight: theme.spacing(8),
+  },
 }));
 
 interface Props {
@@ -35,8 +35,8 @@ export const DisplayCard = ({ children, className, variant, indented }: Props) =
           [classes.leftPad]: variant === 'leftPad',
           [classes.post]: variant === 'post',
           [classes.interview]: variant === 'interview',
-          [classes.indented]: indented
-        })
+          [classes.indented]: indented,
+        }),
       }}
       className={className}
       children={children}

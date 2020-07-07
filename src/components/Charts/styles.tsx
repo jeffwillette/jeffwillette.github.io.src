@@ -1,10 +1,18 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
 export const useStyles = makeStyles((_: Theme) => ({
+  avatar: {
+    top: 100,
+    left: '40%',
+    width: 200,
+    height: 200,
+    margin: 'auto',
+    position: 'absolute',
+  },
   svgContainer: {
     width: '100%',
     paddingTop: '50%',
-    position: 'relative'
+    position: 'relative',
   },
   svg: {
     position: 'absolute',
@@ -13,24 +21,24 @@ export const useStyles = makeStyles((_: Theme) => ({
     '& .yAxis path, & .xAxis path': {
       stroke: 'rgba(0,0,0,.2)',
       strokeWidth: 3,
-      fill: 'none'
+      fill: 'none',
     },
     '& .tick line, & .tick text': {
       stroke: 'rgba(0,0,0,.2)',
-      fill: 'rgba(0,0,0,.2)'
+      fill: 'rgba(0,0,0,.2)',
     },
     '& .line': {
       fill: 'none',
-      strokeWidth: 4
-    }
+      strokeWidth: 4,
+    },
   },
   left: {
-    float: 'left'
+    float: 'left',
   },
   right: {
-    float: 'right'
+    float: 'right',
   },
   center: {
-    margin: 'auto'
-  }
+    margin: 'auto',
+  },
 }));

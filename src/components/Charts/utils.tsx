@@ -15,15 +15,11 @@ export const randomColor = (): GeneratedColor => {
 
 // clear all inner g containers in order to clear the whole chart on update.
 export const clearChart = (node: SVGSVGElement | null) =>
-  node &&
-  select(node)
-    .select('.innerG')
-    .selectAll('g')
-    .remove();
+  node && select(node).select('.innerG').selectAll('g').remove();
 
 export const margin = 50;
 
 export const getWidthAndHeight = (node: SVGSVGElement, m: number) => [
   parseInt(select(node).style('width'), 10) - m * 2,
-  parseInt(select(node).style('height'), 10) - m * 2
+  parseInt(select(node).style('height'), 10) - m * 2,
 ];

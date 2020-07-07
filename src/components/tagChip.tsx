@@ -5,8 +5,8 @@ import React from 'react';
 
 const useStyles = makeStyles((theme: Theme) => ({
   chip: {
-    margin: `0px ${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(1)}px`
-  }
+    margin: `0px ${theme.spacing(1)}px ${theme.spacing(1)}px ${theme.spacing(1)}px`,
+  },
 }));
 
 interface Props {

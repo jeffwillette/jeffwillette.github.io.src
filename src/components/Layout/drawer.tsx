@@ -9,7 +9,7 @@ export const drawerWidth = 280;
 const useStyles = makeStyles((theme: Theme) => ({
   drawerPaper: {
     width: drawerWidth,
-    flexShrink: 0
+    flexShrink: 0,
   },
   drawer: {
     width: drawerWidth,
@@ -17,15 +17,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: 65,
     overflowY: 'scroll',
     height: 'calc(100% - 64px)',
-    borderRight: '0px solid'
+    borderRight: '0px solid',
   },
   drawerContentTopPadding: {
     // the drawer comes under the bar on desktop so it needs some top padding
-    paddingTop: 85
+    paddingTop: 85,
   },
   drawerContainer: {
-    height: '101%'
-  }
+    height: '101%',
+  },
 }));
 
 interface Props {

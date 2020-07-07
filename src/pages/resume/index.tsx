@@ -2,19 +2,19 @@ import { Avatar, makeStyles, Theme } from '@material-ui/core';
 import { graphql } from 'gatsby';
 import React from 'react';
 import { GlobalLayout } from '../../components/Layout/global';
-import { AboutPage } from '../../gatsby-queries';
+import { ResumePage } from '../../gatsby-queries';
 import { safe } from '../../utils';
 
 interface Props {
-  data: AboutPage;
+  data: ResumePage;
 }
 
 const useStyles = makeStyles((_: Theme) => ({
   avatar: {
     width: 200,
     height: 200,
-    margin: 'auto'
-  }
+    margin: 'auto',
+  },
 }));
 
 export default ({ data }: Props) => {
@@ -36,7 +36,7 @@ export default ({ data }: Props) => {
 };
 
 export const pageQuery = graphql`
-  query AboutPage {
+  query ResumePage {
     avatar: file(name: { eq: "jeff" }, extension: { eq: "png" }) {
       childImageSharp {
         fluid {

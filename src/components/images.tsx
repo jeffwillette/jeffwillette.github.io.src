@@ -8,20 +8,20 @@ import { BlogPostQuery_mdx_frontmatter_images_childImageSharp_fluid as FluidQuer
 const useStyles = makeStyles((theme: Theme) => ({
   leftImg: {
     padding: `0px ${theme.spacing(2)}px ${theme.spacing(2)}px 0px`,
-    float: 'left'
+    float: 'left',
   },
   centerImg: {
     display: 'block',
-    margin: 'auto'
+    margin: 'auto',
   },
   rightImg: {
     padding: `0px 0px ${theme.spacing(2)}px ${theme.spacing(2)}px`,
     float: 'right',
-    textAlign: 'right'
+    textAlign: 'right',
   },
   mobile: {
-    width: '100% !important'
-  }
+    width: '100% !important',
+  },
 }));
 
 interface BaseProps {
@@ -37,7 +37,7 @@ export const safeFluid = (f: FluidQuery | FluidObject | null): FluidObject => {
     sizes: f ? f.sizes || '' : '',
     src: f ? f.src || '' : '',
     srcSet: f ? f.srcSet || '' : '',
-    tracedSVG: f ? f.tracedSVG || '' : ''
+    tracedSVG: f ? f.tracedSVG || '' : '',
   };
 };
 
@@ -51,7 +51,7 @@ export const MDXSharpImg = ({ width, fluid, align }: MDXSharpImgProps) => {
             [classes.leftImg]: !mobile && align === 'left',
             [classes.rightImg]: !mobile && align === 'right',
             [classes.centerImg]: !mobile && align === 'center',
-            [classes.mobile]: mobile
+            [classes.mobile]: mobile,
           })}
           style={{ width: width || '40%' }}
         >
@@ -76,7 +76,7 @@ export const MDXSrcImg = ({ src, width, align }: MDXSrcImgProps) => {
             [classes.leftImg]: !mobile && align === 'left',
             [classes.rightImg]: !mobile && align === 'right',
             [classes.centerImg]: !mobile && align === 'center',
-            [classes.mobile]: mobile
+            [classes.mobile]: mobile,
           })}
           style={{ width: width || '40%' }}
           src={src}

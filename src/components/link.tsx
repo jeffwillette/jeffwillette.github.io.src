@@ -8,17 +8,17 @@ const useStyles = makeStyles({
   white: {
     color: 'white !important',
     '&:hover': {
-      color: 'rgba(255,255,255,.9) !important'
-    }
+      color: 'rgba(255,255,255,.9) !important',
+    },
   },
   link: {
     textDecoration: 'none',
     color: 'rgba(0,0,0,.5)',
     fontWeight: 'bold',
     '&:hover': {
-      color: 'rgba(0,0,0,.65)'
-    }
-  }
+      color: 'rgba(0,0,0,.65)',
+    },
+  },
 });
 
 // TODO: this copies the text to the clipboard. It might be good to make a tooltip or something

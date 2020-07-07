@@ -4,8 +4,8 @@ import { GlobalLayout } from '../components/Layout/global';
 
 const useStyles = makeStyles((_: Theme) => ({
   content: {
-    margin: 'auto'
-  }
+    margin: 'auto',
+  },
 }));
 
 const NotFoundPage = () => {

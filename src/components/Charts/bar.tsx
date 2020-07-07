@@ -15,7 +15,7 @@ const createBarChart = (node: SVGSVGElement, data: Props['data']) =>
       const keys = Object.keys(data);
 
       let dataMax: number = 0;
-      keys.forEach(k => {
+      keys.forEach((k) => {
         if (data[k] > dataMax) {
           dataMax = data[k];
         }
@@ -42,7 +42,7 @@ const createBarChart = (node: SVGSVGElement, data: Props['data']) =>
         .attr('class', 'yAxis') // set the class for the y axis
         .call(axisLeft(yScale)); // set the axis
 
-      Object.keys(data).forEach(k => {
+      Object.keys(data).forEach((k) => {
         const color = randomColor();
         s.select(`.rect-${k}`)
           .datum(data[k])
@@ -79,7 +79,7 @@ const bChart = ({ data, width }: Props) => {
     <div className={classes.svgContainer}>
       <svg ref={node} width={width} className={classes.svg}>
         <g className="innerG" transform={`translate(${margin}, ${margin})`}>
-          {Object.keys(data).map(k => (
+          {Object.keys(data).map((k) => (
             <Tooltip key={k} title={`${k}: ${data[k]}`}>
               <rect className={c('rect', `rect-${k}`)} />
             </Tooltip>
@@ -91,7 +91,7 @@ const bChart = ({ data, width }: Props) => {
 };
 
 bChart.defaultProps = {
-  width: '100%'
+  width: '100%',
 };
 
 export const BarChart = withDrawerOpen(bChart);

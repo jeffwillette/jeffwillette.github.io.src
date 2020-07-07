@@ -8,12 +8,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: themeAddons.greenBg,
     padding: theme.spacing(1) / 2,
     margin: 'auto',
-    borderRadius: 5
+    borderRadius: 5,
   },
   text: {
     color: 'rgba(0,0,0,.74)',
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 }));
 
 export interface BlockQuoteProps {

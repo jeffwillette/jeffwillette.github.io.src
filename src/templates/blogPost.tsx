@@ -18,24 +18,24 @@ import { safe } from '../utils';
 
 const useStyles = makeStyles((theme: Theme) => ({
   postBody: {
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
   },
   editButtonText: {
-    margin: `0px ${theme.spacing(2)}px`
+    margin: `0px ${theme.spacing(2)}px`,
   },
   button: {
     margin: `${theme.spacing(3)}px 0px`,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   avatar: {
     width: 60,
     height: 60,
-    backgroundColor: 'rgba(0,0,0,.03)'
+    backgroundColor: 'rgba(0,0,0,.03)',
   },
   avatarCard: {
     marginTop: theme.spacing(2),
-    paddingBottom: 0
-  }
+    paddingBottom: 0,
+  },
 }));
 
 interface Props {
@@ -79,7 +79,7 @@ export default ({ data }: Props) => {
         meta={[
           { name: 'description', content: excerpt || undefined },
           { name: 'keywords', content: categories ? categories.join(',') : undefined },
-          { name: 'author', content: author || undefined }
+          { name: 'author', content: author || undefined },
         ]}
       />
       <DisplayCard variant="post">

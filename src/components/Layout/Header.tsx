@@ -11,29 +11,29 @@ import { Link } from '../link';
 
 const useStyles = makeStyles((theme: Theme) => ({
   right: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   flex: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   bar: {
-    zIndex: theme.zIndex.drawer + 1
+    zIndex: theme.zIndex.drawer + 1,
   },
   menu: {
     fontSize: theme.typography.fontSize * 2.5,
     fontWeight: 'bold',
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
   },
   title: {
     ...theme.typography.h4,
     color: 'rgba(255,255,255,1)',
-    margin: `0px 0px`
+    margin: `0px 0px`,
   },
   titleMobile: {
     ...theme.typography.h5,
     color: 'rgba(255,255,255,1)',
-    margin: `0px 0px`
-  }
+    margin: `0px 0px`,
+  },
 }));
 
 export const Header = () => {
@@ -69,7 +69,10 @@ export const Header = () => {
                   )}
                   <Typography className={classes.flex}>
                     <Link to="/" white>
-                      <span className={mobile ? classes.titleMobile : classes.title} children="jeffwillette.github.io" />
+                      <span
+                        className={mobile ? classes.titleMobile : classes.title}
+                        children="jeffwillette.github.io"
+                      />
                     </Link>
                   </Typography>
                   <Link to={twitter || ''} white>

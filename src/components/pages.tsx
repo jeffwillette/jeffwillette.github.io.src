@@ -7,8 +7,8 @@ import { FlatFab } from './flatFab';
 
 const useStyles = makeStyles((_: Theme) => ({
   pages: {
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 }));
 
 interface Props {
@@ -36,7 +36,7 @@ export const Pages = ({ show, pageContext }: Props) => {
   return (
     <div className={classes.pages}>
       {canGoBack && <FlatFab onClick={() => navigate(pageSlugs[startIndex - 1].path)} size="small" children="❮" />}
-      {pages.map(obj => {
+      {pages.map((obj) => {
         return (
           <FlatFab
             disabled={page === obj.page}

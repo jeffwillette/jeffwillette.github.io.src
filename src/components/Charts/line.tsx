@@ -14,7 +14,7 @@ const createLineChart = (node: SVGSVGElement, data: Props['data']) =>
 
       let dataMax: number = 0;
       let lenMax: number = 0;
-      Object.keys(data).forEach(k => {
+      Object.keys(data).forEach((k) => {
         const m = max(data[k]) || 0;
         if (m > dataMax) {
           dataMax = m || 0;
@@ -36,10 +36,7 @@ const createLineChart = (node: SVGSVGElement, data: Props['data']) =>
       const s = select(node).select('.innerG'); // select the inner g container where elements will be
 
       s.selectAll('.xAxis').remove();
-      s.append('g')
-        .attr('class', 'xAxis')
-        .attr('transform', `translate(0, ${height})`)
-        .call(axisBottom(xScale)); // add the axis
+      s.append('g').attr('class', 'xAxis').attr('transform', `translate(0, ${height})`).call(axisBottom(xScale)); // add the axis
 
       s.selectAll('.yAxis').remove();
       s.append('g')
@@ -53,12 +50,12 @@ const createLineChart = (node: SVGSVGElement, data: Props['data']) =>
 const makeLinesFromDataProps = (node: SVGSVGElement, data: Props['data'], xScale, yScale) => {
   const chartLine = line() // make the line generator function
     .x((_, i) => xScale(i))
-    .y(d => yScale(d[1]))
+    .y((d) => yScale(d[1]))
     .curve(curveMonotoneX);
 
   const s = select(node).select('.innerG');
 
-  Object.keys(data).forEach(k => {
+  Object.keys(data).forEach((k) => {
     const dataset = data[k].map((y, x) => [x, y] as [number, number]);
     const color = randomColor();
 
@@ -76,7 +73,7 @@ const makeLinesFromDataProps = (node: SVGSVGElement, data: Props['data'], xScale
       .style('stroke', color('.5')) // add a dynamic color
       .style('fill', 'rgba(255,255,255,.8)')
       .attr('cx', (_, i) => xScale(i))
-      .attr('cy', d => yScale(d[1]))
+      .attr('cy', (d) => yScale(d[1]))
       .attr('r', 3);
   });
 
@@ -104,12 +101,12 @@ const lChart = ({ data, width }: Props) => {
       <svg ref={node} width={width} className={classes.svg}>
         <g className="innerG" transform={`translate(${margin}, ${margin})`}>
           {/* lines are blaced before (under) dots */}
-          {Object.keys(data).map(k => (
+          {Object.keys(data).map((k) => (
             <Tooltip key={k} title={k}>
               <path className={c('line', `line-${k}`)} />
             </Tooltip>
           ))}
-          {Object.keys(data).map(k =>
+          {Object.keys(data).map((k) =>
             data[k].map((d, i) => (
               <Tooltip key={`${k}${i}`} title={`${k}: ${d}`}>
                 <circle className={c('dot', `dot-${k}`)} />
@@ -123,7 +120,7 @@ const lChart = ({ data, width }: Props) => {
 };
 
 lChart.defaultProps = {
-  width: '100%'
+  width: '100%',
 };
 
 export const LineChart = withDrawerOpen(lChart);
