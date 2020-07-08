@@ -88,9 +88,7 @@ export default ({ data }: Props) => {
       <div>
         <StateConsumer>
           {({ mobile }) => {
-            return (
-                <Avatar src={src || undefined} classes={{root: mobile ? classes.avatarMobile : classes.avatar}} />
-            );
+            return <Avatar src={src || undefined} classes={{ root: mobile ? classes.avatarMobile : classes.avatar }} />;
           }}
         </StateConsumer>
         <Circles src={src} />
