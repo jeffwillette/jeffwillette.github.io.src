@@ -12,8 +12,25 @@ import { GlobalLayout } from '../components/Layout/global';
 import { M } from '../components/math';
 import { IndexQuery } from '../gatsby-queries';
 import { safe } from '../utils';
+import { StateConsumer } from '../context';
 
 const useStyles = makeStyles((_: Theme) => ({
+  avatar: {
+    top: 180,
+    left: '44%',
+    width: 200,
+    height: 200,
+    margin: 'auto',
+    position: 'absolute',
+  },
+  avatarMobile: {
+    top: 100,
+    left: '38%',
+    width: 100,
+    height: 100,
+    margin: 'auto',
+    position: 'absolute',
+  },
   button: {
     margin: 'auto',
   },
@@ -69,6 +86,13 @@ export default ({ data }: Props) => {
         ]}
       />
       <div>
+        <StateConsumer>
+          {({ mobile }) => {
+            return (
+                <Avatar src={src || undefined} classes={{root: mobile ? classes.avatarMobile : classes.avatar}} />
+            );
+          }}
+        </StateConsumer>
         <Circles src={src} />
         <BarChart data={barData} />
         <FlatButton

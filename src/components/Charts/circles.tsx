@@ -95,7 +95,6 @@ const circles = (props: Props) => {
 
   return (
     <div className={classes.svgContainer}>
-      <Avatar src={src || undefined} className={classes.avatar} />
       <svg ref={node} width="100%" className={classes.svg}>
         <g className="innerG" transform={`translate(${margin}, ${margin})`} />
       </svg>

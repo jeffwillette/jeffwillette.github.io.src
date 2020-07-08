@@ -1,14 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core';
 
 export const useStyles = makeStyles((_: Theme) => ({
-  avatar: {
-    top: 100,
-    left: '40%',
-    width: 200,
-    height: 200,
-    margin: 'auto',
-    position: 'absolute',
-  },
   svgContainer: {
     width: '100%',
     paddingTop: '50%',
