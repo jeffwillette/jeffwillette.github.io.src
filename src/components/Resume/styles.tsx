@@ -17,4 +17,17 @@ export const useStyles = makeStyles((theme: Theme) => ({
     fontSize: 18,
     paddingLeft: 10,
   },
+  tags: {
+    marginTop: 5,
+    marginLeft: -5,
+  },
+  heading: {
+    marginLeft: 15,
+    marginBottom: 0,
+    marginTop: 0,
+  },
+  list: {
+    backgroundColor: 'rgba(0,0,0,0.05)',
+    borderRadius: 5,
+  },
 }));

@@ -18,7 +18,7 @@ interface Props {
 export const Resume = ({ resume, avatarSrc }: Props) => {
   const { basics, work, education, skills, interests, languages, references, publications } = safe(resume);
   return (
-    <div>
+    <div style={{ width: '80%', margin: 'auto' }}>
       <Basics avatarSrc={avatarSrc} basics={safe(basics)} />
       <Work work={safe(work)} />
       <Education education={safe(education)} />

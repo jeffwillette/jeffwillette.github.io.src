@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '../link';
 import { AboutPage_site_siteMetadata_resume } from '../../gatsby-queries';
-import { List, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
+import { List, ListItem, ListItemAvatar, Typography, ListItemText, Avatar } from '@material-ui/core';
 import { faGithub, faTwitter, IconDefinition } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useStyles } from './styles';
@@ -15,17 +15,18 @@ const networks: Record<string, IconDefinition> = { GitHub: faGithub, Twitter: fa
 
 export const Basics = ({ basics, avatarSrc }: Props) => {
   const classes = useStyles();
+
   return (
     basics && (
       <div>
         <List>
-          <ListItem>
+          <ListItem style={{ width: 550, margin: 'auto' }}>
             <ListItemAvatar>
               <Avatar src={avatarSrc || undefined} classes={{ root: classes.avatar }} />
             </ListItemAvatar>
             <ListItemText
               primary={
-                <span className={classes.name}>
+                <Typography className={classes.name}>
                   {basics.name}
                   {basics.profiles &&
                     basics.profiles.map((profile, i) => {
@@ -38,7 +39,7 @@ export const Basics = ({ basics, avatarSrc }: Props) => {
                         )
                       );
                     })}
-                </span>
+                </Typography>
               }
               secondary={<span className={classes.secondary}>{basics.summary}</span>}
             />

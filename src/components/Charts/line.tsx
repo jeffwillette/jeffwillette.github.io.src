@@ -12,8 +12,8 @@ const createLineChart = (node: SVGSVGElement, data: Props['data']) =>
       const width = parseInt(select(node).style('width'), 10) - margin * 2;
       const height = parseInt(select(node).style('height'), 10) - margin * 2;
 
-      let dataMax: number = 0;
-      let lenMax: number = 0;
+      let dataMax = 0;
+      let lenMax = 0;
       Object.keys(data).forEach((k) => {
         const m = max(data[k]) || 0;
         if (m > dataMax) {

@@ -27,12 +27,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     ...theme.typography.h4,
     color: 'rgba(255,255,255,1)',
-    margin: `0px 0px`,
+    margin: '0px 0px',
   },
   titleMobile: {
     ...theme.typography.h5,
     color: 'rgba(255,255,255,1)',
-    margin: `0px 0px`,
+    margin: '0px 0px',
   },
 }));
 

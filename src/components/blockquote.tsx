@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export interface BlockQuoteProps {
-  children: Array<string | JSX.Element>;
+  children: (string | JSX.Element)[];
 }
 
 export const BlockQuote = ({ children }: BlockQuoteProps) => {

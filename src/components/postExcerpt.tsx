@@ -7,7 +7,7 @@ import { TagChip } from './tagChip';
 const useStyles = makeStyles((theme: Theme) => ({
   card: {
     margin: `${theme.spacing(2)}px 0px`,
-    borderLeft: `4px solid rgba(0,0,0,.2)`,
+    borderLeft: '4px solid rgba(0,0,0,.2)',
     backgroundColor: 'rgba(0,0,0,.05)',
   },
   subheaderSpan: {
@@ -26,7 +26,7 @@ interface Props {
   createdAt: Moment;
   updatedAt: Moment;
   slug: string;
-  categories: Array<string | null>;
+  categories: (string | null)[];
   timeToRead: number;
   excerpt: string;
 }

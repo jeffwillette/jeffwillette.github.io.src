@@ -14,7 +14,7 @@ const createBarChart = (node: SVGSVGElement, data: Props['data']) =>
 
       const keys = Object.keys(data);
 
-      let dataMax: number = 0;
+      let dataMax = 0;
       keys.forEach((k) => {
         if (data[k] > dataMax) {
           dataMax = data[k];

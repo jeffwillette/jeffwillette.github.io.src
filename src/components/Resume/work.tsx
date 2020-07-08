@@ -1,6 +1,8 @@
 import React from 'react';
 import { AboutPage_site_siteMetadata_resume } from '../../gatsby-queries';
 import { useStyles } from './styles';
+import { List, ListItem, Divider, ListItemText, Typography } from '@material-ui/core';
+import { TagChip } from '../../components/tagChip';
 
 interface Props {
   work: AboutPage_site_siteMetadata_resume['work'];
@@ -9,35 +11,36 @@ interface Props {
 export const Work = ({ work }: Props) => {
   const classes = useStyles();
   return (
-    basics && (
+    work && (
       <div>
-      <List>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar src={avatarSrc || undefined} classes={{ root: classes.avatar }} />
-            </ListItemAvatar>
-              <ListItemText
-              primary={
-                <span className={classes.name}>
-                  {basics.name}
-                  {basics.profiles &&
-                    basics.profiles.map((profile, i) => {
-                    return (
-                      profile &&
-                        profile.network && (
-                          <Link key={i} to={profile.url || ''} white>
-                          <FontAwesomeIcon className={classes.icon} icon={networks[profile.network]} />
-                          </Link>
-                            )
-                    );
-                  })}
-                  </span>
-              }
-              secondary={<span className={classes.secondary}>{basics.summary}</span>}
-              />
-              </ListItem>
-                </List>
-                  </div>
-                    )
+        <List>
+          <Typography className={classes.heading} variant="h2">
+            Work
+          </Typography>
+          {work.map((item, i) => {
+            return (
+              <React.Fragment>
+                <ListItem key={i} classes={{ root: classes.list }}>
+                  <ListItemText
+                    primary={`${item.company} (${item.startDate} - ${item.endDate})`}
+                    secondary={
+                      <React.Fragment>
+                        <div>{`${item.position} - ${item.summary}`}</div>
+                        <div className={classes.tags}>
+                          {item.highlights.map((h, i) => (
+                            <TagChip key={i} tag={h} />
+                          ))}
+                        </div>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItem>
+                {i !== work.length - 1 && <Divider component="li" />}
+              </React.Fragment>
+            );
+          })}
+        </List>
+      </div>
+    )
   );
 };
