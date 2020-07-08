@@ -4,33 +4,33 @@ import React from 'react';
 import { GlobalLayout } from '../../components/Layout/global';
 import { ResumePage } from '../../gatsby-queries';
 import { safe } from '../../utils';
+import { Resume } from '../../components/Resume/resume';
 
 interface Props {
   data: ResumePage;
 }
 
-const useStyles = makeStyles((_: Theme) => ({
-  avatar: {
-    width: 200,
-    height: 200,
-    margin: 'auto',
-  },
-}));
+// const useStyles = makeStyles((_: Theme) => ({
+//   avatar: {
+//     width: 200,
+//     height: 200,
+//     margin: 'auto',
+//   },
+// }));
 
 export default ({ data }: Props) => {
-  const classes = useStyles();
-  const { avatar } = safe(data);
+  // const classes = useStyles();
+  const { avatar, site } = safe(data);
   const { childImageSharp } = safe(avatar);
   const { fluid } = safe(childImageSharp);
   const { src } = safe(fluid);
 
-  // const { siteMetadata } = safe(site);
-  // const { resume } = safe(siteMetadata);
-  // return <Resume resume={safe(resume)} />;
+  const { siteMetadata } = safe(site);
+  const { resume } = safe(siteMetadata);
 
   return (
     <GlobalLayout>
-      <Avatar src={src || undefined} className={classes.avatar} />
+      <Resume avatarSrc={src} resume={safe(resume)} />;
     </GlobalLayout>
   );
 };
@@ -50,8 +50,6 @@ export const pageQuery = graphql`
           basics {
             name
             label
-            picture
-            phone
             website
             summary
             location {
